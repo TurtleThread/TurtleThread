@@ -4,6 +4,7 @@ from contextlib import contextmanager
 
 from pyembroidery import JUMP, STITCH, TRIM, EmbPattern, write
 
+from .visualise import visualise_pattern
 
 
 # TODO: Method to visualise with Turtle
@@ -198,6 +199,8 @@ class Turtle:
         self.goto(0, 0)
         self.angle = 0
 
+    def visualise(self, turtle=None, width=800, height=800, scale=0.2):
+        visualise_pattern(self.pattern, turtle=turtle, width=width, height=height, scale=scale)
 
     fd = forward
     bk = backward
