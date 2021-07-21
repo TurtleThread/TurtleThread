@@ -2,7 +2,8 @@ import math
 import random
 from contextlib import contextmanager
 
-from pyembroidery import JUMP, STITCH, EmbPattern, write
+from pyembroidery import JUMP, STITCH, TRIM, EmbPattern, write
+
 
 
 # TODO: Method to visualise with Turtle
@@ -100,6 +101,7 @@ class Turtle:
         # Set stitch parameters
         self.stitch_type = "jump_stitch"
         self.stitch_parameters = {}
+        self.pattern.add_stitch_absolute(TRIM, self.x, self.y)
 
         yield
 
@@ -195,6 +197,7 @@ class Turtle:
     def home(self):
         self.goto(0, 0)
         self.angle = 0
+
 
     fd = forward
     bk = backward
