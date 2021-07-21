@@ -21,8 +21,8 @@ class Turtle:
         # TODO: What should be default?
         self.stitch_type = "no_stitch"
         self.stitch_parameters = {"length": 10}
-        self._previous_stitch_type = self.stitch_type
-        self._previous_stitch_parameters = self.stitch_parameters
+        self._previous_stitch_type = [self.stitch_type]
+        self._previous_stitch_parameters = [self.stitch_parameters]
         self.angle_mode = angle_mode
 
     @property
@@ -78,8 +78,8 @@ class Turtle:
     @contextmanager
     def running_stitch(self, stitch_length):
         # Store current settings
-        self._previous_stitch_type = self.stitch_type
-        self._previous_stitch_parameters = self.stitch_parameters
+        self._previous_stitch_type.append(self.stitch_type)
+        self._previous_stitch_parameters.append(self.stitch_parameters)
 
         # Set stitch parameters
         self.stitch_type = "running_stitch"
@@ -90,14 +90,14 @@ class Turtle:
         yield
 
         # Reset settings
-        self.stitch_type = self._previous_stitch_type
-        self.stitch_parameters = self._previous_stitch_parameters
+        self.stitch_type = self._previous_stitch_type.pop()
+        self.stitch_parameters = self._previous_stitch_parameters.pop()
 
     @contextmanager
     def jump_stitch(self):
         # Store current settings
-        self._previous_stitch_type = self.stitch_type
-        self._previous_stitch_parameters = self.stitch_parameters
+        self._previous_stitch_type.append(self.stitch_type)
+        self._previous_stitch_parameters.append(self.stitch_parameters)
 
         # Set stitch parameters
         self.stitch_type = "jump_stitch"
@@ -107,8 +107,8 @@ class Turtle:
         yield
 
         # Reset settings
-        self.stitch_type = self._previous_stitch_type
-        self.stitch_parameters = self._previous_stitch_parameters
+        self.stitch_type = self._previous_stitch_type.pop()
+        self.stitch_parameters = self._previous_stitch_parameters.pop()
 
     def _goto_running_stitch(self, x, y):
         distance = math.sqrt((self.x - x) ** 2 + (self.y - y) ** 2)
