@@ -7,6 +7,9 @@ from pyembroidery import JUMP, STITCH, TRIM, EmbPattern, write
 from .visualise import visualise_pattern
 
 
+USE_SPHINX_GALLERY = False
+
+
 # TODO: Method to visualise with Turtle
 class Turtle:
     def __init__(self, pattern=None, angle_mode="degrees"):
@@ -24,6 +27,9 @@ class Turtle:
         self._previous_stitch_type = [self.stitch_type]
         self._previous_stitch_parameters = [self.stitch_parameters]
         self.angle_mode = angle_mode
+
+        # For integration with sphinx-gallery
+        self._gallery_patterns = []
 
     @property
     def angle_mode(self):
@@ -190,7 +196,10 @@ class Turtle:
         ---------
         filename : str
         """
-        write(self.pattern, filename)
+        if not USE_SPHINX_GALLERY:
+            write(self.pattern, filename)
+        else:
+            self._gallery_patterns.append((filename, self.pattern.copy()))
 
     def setheading(self, angle):
         self.angle = angle
@@ -199,7 +208,7 @@ class Turtle:
         self.goto(0, 0)
         self.angle = 0
 
-    def visualise(self, turtle=None, width=800, height=800, scale=0.2):
+    def visualise(self, turtle=None, width=800, height=800, scale=1):
         visualise_pattern(self.pattern, turtle=turtle, width=width, height=height, scale=scale)
 
     fd = forward
