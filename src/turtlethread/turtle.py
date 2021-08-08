@@ -5,7 +5,7 @@ from contextlib import contextmanager
 from pyembroidery import JUMP, STITCH, TRIM, EmbPattern, write
 
 from .visualise import visualise_pattern
-
+from .pattern_info import show_info
 
 USE_SPHINX_GALLERY = False
 
@@ -277,6 +277,11 @@ class Turtle:
             Factor the embroidery length's are scaled by.
         """
         visualise_pattern(self.pattern, turtle=turtle, width=width, height=height, scale=scale)
+
+    def show_info(self):
+        """Display information about this turtle's embroidery pattern.
+        """
+        show_info(self.pattern)
 
     fd = forward
     bk = backward
