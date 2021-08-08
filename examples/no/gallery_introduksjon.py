@@ -1,10 +1,9 @@
 """
-Ditt første skilpaddebroderi
-============================
+Introduksjon til TurtleThread
+=============================
 
-Nå skal vi lage vårt første skilpaddebroderi. Det første vi må gjøre er å importere TurtleThread (pass på at det er `installert`_).
-
-.. _installert: ../installation.html
+Nå skal vi lage vårt første skilpaddebroderi.
+Det første vi må gjøre er å importere TurtleThread (pass på at det er `installert <../installation.html>`_).
 """
 
 
@@ -17,15 +16,15 @@ penn = turtlethread.Turtle()
 
 # %%
 # Nå har vi alt vi trenger for å begynne å lage mønster. La oss begynne med en strek.
-# For å tegne en strek bruker vi forward og bestemmer hvor langt vi vil gå (f.eks 100 steg). 
+# For å tegne en strek bruker vi ``forward`` og bestemmer hvor langt vi vil gå (f.eks 300 steg). 
 
 penn = turtlethread.Turtle()
 penn.forward(300)
 
 # %%
-# Denne koden flytter skilpadden 100 steg, men den lager ingen søm. 
+# Denne koden flytter skilpadden 300 steg, men den lager ingen søm. 
 # For at skilpadden skal sy mens den flytter seg må vi bruke forward kommandoen inne i en søm-blokk.
-# Den enkleste søm-blokken er en som heter "running stitch". I en running stitch-block så broderer vi
+# Den enkleste søm-blokken er en som heter ``running_stitch``. I en running stitch-block så broderer vi
 # en rett strek med et fast mellomrom mellom hvert sting.
 
 penn = turtlethread.Turtle()
@@ -33,9 +32,9 @@ with penn.running_stitch(30):
     penn.forward(300)
 
 # %%
-# Her har vi lagd kode som flytter skilpadda 100 steg fremover, med en running stitch søm, hvor vi
-# setter et sting for hvert tiende steg. Dette tilsvarer at vi setter ca et sting per millimeter.
-# La oss se på hvordan dette ser ut. For å gjøre det kan vi bruke "visualise"-funksjonen, som bruker
+# Her har vi lagd kode som flytter skilpadda 300 steg fremover, med en running stitch søm, hvor vi
+# setter et sting for hvert trettiende steg. Dette tilsvarer at vi setter ca et sting per tredje millimeter.
+# La oss se på hvordan dette ser ut. For å gjøre det kan vi bruke ``visualise``-funksjonen, som bruker
 # det innebygde ``turtle``-biblioteket for å tegne broderiet vårt.
 
 penn = turtlethread.Turtle()
@@ -47,7 +46,8 @@ penn.visualise()
 # .. image:: ../figures/introduction_1.png
 
 # %%
-# Nå har vi en søm som gir en rett strek fremover. For å skifte retning kan vi bruke right og sende inn antall grader vi vil rotere (f.eks 90 grader). 
+# Nå har vi en søm som gir en rett strek fremover.
+# For å skifte retning kan vi bruke ``right`` og sende inn antall grader vi vil rotere (f.eks 90 grader). 
 
 penn = turtlethread.Turtle()
 with penn.running_stitch(30):
@@ -112,7 +112,7 @@ with penn.running_stitch(30):
 # Prøv å modifisere koden for forskjellige verdier av antall_firkanter og se hva du får
 
 # %% 
-# Nå som vi har et fint motiv kan vi for eksempel lagre det som png eller svg
+# Nå som vi har et fint motiv kan vi for eksempel lagre det som PNG eller SVG bilder
 
 penn = turtlethread.Turtle()
 antall_kronblader = 8
@@ -129,7 +129,7 @@ penn.save("firkantblomst.svg")
 
 
 # %%
-# Eller vi kan lagre dst fil for å bruke det med en broderimasking
+# Eller vi kan lagre DST-fil for å bruke det med en broderimasking
 
 penn = turtlethread.Turtle()
 antall_kronblader = 8
@@ -142,3 +142,6 @@ with penn.running_stitch(30):
         penn.right(360 / antall_kronblader)
 
 penn.save("firkantblomst.dst")
+
+# %%
+# .. image:: ../figures/firkantblomst_sydd.png
