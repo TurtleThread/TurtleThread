@@ -86,7 +86,8 @@ def turtlethread_scraper(block, block_vars, gallery_conf, **kwargs):
 # Usually you set "language" from the command line for these cases.
 language = 'nb_NO'
 locale_dirs = ['locales/']
-
+gettext_uuid = True
+gettext_compact = False
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
