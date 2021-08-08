@@ -5,9 +5,6 @@ Installation
 ============
 
 
-Stable release
---------------
-
 To install TurtleThread, run this command in your terminal:
 
 .. code-block:: console
