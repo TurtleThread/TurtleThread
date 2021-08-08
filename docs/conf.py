@@ -28,20 +28,12 @@ sys.path.insert(0, os.path.abspath('..'))
 
 import turtlethread
 import turtlethread.turtle
+import turtlethread.visualise
 import turtle
 from sphinx_gallery.scrapers import HLIST_IMAGE_MATPLOTLIB, HLIST_HEADER, figure_rst
 
 turtlethread.turtle.USE_SPHINX_GALLERY = True
-
-
-# Replace turtle with mock if documentation is built on a server without a GUI environment
-from unittest.mock import MagicMock
-for name in dir(turtle):
-    if name.startswith("__") and name.endswith("__"):
-        continue
-    
-    setattr(turtle, name, MagicMock())
-
+turtlethread.visualise.USE_SPHINX_GALLERY = True
 
 # TODO: If not PNG or SVG, add download link.
 def turtlethread_scraper(block, block_vars, gallery_conf, **kwargs):
@@ -109,7 +101,8 @@ sphinx_gallery_conf = {
      'examples_dirs': os.path.join('../examples', language),   # path to your example scripts
      'gallery_dirs': 'auto_examples',  # path to where to save gallery generated output
      'image_scrapers': (turtlethread_scraper),
-     'filename_pattern': '/gallery'
+     'filename_pattern': '/gallery',
+     'reset_argv': lambda x, y: ['MOCK_TURTLE']
 }
 
 
