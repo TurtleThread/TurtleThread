@@ -4,6 +4,9 @@ from turtle import Turtle, Screen
 from pyembroidery import JUMP, STITCH, TRIM, EmbPattern, write
 
 
+USE_SPHINX_GALLERY = False
+
+
 def centered_dot(turtle, diameter):
     pensize = turtle.pensize()
     turtle.pensize(diameter)
@@ -41,6 +44,25 @@ def centered_line(turtle, length):
 
 
 def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1):
+    """Use the builtin ``turtle`` library to visualise an embroidery pattern.
+
+    Parameters
+    ----------
+    pattern : pyembroidery.EmbPattern
+        Embroidery pattern to visualise
+    turtle : turtle.Turtle (optional)
+        Python turtle object to use for drawing. If not specified, then the default turtle
+        is used.
+    width : int
+        Canvas width
+    height : int
+        Canvas height
+    scale : int
+        Factor the embroidery length's are scaled by.
+    """
+    if USE_SPHINX_GALLERY:
+        return 
+
     if turtle is None:
         # If turtle is None, grab the default turtle and set its speed to fastest
         if Turtle._pen is None:

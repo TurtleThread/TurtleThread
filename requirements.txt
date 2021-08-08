@@ -1,0 +1,26 @@
+pip
+
+wheel
+twine
+
+flake8
+black
+isort
+seed-isort-config
+bumpversion
+
+sphinx
+numpydoc
+sphinx-gallery
+sphinx_rtd_theme
+sphinx-intl
+matplotlib
+watchdog
+
+tox
+coverage
+pytest
+pytest-cov
+pytest-randomly
+
+-e .

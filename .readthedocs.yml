@@ -1,0 +1,4 @@
+python:
+  install:
+    - method: setuptools
+    - requirements: docs/requirements.txt
