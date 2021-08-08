@@ -40,13 +40,21 @@ def centered_line(turtle, length):
     turtle._tracer(tr, dl)
 
 
-def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=0.2):
+def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1):
     if turtle is None:
-        turtle = Turtle()
+        # If turtle is None, grab the default turtle and set its speed to fastest
+        if Turtle._pen is None:
+            Turtle._pen = Turtle()
+        turtle = Turtle._pen
+
         turtle.speed('fastest')
     screen = Screen()
     screen.setup(width, height)
 
+    turtle.penup()
+    turtle.goto(pattern.stitches[0][0], pattern.stitches[0][1])        
+    turtle.pendown()
+    
     for x, y, command in pattern.stitches:
         x = scale*x
         y = -scale*y
@@ -56,7 +64,7 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=0.2):
 
             speed = turtle.speed()
             turtle.speed('fastest')
-            centered_dot(turtle, 5)
+            centered_dot(turtle, 25*scale)
             turtle.speed(speed)
         elif command == TRIM:
             turtle.penup()
@@ -66,7 +74,7 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=0.2):
             turtle.color("black")
             speed = turtle.speed()
             turtle.speed('fastest')
-            centered_cross(turtle, 5)
+            centered_cross(turtle, 25*scale)
             turtle.speed(speed)
         elif command == STITCH:
             turtle.setheading(turtle.towards(x, y))
@@ -75,7 +83,7 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=0.2):
             turtle.goto(x, y)
             speed = turtle.speed()
             turtle.speed('fastest')
-            centered_line(turtle, 3)
+            centered_line(turtle, 10*scale)
             turtle.speed(speed)
         else:
             raise ValueError(f"Command not supported: {command}")
