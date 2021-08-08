@@ -35,15 +35,12 @@ turtlethread.turtle.USE_SPHINX_GALLERY = True
 
 
 # Replace turtle with mock if documentation is built on a server without a GUI environment
-try:
-    turtle.tracer(0)
-except turtle.TK.TclError:
-    from unittest.mock import MagicMock
-    for name in dir(turtle):
-        if name.startswith("__") and name.endswith("__"):
-            continue
-        
-        setattr(turtle, name, MagicMock())
+from unittest.mock import MagicMock
+for name in dir(turtle):
+    if name.startswith("__") and name.endswith("__"):
+        continue
+    
+    setattr(turtle, name, MagicMock())
 
 
 # TODO: If not PNG or SVG, add download link.
