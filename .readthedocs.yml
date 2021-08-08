@@ -4,3 +4,4 @@ python:
       path: .
       extra_requirements:
         - docs
+    - method: setuptools
