@@ -1,4 +1,8 @@
 test_patterns/
+scripts
+pyemb
+.vscode
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -66,6 +70,7 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+docs/auto_examples
 
 # PyBuilder
 target/
