@@ -102,9 +102,61 @@ class Turtle:
         """
         return self.x, self.y
 
+    def _push_settings(self):
+        self._previous_stitch_type.append(self.stitch_type)
+        self._previous_stitch_parameters.append(self.stitch_parameters)
+
+    def _pop_settings(self):
+        self.stitch_type = self._previous_stitch_type.pop()
+        self.stitch_parameters = self._previous_stitch_parameters.pop()
+
+    def start_running_stitch(self, stitch_length):
+        """Set the stitch mode to running stitch (not recommended, use ``running_stitch``-context instead).
+
+        With a running stitch, we get stitches with a constant distance between each stitch.
+
+        One step is equivalent to 0.1 mm, we recommend setting the minimum length
+        between each stitch to 30 (3 mm).
+
+        It is recommended to use the ``running_stitch``-context instead of the start-functions
+        since they will automatically cleanup afterwards. 
+
+        Parameters
+        ----------
+        stitch_length : int
+            Number of steps between each stitch.
+        """
+        # Store current settings
+        self._push_settings()
+
+        # Set stitch parameters
+        self.stitch_type = "running_stitch"
+        self.stitch_parameters = {"length": stitch_length}
+
+        # Initialise stitch
+        self.pattern.add_stitch_absolute(STITCH, self.x, self.y)
+    
+    def start_jump_stitch(self):
+        """Set the stitch mode to jump-stitch (not recommended, use ``jump_stitch``-context instead).
+
+        With a jump-stitch, trim the thread and move the needle without sewing more stitches.
+        """
+        # Store current settings
+        self._push_settings()
+
+        # Set stitch parameters
+        self.stitch_type = "jump_stitch"
+        self.stitch_parameters = {}
+        self.pattern.add_stitch_absolute(TRIM, self.x, self.y)
+
+    def cleanup_stitch_type(self):
+        """Cleanup after switching to running stitch.
+        """
+        self._pop_settings()
+
     @contextmanager
     def running_stitch(self, stitch_length):
-        """Set the stitch mode to running stitch.
+        """Set the stitch mode to running stitch and cleanup afterwards.
 
         With a running stitch, we get stitches with a constant distance between each stitch.
 
@@ -116,36 +168,18 @@ class Turtle:
         stitch_length : int
             Number of steps between each stitch.
         """
-        # Store current settings
-        self._previous_stitch_type.append(self.stitch_type)
-        self._previous_stitch_parameters.append(self.stitch_parameters)
-
-        # Set stitch parameters
-        self.stitch_type = "running_stitch"
-        self.stitch_parameters = {"length": stitch_length}
-
-        # Initialise stitch
-        self.pattern.add_stitch_absolute(STITCH, self.x, self.y)
+        self.start_running_stitch(stitch_length)
         yield
-
-        # Reset settings
-        self.stitch_type = self._previous_stitch_type.pop()
-        self.stitch_parameters = self._previous_stitch_parameters.pop()
+        self._pop_settings()
 
     @contextmanager
     def jump_stitch(self):
-        """Set the stitch mode to jump-stitch.
+        """Set the stitch mode to jump-stitch and cleanup afterwards.
 
         With a jump-stitch, trim the thread and move the needle without sewing more stitches.
         """
         # Store current settings
-        self._previous_stitch_type.append(self.stitch_type)
-        self._previous_stitch_parameters.append(self.stitch_parameters)
-
-        # Set stitch parameters
-        self.stitch_type = "jump_stitch"
-        self.stitch_parameters = {}
-        self.pattern.add_stitch_absolute(TRIM, self.x, self.y)
+        self.start_jump_stitch()
 
         yield
 
@@ -259,7 +293,7 @@ class Turtle:
         self.goto(0, 0)
         self.angle = 0
 
-    def visualise(self, turtle=None, width=800, height=800, scale=1):
+    def visualise(self, turtle=None, width=800, height=800, scale=1, done=True, bye=True):
         """Use the builtin ``turtle`` library to visualise this turtle's embroidery pattern.
 
         Parameters
@@ -275,8 +309,14 @@ class Turtle:
             Canvas height
         scale : int
             Factor the embroidery length's are scaled by.
+        done : bool
+            If True, then ``turtle.done()`` will be called after drawing.
+        bye : bool
+            If True, then ``turtle.bye()`` will be called after drawing.
         """
-        visualise_pattern(self.pattern, turtle=turtle, width=width, height=height, scale=scale)
+        visualise_pattern(
+            self.pattern, turtle=turtle, width=width, height=height, scale=scale, done=done, bye=bye
+        )
 
     def show_info(self):
         """Display information about this turtle's embroidery pattern.
