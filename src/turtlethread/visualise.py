@@ -43,7 +43,7 @@ def centered_line(turtle, length):
     turtle._tracer(tr, dl)
 
 
-def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1):
+def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done=True, bye=True):
     """Use the builtin ``turtle`` library to visualise an embroidery pattern.
 
     Parameters
@@ -59,6 +59,10 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1):
         Canvas height
     scale : int
         Factor the embroidery length's are scaled by.
+    done : bool
+        If True, then ``turtle.done()`` will be called after drawing.
+    bye : bool
+        If True, then ``turtle.bye()`` will be called after drawing.
     """
     if USE_SPHINX_GALLERY:
         return 
@@ -77,6 +81,7 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1):
     turtle.goto(pattern.stitches[0][0], pattern.stitches[0][1])        
     turtle.pendown()
     
+    raise_error = False
     for x, y, command in pattern.stitches:
         x = scale*x
         y = -scale*y
@@ -108,4 +113,16 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1):
             centered_line(turtle, 10*scale)
             turtle.speed(speed)
         else:
-            raise ValueError(f"Command not supported: {command}")
+            raise_error = True
+            break
+
+    if done:
+        import turtle  # Import turtle only here to avoid cluttering module namespace
+        turtle.done()
+    if bye:
+        import turtle  # Import turtle only here to avoid cluttering module namespace
+        turtle.bye()
+    
+    if raise_error:
+        ValueError(f"Command not supported: {command}")
+
