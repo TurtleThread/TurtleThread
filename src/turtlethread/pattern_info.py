@@ -44,7 +44,7 @@ def get_pattern_info(pattern):
     return info
 
 
-def show_info(pattern):
+def show_info(pattern, scale=1):
     """Display information about an embroidery pattern
 
     Parameters
@@ -65,8 +65,8 @@ def show_info(pattern):
     num_digits = int(max(map(math.log, info_fields)))
     print(f"{'Pattern info':>{20 + num_digits}}")
     print("-"*30)
-    print(f"{'Width [steps]':>20} | {width:{num_digits}.0f}")
-    print(f"{'Height [steps]':>20} | {height:{num_digits}.0f}")
+    print(f"{'Width [steps]':>20} | {width/scale:{num_digits}.0f}")
+    print(f"{'Height [steps]':>20} | {height/scale:{num_digits}.0f}")
     print(f"{'Width [mm]':>20} | {width/10:{num_digits}.0f}")
     print(f"{'Height [mm]':>20} | {height/10:{num_digits}.0f}")
     # TODO: print(f"{'Minimum distance between stitches':>40} | {pattern_info[mind_distance]}")
