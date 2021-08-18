@@ -10,7 +10,6 @@ from .pattern_info import show_info
 USE_SPHINX_GALLERY = False
 
 
-# TODO: Method to visualise with Turtle
 class Turtle:
     """Turtle object that to make embroidery files. Mirrored after the official ``turtle <https://docs.python.org/3/library/turtle.html>`_ library.
 
@@ -24,8 +23,14 @@ class Turtle:
         The embroidery pattern to work with. If not supplied, then an empty pattern will be created.
     angle_mode : "degrees" or "radians" (optional, default="degrees")
         How angles are computed.
+    scale : float (optional, default=1)
+        Scaling between turtle steps and units in the embroidery file. Below are some example scaling
+
+         * `scale=1`  - One step is one unit in the embroidery file (0.1 mm)
+         * `scale=10` - One step equals 1 mm
+         * `scale=2`  - The scaling TurtleStitch uses
     """
-    def __init__(self, pattern=None, angle_mode="degrees"):
+    def __init__(self, pattern=None, angle_mode="degrees", scale=1):
         if pattern is None:
             self.pattern = EmbPattern()
         else:
@@ -40,6 +45,7 @@ class Turtle:
         self._previous_stitch_type = [self.stitch_type]
         self._previous_stitch_parameters = [self.stitch_parameters]
         self.angle_mode = angle_mode
+        self.scale = scale
 
         # For integration with sphinx-gallery
         self._gallery_patterns = []
@@ -188,6 +194,7 @@ class Turtle:
         self.stitch_parameters = self._previous_stitch_parameters.pop()
 
     def _goto_running_stitch(self, x, y):
+        x, y = scale*x, scale*y
         distance = math.sqrt((self.x - x) ** 2 + (self.y - y) ** 2)
         angle = math.atan2(y - self.y, x - self.x)
         step_length = self.stitch_parameters["length"]
@@ -221,13 +228,13 @@ class Turtle:
         self.pattern.add_stitch_absolute(STITCH, self.x, self.y)
 
     def _goto_jump_stitch(self, x, y):
-        self.x = x
-        self.y = y
+        self.x = self.scale * x
+        self.y = self.scale * y
         self.pattern.add_stitch_absolute(JUMP, self.x, self.y)
 
     def _goto_no_stitch(self, x, y):
-        self.x = x
-        self.y = y
+        self.x = self.scale * x
+        self.y = self.scale * y
 
     def goto(self, x, y):
         """Goto a given position, see the `official documentation <https://docs.python.org/3/library/turtle.html#turtle.goto>`_.
@@ -321,7 +328,7 @@ class Turtle:
     def show_info(self):
         """Display information about this turtle's embroidery pattern.
         """
-        show_info(self.pattern)
+        show_info(self.pattern, scale=self.scale)
 
     fd = forward
     bk = backward
