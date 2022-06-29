@@ -11,7 +11,7 @@ USE_SPHINX_GALLERY = False
 
 
 class Turtle:
-    """Turtle object that to make embroidery files. Mirrored after the official ``turtle <https://docs.python.org/3/library/turtle.html>`_ library.
+    """Turtle object that to make embroidery files. Mirrored after the official `turtle <https://docs.python.org/3/library/turtle.html>`_ library.
 
     Any undocumented functions have the same interface as the official turtle library.
 
