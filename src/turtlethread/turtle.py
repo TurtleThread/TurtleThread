@@ -194,7 +194,7 @@ class Turtle:
         self.stitch_parameters = self._previous_stitch_parameters.pop()
 
     def _goto_running_stitch(self, x, y):
-        x, y = scale*x, scale*y
+        x, y = self.scale*x, self.scale*y
         distance = math.sqrt((self.x - x) ** 2 + (self.y - y) ** 2)
         angle = math.atan2(y - self.y, x - self.x)
         step_length = self.stitch_parameters["length"]
