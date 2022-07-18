@@ -1,5 +1,5 @@
+from warnings import warn
 import math
-import random
 from contextlib import contextmanager
 
 from pyembroidery import JUMP, STITCH, TRIM, EmbPattern, write
@@ -31,13 +31,11 @@ class Turtle:
          * `scale=2`  - The scaling TurtleStitch uses
     """
     def __init__(self, pattern=None, angle_mode="degrees", scale=1):
+        # TODO: Flag that can enable/disable changing angle when angle mode is changed
         if pattern is None:
             self.pattern = EmbPattern()
         else:
             self.pattern = pattern
-        self.angle = 0
-        self.x = 0
-        self.y = 0
 
         # TODO: What should be default?
         self.stitch_type = "no_stitch"
@@ -46,6 +44,10 @@ class Turtle:
         self._previous_stitch_parameters = [self.stitch_parameters]
         self.angle_mode = angle_mode
         self.scale = scale
+
+        self.angle = 0
+        self.x = 0
+        self.y = 0
 
         # For integration with sphinx-gallery
         self._gallery_patterns = []
@@ -63,23 +65,49 @@ class Turtle:
         if not isinstance(value, str):
             raise TypeError("Angle mode must be a string")
         elif value.lower() not in {"degrees", "radians"}:
-            raise ValueError(f"Angle mode must be either degrees or radians, not {angle_mode}")
+            raise ValueError(f"Angle mode must be either degrees or radians, not {value}")
         else:
             self._angle_mode = value.lower()
 
-    def _cos(self, angle):
-        if self.angle_mode == "degrees":
-            angle = math.radians(angle)
-        return math.cos(angle)
+    @property
+    def angle(self):
+        if self.angle_mode == "radians":
+            return self._angle
+        elif self.angle_mode == "degrees":
+            return math.degrees(self._angle)
+    
+    @angle.setter
+    def angle(self, value):
+        self._angle = self._to_counter_clockwise_radians(value)
 
-    def _sin(self, angle):
-        if self.angle_mode == "degrees":
-            angle = math.radians(angle)
-        return math.sin(angle)
+    def _steps_from_stitch_length(self, stitch_length, radius, extent):
+        if radius == 0:
+            steps = 1
+        elif 0.5*stitch_length/radius > math.sin(math.pi/4):
+            steps = 4
+            warn(
+                "Cannot calculate `steps` based on `stitch_length` as `stitch_length` is too long compared"
+                + " to `radius`. A minimum no. `steps` of 4 is chosen instead. To disable this either provide"
+                + " `steps`, decrease `stitch_length` or increase the circle `radius`"
+            )
+        else:
+            extent = self._to_counter_clockwise_radians(extent)
+            steps = self._n_sides_from_side_length(stitch_length, radius, extent)
+            steps = int(round(steps))
+        return steps
+
+    def _n_sides_from_side_length(self, side_length, radius, extent):
+        # Assumes that radius is converted to radians prior to call
+        return extent / (2*math.asin(0.5*side_length/radius))
 
     def circle(self, radius, extent=None, steps=None):
         """Draw a circle, see the `official documentation <https://docs.python.org/3/library/turtle.html#turtle.circle>`_.
         """
+        if radius == 0:  #  TODO: Maybe use a lower tolerance
+            warn("Drawing a circle with radius is 0 is not possible and may lead to many stitches in the same spot")
+        if math.isinf(radius) or math.isnan(radius):
+            raise ValueError(f"``radius`` cannot be nan or inf, it is {radius}")
+        
         if self.angle_mode == "degrees":
             fullcircle = 360
         else:
@@ -88,14 +116,15 @@ class Turtle:
         if extent is None:
             extent = fullcircle
 
-        if steps is None:
-            # TODO: implement so that number of steps can be based on length of running stitch
+        if steps is None and "length" in self.stitch_parameters:
+            stitch_length = self.stitch_parameters["length"]
+            steps = self._steps_from_stitch_length(stitch_length, radius, extent)
+        elif steps is None:
             steps = 20
 
         w = 1.0 * extent / steps
-
-        angle = math.radians(0.5 * w)
-        sidelength = 2 * radius * math.sin(angle)
+        angle = 0.5 * w
+        sidelength = 2 * radius * math.sin(self._to_counter_clockwise_radians(angle))
 
         self.left(0.5 * w)
         for i in range(steps):
@@ -192,6 +221,7 @@ class Turtle:
         # Reset settings
         self.stitch_type = self._previous_stitch_type.pop()
         self.stitch_parameters = self._previous_stitch_parameters.pop()
+        # TODO: Possibly a flag for cleaning up the stitches-list so we only have a single jump command after the trim
 
     def _goto_running_stitch(self, x, y):
         x, y = self.scale*x, self.scale*y
@@ -246,13 +276,13 @@ class Turtle:
         elif self.stitch_type == "no_stitch":
             self._goto_no_stitch(x, y)
         else:
-            raise ValueError(f"{self.stitch_type} is not a valid stitch pattern")
+            raise ValueError(f"{self.stitch_type} is not a valid stitch pattern")
 
     def forward(self, distance):
         """Move forward a set distance, see the `official documentation <https://docs.python.org/3/library/turtle.html#turtle.forward>`_.
         """
-        x = self.x + distance * self._cos(self.angle)
-        y = self.y + distance * self._sin(self.angle)
+        x = self.x + distance * math.cos(self._angle)
+        y = self.y + distance * math.sin(self._angle)
         self.goto(x, y)
 
     def backward(self, distance):
@@ -329,6 +359,19 @@ class Turtle:
         """Display information about this turtle's embroidery pattern.
         """
         show_info(self.pattern, scale=self.scale)
+
+    def heading(self):
+        """Returns the turtle's heading (i.e. angle)
+
+        writing ``turtle.heading()`` gives the same result as writing ``turtle.angle``.
+        """
+        return self.angle
+
+    def _to_counter_clockwise_radians(self, angle):
+        if self.angle_mode == "degrees":
+            return math.radians(angle)
+        elif self.angle_mode == "radians":
+            return angle
 
     fd = forward
     bk = backward
