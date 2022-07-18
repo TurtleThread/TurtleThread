@@ -1,6 +1,4 @@
-from math import atan2
-
-from pyembroidery import JUMP, STITCH, TRIM, EmbPattern, write
+from pyembroidery import JUMP, STITCH, TRIM
 
 
 USE_SPHINX_GALLERY = False
@@ -22,6 +20,7 @@ def centered_cross(turtle, length):
     turtle.goto(x + r, y - r)
     turtle.goto(x - r, y + r)
     turtle.goto(x, y)
+
 
 def centered_line(turtle, length):
     r = length/2
@@ -127,8 +126,10 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done
         turtle.done()
     if bye:
         import turtle  # Import turtle only here to avoid cluttering module namespace
-        turtle.bye()
+        try:
+            turtle.bye()
+        except turtle.Terminator:
+            pass
 
     if raise_error:
         ValueError(f"Command not supported: {command}")
-
