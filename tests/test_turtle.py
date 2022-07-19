@@ -59,7 +59,7 @@ class TestTurtle:
             turtle.angle_mode = invalid_input
 
     def test_angle_mode_fails_for_invalid_input_value(self, turtle):
-        with pytest.raises(ValueError):
+        with pytest.raises(KeyError):
             turtle.angle_mode = "invalid_string_input"
 
 

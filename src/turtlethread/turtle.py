@@ -1,6 +1,7 @@
 from warnings import warn
 import math
 from contextlib import contextmanager
+from enum import Enum, auto
 
 from pyembroidery import JUMP, STITCH, TRIM, EmbPattern, write
 
@@ -8,6 +9,20 @@ from .visualise import visualise_pattern
 from .pattern_info import show_info
 
 USE_SPHINX_GALLERY = False
+
+
+class ConfigValue(Enum):
+    @classmethod
+    def get(cls, item):
+        valid_items = {enum.name.lower() for enum in cls}
+        if item.lower() not in valid_items:
+            raise KeyError(f"{item} is not a valid {cls.__name__}. Must be one of {valid_items} (case insensitive)")
+        return cls[item.upper()]
+
+
+class AngleMode(ConfigValue):
+    RADIANS = auto()
+    DEGREES = auto()
 
 
 class Turtle:
@@ -62,18 +77,18 @@ class Turtle:
     def angle_mode(self, value):
         """Setter that ensures that a valid angle mode is used.
         """
-        if not isinstance(value, str):
-            raise TypeError("Angle mode must be a string")
-        elif value.lower() not in {"degrees", "radians"}:
-            raise ValueError(f"Angle mode must be either degrees or radians, not {value}")
+        if isinstance(value, AngleMode):
+            self._angle_mode = value
+        elif isinstance(value, str):
+            self._angle_mode = AngleMode.get(value.upper())
         else:
-            self._angle_mode = value.lower()
-
+            raise TypeError(f"Angle mode must be a string or {AngleMode}")
+        
     @property
     def angle(self):
-        if self.angle_mode == "radians":
+        if self.angle_mode == AngleMode.RADIANS:
             return self._angle
-        elif self.angle_mode == "degrees":
+        elif self.angle_mode == AngleMode.DEGREES:
             return math.degrees(self._angle)
     
     @angle.setter
@@ -108,7 +123,7 @@ class Turtle:
         if math.isinf(radius) or math.isnan(radius):
             raise ValueError(f"``radius`` cannot be nan or inf, it is {radius}")
         
-        if self.angle_mode == "degrees":
+        if self.angle_mode == AngleMode.DEGREES:
             fullcircle = 360
         else:
             fullcircle = 2*math.pi
@@ -368,9 +383,9 @@ class Turtle:
         return self.angle
 
     def _to_counter_clockwise_radians(self, angle):
-        if self.angle_mode == "degrees":
+        if self.angle_mode == AngleMode.DEGREES:
             return math.radians(angle)
-        elif self.angle_mode == "radians":
+        elif self.angle_mode == AngleMode.RADIANS:
             return angle
 
     fd = forward
