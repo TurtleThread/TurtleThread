@@ -5,4 +5,4 @@ __email__ = "yngve.m.moe@gmail.com"
 __version__ = "0.0.6"
 
 
-from .turtle import Turtle
+from .turtle import Turtle, AngleMode
