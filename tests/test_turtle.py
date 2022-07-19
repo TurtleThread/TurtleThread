@@ -62,7 +62,6 @@ class TestTurtle:
         with pytest.raises(KeyError):
             turtle.angle_mode = "invalid_string_input"
 
-
     def test_turtle_left(self, turtle):
         turtle.left(90)
         assert turtle.angle == -90  # y-axis points down to be consistent with turtlestitch
@@ -80,6 +79,50 @@ class TestTurtle:
         with pytest.warns(UserWarning):
             turtle.circle(0)
 
+    def test_home_resets_angle(self, turtle):
+        turtle.angle = 3
+        turtle.home()
+        assert turtle.angle == 0
+    
+    def test_home_resets_position(self, turtle):
+        turtle.goto(20, 20)
+        turtle.home()
+        assert turtle.x == 0
+        assert turtle.y == 0
+    
+    @pytest.mark.parametrize('x', [0, -10, 10])
+    @pytest.mark.parametrize('y', [0, -10, 10])
+    def test_goto_changes_position(self, turtle, x, y):
+        turtle.goto(x, y)
+        assert turtle.x == x
+        assert turtle.y == y
+
+
+    @pytest.mark.parametrize('steps', [1, 2, 5, 10])
+    @pytest.mark.parametrize('radius', [0, 1, 5, 10])
+    @pytest.mark.parametrize('angle_mode', ["degrees", "radians"])
+    def test_circle_stops_and_starts_in_same_position(self, turtle, radius, steps, angle_mode):
+        turtle.angle_mode = angle_mode
+        start_x = turtle.x
+        start_y = turtle.y
+
+        turtle.circle(radius=radius, steps=steps)
+        
+        assert turtle.x == approx(start_x)
+        assert turtle.y == approx(start_y)
+
+
+    @pytest.mark.parametrize('steps', [1, 2, 5, 10])
+    @pytest.mark.parametrize('radius', [-1, 0, 1, 5, 10])
+    @pytest.mark.parametrize('angle_mode', ["degrees", "radians"])
+    def test_circle_stops_and_starts_with_same_angle(self, turtle, radius, steps, angle_mode): 
+        turtle.angle_mode = angle_mode
+        start_angle = turtle._to_counter_clockwise_radians(turtle.angle)
+
+        turtle.circle(radius=radius, steps=steps)
+        
+        end_angle = turtle._to_counter_clockwise_radians(turtle.angle)
+        assert end_angle == approx(start_angle - 2*pi)
 
 class TestTurtleJumpStitch:
     def test_turtle_jump_stitch_context(self, turtle):
@@ -140,7 +183,9 @@ class TestTurtleJumpStitch:
     @pytest.mark.parametrize('steps', [1, 2, 5, 10])
     @pytest.mark.parametrize('extent', [30, 90, 180, 360])
     @pytest.mark.parametrize('radius', [0, 1, 5, 10])
-    def test_circle(self, turtle, radius, extent, steps):
+    @pytest.mark.parametrize('angle_mode', ["degrees", "radians"])
+    def test_circle(self, turtle, radius, extent, steps, angle_mode):
+        turtle.angle_mode = angle_mode
         with turtle.jump_stitch():
             turtle.angle = 0
             turtle.circle(radius, extent=extent, steps=steps)
@@ -152,7 +197,6 @@ class TestTurtleJumpStitch:
             distance_to_center = sqrt((x - center_x)**2 + (y - center_y)**2)
             assert distance_to_center == approx(radius)
             assert stitch_type == JUMP
-
 
     @pytest.mark.parametrize('x', [0, -10, 10])
     @pytest.mark.parametrize('y', [0, -10, 10])
@@ -184,12 +228,19 @@ class TestTurtleRunningStitch:
     @pytest.mark.parametrize('extent', [30, 90, 180, 360])
     @pytest.mark.parametrize('steps', [1, 2, 4, 10])
     @pytest.mark.parametrize('stitch_length', [1, 10, 20])
-    def test_circle(self, turtle, stitch_length, radius, extent, steps):
+    @pytest.mark.parametrize('angle_mode', ["degrees", "radians"])
+    def test_circle(self, turtle, stitch_length, radius, extent, steps, angle_mode):
         """
         Test that all stitches are inside the circle given by `radius`
         and outside the incircle of the polygon with `steps` sides and
-        radius equal `radius`
+        radius equal `radius`.
+
+        This test only works for extent <= full revolution. Otherwise, we may not create
+        a regular polygon with the computed inner radius.
         """
+        turtle.angle_mode = angle_mode
+        if angle_mode == "radians":
+            extent = radians(extent)
         inner_radius = radius * cos(pi/steps)
 
         with turtle.running_stitch(stitch_length):
@@ -228,7 +279,9 @@ class TestTurtleRunningStitch:
     @pytest.mark.parametrize('radius', [50, 100, 200])
     @pytest.mark.parametrize('extent', [30, 90, 180, 360])
     @pytest.mark.parametrize('stitch_length', [1, 5, 10, 20, 30])
-    def test_circle_subsequent_step_length_when_step_not_given(self, turtle, stitch_length, radius, extent):        
+    @pytest.mark.parametrize('angle_mode', ['degrees', 'radians'])
+    def test_circle_subsequent_step_length_when_step_not_given(self, turtle, stitch_length, radius, extent, angle_mode):        
+        turtle.angle_mode = angle_mode
         with turtle.running_stitch(stitch_length):
             turtle.circle(radius, extent=extent, steps=None)
         n_steps = turtle._steps_from_stitch_length(stitch_length, radius, extent)
@@ -258,3 +311,48 @@ class TestTurtleRunningStitch:
             with turtle.running_stitch(5):
                 turtle.circle(0, steps=None)
         assert len(turtle.pattern.stitches) == 2
+
+    @pytest.mark.parametrize('stitch_length', [1, 2, 10, 30])
+    @pytest.mark.parametrize('step_length', [10, 100, 500])
+    def test_forward_different_stitch_lengths(self, turtle, stitch_length, step_length):
+        with turtle.running_stitch(stitch_length):
+            turtle.forward(step_length)
+
+        stitches = turtle.pattern.stitches
+        for (x1, y1, st1), (x2, y2, st2) in zip(stitches[1:-2], stitches[2:-1]):
+            distance = sqrt((x1 - x2)**2 + (y1 - y2)**2)
+            assert st1 == st2 == STITCH
+            assert distance == approx(stitch_length)
+
+        x1, y1, st1 = stitches[-2]
+        x2, y2, st2 = stitches[-1]
+        assert st1 == st2 == STITCH
+        final_distance = sqrt((x1 - x2)**2 + (y1 - y2)**2)
+        if step_length >= 0.5 * stitch_length:
+            assert final_distance >= 0.5*stitch_length
+            assert final_distance < 1.5*stitch_length
+        else:
+            assert final_distance == approx(step_length)
+
+
+    @pytest.mark.parametrize('stitch_length', [1, 2, 10, 30])
+    @pytest.mark.parametrize('step_length', [10, 100, 500])
+    def test_backward_different_stitch_lengths(self, turtle, stitch_length, step_length):
+        with turtle.running_stitch(stitch_length):
+            turtle.backward(step_length)
+
+        stitches = turtle.pattern.stitches
+        for (x1, y1, st1), (x2, y2, st2) in zip(stitches[1:-2], stitches[2:-1]):
+            distance = sqrt((x1 - x2)**2 + (y1 - y2)**2)
+            assert st1 == st2 == STITCH
+            assert distance == approx(stitch_length)
+
+        x1, y1, st1 = stitches[-2]
+        x2, y2, st2 = stitches[-1]
+        assert st1 == st2 == STITCH
+        final_distance = sqrt((x1 - x2)**2 + (y1 - y2)**2)
+        if step_length >= 0.5 * stitch_length:
+            assert final_distance >= 0.5*stitch_length
+            assert final_distance < 1.5*stitch_length
+        else:
+            assert final_distance == approx(step_length)
