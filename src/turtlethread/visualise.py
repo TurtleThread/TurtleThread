@@ -1,6 +1,5 @@
 from pyembroidery import JUMP, STITCH, TRIM
 
-
 USE_SPHINX_GALLERY = False
 
 
@@ -12,7 +11,7 @@ def centered_dot(turtle, diameter):
 
 
 def centered_cross(turtle, length):
-    r = length/2
+    r = length / 2
     x, y = turtle.position()
     turtle.goto(x + r, y + r)
     turtle.goto(x - r, y - r)
@@ -23,7 +22,7 @@ def centered_cross(turtle, length):
 
 
 def centered_line(turtle, length):
-    r = length/2
+    r = length / 2
     tr = turtle._tracer()
     dl = turtle._delay()
     turtle._tracer(0, 0)
@@ -70,7 +69,7 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done
     # available.
     #
     # (This looks like it would conflict with the 'turtle' variable but it does not)
-    from turtle import Turtle, Screen
+    from turtle import Screen, Turtle
 
     if turtle is None:
         # If turtle is None, grab the default turtle and set its speed to fastest
@@ -78,7 +77,7 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done
             Turtle._pen = Turtle()
         turtle = Turtle._pen
 
-        turtle.speed('fastest')
+        turtle.speed("fastest")
     screen = Screen()
     screen.setup(width, height)
 
@@ -88,15 +87,15 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done
 
     raise_error = False
     for x, y, command in pattern.stitches:
-        x = scale*x
-        y = -scale*y
+        x = scale * x
+        y = -scale * y
         if command == JUMP:
             turtle.color("red")
             turtle.goto(x, y)
 
             speed = turtle.speed()
-            turtle.speed('fastest')
-            centered_dot(turtle, 25*scale)
+            turtle.speed("fastest")
+            centered_dot(turtle, 25 * scale)
             turtle.speed(speed)
         elif command == TRIM:
             turtle.penup()
@@ -105,8 +104,8 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done
 
             turtle.color("black")
             speed = turtle.speed()
-            turtle.speed('fastest')
-            centered_cross(turtle, 25*scale)
+            turtle.speed("fastest")
+            centered_cross(turtle, 25 * scale)
             turtle.speed(speed)
         elif command == STITCH:
             turtle.setheading(turtle.towards(x, y))
@@ -114,8 +113,8 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done
             turtle.color("blue")
             turtle.goto(x, y)
             speed = turtle.speed()
-            turtle.speed('fastest')
-            centered_line(turtle, 10*scale)
+            turtle.speed("fastest")
+            centered_line(turtle, 10 * scale)
             turtle.speed(speed)
         else:
             raise_error = True
@@ -123,9 +122,11 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done
 
     if done:
         import turtle  # Import turtle only here to avoid cluttering module namespace
+
         turtle.done()
     if bye:
         import turtle  # Import turtle only here to avoid cluttering module namespace
+
         try:
             turtle.bye()
         except turtle.Terminator:

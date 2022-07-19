@@ -19,12 +19,14 @@
 # absolute, like shown here.
 #
 import os
+
 if os.name == "nt":
     raise SystemError("Documentation cannot be built on Windows")
 import re
 import sys
 from textwrap import indent
-sys.path.insert(0, os.path.abspath('..'))
+
+sys.path.insert(0, os.path.abspath(".."))
 
 import turtlethread
 import turtlethread.turtle
@@ -37,16 +39,16 @@ turtlethread.visualise.USE_SPHINX_GALLERY = True
 
 # TODO: If not PNG or SVG, add download link.
 def turtlethread_scraper(block, block_vars, gallery_conf, **kwargs):
-    image_path_iterator = block_vars['image_path_iterator']
+    image_path_iterator = block_vars["image_path_iterator"]
     image_rsts = []
 
-    for turtle in block_vars['example_globals'].values():
+    for turtle in block_vars["example_globals"].values():
         if not isinstance(turtle, turtlethread.Turtle):
             continue
 
         for name, pattern in turtle._gallery_patterns:
             extension = name.split(".")[-1]
-            if extension.upper() not in {'PNG', 'SVG'}:
+            if extension.upper() not in {"PNG", "SVG"}:
                 continue
 
             # The +1 here is because we start image numbering at 1 in filenames
@@ -55,20 +57,19 @@ def turtlethread_scraper(block, block_vars, gallery_conf, **kwargs):
             image_path_iterator.paths.append(image_path)
 
             pattern.write(image_path)
-            image_rsts.append(figure_rst([image_path], gallery_conf['src_dir'], name))
+            image_rsts.append(figure_rst([image_path], gallery_conf["src_dir"], name))
         turtle._gallery_patterns = []
 
     # Copied from sphinx_gallery.scrapers.matplotlib_scraper
-    rst = ''
+    rst = ""
     if len(image_rsts) == 1:
         rst = image_rsts[0]
     elif len(image_rsts) > 1:
-        image_rsts = [re.sub(r':class: sphx-glr-single-img',
-                             ':class: sphx-glr-multi-img',
-                             image) for image in image_rsts]
-        image_rsts = [HLIST_IMAGE_MATPLOTLIB + indent(image, u' ' * 6)
-                      for image in image_rsts]
-        rst = HLIST_HEADER + ''.join(image_rsts)
+        image_rsts = [
+            re.sub(r":class: sphx-glr-single-img", ":class: sphx-glr-multi-img", image) for image in image_rsts
+        ]
+        image_rsts = [HLIST_IMAGE_MATPLOTLIB + indent(image, " " * 6) for image in image_rsts]
+        rst = HLIST_HEADER + "".join(image_rsts)
     return rst
 
 
@@ -84,45 +85,45 @@ def turtlethread_scraper(block, block_vars, gallery_conf, **kwargs):
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = 'nb_NO'
-locale_dirs = ['locales/']
+language = "nb_NO"
+locale_dirs = ["locales/"]
 gettext_uuid = True
 gettext_compact = False
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.viewcode',
-    'numpydoc', 
-    'sphinx_gallery.gen_gallery',
+    "sphinx.ext.autodoc",
+    "sphinx.ext.viewcode",
+    "numpydoc",
+    "sphinx_gallery.gen_gallery",
 ]
 
 sphinx_gallery_conf = {
-     'examples_dirs': os.path.join('../examples', language),   # path to your example scripts
-     'gallery_dirs': 'auto_examples',  # path to where to save gallery generated output
-     'image_scrapers': (turtlethread_scraper),
-     'filename_pattern': '/gallery',
-     'reset_argv': lambda x, y: ['MOCK_TURTLE']
+    "examples_dirs": os.path.join("../examples", language),  # path to your example scripts
+    "gallery_dirs": "auto_examples",  # path to where to save gallery generated output
+    "image_scrapers": (turtlethread_scraper),
+    "filename_pattern": "/gallery",
+    "reset_argv": lambda x, y: ["MOCK_TURTLE"],
 }
 
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
 # source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = ".rst"
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = "index"
 
 # General information about the project.
-project = u'TurtleThread'
-copyright = u"2021, Marie Roald & Yngve Mardal Moe"
-author = u"Marie Roald & Yngve Mardal Moe"
+project = "TurtleThread"
+copyright = "2021, Marie Roald & Yngve Mardal Moe"
+author = "Marie Roald & Yngve Mardal Moe"
 
 # The version info for the project you're documenting, acts as replacement
 # for |version| and |release|, also used in various other places throughout
@@ -136,10 +137,10 @@ release = turtlethread.__version__
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = "sphinx"
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
@@ -150,7 +151,7 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+html_theme = "sphinx_rtd_theme"
 
 # Theme options are theme-specific and customize the look and feel of a
 # theme further.  For a list of options available for each theme, see the
@@ -161,13 +162,13 @@ html_theme = 'sphinx_rtd_theme'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
 
 
 # -- Options for HTMLHelp output ---------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'turtlethreaddoc'
+htmlhelp_basename = "turtlethreaddoc"
 
 
 # -- Options for LaTeX output ------------------------------------------
@@ -176,15 +177,12 @@ latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #
     # 'papersize': 'letterpaper',
-
     # The font size ('10pt', '11pt' or '12pt').
     #
     # 'pointsize': '10pt',
-
     # Additional stuff for the LaTeX preamble.
     #
     # 'preamble': '',
-
     # Latex figure (float) alignment
     #
     # 'figure_align': 'htbp',
@@ -194,9 +192,7 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass
 # [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'turtlethread.tex',
-     u'TurtleThread Documentation',
-     u'Marie Roald & Yngve Mardal Moe', 'manual'),
+    (master_doc, "turtlethread.tex", "TurtleThread Documentation", "Marie Roald & Yngve Mardal Moe", "manual"),
 ]
 
 
@@ -204,11 +200,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, 'turtlethread',
-     u'TurtleThread Documentation',
-     [author], 1)
-]
+man_pages = [(master_doc, "turtlethread", "TurtleThread Documentation", [author], 1)]
 
 
 # -- Options for Texinfo output ----------------------------------------
@@ -217,12 +209,13 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'turtlethread',
-     u'TurtleThread Documentation',
-     author,
-     'turtlethread',
-     'One line description of project.',
-     'Miscellaneous'),
+    (
+        master_doc,
+        "turtlethread",
+        "TurtleThread Documentation",
+        author,
+        "turtlethread",
+        "One line description of project.",
+        "Miscellaneous",
+    ),
 ]
-
-
