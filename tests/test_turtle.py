@@ -136,16 +136,6 @@ class TestTurtle:
         assert turtle.x == pytest.approx(0)
         assert turtle.y == pytest.approx(200)
 
-    def test_circle_considers_radius_sign(self, turtle):
-        turtle.angle_mode = "radians"
-        turtle.angle = 0
-        turtle.circle(radius=100, extent=pi, steps=1)
-        assert turtle.x == pytest.approx(0)
-        assert turtle.y == pytest.approx(-200)
-        turtle.home()
-        assert turtle.x == pytest.approx(0)
-        assert turtle.y == pytest.approx(200)
-
 
 class TestTurtleJumpStitch:
     def test_turtle_jump_stitch_context(self, turtle):
