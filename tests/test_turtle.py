@@ -1,4 +1,4 @@
-from math import cos, degrees, pi, radians, sin, sqrt
+from math import cos, copysign, degrees, pi, radians, sin, sqrt
 
 import pytest
 from pyembroidery import JUMP, STITCH, TRIM
@@ -122,7 +122,29 @@ class TestTurtle:
         turtle.circle(radius=radius, steps=steps)
 
         end_angle = turtle._to_counter_clockwise_radians(turtle.angle)
-        assert end_angle == approx(start_angle - 2 * pi)
+        sign = copysign(1, radius)
+        assert end_angle == approx(start_angle - sign * 2 * pi)
+
+    def test_circle_considers_radius_sign(self, turtle):
+        turtle.angle_mode = "radians"
+        turtle.angle = 0
+        turtle.circle(radius=100, extent=pi, steps=1)
+        assert turtle.x == pytest.approx(0)
+        assert turtle.y == pytest.approx(-200)
+        turtle.home()
+        turtle.circle(radius=-100, extent=pi, steps=1)
+        assert turtle.x == pytest.approx(0)
+        assert turtle.y == pytest.approx(200)
+
+    def test_circle_considers_radius_sign(self, turtle):
+        turtle.angle_mode = "radians"
+        turtle.angle = 0
+        turtle.circle(radius=100, extent=pi, steps=1)
+        assert turtle.x == pytest.approx(0)
+        assert turtle.y == pytest.approx(-200)
+        turtle.home()
+        assert turtle.x == pytest.approx(0)
+        assert turtle.y == pytest.approx(200)
 
 
 class TestTurtleJumpStitch:

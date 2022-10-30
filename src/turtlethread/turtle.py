@@ -116,7 +116,7 @@ class Turtle:
 
     def circle(self, radius, extent=None, steps=None):
         """Draw a circle, see the `official documentation <https://docs.python.org/3/library/turtle.html#turtle.circle>`_."""
-        if radius == 0:  #  TODO: Maybe use a lower tolerance
+        if radius == 0:  # TODO: Maybe use a lower tolerance
             warn("Drawing a circle with radius is 0 is not possible and may lead to many stitches in the same spot")
         if math.isinf(radius) or math.isnan(radius):
             raise ValueError(f"``radius`` cannot be nan or inf, it is {radius}")
@@ -131,11 +131,11 @@ class Turtle:
 
         if steps is None and "length" in self.stitch_parameters:
             stitch_length = self.stitch_parameters["length"]
-            steps = self._steps_from_stitch_length(stitch_length, radius, extent)
+            steps = self._steps_from_stitch_length(stitch_length, abs(radius), extent)
         elif steps is None:
             steps = 20
 
-        w = 1.0 * extent / steps
+        w = math.copysign(extent, radius) / steps
         angle = 0.5 * w
         sidelength = 2 * radius * math.sin(self._to_counter_clockwise_radians(angle))
 
