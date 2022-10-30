@@ -1,0 +1,25 @@
+name: Run test
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python with TKinter and a virtual X11 frame buffer
+        run: |
+          sudo apt-get update
+          sudo apt-get install tk-dev python3-tk python3 python3-pip
+          sudo apt-get install xvfb
+      - name: Install turtlethread
+        run: |
+          pip3 install -e .[dev]
+      - name: Run tests
+        run: |
+          # Start virtual display driver
+          export DISPLAY=:12
+          Xvfb $DISPLAY -screen 0 1920x1080x24 2>/tmp/Xvfb.log & sleep 1
+          # Create postscript
+          python3 -mpytest tests --cov=turtlethread
