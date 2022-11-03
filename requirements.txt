@@ -11,9 +11,10 @@ bumpversion
 
 sphinx
 numpydoc
+sphinx_book_theme
 sphinx-gallery
-sphinx_rtd_theme
 sphinx-intl
+sphinx-toolbox
 matplotlib
 watchdog
 

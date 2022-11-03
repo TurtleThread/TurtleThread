@@ -1,6 +1,6 @@
 """
-Introduksjon til TurtleThread
-=============================
+Ditt første skilpaddebroderi
+============================
 
 Nå skal vi lage vårt første skilpaddebroderi.
 Det første vi må gjøre er å importere TurtleThread (pass på at det er `installert <../installation.html>`_).

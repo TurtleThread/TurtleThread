@@ -97,23 +97,22 @@ penn.save("sos.png")
 # vi ett oppslagsverk (dictionary) som transformerer bokstaver og tegn til morsekode.
 
 MORSEALFABET = {
-  'A':'.-',
-  'B':'-...',
-  'C':'-.-.', 'D':'-..', 'E':'.',
-  'F':'..-.', 'G':'--.', 'H':'....',
-  'I':'..', 'J':'.---', 'K':'-.-',
-  'L':'.-..', 'M':'--', 'N':'-.',
-  'O':'---', 'P':'.--.', 'Q':'--.-',
-  'R':'.-.', 'S':'...', 'T':'-',
-  'U':'..-', 'V':'...-', 'W':'.--',
-  'X':'-..-', 'Y':'-.--', 'Z':'--..',
-  'Æ':'.-.-', 'Ø':'---.', 'Å': '.--.-',
-  '1':'.----', '2':'..---', '3':'...--',
-  '4':'....-', '5':'.....', '6':'-....',
-  '7':'--...', '8':'---..', '9':'----.',
-  '0':'-----', ', ':'--..--', '.':'.-.-.-',
-  '?':'..--..', '/':'-..-.', '-':'-....-',
-  '(':'-.--.', ')':'-.--.-', ' ': '   '
+  'A': '.-',     'B': '-...',   'C': '-.-.',
+  'D': '-..',    'E': '.',      'F': '..-.',
+  'G': '--.',    'H': '....',   'I': '..',
+  'J': '.---',   'K': '-.-',    'L': '.-..',
+  'M': '--',     'N': '-.',     'O': '---',
+  'P': '.--.',   'Q': '--.-',   'R': '.-.',
+  'S': '...',    'T': '-',      'U': '..-',
+  'V': '...-',   'W': '.--',    'X': '-..-',
+  'Y': '-.--',   'Z': '--..',   'Æ': '.-.-',
+  'Ø': '---.',   'Å': '.--.-',  '1': '.----',
+  '2': '..---',  '3': '...--',  '4': '....-',
+  '5': '.....',  '6': '-....',  '7': '--...',
+  '8': '---..',  '9': '----.',  '0': '-----',
+  ',': '--..--', '.': '.-.-.-', '?': '..--..',
+  '/': '-..-.',  '-': '-....-', '(': '-.--.',
+  ')': '-.--.-', ' ': '   '
 }
 
 # %%
@@ -129,12 +128,12 @@ def oversett_tekst_til_morse(tekst):
 print(oversett_tekst_til_morse("Hei på deg"))
 
 #%%
-# Vi ser at vi fikk skrevet ut "Hei på deg" med morsetegn. La oss bruke ``tegn_morsekode`` for å tegne denne teksten.continue
+# Vi ser at vi fikk skrevet ut "Hei på deg" med morsetegn. La oss bruke ``tegn_morsekode`` for å tegne denne teksten.
 
 morsekode = oversett_tekst_til_morse("Hei på deg")
 penn = Turtle()
 with penn.running_stitch(30):
-    tegn_morsekode("... --- ...", penn, 60, 200)
+    tegn_morsekode(morsekode, penn, 60, 200)
 
 penn.save("morsebeskjed1.png")
 

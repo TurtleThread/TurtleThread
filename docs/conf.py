@@ -28,50 +28,19 @@ from textwrap import indent
 
 sys.path.insert(0, os.path.abspath(".."))
 
+import turtle
+
+from sphinx_gallery.scrapers import (HLIST_HEADER, HLIST_IMAGE_MATPLOTLIB,
+                                     figure_rst)
+
 import turtlethread
 import turtlethread.turtle
 import turtlethread.visualise
-import turtle
-from sphinx_gallery.scrapers import HLIST_IMAGE_MATPLOTLIB, HLIST_HEADER, figure_rst
 
 turtlethread.turtle.USE_SPHINX_GALLERY = True
 turtlethread.visualise.USE_SPHINX_GALLERY = True
 
-# TODO: If not PNG or SVG, add download link.
-def turtlethread_scraper(block, block_vars, gallery_conf, **kwargs):
-    image_path_iterator = block_vars["image_path_iterator"]
-    image_rsts = []
-
-    for turtle in block_vars["example_globals"].values():
-        if not isinstance(turtle, turtlethread.Turtle):
-            continue
-
-        for name, pattern in turtle._gallery_patterns:
-            extension = name.split(".")[-1]
-            if extension.upper() not in {"PNG", "SVG"}:
-                continue
-
-            # The +1 here is because we start image numbering at 1 in filenames
-            image_path = image_path_iterator.image_path.format(len(image_path_iterator) + 1)
-            image_path = ".".join(image_path.split(".")[:-1]) + f".{extension}"
-            image_path_iterator.paths.append(image_path)
-
-            pattern.write(image_path)
-            image_rsts.append(figure_rst([image_path], gallery_conf["src_dir"], name))
-        turtle._gallery_patterns = []
-
-    # Copied from sphinx_gallery.scrapers.matplotlib_scraper
-    rst = ""
-    if len(image_rsts) == 1:
-        rst = image_rsts[0]
-    elif len(image_rsts) > 1:
-        image_rsts = [
-            re.sub(r":class: sphx-glr-single-img", ":class: sphx-glr-multi-img", image) for image in image_rsts
-        ]
-        image_rsts = [HLIST_IMAGE_MATPLOTLIB + indent(image, " " * 6) for image in image_rsts]
-        rst = HLIST_HEADER + "".join(image_rsts)
-    return rst
-
+from turtlethread_sphinx_plugins.turtlethread_gallery_scraper import turtlethread_scraper
 
 # -- General configuration ---------------------------------------------
 
@@ -85,7 +54,7 @@ def turtlethread_scraper(block, block_vars, gallery_conf, **kwargs):
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = "nb_NO"
+language = "en"
 locale_dirs = ["locales/"]
 gettext_uuid = True
 gettext_compact = False
@@ -97,6 +66,8 @@ extensions = [
     "sphinx.ext.viewcode",
     "numpydoc",
     "sphinx_gallery.gen_gallery",
+    "sphinx_toolbox.collapse",
+    "turtlethread_sphinx_plugins.manual_example_code_directive",
 ]
 
 sphinx_gallery_conf = {
@@ -151,8 +122,10 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "sphinx_rtd_theme"
+html_theme = "sphinx_book_theme"
 
+html_logo = "../logo/turtlethread_logo.svg"
+html_favicon = "../logo/turtlethread_logo_notext.svg"
 # Theme options are theme-specific and customize the look and feel of a
 # theme further.  For a list of options available for each theme, see the
 # documentation.
@@ -163,7 +136,8 @@ html_theme = "sphinx_rtd_theme"
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
-
+html_css_files = ['css/custom.css']
+html_js_files = ['javascript/print.js']
 
 # -- Options for HTMLHelp output ---------------------------------------
 

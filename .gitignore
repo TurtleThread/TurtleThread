@@ -2,6 +2,13 @@ test_patterns/
 scripts
 pyemb
 .vscode
+*.docx
+en/
+ignore
+TODO
+auto_examples
+auto_figures
+manual_code_output
 
 
 # Byte-compiled / optimized / DLL files
