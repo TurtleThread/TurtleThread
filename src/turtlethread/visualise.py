@@ -40,6 +40,21 @@ def centered_line(turtle, length):
     turtle._tracer(tr, dl)
 
 
+def _finish_visualise(done, bye):
+    import turtle  # Import turtle only here to avoid cluttering module namespace
+    
+    if done:
+        try:
+            turtle.done()
+        except turtle.Terminator:
+            pass
+    if bye:
+        try:
+            turtle.bye()
+        except turtle.Terminator:
+            pass
+
+
 def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done=True, bye=True):
     """Use the builtin ``turtle`` library to visualise an embroidery pattern.
 
@@ -81,6 +96,10 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done
     screen = Screen()
     screen.setup(width, height)
 
+    if len(pattern.stitches) == 0:
+        _finish_visualise(done=done, bye=bye)
+        return
+
     turtle.penup()
     turtle.goto(pattern.stitches[0][0], pattern.stitches[0][1])
     turtle.pendown()
@@ -120,17 +139,7 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done
             raise_error = True
             break
 
-    if done:
-        import turtle  # Import turtle only here to avoid cluttering module namespace
-
-        turtle.done()
-    if bye:
-        import turtle  # Import turtle only here to avoid cluttering module namespace
-
-        try:
-            turtle.bye()
-        except turtle.Terminator:
-            pass
+    _finish_visualise(done=done, bye=bye)
 
     if raise_error:
         ValueError(f"Command not supported: {command}")

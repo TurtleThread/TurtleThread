@@ -7,7 +7,7 @@ import pytest
 import turtlethread.visualise
 from turtlethread.visualise import centered_dot, centered_line, centered_cross, visualise_pattern
 
-from .create_postscript import draw_square_flower, draw_stamp, draw_test_scene
+from .create_postscript import draw_square_flower, draw_stamp, draw_test_scene, draw_empty_scene
 
 @fixture
 def tempdir():
@@ -67,4 +67,12 @@ def test_visualise_test_scene(tmpdir, postscript_dir):
     supposed = postscript_dir / "test_scene.eps"
 
     draw_test_scene(out)
+    assert_eps_equal(out, supposed)
+
+
+def test_visualise_empty_pattern(tmpdir, postscript_dir):
+    out = tmpdir / "empty_scene.eps"
+    supposed = postscript_dir / "empty_scene.eps"
+
+    draw_empty_scene(out)
     assert_eps_equal(out, supposed)

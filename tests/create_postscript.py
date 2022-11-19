@@ -69,6 +69,13 @@ def draw_test_scene(filename):
     bye()
 
 
+def draw_empty_scene(filename):
+    pen = turtlethread.Turtle()
+    screen = turtle.Screen()
+    pen.visualise(done=False, bye=False)
+    screen.getcanvas().postscript(file=filename)
+    bye()
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -91,3 +98,4 @@ if __name__ == "__main__":
     draw_stamp(visualise.centered_line, out_dir / "centered_line.eps")
     draw_square_flower(out_dir / "square_flower.eps")
     draw_test_scene(out_dir / "test_scene.eps")
+    draw_empty_scene(out_dir / "empty_scene.eps")
