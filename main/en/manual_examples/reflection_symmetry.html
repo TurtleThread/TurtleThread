@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Christmas decorations, snowflakes and reflection symmetry &#8212; TurtleThread 0.0.6 documentation</title>
     
@@ -335,36 +335,241 @@ Snowflakes also have reflection symmetry, meaning that if we look at the mirror 
 <p>When drawing an image with reflection symmetry, we can use a loop to cut down on how many lines of code we need (like what we did with rotation symmetry).
 Below is the code we used to create a snowflake in <a class="reference internal" href="snowflake.html#en-snowflake"><span class="std std-ref">Christmas decoration, snowflakes and rotational symmetry</span></a>.
 Looking closely, we can see that lines 11-14 and 21-24 are very similar, but the angles point in opposite directions.</p>
-<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/reflection_symmetry/manual_code_output/01.svg"><img alt="The result from the above code. A snowflake with six arms." class="sphx-glr-script-out" src="manual_examples/reflection_symmetry/manual_code_output/01.svg" width="360" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">turtlethread</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">turtlethread</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 8</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="hll"><span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">12</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</span><span class="linenos">15</span>    
+<span class="linenos">16</span>        <span class="c1"># Move forward and then back again</span>
+<span class="linenos">17</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">19</span>    
+<span class="linenos">20</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="hll"><span class="linenos">21</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">22</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">23</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">24</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</span><span class="linenos">25</span>
+<span class="linenos">26</span>        <span class="c1"># Move backwards to the starting point</span>
+<span class="linenos">27</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>        <span class="c1"># Rotate 60 degrees to the right to draw six branches</span>
+<span class="linenos">30</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/012.svg"><img alt="The result from the above code. A snowflake with six arms." class="sphx-glr-script-out" src="../_images/012.svg" width="360" /></a>
 <p>To take advantage of the reflection symmetry, we first need to notice that rotating 30 degrees to the left is the same as rotating -30 degrees to the right.
 This means we can replace <code class="docutils literal notranslate"><span class="pre">left</span></code> with <code class="docutils literal notranslate"><span class="pre">right</span></code> if we add a negative sign to the angle.</p>
-<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/reflection_symmetry/manual_code_output/02.svg"><img alt="Result from the code above. A snowflake with six arms." class="sphx-glr-script-out" src="manual_examples/reflection_symmetry/manual_code_output/02.svg" width="360" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">turtlethread</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">turtlethread</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">11</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="hll"><span class="linenos">14</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+</span><span class="linenos">15</span>    
+<span class="linenos">16</span>        <span class="c1"># Move forward and then back again</span>
+<span class="linenos">17</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">19</span>    
+<span class="linenos">20</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="hll"><span class="linenos">21</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+</span><span class="linenos">22</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">23</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">24</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>        <span class="c1"># Move backwards to the starting point</span>
+<span class="linenos">27</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>        <span class="c1"># Rotate 60 degrees to the right to draw six branches</span>
+<span class="linenos">30</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/023.svg"><img alt="Result from the code above. A snowflake with six arms." class="sphx-glr-script-out" src="../_images/023.svg" width="360" /></a>
 <p>Because we can change direction by changing the sign of the angle, we can use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop over <code class="docutils literal notranslate"><span class="pre">-1</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code> to loop over two different directions:</p>
-<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/reflection_symmetry/manual_code_output/03.svg"><img alt="Result from the code above. It's identical to the image generated by the previous conde snippet." class="sphx-glr-script-out" src="manual_examples/reflection_symmetry/manual_code_output/03.svg" width="360" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">turtlethread</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">turtlethread</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 7</span>        <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span>
+</span><span class="linenos"> 8</span>            <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 9</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>            <span class="c1"># Draw the &quot;branch&quot;, which will point either downards or upwards, depending on the direction</span>
+<span class="hll"><span class="linenos">12</span>            <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="o">*</span><span class="n">direction</span><span class="p">)</span>
+</span><span class="linenos">13</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">14</span>            <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="hll"><span class="linenos">15</span>            <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="o">*</span><span class="n">direction</span><span class="p">)</span>
+</span><span class="linenos">16</span>        
+<span class="linenos">17</span>            <span class="c1"># Move a bit forward and then back to start</span>
+<span class="linenos">18</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">19</span>            <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>        <span class="c1"># Rotate 60 degrees to the right to draw six branches</span>
+<span class="linenos">22</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/033.svg"><img alt="Result from the code above. It's identical to the image generated by the previous conde snippet." class="sphx-glr-script-out" src="../_images/033.svg" width="360" /></a>
 <p>We can see that this code contains a lot fewer lines!</p>
 <div class="admonition-try-it-yourself admonition">
 <p class="admonition-title">Try it yourself:</p>
 <p>Use code to embroider your own snowflake with both rotational and reflection symmetry! Below is a gallery of examples you can use as a starting point or for inspiration:</p>
 </div>
 <p><strong>Snowflake 1</strong></p>
-<a class="snowflake-gallery-arm reference internal image-reference" href="manual_examples/reflection_symmetry/manual_code_output/gallery01.svg"><img alt="" class="snowflake-gallery-arm" src="manual_examples/reflection_symmetry/manual_code_output/gallery01.svg" width="180" /></a>
+<a class="snowflake-gallery-arm reference internal image-reference" href="../_images/gallery011.svg"><img alt="" class="snowflake-gallery-arm" src="../_images/gallery011.svg" width="180" /></a>
 <details class="snowflake-gallery-snowflake summary-snowflake">
-<summary>Snowflake</summary><a class="reference internal image-reference" href="manual_examples/reflection_symmetry/manual_code_output/gallery01_full.svg"><img alt="" src="manual_examples/reflection_symmetry/manual_code_output/gallery01_full.svg" width="360" /></a>
+<summary>Snowflake</summary><a class="reference internal image-reference" href="../_images/gallery01_full.svg"><img alt="" src="../_images/gallery01_full.svg" width="360" /></a>
 </details><details class="snowflake-gallery-code summary-kode-for-arm">
-<summary>Kode for arm</summary></details><details class="snowflake-gallery-code summary-kode-for-snowflake">
-<summary>Kode for snowflake</summary></details><p><strong>Snowflake 2</strong></p>
-<a class="snowflake-gallery-arm reference internal image-reference" href="manual_examples/reflection_symmetry/manual_code_output/gallery02.svg"><img alt="" class="snowflake-gallery-arm" src="manual_examples/reflection_symmetry/manual_code_output/gallery02.svg" width="180" /></a>
+<summary>Kode for arm</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="n">direction</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos"> 8</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">120</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos"> 9</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">120</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="k">for</span> <span class="n">branch_length</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">16</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">branch_length</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">branch_length</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos">21</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><details class="snowflake-gallery-code summary-kode-for-snowflake">
+<summary>Kode for snowflake</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+<span class="linenos"> 8</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos"> 9</span>            <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">120</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">10</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos">11</span>            <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos">12</span>            <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">120</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>            <span class="k">for</span> <span class="n">branch_length</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos">15</span>                <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">16</span>                <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">17</span>                <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">branch_length</span><span class="p">)</span>
+<span class="linenos">18</span>                <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">branch_length</span><span class="p">)</span>
+<span class="linenos">19</span>                <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos">22</span>            <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><p><strong>Snowflake 2</strong></p>
+<a class="snowflake-gallery-arm reference internal image-reference" href="../_images/gallery021.svg"><img alt="" class="snowflake-gallery-arm" src="../_images/gallery021.svg" width="180" /></a>
 <details class="snowflake-gallery-snowflake summary-snowflake">
-<summary>Snowflake</summary><a class="reference internal image-reference" href="manual_examples/reflection_symmetry/manual_code_output/gallery02_full.svg"><img alt="" src="manual_examples/reflection_symmetry/manual_code_output/gallery02_full.svg" width="360" /></a>
+<summary>Snowflake</summary><a class="reference internal image-reference" href="../_images/gallery02_full.svg"><img alt="" src="../_images/gallery02_full.svg" width="360" /></a>
 </details><details class="snowflake-gallery-code summary-kode-for-arm">
-<summary>Kode for arm</summary></details><details class="snowflake-gallery-code summary-kode-for-snowflake">
-<summary>Kode for snowflake</summary></details><p><strong>Snowflake 3</strong></p>
-<a class="snowflake-gallery-arm reference internal image-reference" href="manual_examples/reflection_symmetry/manual_code_output/gallery03.svg"><img alt="" class="snowflake-gallery-arm" src="manual_examples/reflection_symmetry/manual_code_output/gallery03.svg" width="180" /></a>
+<summary>Kode for arm</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="n">direction</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+<span class="linenos"> 8</span>    <span class="n">needle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">direction</span> <span class="o">*</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">220</span><span class="p">)</span>
+<span class="linenos"> 9</span>    <span class="n">needle</span><span class="o">.</span><span class="n">home</span><span class="p">()</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><details class="snowflake-gallery-code summary-kode-for-snowflake">
+<summary>Kode for snowflake</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+<span class="linenos"> 8</span>            <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="n">arm</span><span class="o">*</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 9</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+<span class="linenos">10</span>            <span class="n">needle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">direction</span> <span class="o">*</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">220</span><span class="p">)</span>
+<span class="linenos">11</span>            <span class="n">needle</span><span class="o">.</span><span class="n">home</span><span class="p">()</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><p><strong>Snowflake 3</strong></p>
+<a class="snowflake-gallery-arm reference internal image-reference" href="../_images/gallery031.svg"><img alt="" class="snowflake-gallery-arm" src="../_images/gallery031.svg" width="180" /></a>
 <details class="snowflake-gallery-snowflake summary-snowflake">
-<summary>Snowflake</summary><a class="reference internal image-reference" href="manual_examples/reflection_symmetry/manual_code_output/gallery03_full.svg"><img alt="" src="manual_examples/reflection_symmetry/manual_code_output/gallery03_full.svg" width="360" /></a>
+<summary>Snowflake</summary><a class="reference internal image-reference" href="../_images/gallery03_full.svg"><img alt="" src="../_images/gallery03_full.svg" width="360" /></a>
 </details><details class="snowflake-gallery-code summary-kode-for-arm">
-<summary>Kode for arm</summary></details><details class="snowflake-gallery-code summary-kode-for-snowflake">
-<summary>Kode for snowflake</summary></details></section>
+<summary>Kode for arm</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="n">direction</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="k">for</span> <span class="n">radius</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos"> 8</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="n">needle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">radius</span><span class="o">*</span><span class="n">direction</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><details class="snowflake-gallery-code summary-kode-for-snowflake">
+<summary>Kode for snowflake</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+<span class="linenos"> 8</span>            <span class="k">for</span> <span class="n">radius</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos"> 9</span>                <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">10</span>                <span class="n">needle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">radius</span><span class="o">*</span><span class="n">direction</span><span class="p">)</span>
+<span class="linenos">11</span>            <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details></section>
 
 
               </div>

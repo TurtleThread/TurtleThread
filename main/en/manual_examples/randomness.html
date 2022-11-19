@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Christmas decorations, starry nights, and randomness &#8212; TurtleThread 0.0.6 documentation</title>
     
@@ -362,6 +362,15 @@ Adding randomness is a technique that is commonly found in art, game design, ani
 </figcaption>
 </figure>
 <p>Let’s start by looking at how to generate random numbers in Python. Below is some code to print a random number to the terminal.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">1</span><span class="kn">import</span> <span class="nn">random</span>
+</span><span class="linenos">2</span>
+<span class="hll"><span class="linenos">3</span><span class="n">random_number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</span><span class="linenos">4</span><span class="nb">print</span><span class="p">(</span><span class="n">random_number</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">6</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Line 1<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Imports the <code class="docutils literal notranslate"><span class="pre">random</span></code> library, which we can use to draw random numbers.</p>
@@ -380,9 +389,36 @@ Adding randomness is a technique that is commonly found in art, game design, ani
 </div>
 <p>We can use this to make our embroidery patterns more interesting.
 The code below embroiders a simple star:</p>
-<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/randomness/manual_code_output/02.svg"><img alt="TODO: ALT TEXT: En enkel stjerne med seks stråler." class="sphx-glr-script-out" src="manual_examples/randomness/manual_code_output/02.svg" width="180" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">ray</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="n">ray_length</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="linenos"> 7</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">ray_length</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">ray_length</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/022.svg"><img alt="TODO: ALT TEXT: En enkel stjerne med seks stråler." class="sphx-glr-script-out" src="../_images/022.svg" width="180" /></a>
 <p>To make this star look a little more “natural” and interesting, we can apply randomness to the length of the rays.</p>
-<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/randomness/manual_code_output/03.svg"><img alt="TODO ALT TEXT: En enkel stjerne med seks stråler som hver har litt ulik lengde." class="sphx-glr-script-out" src="manual_examples/randomness/manual_code_output/03.svg" width="180" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">random</span>
+<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 5</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">ray</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 7</span>        <span class="n">ray_length</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
+</span><span class="linenos"> 8</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">ray_length</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">ray_length</span><span class="p">)</span>
+<span class="linenos">10</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/032.svg"><img alt="TODO ALT TEXT: En enkel stjerne med seks stråler som hver har litt ulik lengde." class="sphx-glr-script-out" src="../_images/032.svg" width="180" /></a>
 <dl class="field-list simple">
 <dt class="field-odd">Line 7<span class="colon">:</span></dt>
 <dd class="field-odd"><p>draws a random number between <code class="docutils literal notranslate"><span class="pre">80</span></code> and <code class="docutils literal notranslate"><span class="pre">120</span></code> and stores it in the <code class="docutils literal notranslate"><span class="pre">ray_length</span></code> variable.</p>
@@ -396,7 +432,22 @@ The code below embroiders a simple star:</p>
 <li><p>Modify the code, so the number of rays in the star is also random. (HINT: the angle between each ray must be <code class="docutils literal notranslate"><span class="pre">360</span> <span class="pre">/</span> <span class="pre">number_of_rays</span></code>)</p></li>
 </ul>
 <details class="summary-click-here-to-see-an-example-of-how-the-finished-code-should-look">
-<summary>Click here to see an example of how the finished code should look:</summary><a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/randomness/manual_code_output/04.svg"><img alt="TODO ALT TEXT: Resultat fra koden over. En stjerne med et tilfeldig antall stråler og tilfeldig lengde på hver stråle." class="sphx-glr-script-out" src="manual_examples/randomness/manual_code_output/04.svg" width="180" /></a>
+<summary>Click here to see an example of how the finished code should look:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">random</span>
+<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 5</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 6</span>    <span class="n">number_of_rays</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 7</span>    <span class="k">for</span> <span class="n">ray</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_rays</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos"> 8</span>        <span class="n">ray_length</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">125</span><span class="p">)</span>
+</span><span class="linenos"> 9</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">ray_length</span><span class="p">)</span>
+<span class="linenos">10</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">ray_length</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="n">number_of_rays</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/043.svg"><img alt="TODO ALT TEXT: Resultat fra koden over. En stjerne med et tilfeldig antall stråler og tilfeldig lengde på hver stråle." class="sphx-glr-script-out" src="../_images/043.svg" width="180" /></a>
 </details></div>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
@@ -405,7 +456,28 @@ The code below embroiders a simple star:</p>
 <p>So, we have created one random star, but we can kick it up a notch by drawing multiple stars randomly placed in the sky.
 We can, for example, use the goto command and let the needle move to a random position on the fabric for each star.
 The code below draws a starry sky with four random stars randomly placed in the sky.</p>
-<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/randomness/manual_code_output/05.svg"><img alt="TODO: ALT TEXT: Resultat fra koden over. Et sett med fire stjerner, hver plassert tilfeldig på skjermen med et tilfeldig antall stråler og tilfeldig lengde. Det er en søm mellom hver stjerne" class="sphx-glr-script-out" src="manual_examples/randomness/manual_code_output/05.svg" width="360" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">random</span>
+<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 5</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 6</span>    <span class="n">number_of_stars</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span class="hll"><span class="linenos"> 7</span>    <span class="k">for</span> <span class="n">star</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_stars</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos"> 8</span>        <span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 9</span>        <span class="n">y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">10</span>        <span class="n">needle</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</span><span class="linenos">11</span>
+<span class="linenos">12</span>        <span class="n">number_of_rays</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="k">for</span> <span class="n">ray</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_rays</span><span class="p">):</span>
+<span class="linenos">14</span>            <span class="n">ray_length</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="linenos">15</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">ray_length</span><span class="p">)</span>
+<span class="linenos">16</span>            <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">ray_length</span><span class="p">)</span>
+<span class="linenos">17</span>            <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="n">number_of_rays</span><span class="p">)</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/052.svg"><img alt="TODO: ALT TEXT: Resultat fra koden over. Et sett med fire stjerner, hver plassert tilfeldig på skjermen med et tilfeldig antall stråler og tilfeldig lengde. Det er en søm mellom hver stjerne" class="sphx-glr-script-out" src="../_images/052.svg" width="360" /></a>
 <dl class="field-list simple">
 <dt class="field-odd">Line 6<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Defines a number_of_stars variable that decides how many stars we want to draw</p>
@@ -423,7 +495,30 @@ The code below draws a starry sky with four random stars randomly placed in the 
 <p>This is a beautiful, random starry sky!
 But now we also embroider a line between each star, which gives a cool effect that can look like constellations.
 However, if we don’t want these lines, we can use jump stitches to tell the needle to move without stitches between each star.</p>
-<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/randomness/manual_code_output/06.svg"><img alt="TODO ALT TEXT: Resultat fra koden over. Et sett med fire stjerner, hver plassert tilfeldig på skjermen med et tilfeldig antall stråler og tilfeldig lengde. Nå er stjernene koblet sammen med en rød strek som symboliserer at nåla skal &quot;hoppe over&quot; denne biten. Det er også en rød sirkel i midten av hver stjerne, som symboliserer starten på en ny søm." class="sphx-glr-script-out" src="manual_examples/randomness/manual_code_output/06.svg" width="360" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">random</span>
+<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 5</span>
+<span class="hll"><span class="linenos"> 6</span><span class="n">number_of_stars</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span class="hll"><span class="linenos"> 7</span><span class="k">for</span> <span class="n">stjerne</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_stars</span><span class="p">):</span>
+</span><span class="linenos"> 8</span>    <span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="linenos"> 9</span>    <span class="n">y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="hll"><span class="linenos">10</span>    <span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">jump_stitch</span><span class="p">():</span>
+</span><span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="hll"><span class="linenos">13</span>    <span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+</span><span class="linenos">14</span>        <span class="n">number_of_rays</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="k">for</span> <span class="n">ray</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_rays</span><span class="p">):</span>
+<span class="linenos">16</span>            <span class="n">ray_length</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="linenos">17</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">ray_length</span><span class="p">)</span>
+<span class="linenos">18</span>            <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">ray_length</span><span class="p">)</span>
+<span class="linenos">19</span>            <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="n">number_of_rays</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/062.svg"><img alt="TODO ALT TEXT: Resultat fra koden over. Et sett med fire stjerner, hver plassert tilfeldig på skjermen med et tilfeldig antall stråler og tilfeldig lengde. Nå er stjernene koblet sammen med en rød strek som symboliserer at nåla skal &quot;hoppe over&quot; denne biten. Det er også en rød sirkel i midten av hver stjerne, som symboliserer starten på en ny søm." class="sphx-glr-script-out" src="../_images/062.svg" width="360" /></a>
 <dl class="field-list simple">
 <dt class="field-odd">Lines 6-7<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The loop that iterates over the stars is moved outside the code block that defines stitch type.
@@ -441,7 +536,30 @@ If the embroidery machine supports it, the thread will be cut (if some stitches 
 <p class="admonition-title">Try it yourself:</p>
 <p>Modify the code to create a random number of stars.</p>
 <details class="summary-click-here-to-see-an-example-of-how-the-finished-code-should-look">
-<summary>Click here to see an example of how the finished code should look:</summary><a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/randomness/manual_code_output/07.svg"><img alt="TODO ALT TEXT: Resultat fra koden over. Et sett med et tilfeldig antall stjerner, hver plassert tilfeldig på skjermen med et tilfeldig antall stråler og tilfeldig lengde. Nå er stjernene koblet sammen med en rød strek som symboliserer at nåla skal &quot;hoppe over&quot; denne biten. Det er også en rød sirkel i midten av hver stjerne, som symboliserer starten på en ny søm." class="sphx-glr-script-out" src="manual_examples/randomness/manual_code_output/07.svg" width="360" /></a>
+<summary>Click here to see an example of how the finished code should look:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">random</span>
+<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 5</span>
+<span class="hll"><span class="linenos"> 6</span><span class="n">number_of_stars</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class="linenos"> 7</span><span class="k">for</span> <span class="n">star</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_stars</span><span class="p">):</span>
+<span class="linenos"> 8</span>    <span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="linenos"> 9</span>    <span class="n">y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">250</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">jump_stitch</span><span class="p">():</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos">14</span>        <span class="n">number_of_rays</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="k">for</span> <span class="n">ray</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_rays</span><span class="p">):</span>
+<span class="linenos">16</span>            <span class="n">ray_length</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="linenos">17</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">ray_length</span><span class="p">)</span>
+<span class="linenos">18</span>            <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">ray_length</span><span class="p">)</span>
+<span class="linenos">19</span>            <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="n">number_of_rays</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/072.svg"><img alt="TODO ALT TEXT: Resultat fra koden over. Et sett med et tilfeldig antall stjerner, hver plassert tilfeldig på skjermen med et tilfeldig antall stråler og tilfeldig lengde. Nå er stjernene koblet sammen med en rød strek som symboliserer at nåla skal &quot;hoppe over&quot; denne biten. Det er også en rød sirkel i midten av hver stjerne, som symboliserer starten på en ny søm." class="sphx-glr-script-out" src="../_images/072.svg" width="360" /></a>
 </details></div>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
@@ -452,18 +570,132 @@ For example, <code class="docutils literal notranslate"><span class="pre">random
 </div>
 <p><strong>TODO TEKST OM TILFELDIGHETSGALLERI</strong></p>
 <p><strong>Example 1</strong></p>
-<a class="randomness-gallery-arm reference internal image-reference" href="manual_examples/randomness/manual_code_output/gallery01.svg"><img alt="A sort of spiral where each line has a random but increasing length." class="randomness-gallery-arm" src="manual_examples/randomness/manual_code_output/gallery01.svg" width="180" /></a>
+<a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery01.svg"><img alt="A sort of spiral where each line has a random but increasing length." class="randomness-gallery-arm" src="../_images/gallery01.svg" width="180" /></a>
 <details class="randomness-gallery-code summary-kode">
-<summary>Kode</summary></details><p><strong>Example 2</strong></p>
-<a class="randomness-gallery-arm reference internal image-reference" href="manual_examples/randomness/manual_code_output/gallery02.svg"><img alt="Randomly placed circles with a line connecting them." class="randomness-gallery-arm" src="manual_examples/randomness/manual_code_output/gallery02.svg" width="180" /></a>
+<summary>Kode</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">random</span>
+<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 8</span>        <span class="n">side_length</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="n">side</span><span class="p">,</span> <span class="mi">20</span><span class="o">*</span><span class="n">side</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">side_length</span><span class="p">)</span>
+<span class="linenos">10</span>        <span class="n">angle</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><p><strong>Example 2</strong></p>
+<a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery02.svg"><img alt="Randomly placed circles with a line connecting them." class="randomness-gallery-arm" src="../_images/gallery02.svg" width="180" /></a>
 <details class="randomness-gallery-code summary-kode">
-<summary>Kode</summary></details><p><strong>Example 3</strong></p>
-<a class="randomness-gallery-arm reference internal image-reference" href="manual_examples/randomness/manual_code_output/gallery03.svg"><img alt="A snow flake with arms that have random length and a random number of branches" class="randomness-gallery-arm" src="manual_examples/randomness/manual_code_output/gallery03.svg" width="180" /></a>
+<summary>Kode</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">random</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="n">needle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos"> 8</span>    <span class="k">for</span> <span class="n">sirkel</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<span class="linenos"> 9</span>        <span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="linenos">10</span>        <span class="n">y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">radius</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><p><strong>Example 3</strong></p>
+<a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery03.svg"><img alt="A snow flake with arms that have random length and a random number of branches" class="randomness-gallery-arm" src="../_images/gallery03.svg" width="180" /></a>
 <details class="randomness-gallery-code summary-kode">
-<summary>Kode</summary></details><p><strong>Example 4</strong></p>
-<a class="randomness-gallery-arm reference internal image-reference" href="manual_examples/randomness/manual_code_output/gallery04.svg"><img alt="A christmas tree where the length and angle of the branches have some randomness." class="randomness-gallery-arm" src="manual_examples/randomness/manual_code_output/gallery04.svg" width="180" /></a>
+<summary>Kode</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">random</span>
+<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="c1"># Draw snowflake with six sides</span>
+<span class="linenos"> 8</span>    <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Decide how many branches we want</span>
+<span class="linenos">11</span>        <span class="n">antall_grener</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>        <span class="c1"># Give it reflection symmetry</span>
+<span class="linenos">14</span>        <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>            <span class="c1"># Add one small branch in the beginning</span>
+<span class="linenos">19</span>            <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">120</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">20</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos">21</span>            <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos">22</span>            <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">120</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span>            <span class="c1"># Add a random number of branches, each having a random angle and length</span>
+<span class="linenos">25</span>            <span class="k">for</span> <span class="n">gren</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">antall_grener</span><span class="p">):</span>
+<span class="linenos">26</span>                <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">27</span>                <span class="n">branch_angle</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="linenos">28</span>                <span class="n">branch_length</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span>                <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="n">branch_angle</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">31</span>                <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">branch_length</span><span class="p">)</span>
+<span class="linenos">32</span>                <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">branch_length</span><span class="p">)</span>
+<span class="linenos">33</span>                <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="n">branch_angle</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos">36</span>            <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">40</span> <span class="o">+</span> <span class="mi">20</span><span class="o">*</span><span class="n">antall_grener</span><span class="p">)</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><p><strong>Example 4</strong></p>
+<a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery04.svg"><img alt="A christmas tree where the length and angle of the branches have some randomness." class="randomness-gallery-arm" src="../_images/gallery04.svg" width="180" /></a>
 <details class="randomness-gallery-code summary-kode">
-<summary>Kode</summary></details></section>
+<summary>Kode</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">random</span>
+<span class="linenos"> 2</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="c1"># Draw the star in the top of the christmas tree</span>
+<span class="linenos"> 9</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="mi">5</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+<span class="linenos">16</span>    
+<span class="linenos">17</span>    <span class="c1"># Reset back to start</span>
+<span class="linenos">18</span>    <span class="n">needle</span><span class="o">.</span><span class="n">home</span><span class="p">()</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span>    <span class="c1"># Draw christmas tree with ornaments</span>
+<span class="linenos">21</span>    <span class="n">retning</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos">22</span>    <span class="k">for</span> <span class="n">gren_nummer</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+<span class="linenos">23</span>        <span class="n">retning</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># Turn around for each branch</span>
+<span class="linenos">24</span>        <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">gren_nummer</span>
+<span class="linenos">25</span>        <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">gren_nummer</span>
+<span class="linenos">26</span>        
+<span class="linenos">27</span>        <span class="c1"># Add some randomness with regards to where the branch ends up</span>
+<span class="linenos">28</span>        <span class="n">jitter_x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">//</span><span class="mi">3</span><span class="p">,</span> <span class="n">x</span><span class="o">//</span><span class="mi">3</span><span class="p">)</span>
+<span class="linenos">29</span>        <span class="n">jitter_y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span>        <span class="c1"># Go to where the branch ends</span>
+<span class="linenos">32</span>        <span class="n">needle</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="n">retning</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">jitter_x</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">jitter_y</span><span class="p">)</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span>        <span class="c1"># Draw ornament</span>
+<span class="linenos">35</span>        <span class="n">radius</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="linenos">36</span>        <span class="n">needle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="o">-</span><span class="n">radius</span><span class="p">)</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details></section>
 
 
               </div>

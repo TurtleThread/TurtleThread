@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Your first turtle embroidery &#8212; TurtleThread 0.0.6 documentation</title>
     
@@ -370,44 +370,173 @@ title="Print to PDF"
 <h1>Your first turtle embroidery<a class="headerlink" href="#your-first-turtle-embroidery" title="Permalink to this heading">#</a></h1>
 <p>We will now make our first turtle embroidery.
 We start by importing TurtleThread (make sure that it is <a class="reference external" href="../installation.html">installed</a>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+</pre></div>
+</div>
 <p>Next, we create a turtle object, which we’ll use to draw with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="hll"><span class="linenos">3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+</span></pre></div>
+</div>
 <p>Now we have everything we need to start making patterns. Let’s start with a line.
 To draw a line, we use <code class="docutils literal notranslate"><span class="pre">forward</span></code> and how far we want the turtle to move (for example 300 steps).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="hll"><span class="linenos">4</span><span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</span></pre></div>
+</div>
 <p>This code moves the turtle 100 steps, but it doesn’t make any stitches.
 To make the turtle start stitching while it is moving, we need to use a stitch-block.</p>
 <section id="using-a-stitch-type-to-create-a-seam">
 <h2>Using a stitch type to create a seam<a class="headerlink" href="#using-a-stitch-type-to-create-a-seam" title="Permalink to this heading">#</a></h2>
 <p>The simplest form of stitch-block is one named <code class="docutils literal notranslate"><span class="pre">running_stitch</span></code> (See <a class="reference internal" href="stitch_types.html#stitch-types"><span class="std std-ref">Overview of stitch types in TurtleThread</span></a>). In a running stitch block,
 we embroider in a straight line with a set distance between each stitch.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="hll"><span class="linenos">4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+</span><span class="linenos">5</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Now, we have made code that moves the turtle 300 steps forward, with one stitch after every 30-th step.
 This is equivalent to stitching every third millimeter. Let’s see how this looks, and to do so, we can use
 the <code class="docutils literal notranslate"><span class="pre">visualise</span></code>-function, which uses the builtin <code class="docutils literal notranslate"><span class="pre">turtle</span></code>-library to draw our embroidery.</p>
-<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/introduction/manual_code_output/02.svg"><img alt="A straight line with short vertical lines across that indicate where stitches are placed." class="sphx-glr-script-out" src="manual_examples/introduction/manual_code_output/02.svg" width="180" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">5</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="hll"><span class="linenos">6</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/021.svg"><img alt="A straight line with short vertical lines across that indicate where stitches are placed." class="sphx-glr-script-out" src="../_images/021.svg" width="180" /></a>
 <p>Now, we have a straight line, and to change direction, we can use the <code class="docutils literal notranslate"><span class="pre">right</span></code>-command, and tell the turtle
 how many degrees it should turn to the right (for example 90 degrees).</p>
-<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/introduction/manual_code_output/03.svg"><img alt="A straight hoizontal line followed by a vertical line of the same size. Both lines have short lines across that indicate where stitches are placed." class="sphx-glr-script-out" src="manual_examples/introduction/manual_code_output/03.svg" width="180" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">5</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="hll"><span class="linenos">6</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">7</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</span><span class="linenos">8</span>
+<span class="linenos">9</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/031.svg"><img alt="A straight hoizontal line followed by a vertical line of the same size. Both lines have short lines across that indicate where stitches are placed." class="sphx-glr-script-out" src="../_images/031.svg" width="180" /></a>
 <p>With a for-loop, we can repeat this four times to get a square:</p>
-<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/introduction/manual_code_output/04.svg"><img alt="A straight large square with short lines across each border that indicate where stitches are placed." class="sphx-glr-script-out" src="manual_examples/introduction/manual_code_output/04.svg" width="180" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="hll"><span class="linenos">5</span>    <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos">6</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">7</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+</span><span class="linenos">8</span>
+<span class="linenos">9</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/042.svg"><img alt="A straight large square with short lines across each border that indicate where stitches are placed." class="sphx-glr-script-out" src="../_images/042.svg" width="180" /></a>
 <p>And if we use another loop again to draw the square eight times, we’ll get a pretty flower:</p>
-<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/introduction/manual_code_output/05.svg"><img alt="Eight squares placed on top of each other to form what looks like a flower." class="sphx-glr-script-out" src="manual_examples/introduction/manual_code_output/05.svg" width="180" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">petal</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+</span><span class="linenos"> 6</span>        <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos"> 7</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="linenos"> 8</span>            <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/051.svg"><img alt="Eight squares placed on top of each other to form what looks like a flower." class="sphx-glr-script-out" src="../_images/051.svg" width="180" /></a>
 <p>It can often be smart to define some key variables to use in our program. One such variable can be
 the number of petals our flower has. Let’s make that petal variable and name it <code class="docutils literal notranslate"><span class="pre">num_petals</span></code>.</p>
-<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/introduction/manual_code_output/06.svg"><img alt="Eight squares placed on top of each other to form what looks like a flower." class="sphx-glr-script-out" src="manual_examples/introduction/manual_code_output/06.svg" width="180" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="hll"><span class="linenos"> 5</span><span class="n">num_petals</span> <span class="o">=</span> <span class="mi">8</span>
+</span><span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 7</span>    <span class="k">for</span> <span class="n">petal</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_petals</span><span class="p">):</span>
+</span><span class="linenos"> 8</span>        <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos"> 9</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="linenos">10</span>            <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="n">num_petals</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/061.svg"><img alt="Eight squares placed on top of each other to form what looks like a flower." class="sphx-glr-script-out" src="../_images/061.svg" width="180" /></a>
 <div class="admonition-try-it-yourself admonition">
 <p class="admonition-title">Try it yourself:</p>
 <ul class="simple">
 <li><p>Try to modify the code and change the number of petals to get a figure like the one below:</p></li>
 </ul>
-<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/introduction/manual_code_output/07.svg"><img alt="Ten squares placed on top of each other to form what looks like a flower." class="sphx-glr-script-out" src="manual_examples/introduction/manual_code_output/07.svg" width="180" /></a>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/071.svg"><img alt="Ten squares placed on top of each other to form what looks like a flower." class="sphx-glr-script-out" src="../_images/071.svg" width="180" /></a>
 <details class="summary-click-here-to-see-an-example-of-how-the-finished-code-can-look">
-<summary>Click here to see an example of how the finished code can look:</summary></details></div>
+<summary>Click here to see an example of how the finished code can look:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="hll"><span class="linenos"> 5</span><span class="n">num_petals</span> <span class="o">=</span> <span class="mi">10</span>
+</span><span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="k">for</span> <span class="n">petal</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_petals</span><span class="p">):</span>
+<span class="linenos"> 8</span>        <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos"> 9</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="linenos">10</span>            <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="n">num_petals</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details></div>
 </section>
 <section id="saving-the-pattern">
 <h2>Saving the pattern<a class="headerlink" href="#saving-the-pattern" title="Permalink to this heading">#</a></h2>
 <p>Now, we have a nice pattern that we can save as a PNG or SVG file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="n">num_petals</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="k">for</span> <span class="n">petal</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_petals</span><span class="p">):</span>
+<span class="linenos"> 8</span>        <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos"> 9</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="linenos">10</span>            <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="n">num_petals</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+<span class="hll"><span class="linenos">14</span><span class="n">needle</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;flower.png&quot;</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">15</span><span class="n">needle</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;flower.svg&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
 <p>Below is the <code class="docutils literal notranslate"><span class="pre">flower.svg</span></code> file that we just created:</p>
 <a class="reference internal image-reference" href="../_images/flower.svg"><img alt="Eight squares placed on top of each other to form what looks like a flower." src="../_images/flower.svg" width="180" /></a>
 <p>Or, we can save it as a DST-file to use it with an embroidery machine.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="n">num_petals</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="k">for</span> <span class="n">petal</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_petals</span><span class="p">):</span>
+<span class="linenos"> 8</span>        <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos"> 9</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="linenos">10</span>            <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="n">num_petals</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+<span class="linenos">14</span><span class="n">needle</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;flower.png&quot;</span><span class="p">)</span>
+<span class="linenos">15</span><span class="n">needle</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;flower.svg&quot;</span><span class="p">)</span>
+<span class="hll"><span class="linenos">16</span><span class="n">needle</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;flower.dst&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
 <a class="reference internal image-reference" href="../_images/firkantblomst_sydd.png"><img alt="Example generated with TurtleThread." src="../_images/firkantblomst_sydd.png" style="width: 400px;" /></a>
 </section>
 </section>
