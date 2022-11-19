@@ -1,0 +1,43 @@
+name: docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python with TKinter and a virtual X11 frame buffer
+        run: |
+          sudo apt-get update
+          sudo apt-get install tk-dev python3-tk python3 python3-pip xvfb make
+      - name: Install turtlethread
+        run: |
+          pip3 install -e .[dev,docs]
+      - name: Build docs
+        run: |
+          # Start virtual display driver
+          export DISPLAY=:12
+          Xvfb $DISPLAY -screen 0 1920x1080x24 2>/tmp/Xvfb.log & sleep 1
+          # build docs
+          cd docs
+          make html
+          cd ..
+      - name: Push docs
+        run: |
+          # See https://github.community/t/github-actions-bot-email-address/17204/5
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git fetch origin gh-pages
+          git checkout gh-pages
+          git rm -r main/*
+          cp -r docs/_build main
+          git add main
+          # If the doc is up to date, the script shouldn't fail, hence --allow-empty
+          # Might be a cleaner way to check 
+          git commit --allow-empty -m "Deployed to GitHub Pages"
+          git push --force origin gh-pages

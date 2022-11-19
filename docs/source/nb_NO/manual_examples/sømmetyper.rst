@@ -1,3 +1,5 @@
+.. _stitch-types:
+
 Oversikt over sømmetyper i TurtleThread
 ---------------------------------------
 

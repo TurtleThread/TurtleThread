@@ -3,6 +3,7 @@ Juleverksted med TurtleThread
 
 .. toctree::
 
+    introduction
     for
     sømmetyper
     sneflak
