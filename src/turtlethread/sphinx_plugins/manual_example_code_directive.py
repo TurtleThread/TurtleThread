@@ -74,11 +74,8 @@ class IncludeTurtlethread(LiteralInclude):
             s.getcanvas().postscript(file='{eps_file}')
             turtle.bye()
             """)
-        
-
         code = f"import turtle\nturtle.tracer(0)\n{code}\n{save_eps_code}"
-        
-        print(code)
+        print(f"Creating figure for {filename}")
 
         if not eps_file.is_file() or not stdout_file.is_file():
             output = run([sys.executable, "-c", code], capture_output=True, text=True)  # TODO: Store stdout and stderr
