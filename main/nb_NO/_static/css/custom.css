@@ -1,0 +1,44 @@
+span.linenos {
+    padding-right: 15px;
+}
+
+.admonition-prov-selv.admonition > .admonition-title::before{
+    position: absolute;
+    left: .6rem;
+    width: 1rem;
+    height: 1rem;
+    color:  #28a745;
+    font-family: Font Awesome\ 5 Free;
+    font-weight: 900;
+    content: "\f11c";
+}
+
+div.admonition-prov-selv.admonition{
+    border-color: #28a745;
+}
+
+div.admonition-prov-selv.admonition>.admonition-title{
+    background-color: rgba(40, 167, 70, 0.1);
+}
+
+img.align-default, figure.align-default, .figure.align-default{
+    display: inline-block;
+    vertical-align: top;
+}
+
+figcaption > div.legend {
+    font-style: italic;
+}
+
+.sphx-glr-script-out::before, a.sphx-glr-script-out::before, div.sphx-glr-script-out::before, pre.sphx-glr-script-out::before {
+    content: "Ut:";
+    line-height: 1.4;
+    padding-top: 10px;
+}
+
+.content-container  a.sphx-glr-script-out::before, .content-container  a.sphx-glr-script-out:visited {
+    color: var(--sg-script-out);
+}
+.content-container a.sphx-glr-script-out:hover {
+    text-decoration: none;
+}

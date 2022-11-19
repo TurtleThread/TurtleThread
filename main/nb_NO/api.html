@@ -1,0 +1,1364 @@
+
+<!DOCTYPE html>
+
+<html lang="nb-NO">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>API Reference &#8212; TurtleThread 0.0.6 documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/javascript/print.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="shortcut icon" href="_static/turtlethread_logo_notext.svg"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Søk" href="search.html" />
+    <link rel="prev" title="Julekuler, snøflak og rekursjon" href="manual_examples/fraktal.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="nb-NO">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/turtlethread_logo.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">TurtleThread 0.0.6 documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="installation.html">
+   Installasjonsguide
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="auto_examples/index.html">
+   Eksempler
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="auto_examples/gallery_sierpinsky_arrowhead.html">
+     Tegn en Sierpinsky pilspisskurve
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="auto_examples/gallery_hilbert.html">
+     Tegn en hilbertkurve
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="auto_examples/gallery_introduksjon.html">
+     Ditt første skilpaddebroderi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="auto_examples/gallery_morsekode.html">
+     Brodere en beskjed med morsekode
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="manual_examples/index.html">
+   Juleverksted med TurtleThread
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="manual_examples/introduction.html">
+     Ditt første skilpaddebroderi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="manual_examples/for.html">
+     For løkker
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="manual_examples/s%C3%B8mmetyper.html">
+     Oversikt over sømmetyper i TurtleThread
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="manual_examples/sneflak.html">
+     Julekuler, snøflak og rotasjonssymmetri
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="manual_examples/speilsymmetri.html">
+     Julekuler, snøflak og speilsymmetri
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="manual_examples/tilfeldighet.html">
+     Julekuler, stjernehimler og tilfeldighet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="manual_examples/fraktal.html">
+     Julekuler, snøflak og rekursjon
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   API Reference
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/api.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#main-functionality">
+   Main functionality
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#turtlethread.Turtle">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Turtle
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.angle_mode">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.angle_mode
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.back">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.back()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.backward">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.backward()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.bk">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.bk()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.circle">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.circle()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.cleanup_stitch_type">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.cleanup_stitch_type()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.fd">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.fd()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.forward">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.forward()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.goto">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.goto()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.heading">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.heading()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.home">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.home()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.jump_stitch">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.jump_stitch()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.left">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.left()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.lt">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.lt()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.pos">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.pos()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.position">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.position()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.right">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.right()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.rt">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.rt()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.running_stitch">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.running_stitch()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.save">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.save()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.seth">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.seth()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.setheading">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.setheading()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.setpos">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.setpos()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.setposition">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.setposition()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.show_info">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.show_info()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.start_jump_stitch">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.start_jump_stitch()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.start_running_stitch">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.start_running_stitch()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.visualise">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.visualise()
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-turtlethread.visualise">
+   Additional utilities
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#turtlethread.visualise.visualise_pattern">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       visualise_pattern()
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>API Reference</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#main-functionality">
+   Main functionality
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#turtlethread.Turtle">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Turtle
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.angle_mode">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.angle_mode
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.back">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.back()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.backward">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.backward()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.bk">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.bk()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.circle">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.circle()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.cleanup_stitch_type">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.cleanup_stitch_type()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.fd">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.fd()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.forward">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.forward()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.goto">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.goto()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.heading">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.heading()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.home">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.home()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.jump_stitch">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.jump_stitch()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.left">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.left()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.lt">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.lt()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.pos">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.pos()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.position">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.position()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.right">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.right()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.rt">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.rt()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.running_stitch">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.running_stitch()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.save">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.save()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.seth">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.seth()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.setheading">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.setheading()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.setpos">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.setpos()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.setposition">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.setposition()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.show_info">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.show_info()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.start_jump_stitch">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.start_jump_stitch()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.start_running_stitch">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.start_running_stitch()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turtlethread.Turtle.visualise">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         Turtle.visualise()
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-turtlethread.visualise">
+   Additional utilities
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#turtlethread.visualise.visualise_pattern">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       visualise_pattern()
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this heading">#</a></h1>
+<section id="main-functionality">
+<h2>Main functionality<a class="headerlink" href="#main-functionality" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="turtlethread.Turtle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">turtlethread.</span></span><span class="sig-name descname"><span class="pre">Turtle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'degrees'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Turtle object that to make embroidery files. Mirrored after the official <a class="reference external" href="https://docs.python.org/3/library/turtle.html">turtle</a> library.</p>
+<p>Any undocumented functions have the same interface as the official turtle library.</p>
+<p>One turtle-step is equivalent to 0.1 mm.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>pattern</strong><span class="classifier">pyembroidery.EmbPattern (optional)</span></dt><dd><p>The embroidery pattern to work with. If not supplied, then an empty pattern will be created.</p>
+</dd>
+<dt><strong>angle_mode</strong><span class="classifier">«degrees» or «radians» (optional, default=»degrees»)</span></dt><dd><p>How angles are computed.</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">float (optional, default=1)</span></dt><dd><p>Scaling between turtle steps and units in the embroidery file. Below are some example scaling</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>scale=1</cite>  - One step is one unit in the embroidery file (0.1 mm)</p></li>
+<li><p><cite>scale=10</cite> - One step equals 1 mm</p></li>
+<li><p><cite>scale=2</cite>  - The scaling TurtleStitch uses</p></li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>angle</strong></dt><dd></dd>
+<dt><a class="reference internal" href="#turtlethread.Turtle.angle_mode" title="turtlethread.Turtle.angle_mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">angle_mode</span></code></a></dt><dd><p>The angle mode, either «degrees» or «radians».</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.back" title="turtlethread.Turtle.back"><code class="xref py py-obj docutils literal notranslate"><span class="pre">back</span></code></a>(distance)</p></td>
+<td><p>Move backward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.backward">official documentation</a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.backward" title="turtlethread.Turtle.backward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">backward</span></code></a>(distance)</p></td>
+<td><p><p>Move backward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.backward">official documentation</a>.</p>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.bk" title="turtlethread.Turtle.bk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bk</span></code></a>(distance)</p></td>
+<td><p><p>Move backward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.backward">official documentation</a>.</p>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.circle" title="turtlethread.Turtle.circle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">circle</span></code></a>(radius[, extent, steps])</p></td>
+<td><p><p>Draw a circle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.circle">official documentation</a>.</p>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.cleanup_stitch_type" title="turtlethread.Turtle.cleanup_stitch_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cleanup_stitch_type</span></code></a>()</p></td>
+<td><p>Cleanup after switching to running stitch.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.fd" title="turtlethread.Turtle.fd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fd</span></code></a>(distance)</p></td>
+<td><p><p>Move forward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.forward">official documentation</a>.</p>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.forward" title="turtlethread.Turtle.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(distance)</p></td>
+<td><p><p>Move forward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.forward">official documentation</a>.</p>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.goto" title="turtlethread.Turtle.goto"><code class="xref py py-obj docutils literal notranslate"><span class="pre">goto</span></code></a>(x, y)</p></td>
+<td><p><p>Goto a given position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.goto">official documentation</a>.</p>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.heading" title="turtlethread.Turtle.heading"><code class="xref py py-obj docutils literal notranslate"><span class="pre">heading</span></code></a>()</p></td>
+<td><p>Returns the turtle's heading (i.e.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.home" title="turtlethread.Turtle.home"><code class="xref py py-obj docutils literal notranslate"><span class="pre">home</span></code></a>()</p></td>
+<td><p><p>Move the needle home (position (0, 0)), see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.home">official documentation</a>.</p>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.jump_stitch" title="turtlethread.Turtle.jump_stitch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jump_stitch</span></code></a>()</p></td>
+<td><p>Set the stitch mode to jump-stitch and cleanup afterwards.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.left" title="turtlethread.Turtle.left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">left</span></code></a>(angle)</p></td>
+<td><p><p>Rotate left the specified angle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.left">official documentation</a>.</p>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.lt" title="turtlethread.Turtle.lt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lt</span></code></a>(angle)</p></td>
+<td><p><p>Rotate left the specified angle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.left">official documentation</a>.</p>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.pos" title="turtlethread.Turtle.pos"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pos</span></code></a>()</p></td>
+<td><p><p>Get the position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.position">official documentation</a>.</p>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.position" title="turtlethread.Turtle.position"><code class="xref py py-obj docutils literal notranslate"><span class="pre">position</span></code></a>()</p></td>
+<td><p><p>Get the position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.position">official documentation</a>.</p>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.right" title="turtlethread.Turtle.right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">right</span></code></a>(angle)</p></td>
+<td><p><p>Rotate right the specified angle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.right">official documentation</a>.</p>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.rt" title="turtlethread.Turtle.rt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rt</span></code></a>(angle)</p></td>
+<td><p><p>Rotate right the specified angle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.right">official documentation</a>.</p>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.running_stitch" title="turtlethread.Turtle.running_stitch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">running_stitch</span></code></a>(stitch_length)</p></td>
+<td><p>Set the stitch mode to running stitch and cleanup afterwards.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.save" title="turtlethread.Turtle.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(filename)</p></td>
+<td><p>Save the embroidery pattern as an embroidery or image file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.seth" title="turtlethread.Turtle.seth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">seth</span></code></a>(angle)</p></td>
+<td><p>Set the turtle's heading, 0 degrees is pointing right.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.setheading" title="turtlethread.Turtle.setheading"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setheading</span></code></a>(angle)</p></td>
+<td><p>Set the turtle's heading, 0 degrees is pointing right.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.setpos" title="turtlethread.Turtle.setpos"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setpos</span></code></a>(x, y)</p></td>
+<td><p><p>Goto a given position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.goto">official documentation</a>.</p>
+</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.setposition" title="turtlethread.Turtle.setposition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setposition</span></code></a>(x, y)</p></td>
+<td><p><p>Goto a given position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.goto">official documentation</a>.</p>
+</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.show_info" title="turtlethread.Turtle.show_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">show_info</span></code></a>()</p></td>
+<td><p>Display information about this turtle's embroidery pattern.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.start_jump_stitch" title="turtlethread.Turtle.start_jump_stitch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_jump_stitch</span></code></a>()</p></td>
+<td><p>Set the stitch mode to jump-stitch (not recommended, use <code class="docutils literal notranslate"><span class="pre">jump_stitch</span></code>-context instead).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.start_running_stitch" title="turtlethread.Turtle.start_running_stitch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_running_stitch</span></code></a>(stitch_length)</p></td>
+<td><p>Set the stitch mode to running stitch (not recommended, use <code class="docutils literal notranslate"><span class="pre">running_stitch</span></code>-context instead).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.visualise" title="turtlethread.Turtle.visualise"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualise</span></code></a>([turtle, width, height, scale, ...])</p></td>
+<td><p>Use the builtin <code class="docutils literal notranslate"><span class="pre">turtle</span></code> library to visualise this turtle's embroidery pattern.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py property">
+<dt class="sig sig-object py" id="turtlethread.Turtle.angle_mode">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">angle_mode</span></span><a class="headerlink" href="#turtlethread.Turtle.angle_mode" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>The angle mode, either «degrees» or «radians».</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.back">
+<span class="sig-name descname"><span class="pre">back</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.back" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Move backward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.backward">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.backward">
+<span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.backward"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.backward" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Move backward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.backward">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.bk">
+<span class="sig-name descname"><span class="pre">bk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.bk" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Move backward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.backward">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.circle">
+<span class="sig-name descname"><span class="pre">circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.circle"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.circle" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Draw a circle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.circle">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.cleanup_stitch_type">
+<span class="sig-name descname"><span class="pre">cleanup_stitch_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.cleanup_stitch_type"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.cleanup_stitch_type" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Cleanup after switching to running stitch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.fd">
+<span class="sig-name descname"><span class="pre">fd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.fd" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Move forward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.forward">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.forward"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.forward" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Move forward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.forward">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.goto">
+<span class="sig-name descname"><span class="pre">goto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.goto"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.goto" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Goto a given position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.goto">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.heading">
+<span class="sig-name descname"><span class="pre">heading</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.heading"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.heading" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Returns the turtle’s heading (i.e. angle)</p>
+<p>writing <code class="docutils literal notranslate"><span class="pre">turtle.heading()</span></code> gives the same result as writing <code class="docutils literal notranslate"><span class="pre">turtle.angle</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.home">
+<span class="sig-name descname"><span class="pre">home</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.home"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.home" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Move the needle home (position (0, 0)), see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.home">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.jump_stitch">
+<span class="sig-name descname"><span class="pre">jump_stitch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.jump_stitch"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.jump_stitch" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Set the stitch mode to jump-stitch and cleanup afterwards.</p>
+<p>With a jump-stitch, trim the thread and move the needle without sewing more stitches.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.left">
+<span class="sig-name descname"><span class="pre">left</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.left"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.left" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Rotate left the specified angle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.left">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.lt">
+<span class="sig-name descname"><span class="pre">lt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.lt" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Rotate left the specified angle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.left">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.pos">
+<span class="sig-name descname"><span class="pre">pos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.pos" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Get the position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.position">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.position">
+<span class="sig-name descname"><span class="pre">position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.position"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.position" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Get the position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.position">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.right">
+<span class="sig-name descname"><span class="pre">right</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.right"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.right" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Rotate right the specified angle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.right">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.rt">
+<span class="sig-name descname"><span class="pre">rt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.rt" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Rotate right the specified angle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.right">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.running_stitch">
+<span class="sig-name descname"><span class="pre">running_stitch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stitch_length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.running_stitch"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.running_stitch" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Set the stitch mode to running stitch and cleanup afterwards.</p>
+<p>With a running stitch, we get stitches with a constant distance between each stitch.</p>
+<p>One step is equivalent to 0.1 mm, we recommend setting the minimum length
+between each stitch to 30 (3 mm).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>stitch_length</strong><span class="classifier">int</span></dt><dd><p>Number of steps between each stitch.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.save"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.save" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Save the embroidery pattern as an embroidery or image file.</p>
+<p>Saves the embroiery pattern to file. Supports standard embroidery file formats,
+such as <code class="docutils literal notranslate"><span class="pre">.dst</span></code>, <code class="docutils literal notranslate"><span class="pre">.jef</span></code> and <code class="docutils literal notranslate"><span class="pre">.pes</span></code>, and utility formats such as <code class="docutils literal notranslate"><span class="pre">.png</span></code>,
+<code class="docutils literal notranslate"><span class="pre">.svg</span></code> and <code class="docutils literal notranslate"><span class="pre">.txt</span></code>. For a full list of supported file formats, see the <a class="reference external" href="https://github.com/EmbroidePy/pyembroidery#file-io">pyembroidery documentation</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.seth">
+<span class="sig-name descname"><span class="pre">seth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.seth" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Set the turtle’s heading, 0 degrees is pointing right. See the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.setheading">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.setheading">
+<span class="sig-name descname"><span class="pre">setheading</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.setheading"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.setheading" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Set the turtle’s heading, 0 degrees is pointing right. See the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.setheading">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.setpos">
+<span class="sig-name descname"><span class="pre">setpos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.setpos" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Goto a given position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.goto">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.setposition">
+<span class="sig-name descname"><span class="pre">setposition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.setposition" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Goto a given position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.goto">official documentation</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.show_info">
+<span class="sig-name descname"><span class="pre">show_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.show_info"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.show_info" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Display information about this turtle’s embroidery pattern.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.start_jump_stitch">
+<span class="sig-name descname"><span class="pre">start_jump_stitch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.start_jump_stitch"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.start_jump_stitch" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Set the stitch mode to jump-stitch (not recommended, use <code class="docutils literal notranslate"><span class="pre">jump_stitch</span></code>-context instead).</p>
+<p>With a jump-stitch, trim the thread and move the needle without sewing more stitches.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.start_running_stitch">
+<span class="sig-name descname"><span class="pre">start_running_stitch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stitch_length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.start_running_stitch"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.start_running_stitch" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Set the stitch mode to running stitch (not recommended, use <code class="docutils literal notranslate"><span class="pre">running_stitch</span></code>-context instead).</p>
+<p>With a running stitch, we get stitches with a constant distance between each stitch.</p>
+<p>One step is equivalent to 0.1 mm, we recommend setting the minimum length
+between each stitch to 30 (3 mm).</p>
+<p>It is recommended to use the <code class="docutils literal notranslate"><span class="pre">running_stitch</span></code>-context instead of the start-functions
+since they will automatically cleanup afterwards.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>stitch_length</strong><span class="classifier">int</span></dt><dd><p>Number of steps between each stitch.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.visualise">
+<span class="sig-name descname"><span class="pre">visualise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">turtle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bye</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.visualise"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.visualise" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Use the builtin <code class="docutils literal notranslate"><span class="pre">turtle</span></code> library to visualise this turtle’s embroidery pattern.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>pattern</strong><span class="classifier">pyembroidery.EmbPattern</span></dt><dd><p>Embroidery pattern to visualise</p>
+</dd>
+<dt><strong>turtle</strong><span class="classifier">turtle.Turtle (optional)</span></dt><dd><p>Python turtle object to use for drawing. If not specified, then the default turtle
+is used.</p>
+</dd>
+<dt><strong>width</strong><span class="classifier">int</span></dt><dd><p>Canvas width</p>
+</dd>
+<dt><strong>height</strong><span class="classifier">int</span></dt><dd><p>Canvas height</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">int</span></dt><dd><p>Factor the embroidery length’s are scaled by.</p>
+</dd>
+<dt><strong>done</strong><span class="classifier">bool</span></dt><dd><p>If True, then <code class="docutils literal notranslate"><span class="pre">turtle.done()</span></code> will be called after drawing.</p>
+</dd>
+<dt><strong>bye</strong><span class="classifier">bool</span></dt><dd><p>If True, then <code class="docutils literal notranslate"><span class="pre">turtle.bye()</span></code> will be called after drawing.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-turtlethread.visualise">
+<span id="additional-utilities"></span><h2>Additional utilities<a class="headerlink" href="#module-turtlethread.visualise" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="turtlethread.visualise.visualise_pattern">
+<span class="sig-prename descclassname"><span class="pre">turtlethread.visualise.</span></span><span class="sig-name descname"><span class="pre">visualise_pattern</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turtle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bye</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/visualise.html#visualise_pattern"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.visualise.visualise_pattern" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Use the builtin <code class="docutils literal notranslate"><span class="pre">turtle</span></code> library to visualise an embroidery pattern.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>pattern</strong><span class="classifier">pyembroidery.EmbPattern</span></dt><dd><p>Embroidery pattern to visualise</p>
+</dd>
+<dt><strong>turtle</strong><span class="classifier">turtle.Turtle (optional)</span></dt><dd><p>Python turtle object to use for drawing. If not specified, then the default turtle
+is used.</p>
+</dd>
+<dt><strong>width</strong><span class="classifier">int</span></dt><dd><p>Canvas width</p>
+</dd>
+<dt><strong>height</strong><span class="classifier">int</span></dt><dd><p>Canvas height</p>
+</dd>
+<dt><strong>scale</strong><span class="classifier">int</span></dt><dd><p>Factor the embroidery length’s are scaled by.</p>
+</dd>
+<dt><strong>done</strong><span class="classifier">bool</span></dt><dd><p>If True, then <code class="docutils literal notranslate"><span class="pre">turtle.done()</span></code> will be called after drawing.</p>
+</dd>
+<dt><strong>bye</strong><span class="classifier">bool</span></dt><dd><p>If True, then <code class="docutils literal notranslate"><span class="pre">turtle.bye()</span></code> will be called after drawing.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="manual_examples/fraktal.html" title="forrige page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">forrige</p>
+            <p class="prev-next-title">Julekuler, snøflak og rekursjon</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Marie Roald & Yngve Mardal Moe<br/>
+  
+      &copy; Copyright 2021, Marie Roald &amp; Yngve Mardal Moe.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
