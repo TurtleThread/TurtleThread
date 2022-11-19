@@ -43,7 +43,7 @@ with penn.running_stitch(30):
 penn.visualise()
 
 # %%
-# .. image:: ../figures/introduction_1.png
+# .. image:: ../../../_static/figures/introduction_1.png
 
 # %%
 # Nå har vi en søm som gir en rett strek fremover.
@@ -58,7 +58,7 @@ with penn.running_stitch(30):
 penn.visualise()
 
 # %%
-# .. image:: ../figures/introduction_2.png
+# .. image:: ../../../_static/figures/introduction_2.png
 
 
 
@@ -74,7 +74,7 @@ with penn.running_stitch(30):
 penn.visualise()
 
 # %%
-# .. image:: ../figures/introduction_3.png
+# .. image:: ../../../_static/figures/introduction_3.png
 
 # %%
 # Hvis vi bruker en ny løkke og tegner firkanten åtte ganger, så får vi en fin blomst:
@@ -90,7 +90,7 @@ with penn.running_stitch(30):
 penn.visualise()
 
 # %%
-# .. image:: ../figures/introduction_4.png
+# .. image:: ../../../_static/figures/introduction_4.png
 
 # # %%
 # Det kan ofte være lurt å finne de variable størrelsene i programmet, og la de være Python-variabler.
@@ -144,4 +144,4 @@ with penn.running_stitch(30):
 penn.save("firkantblomst.dst")
 
 # %%
-# .. image:: ../figures/firkantblomst_sydd.png
+# .. image:: ../../../_static/figures/firkantblomst_sydd.png

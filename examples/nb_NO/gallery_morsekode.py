@@ -22,7 +22,7 @@ from turtlethread import Turtle
 # Basert på dette kan vi tegne prikker og streker med ``turtlethread``. Det er mange måter vi
 # kan gjøre det på, men vi har valgt denne:
 # 
-# .. image:: ../figures/morse/morse.svg
+# .. image:: ../../../_static/figures/morse/morse.svg
 # 
 # La oss lage en funksjon for å tegne en prikk, en funksjon for å tegne en strek og en funksjon som tar
 # inn et morsetegn (strek eller mellomrom) og tegner det.

@@ -3,13 +3,13 @@ scripts
 pyemb
 .vscode
 *.docx
-en/
 ignore
 TODO
 auto_examples
 auto_figures
 manual_code_output
-
+*.afdesign
+*.afphoto
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
