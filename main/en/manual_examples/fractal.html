@@ -441,7 +441,7 @@ This may be a bit confusing, so let’s start by creating a simple <code class="
 <span class="linenos">25</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
 </pre></div>
 </div>
-<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/fractal/manual_code_output/01.svg"><img alt="Snowflake arm. A straight line with two branches, one pointing upwards and one pointing downwards." class="sphx-glr-script-out" src="manual_examples/fractal/manual_code_output/01.svg" width="180" /></a>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/011.svg"><img alt="Snowflake arm. A straight line with two branches, one pointing upwards and one pointing downwards." class="sphx-glr-script-out" src="../_images/011.svg" width="180" /></a>
 <p>If we call this function, we get a drawing of an arm, and we observe that this arm is built up of four “pieces”, where each piece is a line segment.
 Instead of a simple line segment, we want each piece to contain a small arm with two new branches. For this, we can replace the call to the <code class="docutils literal notranslate"><span class="pre">forward</span></code> function with a call to the <code class="docutils literal notranslate"><span class="pre">draw_arm</span></code> function.
 Then we get a function which calls itself, also known as a recursive function.</p>
@@ -506,7 +506,7 @@ This will result in an infinite amount of details that the computer cannot handl
 <span class="linenos">28</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
 </pre></div>
 </div>
-<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/fractal/manual_code_output/03_2.svg"><img alt="A snowflake arm. The arm looks like the snowflake arm above, but each straight line has been replaced with a smaller arm." class="sphx-glr-script-out" src="manual_examples/fractal/manual_code_output/03_2.svg" width="180" /></a>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/03_2.svg"><img alt="A snowflake arm. The arm looks like the snowflake arm above, but each straight line has been replaced with a smaller arm." class="sphx-glr-script-out" src="../_images/03_2.svg" width="180" /></a>
 <dl class="field-list simple">
 <dt class="field-odd">Line 3<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Here we have added an input argument, recursion_level which keeps track of which level of recursion we are currently at.</p>
@@ -524,7 +524,7 @@ This ensures that we can keep track of how many levels we have.</p>
 </dl>
 <p>Below are some examples of how the arm looks for different levels of recursion:</p>
 <p><strong>Recursion level 0</strong></p>
-<a class="reference internal image-reference" href="manual_examples/fractal/manual_code_output/03_0.svg"><img alt="A straight line" src="manual_examples/fractal/manual_code_output/03_0.svg" width="180" /></a>
+<a class="reference internal image-reference" href="../_images/03_0.svg"><img alt="A straight line" src="../_images/03_0.svg" width="180" /></a>
 <details class="summary-kode">
 <summary>Kode:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
 <span class="linenos"> 2</span>
@@ -557,7 +557,7 @@ This ensures that we can keep track of how many levels we have.</p>
 </pre></div>
 </div>
 </details><p><strong>Recursion level 1</strong></p>
-<a class="reference internal image-reference" href="manual_examples/fractal/manual_code_output/03_1.svg"><img alt="The same snowflake arm shown in the first code example above." src="manual_examples/fractal/manual_code_output/03_1.svg" width="180" /></a>
+<a class="reference internal image-reference" href="../_images/03_1.svg"><img alt="The same snowflake arm shown in the first code example above." src="../_images/03_1.svg" width="180" /></a>
 <details class="summary-kode">
 <summary>Kode:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
 <span class="linenos"> 2</span>
@@ -590,7 +590,7 @@ This ensures that we can keep track of how many levels we have.</p>
 </pre></div>
 </div>
 </details><p><strong>Recursion level 2</strong></p>
-<a class="reference internal image-reference" href="manual_examples/fractal/manual_code_output/03_2.svg"><img alt="A snowflake arm The arm looks like the snowflake arm above, but each straight line has been replaced with a smaller arm." src="manual_examples/fractal/manual_code_output/03_2.svg" width="180" /></a>
+<a class="reference internal image-reference" href="../_images/03_2.svg"><img alt="A snowflake arm The arm looks like the snowflake arm above, but each straight line has been replaced with a smaller arm." src="../_images/03_2.svg" width="180" /></a>
 <details class="summary-kode">
 <summary>Kode:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
 <span class="linenos"> 2</span>
@@ -628,7 +628,7 @@ This ensures that we can keep track of how many levels we have.</p>
 <li><p>Update the code to draw snowflake arms with recursion levels 3 and 4.</p></li>
 </ul>
 <details class="summary-click-here-to-see-the-snowflake-arm-and-the-code-for-recursion-level-3">
-<summary>Click here to see the snowflake arm and the code for recursion level 3:</summary><a class="reference internal image-reference" href="manual_examples/fractal/manual_code_output/03_3.svg"><img alt="A snowflake arm The arm looks like the snowflake arm above, but each straight line has been replaced with a smaller arm. This process is repeated twice." src="manual_examples/fractal/manual_code_output/03_3.svg" width="180" /></a>
+<summary>Click here to see the snowflake arm and the code for recursion level 3:</summary><a class="reference internal image-reference" href="../_images/03_3.svg"><img alt="A snowflake arm The arm looks like the snowflake arm above, but each straight line has been replaced with a smaller arm. This process is repeated twice." src="../_images/03_3.svg" width="180" /></a>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">def</span> <span class="nf">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="p">):</span>
@@ -660,7 +660,7 @@ This ensures that we can keep track of how many levels we have.</p>
 </pre></div>
 </div>
 </details><details class="summary-klikk-her-for-a-se-snofnugg-armen-og-koden-for-rekursjonsniva-4">
-<summary>Klikk her for å se snøfnugg-armen og koden for rekursjonsnivå 4:</summary><a class="reference internal image-reference" href="manual_examples/fractal/manual_code_output/03_4.svg"><img alt="A snowflake arm The arm looks like the snowflake arm above, but each straight line has been replaced with a smaller arm. This process is repeated three times." src="manual_examples/fractal/manual_code_output/03_4.svg" width="180" /></a>
+<summary>Klikk her for å se snøfnugg-armen og koden for rekursjonsnivå 4:</summary><a class="reference internal image-reference" href="../_images/03_4.svg"><img alt="A snowflake arm The arm looks like the snowflake arm above, but each straight line has been replaced with a smaller arm. This process is repeated three times." src="../_images/03_4.svg" width="180" /></a>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
 <span class="linenos"> 2</span>
 <span class="linenos"> 3</span><span class="k">def</span> <span class="nf">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="p">):</span>
@@ -726,7 +726,7 @@ This ensures that we can keep track of how many levels we have.</p>
 <span class="linenos">31</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="manual_examples/fractal/manual_code_output/04.svg"><img alt="A snowflake where each arm has recursion level 2." src="manual_examples/fractal/manual_code_output/04.svg" width="360" /></a>
+<a class="reference internal image-reference" href="../_images/041.svg"><img alt="A snowflake where each arm has recursion level 2." src="../_images/041.svg" width="360" /></a>
 <div class="admonition-try-it-yourself admonition">
 <p class="admonition-title">Try it yourself:</p>
 <ul class="simple">
@@ -734,7 +734,7 @@ This ensures that we can keep track of how many levels we have.</p>
 <li><p>Update the code, so the branches point at a different angle (e.g. 60 degrees).</p></li>
 <li><p>Create a modified version of the code where each arm has two sets of branches. Below is a visualisation of how this can look.</p></li>
 </ul>
-<a class="reference internal image-reference" href="manual_examples/fractal/manual_code_output/04.svg"><img alt="A snowflake arm with two sets of branches." src="manual_examples/fractal/manual_code_output/04.svg" width="180" /></a>
+<a class="reference internal image-reference" href="../_images/041.svg"><img alt="A snowflake arm with two sets of branches." src="../_images/041.svg" width="180" /></a>
 <details class="summary-click-here-to-see-an-example-of-how-the-finished-code-can-look">
 <summary>Click here to see an example of how the finished code can look</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
 <span class="linenos"> 2</span>
@@ -776,8 +776,8 @@ This ensures that we can keep track of how many levels we have.</p>
 <section id="example-fractals">
 <h2>Example fractals<a class="headerlink" href="#example-fractals" title="Permalink to this heading">#</a></h2>
 <p><strong>Example fractal 1</strong></p>
-<a class="randomness-gallery-arm reference internal image-reference" href="manual_examples/fractal/manual_code_output/gallery01_1.svg"><img alt="A different type of fractal snowflake called the &quot;Koch snowflake&quot;." class="randomness-gallery-arm" src="manual_examples/fractal/manual_code_output/gallery01_1.svg" width="180" /></a>
-<a class="randomness-gallery-arm reference internal image-reference" href="manual_examples/fractal/manual_code_output/gallery01_2.svg"><img alt="A different type of fractal snowflake called the &quot;Koch snowflake&quot;." class="randomness-gallery-arm" src="manual_examples/fractal/manual_code_output/gallery01_2.svg" width="180" /></a>
+<a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery01_1.svg"><img alt="A different type of fractal snowflake called the &quot;Koch snowflake&quot;." class="randomness-gallery-arm" src="../_images/gallery01_1.svg" width="180" /></a>
+<a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery01_2.svg"><img alt="A different type of fractal snowflake called the &quot;Koch snowflake&quot;." class="randomness-gallery-arm" src="../_images/gallery01_2.svg" width="180" /></a>
 <details class="randomness-gallery-code summary-code-for-recursion-level-1">
 <summary>Code for recursion level 1</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
 <span class="linenos"> 2</span>
@@ -828,8 +828,8 @@ This ensures that we can keep track of how many levels we have.</p>
 </pre></div>
 </div>
 </details><p><strong>Example fractal 2</strong></p>
-<a class="randomness-gallery-arm reference internal image-reference" href="manual_examples/fractal/manual_code_output/gallery02_1.svg"><img alt="A fractal tree." class="randomness-gallery-arm" height="180" src="manual_examples/fractal/manual_code_output/gallery02_1.svg" /></a>
-<a class="randomness-gallery-arm reference internal image-reference" href="manual_examples/fractal/manual_code_output/gallery02_3.svg"><img alt="A fractal tree." class="randomness-gallery-arm" height="180" src="manual_examples/fractal/manual_code_output/gallery02_3.svg" /></a>
+<a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery02_1.svg"><img alt="A fractal tree." class="randomness-gallery-arm" height="180" src="../_images/gallery02_1.svg" /></a>
+<a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery02_3.svg"><img alt="A fractal tree." class="randomness-gallery-arm" height="180" src="../_images/gallery02_3.svg" /></a>
 <details class="randomness-gallery-code summary-code-for-recursion-level-1">
 <summary>Code for recursion level 1</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
 <span class="linenos"> 2</span>
@@ -887,8 +887,8 @@ This ensures that we can keep track of how many levels we have.</p>
 </pre></div>
 </div>
 </details><p><strong>Example fractal 3</strong></p>
-<a class="randomness-gallery-arm reference internal image-reference" href="manual_examples/fractal/manual_code_output/gallery03_2.svg"><img alt="A fractal snowflake with two different arm types, one for even recursion levels and one for odd recursion levels." class="randomness-gallery-arm" src="manual_examples/fractal/manual_code_output/gallery03_2.svg" width="180" /></a>
-<a class="randomness-gallery-arm reference internal image-reference" href="manual_examples/fractal/manual_code_output/gallery03_3.svg"><img alt="A fractal snowflake with two different arm types, one for even recursion levels and one for odd recursion levels." class="randomness-gallery-arm" src="manual_examples/fractal/manual_code_output/gallery03_3.svg" width="180" /></a>
+<a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery03_2.svg"><img alt="A fractal snowflake with two different arm types, one for even recursion levels and one for odd recursion levels." class="randomness-gallery-arm" src="../_images/gallery03_2.svg" width="180" /></a>
+<a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery03_3.svg"><img alt="A fractal snowflake with two different arm types, one for even recursion levels and one for odd recursion levels." class="randomness-gallery-arm" src="../_images/gallery03_3.svg" width="180" /></a>
 <details class="randomness-gallery-code summary-code-for-recursion-level-2">
 <summary>Code for recursion level 2</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
 <span class="linenos"> 2</span>
