@@ -1,0 +1,16 @@
+
+:orphan:
+
+.. _sphx_glr_auto_examples_sg_execution_times:
+
+Computation times
+=================
+**00:00.234** total execution time for **auto_examples** files:
+
++-----------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_auto_examples_gallery_stotter_line.py` (``gallery_stotter_line.py``)                 | 00:00.168 | 0.0 MB |
++-----------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_auto_examples_gallery_sierpinsky_arrowhead.py` (``gallery_sierpinsky_arrowhead.py``) | 00:00.045 | 0.0 MB |
++-----------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_auto_examples_gallery_hilbert.py` (``gallery_hilbert.py``)                           | 00:00.022 | 0.0 MB |
++-----------------------------------------------------------------------------------------------------+-----------+--------+
