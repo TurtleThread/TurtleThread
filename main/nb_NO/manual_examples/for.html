@@ -4,7 +4,7 @@
 <html lang="nb-NO">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>For løkker &#8212; TurtleThread 0.0.6 documentation</title>
     
@@ -406,8 +406,51 @@ Den kan gjøre det samme tusenvis av ganger, ja hundretusenvis av ganger, uten �
 <p>Når vi programmerer, kan vi bruke løkker for å gjenta en bit kode mange ganger uten å skrive den samme koden flere ganger.
 I Python finnes det to typer løkker: <code class="docutils literal notranslate"><span class="pre">for</span></code>-løkker og <code class="docutils literal notranslate"><span class="pre">while</span></code>-løkker.
 I denne guiden skal vi se på <code class="docutils literal notranslate"><span class="pre">for</span></code> løkker. Først, la oss se på et eksempel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 7</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">14</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">15</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">18</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">19</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">22</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">23</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">26</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">27</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/for/manual_code_output/01.svg"><img alt="Resultat fra koden over. En &quot;stjerne&quot; bestående av seks streker som kommer ut fra samme punkt." class="sphx-glr-script-out" src="manual_examples/for/manual_code_output/01.svg" width="100" /></a>
 <p>Denne koden kan vi forenkle med en <code class="docutils literal notranslate"><span class="pre">for</span></code>-løkke</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</span><span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/for/manual_code_output/02.svg"><img alt="Resultat fra koden over. En &quot;stjerne&quot; bestående av seks streker som kommer ut fra samme punkt." class="sphx-glr-script-out" src="manual_examples/for/manual_code_output/02.svg" width="100" /></a>
 <p>Vi ser at den nye koden er mye kortere, og kanskje til og med litt enklere å forstå. Det viktige å forstå på er det som skjer på linje 5-9.</p>
 <dl class="field-list simple">
@@ -422,7 +465,19 @@ I denne guiden skal vi se på <code class="docutils literal notranslate"><span c
 <p class="admonition-title">Prøv selv:</p>
 <p>Modifiser koden over slik at du tegner en stjerne med åtte stråler istedenfor 6 (hint: Da må det være 45° mellom hver stråle).</p>
 <details class="summary-klikk-her-for-a-se-programmet-slik-det-skal-vaere-om-du-har-gjort-det-rett">
-<summary>Klikk her for å se programmet slik det skal være om du har gjort det rett:</summary><a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/for/manual_code_output/03.svg"><img alt="Resultat fra koden over. En &quot;stjerne&quot; bestående av åtte streker som kommer ut fra samme punkt." class="sphx-glr-script-out" src="manual_examples/for/manual_code_output/03.svg" width="90" /></a>
+<summary>Klikk her for å se programmet slik det skal være om du har gjort det rett:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+</span><span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+</span><span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/for/manual_code_output/03.svg"><img alt="Resultat fra koden over. En &quot;stjerne&quot; bestående av åtte streker som kommer ut fra samme punkt." class="sphx-glr-script-out" src="manual_examples/for/manual_code_output/03.svg" width="90" /></a>
 </details></div>
 <div class="admonition attention">
 <p class="admonition-title">Obs</p>
@@ -434,6 +489,29 @@ I denne guiden skal vi se på <code class="docutils literal notranslate"><span c
 Hvis vi leser koden over står det jo <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">stråle</span> <span class="pre">in</span> <span class="pre">range(8)</span></code>. Altså for hver stråle i <code class="docutils literal notranslate"><span class="pre">range(8)</span></code>.
 Å skrive <code class="docutils literal notranslate"><span class="pre">range(8)</span></code> blir litt som å be Python generere listen <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">7]</span></code>.
 Vi kan se dette i praksis ved å skrive ut variabelen <code class="docutils literal notranslate"><span class="pre">stråle</span></code> i terminalvinduet</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 9</span>        <span class="nb">print</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+</span><span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/for/manual_code_output/04.svg"><img alt="Resultat fra koden over. En &quot;stjerne&quot; bestående av åtte streker som kommer ut fra samme punkt." class="sphx-glr-script-out" src="manual_examples/for/manual_code_output/04.svg" width="100" /></a>
 <p>Vi ser altså at <code class="docutils literal notranslate"><span class="pre">range</span></code>-funksjonen skaper en rekke med heltall frem til, men ikke med, avslutningstallet, som i dette tilfellet var 6. Og at <code class="docutils literal notranslate"><span class="pre">stråle</span></code> blir en variabel som løkker seg igjennom rekka.</p>
 <aside class="sidebar">
@@ -445,15 +523,70 @@ Under er to eksempler, et hvor skilpadden går frem og tilbake 8 ganger, men rot
 og et slik at skilpadden går frem 8 ganger, men går tilbake og roterer bare en gang etter løkka.</p>
 <a class="reference internal image-reference" href="manual_examples/for/manual_code_output/05.svg"><img alt="Resultat fra koden under. En kort rett strek hvor &quot;skilpadda&quot; er i venstre kant av streken." src="manual_examples/for/manual_code_output/05.svg" width="180" /></a>
 <details class="summary-kode">
-<summary>Kode:</summary></details><a class="reference internal image-reference" href="manual_examples/for/manual_code_output/06.svg"><img alt="Resultat fra koden under. En lengre rett strek hvor &quot;skilpadda&quot; er nesten i høyre kant av streken." src="manual_examples/for/manual_code_output/06.svg" width="180" /></a>
+<summary>Kode:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 8</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 9</span>    <span class="nb">print</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+</span><span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span>
+</pre></div>
+</div>
+</details><a class="reference internal image-reference" href="manual_examples/for/manual_code_output/06.svg"><img alt="Resultat fra koden under. En lengre rett strek hvor &quot;skilpadda&quot; er nesten i høyre kant av streken." src="manual_examples/for/manual_code_output/06.svg" width="180" /></a>
 <details class="summary-kode">
-<summary>Kode:</summary></details><div class="admonition attention">
+<summary>Kode:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 7</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 8</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 9</span>    <span class="nb">print</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+</span><span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span>
+</pre></div>
+</div>
+</details><div class="admonition attention">
 <p class="admonition-title">Obs</p>
 <p>Legg merke til at alle linjene under <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">nål.running_stitch(25):</span></code> også har ett innrykk inn. Dette definerer en kodeblokk av linjer som skal sys med rettsøm.
 Dette kan du lese mer om <a class="reference external" href="../auto_examples/gallery_introduksjon.html">her</a>.</p>
 </div>
 </aside>
 <p>Siden stråle blir en variabel, kan vi bruke den i tegningen vår. Hvis vi for eksempel ønsker at strålene våre skal ha ulik lengde, kan vi bruke <code class="docutils literal notranslate"><span class="pre">stråle</span></code>-variabelen til å sette lengden.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="nb">print</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/for/manual_code_output/07.svg"><img alt="Resultat fra koden over. Syv veldig små streker med ulik størrelse som danner en &quot;ministjerne&quot;. Det er nesten umulig å se detaljer siden strekene er så korte." class="sphx-glr-script-out" src="manual_examples/for/manual_code_output/07.svg" width="10" /></a>
 <p>Men dette var jo ikke det vi ønsket! Her fikk vi jo en bitteliten figur hvor alle stingene ble satt i samme sted.
 Dette skjedde siden <code class="docutils literal notranslate"><span class="pre">stråle</span></code>-variabelen tross alt kun har verdier mellom 0 og 5.
@@ -461,15 +594,84 @@ Vi vil jo ha lengre stråler enn som så.
 Og for å få til det må vi bruke en annen funksjonalitet til <code class="docutils literal notranslate"><span class="pre">range</span></code>-funksjonen.
 range kan nemlig også bestemme hvor tallrekka starter, og hvor stor avstand det skal være mellom hver stråle.
 Så hvis vi ønsker at den minste strålen skal ha lengde 50, den største strålen skal ha lengde 225 og at det skal være 25 «steg» mellom hvert strålenummer kan vi skrive</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">25</span><span class="p">):</span>
+</span><span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="nb">print</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">50</span>
+<span class="mi">75</span>
+<span class="mi">100</span>
+<span class="mi">125</span>
+<span class="mi">150</span>
+<span class="mi">175</span>
+<span class="mi">200</span>
+<span class="mi">225</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/for/manual_code_output/08.svg"><img alt="Resultat fra koden over. En stjerne bestående av åtte streker med økende størrelse. Den korteste streken peker til høyre, så øker de i lengde jo lengre man beveger seg med klokka." class="sphx-glr-script-out" src="manual_examples/for/manual_code_output/08.svg" width="150" /></a>
 <p>Det interessante her er på linje 5 igjen. Vi ser at det nå står <code class="docutils literal notranslate"><span class="pre">range(50,</span> <span class="pre">250,</span> <span class="pre">25)</span></code>. Dette betyr altså at vi starter tallrekka på 50, den slutter før 250 og det er 25 steg mellom hvert tall.</p>
 <div class="admonition-prov-selv admonition">
 <p class="admonition-title">Prøv selv:</p>
 <p>Modifiser koden over slik at den minste strålen har lengde 100, den lengste har lengde 400 og det er 50 steg mellom hvert strålenummer.</p>
 <details class="summary-klikk-her-for-a-se-programmet-slik-det-skal-vaere-om-du-har-gjort-det-rett">
-<summary>Klikk her for å se programmet slik det skal være om du har gjort det rett:</summary><a class="reference internal image-reference" href="manual_examples/for/manual_code_output/09.svg"><img alt="Resultat fra koden over. En stjerne bestående av åtte streker med økende størrelse. Den korteste streken peker til høyre, så øker de i lengde jo lengre man beveger seg med klokka." src="manual_examples/for/manual_code_output/09.svg" width="90" /></a>
+<summary>Klikk her for å se programmet slik det skal være om du har gjort det rett:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">50</span><span class="p">):</span>
+</span><span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+</span><span class="linenos"> 9</span>        <span class="nb">print</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">100</span>
+<span class="mi">150</span>
+<span class="mi">200</span>
+<span class="mi">250</span>
+<span class="mi">300</span>
+<span class="mi">350</span>
+<span class="mi">400</span>
+<span class="mi">450</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="manual_examples/for/manual_code_output/09.svg"><img alt="Resultat fra koden over. En stjerne bestående av åtte streker med økende størrelse. Den korteste streken peker til høyre, så øker de i lengde jo lengre man beveger seg med klokka." src="manual_examples/for/manual_code_output/09.svg" width="90" /></a>
 </details></div>
 <p>Vi kan bruke denne teknikken for å tegne enda litt kulere stjerner. For eksempel, hvis antall grader vi roterer nåla er 150 vil vi få denne figuren:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">50</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+</span><span class="linenos"> 9</span>        <span class="nb">print</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">100</span>
+<span class="mi">150</span>
+<span class="mi">200</span>
+<span class="mi">250</span>
+<span class="mi">300</span>
+<span class="mi">350</span>
+<span class="mi">400</span>
+<span class="mi">450</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/for/manual_code_output/10.svg"><img alt="Resultat fra koden over. En stjerne bestående av åtte streker med ulik størrelse, tilsynelatende uten mønster om hvilke streker som er korte og lange." class="sphx-glr-script-out" src="manual_examples/for/manual_code_output/10.svg" width="150" /></a>
 <div class="admonition attention">
 <p class="admonition-title">Obs</p>

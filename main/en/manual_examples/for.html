@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>For loops &#8212; TurtleThread 0.0.6 documentation</title>
     
@@ -401,8 +401,51 @@ The computer can repeat the same actions over and over for thousands or even hun
 <p>When we program, we can use loops to repeat a piece of code several times without writing the same code multiple times.
 Python supports two types of loops, for loops and while loops.
 In this tutorial, we will use for loop. Let’s start with an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 7</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">14</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">15</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">18</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">19</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">22</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">23</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">26</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">27</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/for/manual_code_output/01.svg"><img alt="Result from the code above. A &quot;star&quot; consisting of six rays that come from the same point." class="sphx-glr-script-out" src="manual_examples/for/manual_code_output/01.svg" width="100" /></a>
 <p>We can shorten this code with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">ray</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos"> 6</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 7</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 8</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</span><span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/for/manual_code_output/02.svg"><img alt="Result from the code above. A &quot;star&quot; consisting of six rays that come from the same point." class="sphx-glr-script-out" src="manual_examples/for/manual_code_output/02.svg" width="100" /></a>
 <p>We see that the modified code is much shorter and more readable. The most important lines to understand here are lines 5-9.</p>
 <dl class="field-list simple">
@@ -417,7 +460,19 @@ In this tutorial, we will use for loop. Let’s start with an example:</p>
 <p class="admonition-title">Try it yourself:</p>
 <p>Modify the code above so the star has eight rays instead of 6 (HINT: then there must be 45 degrees between each ray)</p>
 <details class="summary-klikk-her-for-a-se-programmet-slik-det-skal-vaere-om-du-har-gjort-det-rett">
-<summary>Klikk her for å se programmet slik det skal være om du har gjort det rett:</summary><a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/for/manual_code_output/03.svg"><img alt="Result from the code above. A &quot;star&quot; consisting of eight rays that come from the same point." class="sphx-glr-script-out" src="manual_examples/for/manual_code_output/03.svg" width="90" /></a>
+<summary>Klikk her for å se programmet slik det skal være om du har gjort det rett:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">ray</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+</span><span class="linenos"> 6</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 8</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+</span><span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/for/manual_code_output/03.svg"><img alt="Result from the code above. A &quot;star&quot; consisting of eight rays that come from the same point." class="sphx-glr-script-out" src="manual_examples/for/manual_code_output/03.svg" width="90" /></a>
 </details></div>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
@@ -429,6 +484,29 @@ In this tutorial, we will use for loop. Let’s start with an example:</p>
 If we read the code above, we see the line <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">ray</span> <span class="pre">in</span> <span class="pre">range(8)</span></code>, which means for each ray in “<code class="docutils literal notranslate"><span class="pre">range(8)</span></code>”.
 Typing <code class="docutils literal notranslate"><span class="pre">range(8)</span></code> is almost like asking Python to generate a list of numbers <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">7]</span></code>.
 We can see this in practice by printing the <code class="docutils literal notranslate"><span class="pre">ray</span></code> variable to the terminal for each loop iteration.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">ray</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 9</span>        <span class="nb">print</span><span class="p">(</span><span class="n">ray</span><span class="p">)</span>
+</span><span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/for/manual_code_output/04.svg"><img alt="Result from the code above. A &quot;star&quot; consisting of eight rays that come from the same point." class="sphx-glr-script-out" src="manual_examples/for/manual_code_output/04.svg" width="100" /></a>
 <p>So we can see that the range function creates a sequence of integers up to, but not including, the stopping number (which in this case was 6).
 And the ray variable takes on each number in the sequence, one for each “round” in the loop.</p>
@@ -440,15 +518,70 @@ Therefore, everything that should be repeated must be on the same level.
 Below is two examples, one where the turtle moves forwards and backwards 8 times but only rotates once after the loop, and one where the turtle moves forwards 8 times, but only rotates once after the loop.</p>
 <a class="reference internal image-reference" href="manual_examples/for/manual_code_output/05.svg"><img alt="Result from the code above. A short straight line where the needle is in the left end of the line." src="manual_examples/for/manual_code_output/05.svg" width="180" /></a>
 <details class="summary-kode">
-<summary>Kode:</summary></details><a class="reference internal image-reference" href="manual_examples/for/manual_code_output/06.svg"><img alt="Result from the code above. A long straight line where the needle is in the right end of the line." src="manual_examples/for/manual_code_output/06.svg" width="360" /></a>
+<summary>Kode:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">ray</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 8</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 9</span>    <span class="nb">print</span><span class="p">(</span><span class="n">ray</span><span class="p">)</span>
+</span><span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span>
+</pre></div>
+</div>
+</details><a class="reference internal image-reference" href="manual_examples/for/manual_code_output/06.svg"><img alt="Result from the code above. A long straight line where the needle is in the right end of the line." src="manual_examples/for/manual_code_output/06.svg" width="360" /></a>
 <details class="summary-kode">
-<summary>Kode:</summary></details><div class="admonition attention">
+<summary>Kode:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">ray</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 7</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 8</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 9</span>    <span class="nb">print</span><span class="p">(</span><span class="n">ray</span><span class="p">)</span>
+</span><span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span>
+</pre></div>
+</div>
+</details><div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>Notice that all lines below the line <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">needle.running_stitch(25):</span></code> are indented one extra level.
 This defines a code block of lines that should be sewn with a running stitch, and you can read more about this <a class="reference external" href="../auto_examples/gallery_introduction.html">here</a>.</p>
 </div>
 </aside>
 <p>Because ray is a variable, we can also use it in our drawing. If we, for example, want the rays to have different lengths, we can set the length using the ray variable.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">ray</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">ray</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">ray</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="nb">print</span><span class="p">(</span><span class="n">ray</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/for/manual_code_output/07.svg"><img alt="Result from the code above. Seven tiny lines with different length that create a &quot;mini star&quot;. It is almost impossible to see any details since the lines are so short." class="sphx-glr-script-out" src="manual_examples/for/manual_code_output/07.svg" width="10" /></a>
 <p>This is not what we wanted!
 We ended up with a tiny pattern where all the stitches are practically on top of each other.
@@ -457,6 +590,29 @@ We want our rays to be longer than this!
 To get longer rays, we can use the range function.
 Range can also decide where the number sequence starts and how big the difference between each number in the sequence should be.
 So, if we want the shortest ray to have a length of 50, the longest ray to have a length of 225 and each ray to be 25 longer than the previous, we can write:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">ray</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">25</span><span class="p">):</span>
+</span><span class="linenos"> 6</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">ray</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">ray</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="nb">print</span><span class="p">(</span><span class="n">ray</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">50</span>
+<span class="mi">75</span>
+<span class="mi">100</span>
+<span class="mi">125</span>
+<span class="mi">150</span>
+<span class="mi">175</span>
+<span class="mi">200</span>
+<span class="mi">225</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/for/manual_code_output/08.svg"><img alt="Result from the code above. A &quot;star&quot; consisting of eight rays of increasing size (clockwise) that come from the same point." class="sphx-glr-script-out" src="manual_examples/for/manual_code_output/08.svg" width="150" /></a>
 <p>Again the interesting line is line 5.
 We see that it says <code class="docutils literal notranslate"><span class="pre">range(50,</span> <span class="pre">200,</span> <span class="pre">25)</span></code>.
@@ -465,9 +621,55 @@ This means that the sequence of numbers starts at <code class="docutils literal 
 <p class="admonition-title">Try it yourself:</p>
 <p>Modify the code above so that the smallest ray has a length of 100 steps, the longest has a length of 400 steps, and each ray is 50 steps longer than the last.</p>
 <details class="summary-click-here-to-see-an-example-of-how-the-finished-code-should-look">
-<summary>Click here to see an example of how the finished code should look.</summary><a class="reference internal image-reference" href="manual_examples/for/manual_code_output/09.svg"><img alt="Result from the code above. A &quot;star&quot; consisting of eight rays of increasing size (clockwise) that come from the same point." src="manual_examples/for/manual_code_output/09.svg" width="90" /></a>
+<summary>Click here to see an example of how the finished code should look.</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">ray</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">50</span><span class="p">):</span>
+</span><span class="linenos"> 6</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">ray</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">ray</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 8</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+</span><span class="linenos"> 9</span>        <span class="nb">print</span><span class="p">(</span><span class="n">ray</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">100</span>
+<span class="mi">150</span>
+<span class="mi">200</span>
+<span class="mi">250</span>
+<span class="mi">300</span>
+<span class="mi">350</span>
+<span class="mi">400</span>
+<span class="mi">450</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="manual_examples/for/manual_code_output/09.svg"><img alt="Result from the code above. A &quot;star&quot; consisting of eight rays of increasing size (clockwise) that come from the same point." src="manual_examples/for/manual_code_output/09.svg" width="90" /></a>
 </details></div>
 <p>We can use this technique to make even fancier stars. For example, if we rotate 150 degrees for each loop iteration, we get this figure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">ray</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">50</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">ray</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">ray</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 8</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+</span><span class="linenos"> 9</span>        <span class="nb">print</span><span class="p">(</span><span class="n">ray</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">100</span>
+<span class="mi">150</span>
+<span class="mi">200</span>
+<span class="mi">250</span>
+<span class="mi">300</span>
+<span class="mi">350</span>
+<span class="mi">400</span>
+<span class="mi">450</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/for/manual_code_output/10.svg"><img alt="Result from the code above. A &quot;star&quot; consisting of eight rays of varying size (clockwise) that come from the same point. There is no clear increasing or decreasing pattern for the lines." class="sphx-glr-script-out" src="manual_examples/for/manual_code_output/10.svg" width="150" /></a>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>

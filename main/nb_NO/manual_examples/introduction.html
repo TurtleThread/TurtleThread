@@ -4,7 +4,7 @@
 <html lang="nb-NO">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Ditt første skilpaddebroderi &#8212; TurtleThread 0.0.6 documentation</title>
     
@@ -376,30 +376,109 @@ title="Print to PDF"
 <h1>Ditt første skilpaddebroderi<a class="headerlink" href="#ditt-forste-skilpaddebroderi" title="Permalink to this heading">#</a></h1>
 <p>Nå skal vi lage vårt første skilpaddebroderi.
 Det første vi må gjøre er å importere TurtleThread (pass på at det er <a class="reference external" href="../installation.html">installert</a>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+</pre></div>
+</div>
 <p>Så oppretter vi et skilpaddeobjekt som vi skal bruke for å tegne med</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="hll"><span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+</span></pre></div>
+</div>
 <p>Nå har vi alt vi trenger for å begynne å lage mønster. La oss begynne med en strek.
 For å tegne en strek bruker vi <code class="docutils literal notranslate"><span class="pre">forward</span></code> og bestemmer hvor langt vi vil gå (f.eks 300 steg).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="hll"><span class="linenos">4</span><span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</span></pre></div>
+</div>
 <p>Denne koden flytter skilpadden 300 steg, men den lager ingen søm.
 For at skilpadden skal sy mens den flytter seg må vi bruke forward kommandoen inne i en søm-blokk.</p>
 <section id="fa-skilpadda-til-a-brodere-mens-den-gar">
 <h2>Få skilpadda til å brodere mens den går<a class="headerlink" href="#fa-skilpadda-til-a-brodere-mens-den-gar" title="Permalink to this heading">#</a></h2>
 <p>Den enkleste søm-blokken er en som heter <code class="docutils literal notranslate"><span class="pre">running_stitch</span></code> (Se <a class="reference internal" href="s%C3%B8mmetyper.html#stitch-types"><span class="std std-ref">Oversikt over sømmetyper i TurtleThread</span></a> for mer detaljer). I en running stitch-block så broderer vi
 en rett strek med et fast mellomrom mellom hvert sting.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="hll"><span class="linenos">4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+</span><span class="linenos">5</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Her har vi lagd kode som flytter skilpadda 300 steg fremover, med en running stitch søm, hvor vi
 setter et sting for hvert trettiende steg. Dette tilsvarer at vi setter ca et sting per tredje millimeter.
 La oss se på hvordan dette ser ut. For å gjøre det kan vi bruke <code class="docutils literal notranslate"><span class="pre">visualise</span></code>-funksjonen, som bruker
 det innebygde <code class="docutils literal notranslate"><span class="pre">turtle</span></code>-biblioteket for å tegne broderiet vårt.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">5</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="hll"><span class="linenos">6</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</span></pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/introduction/manual_code_output/02.svg"><img alt="En rett linje med korte vertikale linjer på tvers som indikerer hvor stingene plasseres." class="sphx-glr-script-out" src="manual_examples/introduction/manual_code_output/02.svg" width="180" /></a>
 <p>Nå har vi en søm som gir en rett strek fremover.
 For å skifte retning kan vi bruke <code class="docutils literal notranslate"><span class="pre">right</span></code> og sende inn antall grader vi vil rotere (f.eks 90 grader).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">5</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="hll"><span class="linenos">6</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">7</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</span><span class="linenos">8</span>
+<span class="linenos">9</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/introduction/manual_code_output/03.svg"><img alt="En rett horisontal linje etterfulgt av en vertikal linje nedover med samme lengde. Begge linjene har korte vertikale linjer på tvers som indikerer hvor stingene plasseres." class="sphx-glr-script-out" src="manual_examples/introduction/manual_code_output/03.svg" width="180" /></a>
 <p>Med en for løkke kan vi gjenta dette fire ganger for å få en firkant:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="hll"><span class="linenos">5</span>    <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos">6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+</span><span class="linenos">8</span>
+<span class="linenos">9</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/introduction/manual_code_output/04.svg"><img alt="En firkant med korte vertikale linjer på tvers som indikerer hvor stingene plasseres." class="sphx-glr-script-out" src="manual_examples/introduction/manual_code_output/04.svg" width="180" /></a>
 <p>Hvis vi bruker en ny løkke og tegner firkanten åtte ganger, så får vi en fin blomst:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">kronblad</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+</span><span class="linenos"> 6</span>        <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos"> 7</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="linenos"> 8</span>            <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/introduction/manual_code_output/05.svg"><img alt="Eight squares placed on top of each other to form what looks like a flower." class="sphx-glr-script-out" src="manual_examples/introduction/manual_code_output/05.svg" width="180" /></a>
 <p>Det kan ofte være lurt å finne de variable størrelsene i programmet, og la de være pythonvariabler.
 En variabel størrelse i programmet vi akkurat lagde er hvor mange kronblader, så la oss lage en
 pythonvariabel som lagrer antallet kronblader</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="hll"><span class="linenos"> 5</span><span class="n">antall_kronblader</span> <span class="o">=</span> <span class="mi">8</span>
+</span><span class="linenos"> 6</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 7</span>    <span class="k">for</span> <span class="n">kronblad</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">antall_kronblader</span><span class="p">):</span>
+</span><span class="linenos"> 8</span>        <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos"> 9</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="linenos">10</span>            <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="n">antall_kronblader</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/introduction/manual_code_output/06.svg"><img alt="Åtte roterte firkanter plassert opp å hverandre som tilsammen danner en blomst" class="sphx-glr-script-out" src="manual_examples/introduction/manual_code_output/06.svg" width="180" /></a>
 <div class="admonition-prov-selv admonition">
 <p class="admonition-title">Prøv selv:</p>
@@ -408,14 +487,64 @@ pythonvariabel som lagrer antallet kronblader</p>
 </ul>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/introduction/manual_code_output/07.svg"><img alt="Ti roterte firkanter plassert opp å hverandre som tilsammen danner en blomst" class="sphx-glr-script-out" src="manual_examples/introduction/manual_code_output/07.svg" width="180" /></a>
 <details class="summary-trykk-her-for-a-se-hvordan-den-ferdige-koden-kan-se-ut">
-<summary>Trykk her for å se hvordan den ferdige koden kan se ut</summary></details></div>
+<summary>Trykk her for å se hvordan den ferdige koden kan se ut</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="hll"><span class="linenos"> 5</span><span class="n">antall_kronblader</span> <span class="o">=</span> <span class="mi">10</span>
+</span><span class="linenos"> 6</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="k">for</span> <span class="n">kronblad</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">antall_kronblader</span><span class="p">):</span>
+<span class="linenos"> 8</span>        <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos"> 9</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="linenos">10</span>            <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="n">antall_kronblader</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details></div>
 </section>
 <section id="lagre-monsteret">
 <h2>Lagre mønsteret<a class="headerlink" href="#lagre-monsteret" title="Permalink to this heading">#</a></h2>
 <p>Nå som vi har et fint motiv kan vi for eksempel lagre det som PNG eller SVG bilder</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="n">antall_kronblader</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="k">for</span> <span class="n">kronblad</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">antall_kronblader</span><span class="p">):</span>
+<span class="linenos"> 8</span>        <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos"> 9</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="linenos">10</span>            <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="n">antall_kronblader</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+<span class="hll"><span class="linenos">14</span><span class="n">nål</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;blomst.png&quot;</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">15</span><span class="n">nål</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;blomst.svg&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
 <p>Under er <code class="docutils literal notranslate"><span class="pre">blomst.svg</span></code> fila csom vi nettopp lagde</p>
 <a class="reference internal image-reference" href="../_images/blomst.svg"><img alt="Åtte roterte firkanter plassert opp å hverandre som tilsammen danner en blomst" src="../_images/blomst.svg" width="180" /></a>
 <p>Eller vi kan lagre DST-fil for å bruke det med en broderimasking</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="n">antall_kronblader</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="k">for</span> <span class="n">kronblad</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">antall_kronblader</span><span class="p">):</span>
+<span class="linenos"> 8</span>        <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos"> 9</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+<span class="linenos">10</span>            <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="n">antall_kronblader</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+<span class="linenos">14</span><span class="n">nål</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;blomst.png&quot;</span><span class="p">)</span>
+<span class="linenos">15</span><span class="n">nål</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;blomst.svg&quot;</span><span class="p">)</span>
+<span class="hll"><span class="linenos">16</span><span class="n">nål</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;blomst.dst&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
 <a class="reference internal image-reference" href="../_images/firkantblomst_sydd.png"><img alt="Eksempelbroderi laget med TurtleThread" src="../_images/firkantblomst_sydd.png" style="width: 400px;" /></a>
 </section>
 </section>

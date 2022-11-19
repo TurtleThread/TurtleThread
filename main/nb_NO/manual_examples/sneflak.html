@@ -4,7 +4,7 @@
 <html lang="nb-NO">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Julekuler, snøflak og rotasjonssymmetri &#8212; TurtleThread 0.0.6 documentation</title>
     
@@ -483,6 +483,15 @@ title="Print to PDF"
 <section id="brodere-en-strek">
 <h3>Brodere en strek<a class="headerlink" href="#brodere-en-strek" title="Permalink to this heading">#</a></h3>
 <p>Begynn med å kopiere koden under inn i kodeeditoren din og kjør den. Hva blir tegnet opp på skjermen?</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+<span class="linenos">5</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">6</span>
+<span class="linenos">7</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/sneflak/manual_code_output/01.svg"><img alt="Resultat fra koden over. En horisontal blå strek med tre korte vertikale streker, en i hver ende og en på midten." class="sphx-glr-script-out" src="manual_examples/sneflak/manual_code_output/01.svg" width="100" /></a>
 <p>La oss gå igjennom koden linje for linje:</p>
 <dl class="field-list simple">
@@ -512,7 +521,16 @@ title="Print to PDF"
 <li><p>Endre programmet slik at nåla beveger seg 90 steg fremover istedenfor 100 steg fremover.</p></li>
 </ul>
 <details class="summary-klikk-her-for-a-se-programmet-slik-det-skal-vaere-om-du-har-gjort-det-rett">
-<summary>Klikk her for å se programmet slik det skal være om du har gjort det rett:</summary><a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/sneflak/manual_code_output/02.svg"><img alt="Resultat fra koden over. En horisontal blå strek med fire korte vertikale streker med lik avstand mellom hver strek." class="sphx-glr-script-out" src="manual_examples/sneflak/manual_code_output/02.svg" width="90" /></a>
+<summary>Klikk her for å se programmet slik det skal være om du har gjort det rett:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">5</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">6</span>
+<span class="linenos">7</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/sneflak/manual_code_output/02.svg"><img alt="Resultat fra koden over. En horisontal blå strek med fire korte vertikale streker med lik avstand mellom hver strek." class="sphx-glr-script-out" src="manual_examples/sneflak/manual_code_output/02.svg" width="90" /></a>
 </details></div>
 <div class="admonition attention">
 <p class="admonition-title">Obs</p>
@@ -522,6 +540,20 @@ title="Print to PDF"
 <section id="snu-til-hoyre">
 <h3>Snu til høyre<a class="headerlink" href="#snu-til-hoyre" title="Permalink to this heading">#</a></h3>
 <p>Vi vil at «armene» til snøkrystallen skal ha «grener». For å få til det må vi rotere skilpadden, det kan vi gjøre med right kommandoen. Programmet under tegner en gren med 45° rotasjon og steglengde 90:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">turtlethread</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">turtlethread</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="c1"># Gå litt frem</span>
+<span class="linenos"> 6</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="c1"># Tegn en &quot;gren&quot;, denne peker litt nedover</span>
+<span class="linenos"> 9</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/sneflak/manual_code_output/03.svg"><img alt="Resultat fra koden over. En horisontal blå strek og en diagonal strek som starter i høyre ende av den horisontale streken. Strekene har små streker på tvers med lik avstand mellom hver tverrstrek." class="sphx-glr-script-out" src="manual_examples/sneflak/manual_code_output/03.svg" width="154" /></a>
 <dl class="field-list simple">
 <dt class="field-odd">Linje 5 og 8<span class="colon">:</span></dt>
@@ -539,7 +571,21 @@ title="Print to PDF"
 <li><p>Endre programmet slik at grenen har lengde 60 istedenfor 90</p></li>
 </ul>
 <details class="summary-klikk-her-for-a-se-programmet-slik-det-skal-vaere-om-du-har-gjort-det-rett">
-<summary>Klikk her for å se programmet slik det skal være om du har gjort det rett:</summary><a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/sneflak/manual_code_output/04.svg"><img alt="Resultat fra koden over. En horisontal blå strek og en diagonal strek som starter i høyre ende av den horisontale streken. Strekene har små streker på tvers med lik avstand mellom hver tverrstrek." class="sphx-glr-script-out" src="manual_examples/sneflak/manual_code_output/04.svg" width="168" /></a>
+<summary>Klikk her for å se programmet slik det skal være om du har gjort det rett:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">turtlethread</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">turtlethread</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="c1"># Gå litt frem</span>
+<span class="linenos"> 6</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="c1"># Tegn en &quot;gren&quot;, denne peker litt nedover</span>
+<span class="linenos"> 9</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/sneflak/manual_code_output/04.svg"><img alt="Resultat fra koden over. En horisontal blå strek og en diagonal strek som starter i høyre ende av den horisontale streken. Strekene har små streker på tvers med lik avstand mellom hver tverrstrek." class="sphx-glr-script-out" src="manual_examples/sneflak/manual_code_output/04.svg" width="168" /></a>
 </details></div>
 <div class="admonition attention">
 <p class="admonition-title">Obs</p>
@@ -549,6 +595,25 @@ title="Print to PDF"
 <section id="fullfore-armen-pa-snofnugget">
 <h3>Fullføre armen på snøfnugget<a class="headerlink" href="#fullfore-armen-pa-snofnugget" title="Permalink to this heading">#</a></h3>
 <p>Etter å ha tegnet «grenen» må vi rygge bakover og rotere tilbake for å fortsette på armen. Dette kan vi gjøre med <code class="docutils literal notranslate"><span class="pre">backward</span></code> og <code class="docutils literal notranslate"><span class="pre">left</span></code> slik:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">turtlethread</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">turtlethread</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="c1"># Gå litt frem</span>
+<span class="linenos"> 6</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="c1"># Tegn første &quot;gren&quot;, denne peker litt nedover</span>
+<span class="linenos"> 9</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">12</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="c1"># Gå litt frem</span>
+<span class="linenos">15</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/sneflak/manual_code_output/05.svg"><img alt="Resultat fra koden over. En lang horisontal blå strek og en diagonal strek som starter i midten av den lange streken og går litt nedover. Strekene har små streker på tvers med lik avstand mellom hver tverrstrek." class="sphx-glr-script-out" src="manual_examples/sneflak/manual_code_output/05.svg" width="180" /></a>
 <div class="admonition-prov-selv admonition">
 <p class="admonition-title">Prøv selv:</p>
@@ -558,6 +623,35 @@ title="Print to PDF"
 </ul>
 </div>
 <p>Nå fullfører vi armen ved å gå bakover og tegne en gren på andre siden også. Det er viktig at vi slutter med nåla i samme posisjon og pekende i samme retning som når vi startet:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">turtlethread</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">turtlethread</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="c1"># Gå litt frem</span>
+<span class="linenos"> 6</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="c1"># Tegn første &quot;gren&quot;, denne peker litt nedover</span>
+<span class="linenos"> 9</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">12</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="c1"># Gå litt frem og tilbake</span>
+<span class="linenos">15</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">16</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>    <span class="c1"># Tegn andre &quot;gren&quot;, denne peker litt oppover</span>
+<span class="linenos">19</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">20</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">21</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">22</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span>    <span class="c1"># Gå tilbake til start</span>
+<span class="linenos">25</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/sneflak/manual_code_output/06.svg"><img alt="Resultat fra koden over. En lang horisontal blå strek og to diagonale streker som starter i midten av den lange streken og går litt nedover og oppover. Strekene har små streker på tvers med lik avstand mellom hver tverrstrek." class="sphx-glr-script-out" src="manual_examples/sneflak/manual_code_output/06.svg" width="180" /></a>
 <div class="admonition-prov-selv admonition">
 <p class="admonition-title">Prøv selv:</p>
@@ -577,6 +671,40 @@ title="Print to PDF"
 Men snøkrystaller har gjerne flere armer, så får å tegne hele krystallen må vi gjenta disse kommandoene flere ganger.
 For det kan vi bruke en løkke.
 En mer detaljert forklaring på løkker i Python finner du <a class="reference internal" href="for.html#for-nb-no"><span class="std std-ref">her</span></a>, men for nå er alt du trenger å vite at vi kan bruke en forløkke for å tegne fire armer slik:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">turtlethread</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">turtlethread</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 5</span>
+<span class="hll"><span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+</span><span class="linenos"> 7</span>        <span class="c1"># Gå litt frem</span>
+<span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Tegn første &quot;gren&quot;, denne peker litt nedover</span>
+<span class="linenos">11</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">15</span>    
+<span class="linenos">16</span>        <span class="c1"># Gå litt frem og tilbake</span>
+<span class="linenos">17</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">19</span>    
+<span class="linenos">20</span>        <span class="c1"># Tegn andre &quot;gren&quot;, denne peker litt oppover</span>
+<span class="linenos">21</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">22</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">23</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">24</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>        <span class="c1"># Gå tilbake til start</span>
+<span class="linenos">27</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>        <span class="c1"># Roter 90 grader mot høyre for å tegne fire grener</span>
+<span class="hll"><span class="linenos">30</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+</span><span class="linenos">31</span>
+<span class="linenos">32</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
 <a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/sneflak/manual_code_output/07.svg"><img alt="Resultat fra koden over. Et snøfnugg med fire &quot;armer&quot;. Hver arm er lik bildet fra forrige kodebit." class="sphx-glr-script-out" src="manual_examples/sneflak/manual_code_output/07.svg" width="360" /></a>
 <p>De eneste nye linjene i dette programemt er linje 6 og 30.</p>
 <aside class="sidebar">
@@ -585,9 +713,66 @@ En mer detaljert forklaring på løkker i Python finner du <a class="reference i
 Below are two examples: one where the turtle ends up at the wrong position and one where it ends up with the wrong rotation.</p>
 <a class="reference internal image-reference" href="manual_examples/sneflak/manual_code_output/09.svg"><img alt="Resultat fra koden over. Forsøk på å tegne snøfnugg hvor vi ikke drar tilbake til start for hver arm." src="manual_examples/sneflak/manual_code_output/09.svg" width="180" /></a>
 <details class="summary-kode">
-<summary>Kode:</summary></details><a class="reference internal image-reference" href="manual_examples/sneflak/manual_code_output/10.svg"><img alt="Resultat fra koden over. Forsøk på å tegne snøfnugg hvor vi ikke roterer mellom hver arm, da blir alle armene tegnet oppå hverandre slik at det ser ut som om det kun er en arm." src="manual_examples/sneflak/manual_code_output/10.svg" width="180" /></a>
+<summary>Kode:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">turtlethread</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">turtlethread</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="c1"># Gå litt frem</span>
+<span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Tegn første &quot;gren&quot;, denne peker litt nedover</span>
+<span class="linenos">11</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">15</span>    
+<span class="linenos">16</span>        <span class="c1"># Gå litt frem og tilbake</span>
+<span class="linenos">17</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">19</span>    
+<span class="linenos">20</span>        <span class="c1"># Tegn andre &quot;gren&quot;, denne peker litt oppover</span>
+<span class="linenos">21</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">22</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><a class="reference internal image-reference" href="manual_examples/sneflak/manual_code_output/10.svg"><img alt="Resultat fra koden over. Forsøk på å tegne snøfnugg hvor vi ikke roterer mellom hver arm, da blir alle armene tegnet oppå hverandre slik at det ser ut som om det kun er en arm." src="manual_examples/sneflak/manual_code_output/10.svg" width="180" /></a>
 <details class="summary-kode">
-<summary>Kode:</summary></details></aside>
+<summary>Kode:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">turtlethread</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">turtlethread</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="c1"># Gå litt frem</span>
+<span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Tegn første &quot;gren&quot;, denne peker litt nedover</span>
+<span class="linenos">11</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">15</span>    
+<span class="linenos">16</span>        <span class="c1"># Gå litt frem og tilbake</span>
+<span class="linenos">17</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">19</span>    
+<span class="linenos">20</span>        <span class="c1"># Tegn andre &quot;gren&quot;, denne peker litt oppover</span>
+<span class="linenos">21</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">22</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">23</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">24</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>        <span class="c1"># Gå tilbake til start</span>
+<span class="linenos">27</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details></aside>
 <dl class="field-list simple">
 <dt class="field-odd">Linje 6<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Definerer en <code class="docutils literal notranslate"><span class="pre">for</span></code> løkke og forteller python at alt som skjer inne i løkka skal gjentas 4 ganger.
@@ -606,7 +791,41 @@ Det forteller python at disse linjene er inne i løkka og skal gjentas for hver 
 <li><p>Endre programemt slik at det tegner en snøkrystall med 6 armer istedenfor 4</p></li>
 </ul>
 <details class="summary-klikk-her-for-a-se-programmet-slik-det-skal-vaere-om-du-har-gjort-det-rett">
-<summary>Klikk her for å se programmet slik det skal være om du har gjort det rett:</summary><a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/sneflak/manual_code_output/08.svg"><img alt="Resultat fra koden over. Et snøfnugg med seks &quot;armer&quot;. Ellers er det likt bildet over." class="sphx-glr-script-out" src="manual_examples/sneflak/manual_code_output/08.svg" width="360" /></a>
+<summary>Klikk her for å se programmet slik det skal være om du har gjort det rett:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">turtlethread</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">turtlethread</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="c1"># Gå litt frem</span>
+<span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Tegn første &quot;gren&quot;, denne peker litt nedover</span>
+<span class="linenos">11</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">15</span>    
+<span class="linenos">16</span>        <span class="c1"># Gå litt frem og tilbake</span>
+<span class="linenos">17</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">19</span>    
+<span class="linenos">20</span>        <span class="c1"># Tegn andre &quot;gren&quot;, denne peker litt oppover</span>
+<span class="linenos">21</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">22</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">23</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">24</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>        <span class="c1"># Gå tilbake til start</span>
+<span class="linenos">27</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>        <span class="c1"># Roter 60 grader mot høyre for å tegne seks grener</span>
+<span class="linenos">30</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="manual_examples/sneflak/manual_code_output/08.svg"><img alt="Resultat fra koden over. Et snøfnugg med seks &quot;armer&quot;. Ellers er det likt bildet over." class="sphx-glr-script-out" src="manual_examples/sneflak/manual_code_output/08.svg" width="360" /></a>
 </details></div>
 <div class="admonition attention">
 <p class="admonition-title">Obs</p>
