@@ -30,7 +30,7 @@ def tegn_hilbertkurve(nål, steglengde, nivå, vinkel=90):
 nål = Turtle()
 
 with nål.running_stitch(10):
-    tegn_hilbertkurve(nål, 10, 4)
+    tegn_hilbertkurve(nål, 10, 5)
 
 nål.save("hilbert.jef")
 nål.save("hilbert.png")

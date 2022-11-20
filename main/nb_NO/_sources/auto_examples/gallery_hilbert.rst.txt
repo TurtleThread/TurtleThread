@@ -63,14 +63,14 @@ Tegn en hilbertkurve
     nål = Turtle()
 
     with nål.running_stitch(10):
-        tegn_hilbertkurve(nål, 10, 4)
+        tegn_hilbertkurve(nål, 10, 5)
 
     nål.save("hilbert.jef")
     nål.save("hilbert.png")
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.013 seconds)
+   **Total running time of the script:** ( 0 minutes  0.053 seconds)
 
 
 .. _sphx_glr_download_auto_examples_gallery_hilbert.py:

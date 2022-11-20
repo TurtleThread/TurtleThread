@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Hilbert curve &#8212; TurtleThread  documentation</title>
     
@@ -42,7 +42,7 @@
     <link rel="shortcut icon" href="../_static/turtlethread_logo_notext.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Stotter-inspired line art" href="gallery_stotter_line.html" />
+    <link rel="next" title="Schotter-inspired line art" href="gallery_schotter_line.html" />
     <link rel="prev" title="Sierpinsky arrowhead curve" href="gallery_sierpinsky_arrowhead.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
@@ -179,6 +179,11 @@
   </label>
   <ul class="current">
    <li class="toctree-l2">
+    <a class="reference internal" href="gallery_maurer_rose.html">
+     Maurer rose
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="gallery_sierpinsky_arrowhead.html">
      Sierpinsky arrowhead curve
     </a>
@@ -189,8 +194,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="gallery_stotter_line.html">
-     Stotter-inspired line art
+    <a class="reference internal" href="gallery_schotter_line.html">
+     Schotter-inspired line art
     </a>
    </li>
   </ul>
@@ -251,7 +256,7 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
-        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en"  href="#"><img src="../../../_static/figures/flags/en.svg" class="current flag"></a><a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO" href="../../nb_NO/auto_examples/gallery_hilbert.html"><img src="../../../_static/figures/flags/nb_NO.svg" class="flag"></a>
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en"  href="#"><img src="../_static/figures/flags/en.svg" class="current flag"></a><a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO" href="../../nb_NO/auto_examples/gallery_hilbert.html"><img src="../../../_static/figures/flags/nb_NO.svg" class="flag"></a>
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -345,36 +350,36 @@ to download the full example code</p>
 <img src="../_images/sphx_glr_gallery_hilbert_001.png" srcset="../_images/sphx_glr_gallery_hilbert_001.png" alt="hilbert.png" class = "sphx-glr-single-img"/><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
 
 
-<span class="k">def</span> <span class="nf">tegn_hilbertkurve</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">step_length</span><span class="p">,</span> <span class="n">recursion_level</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">90</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">draw_hilbertkurve</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">step_length</span><span class="p">,</span> <span class="n">recursion_level</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">90</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">recursion_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span>
 
     <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
-    <span class="n">tegn_hilbertkurve</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">step_length</span><span class="p">,</span> <span class="n">recursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">angle</span><span class="p">)</span>
+    <span class="n">draw_hilbertkurve</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">step_length</span><span class="p">,</span> <span class="n">recursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">angle</span><span class="p">)</span>
 
     <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">step_length</span><span class="p">)</span>
     <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
-    <span class="n">tegn_hilbertkurve</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">step_length</span><span class="p">,</span> <span class="n">recursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">angle</span><span class="p">)</span>
+    <span class="n">draw_hilbertkurve</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">step_length</span><span class="p">,</span> <span class="n">recursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">angle</span><span class="p">)</span>
 
     <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">step_length</span><span class="p">)</span>
-    <span class="n">tegn_hilbertkurve</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">step_length</span><span class="p">,</span> <span class="n">recursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">angle</span><span class="p">)</span>
+    <span class="n">draw_hilbertkurve</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">step_length</span><span class="p">,</span> <span class="n">recursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">angle</span><span class="p">)</span>
 
     <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
     <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">step_length</span><span class="p">)</span>
-    <span class="n">tegn_hilbertkurve</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">step_length</span><span class="p">,</span> <span class="n">recursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">angle</span><span class="p">)</span>
+    <span class="n">draw_hilbertkurve</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">step_length</span><span class="p">,</span> <span class="n">recursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">angle</span><span class="p">)</span>
     <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
 
 
 <span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
 
 <span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
-    <span class="n">tegn_hilbertkurve</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">draw_hilbertkurve</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 
 <span class="n">needle</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;hilbert.jef&quot;</span><span class="p">)</span>
 <span class="n">needle</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;hilbert.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.024 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.103 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-gallery-hilbert-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/b4812af667a23cef399d6ece4f161906/gallery_hilbert.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">gallery_hilbert.py</span></code></a></p>
@@ -401,10 +406,10 @@ to download the full example code</p>
             <p class="prev-next-title">Sierpinsky arrowhead curve</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="gallery_stotter_line.html" title="next page">
+    <a class='right-next' id="next-link" href="gallery_schotter_line.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Stotter-inspired line art</p>
+        <p class="prev-next-title">Schotter-inspired line art</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -11,6 +11,23 @@ Eksempelgalleri
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Maurer roser er matematiske mønstre som kan se litt ut som blomster. For mer informasjon kan du...">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_gallery_maurer_rose_thumb.svg
+    :alt: Maurer rose
+
+  :ref:`sphx_glr_auto_examples_gallery_maurer_rose.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Maurer rose</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Tegn en Sierpinsky pilspisskurve">
 
 .. only:: html
@@ -45,18 +62,18 @@ Eksempelgalleri
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Stotter-inspirert linjekunst">
+    <div class="sphx-glr-thumbcontainer" tooltip="Schotter-inspirert linjekunst">
 
 .. only:: html
 
-  .. image:: /auto_examples/images/thumb/sphx_glr_gallery_stotter_line_thumb.png
-    :alt: Stotter-inspirert linjekunst
+  .. image:: /auto_examples/images/thumb/sphx_glr_gallery_schotter_line_thumb.png
+    :alt: Schotter-inspirert linjekunst
 
-  :ref:`sphx_glr_auto_examples_gallery_stotter_line.py`
+  :ref:`sphx_glr_auto_examples_gallery_schotter_line.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Stotter-inspirert linjekunst</div>
+      <div class="sphx-glr-thumbnail-title">Schotter-inspirert linjekunst</div>
     </div>
 
 
@@ -68,9 +85,10 @@ Eksempelgalleri
 .. toctree::
    :hidden:
 
+   /auto_examples/gallery_maurer_rose
    /auto_examples/gallery_sierpinsky_arrowhead
    /auto_examples/gallery_hilbert
-   /auto_examples/gallery_stotter_line
+   /auto_examples/gallery_schotter_line
 
 
 .. only:: html

@@ -1,6 +1,6 @@
 """
-Stotter-inspired line art
-=========================
+Schotter-inspired line art
+==========================
 
 """
 import random

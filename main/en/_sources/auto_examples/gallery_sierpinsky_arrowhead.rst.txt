@@ -54,14 +54,14 @@ Sierpinsky arrowhead curve
     needle = Turtle()
 
     with needle.running_stitch(20):
-        draw_sierpinsky_arrowhead(needle, 20, 5)
+        draw_sierpinsky_arrowhead(needle, 20, 6)
 
     needle.save("sierpinsky.jef")
     needle.save("sierpinsky.png")
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.053 seconds)
+   **Total running time of the script:** ( 0 minutes  0.187 seconds)
 
 
 .. _sphx_glr_download_auto_examples_gallery_sierpinsky_arrowhead.py:

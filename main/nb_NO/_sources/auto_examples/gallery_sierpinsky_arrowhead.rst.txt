@@ -54,7 +54,7 @@ Tegn en Sierpinsky pilspisskurve
     nål = Turtle()
 
     with nål.running_stitch(10):
-        tegn_sierpinsky_pilspiss(nål, 10, 5)
+        tegn_sierpinsky_pilspiss(nål, 10, 6)
 
     nål.save("sierpinsky.jef")
     nål.save("sierpinsky.png")
@@ -62,7 +62,7 @@ Tegn en Sierpinsky pilspisskurve
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.025 seconds)
+   **Total running time of the script:** ( 0 minutes  0.081 seconds)
 
 
 .. _sphx_glr_download_auto_examples_gallery_sierpinsky_arrowhead.py:
