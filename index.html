@@ -10,14 +10,31 @@
         <title>TurtleThread Documentation</title>
 
         <script type="text/javascript">
-            window.location.href = "https://turtlethread.com/main/en/"
+            let locales;
+            if (navigator.languages.length == undefined)
+                locales = [navigator.languages];
+            else
+                locales = navigator.languages;
+
+            let site_language = 'en';
+            let site_language_map = {'nn': 'nb_NO', 'nb': 'nb_NO'};
+            for (locale of locales) {
+                language = locale.split('-')[0];  // To handle "nb-NO", "en-US"
+                if (language in site_language_map){
+                    site_language = site_language_map[language];
+                    break
+                }
+            }
+            
+            let documentation_site = `https://turtlethread.com/main/${site_language}/`;
+            window.location.href =  documentation_site
         </script>
 
     </head>
 
     <body>
 
-        You should be redirected to the English documentation of TurtleThread.
+        You should be redirected to the documentation of TurtleThread.
         If that is not the case, then you can <a href='https://turtlethread.com/main/en/'>click here for the English version</a> or <a href='https://turtlethread.com/main/nb_NO/'>here for the Norwegian (bokmål) version</a>.
 
     </body>
