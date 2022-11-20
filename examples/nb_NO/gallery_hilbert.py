@@ -1,7 +1,10 @@
 """
-Tegn en hilbertkurve
+Hilbertkurve
 ====================
 
+.. figure:: /../../_static/figures/auto_examples/hilbert/hilbert.jpg
+    :width: 100%
+    :alt: Et bilde av at en broderimaskin som broderer en hilbertkurve.
 """
 
 from turtlethread import Turtle
@@ -29,8 +32,9 @@ def tegn_hilbertkurve(nål, steglengde, nivå, vinkel=90):
 
 nål = Turtle()
 
-with nål.running_stitch(10):
-    tegn_hilbertkurve(nål, 10, 4)
+with nål.running_stitch(20):
+    tegn_hilbertkurve(nål, 20, 5)
 
 nål.save("hilbert.jef")
 nål.save("hilbert.png")
+

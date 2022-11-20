@@ -66,7 +66,7 @@ sphinx_gallery_conf = {
 
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ["_templates"]
+templates_path = ["_templates", "../../_templates"]
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -87,9 +87,9 @@ author = "Marie Roald & Yngve Mardal Moe"
 # the built documents.
 #
 # The short X.Y version.
-version = turtlethread.__version__
+# version = turtlethread.__version__
 # The full version, including alpha/beta/rc tags.
-release = turtlethread.__version__
+# release = turtlethread.__version__
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -116,13 +116,22 @@ html_favicon = "../logo/turtlethread_logo_notext.svg"
 # theme further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
+html_theme_options = {
+    "logo_only": True
+}
 
+languages = {"nb_NO", "en"}
+# other_languages = languages - {language}
+
+html_context = {
+    'current_language': language,
+    'all_languages': languages
+    }
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
-html_css_files = ['css/custom.css']
+html_css_files = ['css/custom.css', f'css/custom_{language}.css']
 html_js_files = ['javascript/print.js']
 
 

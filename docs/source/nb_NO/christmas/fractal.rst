@@ -1,0 +1,277 @@
+.. _christmas-fractal:
+
+Julekuler, snøflak og rekursjon
+-------------------------------
+
+.. note:: 
+    
+    Denne guiden er litt avansert og krever at du har litt forkunnskaper om funksjoner i Python fra før.
+
+Bildet under viser et eksempel av mønstrene vi kan lage ved å bruke fraktaler og skilpaddeprogrammering.
+
+.. image:: /../../_static/figures/manual_examples/fractal/embroidered_fractal_snowflake.jpg
+    :width: 400
+    :alt: Et bilde av det ferdigbroderte snøfnugget.
+
+Ser vi nærmere på "armene" til et snøfnugg, kan vi se at det ser ut til å bestå av mindre "armer".
+Når et mønster ser ut til å bestå av mindre kopier av seg selv kaller vi det et "fraktalt" mønster.
+
+.. figure:: /../../_static/figures/manual_examples/fractal/SIA-SIA2013-09119.png
+    :figwidth: 500
+
+    Fraktalt snøflak
+
+    Et snøflak hvor hver gren av hver arm har nye avgreninger (`Bilde av Wilson Alwyn Bentley (1865-1931) <https://www.si.edu/object/wilson-bentley-photomicrograph-fernlike-stellar-snowflake-no-1095:siris_arc_403547>`_).
+
+Fraktale mønstre dukker opp mange steder i naturen og kunst
+
+.. figure:: /../../_static/figures/manual_examples/fractal/3104423642_31665c5fe4_c.jpg
+    :figwidth: 24%
+
+    Fraktal blomkål
+
+    En blomkål hvor hver blomst ser ut som en liten blomkål (`Bilde av Amber Case (CC-BY-NC) <https://www.flickr.com/photos/caseorganic/3104423642>`_).
+
+.. figure:: /../../_static/figures/manual_examples/fractal/pexels-jeremy-bishop-14061015.jpg
+    :figwidth: 24%
+
+    Fraktal tre
+
+    Grenene til et tre ser ut som et lite tre, og er derfor fraktalt (`Bilde av Jeremy Bishop <https://www.pexels.com/nb-no/bilde/silhuett-bakke-as-utendors-14061015/>`_).
+
+.. figure:: /../../_static/figures/manual_examples/fractal/5419811742_9068550c29_c.jpg
+    :figwidth: 24%
+
+    Matematisk fraktal
+
+    En visualisering av en fraktal *Julia mengde* (`Bilde av Dominic Alves <https://www.flickr.com/photos/dominicspics/5419811742>`_).
+
+.. figure:: /../../_static/figures/manual_examples/fractal/Kandariya_mahadeva_temple.jpg
+    :figwidth: 24%
+
+    Kandariya Mahadeva Tempelet
+
+    Ett bilde av Kandariya Mahadeva tempelet som er konstruert som en tredimensjonal fraktal (`Bilde av brukeren Antorjal på Wikipedia <https://en.wikipedia.org/wiki/Kandariya_Mahadeva_Temple#/media/File:Kandariya_mahadeva_temple.jpg>`_).
+
+Vi kan tegne fraktale mønstre med kode ved hjelp av rekursive funksjoner.
+En rekursiv funksjon er en funksjon som kaller på seg selv.
+Så det vi må gjøre er å lage en funksjon som tegner en arm som består av mindre armer som tegnes av den samme funksjonen.
+Dette høres kanskje litt forvirrende ut, så la oss starte ved å lage en enkel ``tegn_arm`` funksjon som tegner en enkel arm.
+
+
+.. include-turtlethread:: fractal/01.py
+    :linenos:
+    :emphasize-lines: 5, 9, 14, 19
+
+.. image:: fractal/manual_code_output/01.svg
+  :width: 180
+  :alt: En arm av et snøfnugg. En rett strek med to grener, en som peker oppover og en som peker nedover.
+  :class: sphx-glr-script-out
+
+Hvis vi kaller på denne funksjonen, så får vi en arm, og vi ser at denne armen består av fire "biter", hvor hver del er et linjestykke hvor nåla beveger seg fremover.
+Det vi ønsker, er at hver slik bit skal bestå av en liten arm med to grener.
+For å oppnå det kan vi bytte ut kallet på ``forward``-funksjonen med et kall på ``tegn_arm``-funksjonen.
+Da får vi en funksjon som kaller på seg selv, også kjent som en rekursiv funksjon.
+
+.. image:: /../../_static/figures/manual_examples/fractal/recursion_dictionary_no.png
+    :width: 400
+    :alt: Bilde av en ordbok slått opp på ordet "rekursjon". Definisjonen er: "Se definisjon for rekursjon".
+
+.. literalinclude:: fractal/02.py
+    :linenos:
+    :emphasize-lines: 5, 9, 14, 19
+
+Kjører vi denne koden vil den aldri bli ferdig å tegne siden hver gren vil bestå av en arm med grener hvor hver gren består av en arm med grener hvor hver gren… osv.
+Det blir uendelig mange detaljer -- det klarer dessverre ikke datamaskinen håndtere, og vil derfor avslutte programmet med en ``RecursionError``.
+
+For å passe på at koden tegner ferdig til slutt, vi ha en variabel som passer på hvilket "rekursjonsnivå" vi er på.
+Da kan vi passe på at vi stopper etter en viss mengde nivåer:
+
+
+.. include-turtlethread:: fractal/03_2.py
+    :linenos:
+    :emphasize-lines: 3-5, 8, 12, 17, 22, 26
+
+.. image:: fractal/manual_code_output/03_2.svg
+  :width: 180
+  :alt: En arm av et snøfnugg.
+    Det likner på snøfnugg-arm-figuren over, men hver rette strek fra figuren over er byttet ut med en liten arm.
+  :class: sphx-glr-script-out
+
+
+:Linje 3: Her har vi lagt inn en inputvariabel, rekursjonsnivå som holder orden på hvilket «nivå» av rekursjon vi er på
+:Linje 4-5: Her sjekker vi om vi har nådd nivå 0. I så fall skal vi tegne kun en enkel strek og ikke noen grener. Dette passer på at koden ikke kjører for alltid
+:Linje 8, 12, 17 og 22: Når vi kaller på ``tegn_arm`` funksjonen inne i ``tegn_arm`` funksjonen sender vi inn ``rekursjonsnivå-1`` for å indikere at vi har brukt opp et nivå av rekursjon.
+    Dette gjør at vi kan holde orden på hvor mange nivåer vi har.
+:Linje 26: Når vi bruker ``tegn_arm`` funksjonen utenfor funksjonen for å tegne en arm spesifiserer vi hvor mange rekursjonsnivåer vi ønsker. 
+
+Under er noen eksempler av hvordan armen blir å se ut for forskjellige rekursjonsnivåer:
+
+**Rekursjonsnivå 0**
+
+.. image:: fractal/manual_code_output/03_0.svg
+    :width: 180
+    :alt: En rett strek
+
+.. collapse:: Kode:
+
+    .. include-turtlethread:: fractal/03_0.py
+        :linenos:
+
+**Rekursjonsnivå 1**
+
+.. image:: fractal/manual_code_output/03_1.svg
+    :width: 180
+    :alt: Den samme snøflak-armen som ble tegnet i første kodeeksempel.
+
+.. collapse:: Kode:
+
+    .. include-turtlethread:: fractal/03_1.py
+        :linenos:
+
+**Rekursjonsnivå 2**
+
+.. image:: fractal/manual_code_output/03_2.svg
+    :width: 180
+    :alt: En arm av et snøfnugg.
+        Det likner på snøfnugg-arm-figuren over, men hver rette strek fra figuren over er byttet ut med en liten arm.
+
+.. collapse:: Kode:
+
+    .. include-turtlethread:: fractal/03_2.py
+        :linenos:
+
+.. admonition:: Prøv selv:
+    
+    * Oppdater koden til å tegne armer med rekursjonsnivå 3 og 4.
+
+    .. collapse:: Klikk her for å se snøfnugg-armen og koden for rekursjonsnivå 3:
+
+        .. image:: fractal/manual_code_output/03_3.svg
+            :width: 180
+            :alt: En arm av et snøfnugg.
+                Det likner på snøfnugg-arm-figuren over, men hver rette strek fra figuren over er byttet ut med en liten arm.
+                Denne prosessen er gjentatt to ganger.
+
+        .. include-turtlethread:: fractal/03_3.py
+            :linenos:
+
+    
+    .. collapse:: Klikk her for å se snøfnugg-armen og koden for rekursjonsnivå 4:
+
+        .. image:: fractal/manual_code_output/03_4.svg
+            :width: 180
+            :alt: En arm av et snøfnugg.
+                Det likner på snøfnugg-arm-figuren over, men hver rette strek fra figuren over er byttet ut med en liten arm.
+                Denne prosessen er gjentatt tre ganger.
+
+        .. include-turtlethread:: fractal/03_4.py
+            :linenos:
+
+Nå som vi har kode for å tegne en snøfnuggarm kan vi bruke repetisjon til å tegne et fullstendig snøfnugg:  
+
+.. include-turtlethread:: fractal/04.py
+    :linenos:
+    :emphasize-lines: 26, 28-29
+
+.. image:: fractal/manual_code_output/04.svg
+    :width: 360
+    :alt: Et snøflak hvor hver arm har rekursjonsdybde 2.
+
+.. admonition:: Prøv selv:
+    
+    * Kjør programmet og se hva du får ut
+    * Endre slik at grenene har en annen vinkel (f.eks. 60 grader).
+    * Endre slik at hver arm har to sett med grener. Nedenfor er en visualisering av hvordan det kan se ut.
+
+    .. image:: fractal/manual_code_output/05.svg
+        :width: 180
+        :alt: En arm av et snøfnugg som har to sett med grener.
+
+    .. collapse:: Klikk her for å se programmet slik det kan være om du har gjort det rett:
+
+        .. include-turtlethread:: fractal/05.py
+            :linenos:
+
+.. image:: /../../_static/figures/manual_examples/fractal/fractal_actionshot.jpg
+    :width: 400
+    :alt: Et bilde av broderimaskinen mens den lager et fraktalt snøfnugg.
+
+Eksempelfraktaler
+^^^^^^^^^^^^^^^^^
+
+.. admonition:: Prøv selv:
+    
+    * Lag din egen fraktal! Under er et galleri med eksempler for inspirasjon
+
+**Eksempelfraktal 1**
+
+.. image:: fractal/manual_code_output/gallery01_1.svg
+    :width: 180
+    :alt: Et annet type fraktalt snøflak kalt "Koch-snøflaket".
+    :class: randomness-gallery-arm
+
+.. image:: fractal/manual_code_output/gallery01_2.svg
+    :width: 180
+    :alt: Et annet type fraktalt snøflak kalt "Koch-snøflaket".
+    :class: randomness-gallery-arm
+
+.. collapse:: Kode for rekursjonsnivå 1
+    :class: randomness-gallery-code
+
+    .. include-turtlethread:: fractal/gallery01_1.py
+        :linenos:
+
+.. collapse:: Kode for rekursjonsnivå 2
+    :class: randomness-gallery-code
+
+    .. include-turtlethread:: fractal/gallery01_2.py
+        :linenos:
+
+**Eksempelfraktal 2**
+
+.. image:: fractal/manual_code_output/gallery02_1.svg
+    :height: 180
+    :alt: Et fraktalt tre.
+    :class: randomness-gallery-arm
+
+.. image:: fractal/manual_code_output/gallery02_3.svg
+    :height: 180
+    :alt: Et fraktalt tre.
+    :class: randomness-gallery-arm
+
+.. collapse:: Kode for rekursjonsnivå 1
+    :class: randomness-gallery-code
+
+    .. include-turtlethread:: fractal/gallery02_1.py
+        :linenos:
+
+.. collapse:: Kode for rekursjonsnivå 3
+    :class: randomness-gallery-code
+
+    .. include-turtlethread:: fractal/gallery02_3.py
+        :linenos:
+
+**Eksempelfraktal 3**
+
+.. image:: fractal/manual_code_output/gallery03_2.svg
+    :width: 180
+    :alt: Et fraktalt snøflak med to forskjellige arm-typer, et for partals-rekursjonsnivå og ett for oddetalls rekursjonsnivå.
+    :class: randomness-gallery-arm
+
+.. image:: fractal/manual_code_output/gallery03_3.svg
+    :width: 180
+    :alt: Et fraktalt snøflak med to forskjellige arm-typer, et for partals-rekursjonsnivå og ett for oddetalls rekursjonsnivå.
+    :class: randomness-gallery-arm
+
+.. collapse:: Kode for rekursjonsnivå 2
+    :class: randomness-gallery-code
+
+    .. include-turtlethread:: fractal/gallery03_2.py
+        :linenos:
+
+.. collapse:: Kode for rekursjonsnivå 3
+    :class: randomness-gallery-code
+
+    .. include-turtlethread:: fractal/gallery03_3.py
+        :linenos:

@@ -21,7 +21,7 @@ def draw_sierpinsky_arrowhead(needle, step_length, recursion_level, angle=60):
 needle = Turtle()
 
 with needle.running_stitch(20):
-    draw_sierpinsky_arrowhead(needle, 20, 5)
+    draw_sierpinsky_arrowhead(needle, 20, 6)
 
 needle.save("sierpinsky.jef")
 needle.save("sierpinsky.png")

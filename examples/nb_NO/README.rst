@@ -1,2 +1,2 @@
-Eksempler
-=========
+Eksempelgalleri
+===============

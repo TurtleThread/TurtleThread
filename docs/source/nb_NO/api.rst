@@ -1,5 +1,7 @@
-API Reference
-=============
+.. _api-reference:
+
+API manual (engelsk)
+====================
 
 Main functionality
 ------------------

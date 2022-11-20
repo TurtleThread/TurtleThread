@@ -16,7 +16,7 @@ help:
 
 nb_NO: export TURTLETHREAD_DOC_LANGUAGE=nb_NO
 nb_NO: Makefile
-	@$(SPHINXBUILD) -b html -c . "$(SOURCEDIR)/nb_NO" "$(BUILDDIR)/nb_NO" $(SPHINXOPTS) $(O)
+	@$(SPHINXBUILD) -b html -c . -D language=nb "$(SOURCEDIR)/nb_NO" "$(BUILDDIR)/nb_NO" $(SPHINXOPTS) $(O)
 
 en: export TURTLETHREAD_DOC_LANGUAGE=en
 en:

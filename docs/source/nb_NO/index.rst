@@ -1,11 +1,11 @@
 TurtleThread
 ============
 
-.. image:: ../../_static/figures/firkantblomst_sydd.png
-  :width: 400
-  :alt: Example generated with TurtleThread.
+.. image:: ../../_static/figures/collage.png
+  :width: 800
+  :alt: Broderi lagd med TurtleThread.
 
-TurtleThread er et verktøy inspirert av `TurtleStitch <https://www.turtlestitch.org/>`_ og som lar deg programmere en broderimaskin med et Turtle-basert grensesnitt.
+TurtleThread er et verktøy inspirert av `TurtleStitch <https://www.turtlestitch.org/>`_ og som bygger på `pyembroidery <https://github.com/EmbroidePy/pyembroidery>`_ for å la deg programmere en broderimaskin med et Turtle-basert grensesnitt.
 
 
 .. toctree::
@@ -13,8 +13,9 @@ TurtleThread er et verktøy inspirert av `TurtleStitch <https://www.turtlestitch
    :caption: Contents:
 
    installation
+   intro/index
+   christmas/index
    auto_examples/index
-   manual_examples/index.rst
    api
 
 Indices and tables
