@@ -1,0 +1,677 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Christmas decorations, snowflakes and reflection symmetry &#8212; TurtleThread  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/javascript/print.js"></script>
+    <link rel="shortcut icon" href="../_static/turtlethread_logo_notext.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Christmas decorations, starry nights, and randomness" href="randomness.html" />
+    <link rel="prev" title="Christmas decoration, snowflakes and rotational symmetry" href="snowflake.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/turtlethread_logo.svg" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../installation.html">
+   Installation guide
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro/index.html">
+   Getting started TurtleThread
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro/introduction.html">
+     Your first turtle embroidery
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro/for.html">
+     For loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro/stitch_types.html">
+     Overview of stitch types in TurtleThread
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro/morse.html">
+     Embroidering a message with morse code
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Decorating for Christmas with TurtleThread
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="snowflake.html">
+     Christmas decoration, snowflakes and rotational symmetry
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Christmas decorations, snowflakes and reflection symmetry
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="randomness.html">
+     Christmas decorations, starry nights, and randomness
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fractal.html">
+     Decorating for Christmas with recursive snowflakes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../auto_examples/index.html">
+   Example gallery
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../auto_examples/gallery_sierpinsky_arrowhead.html">
+     Sierpinsky arrowhead curve
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../auto_examples/gallery_hilbert.html">
+     Hilbert curve
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../auto_examples/gallery_stotter_line.html">
+     Stotter-inspired line art
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../api.html">
+   API Reference
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en"  href="#"><img src="../../../_static/figures/flags/en.svg" class="current flag"></a><a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO" href="../../nb_NO/christmas/reflection_symmetry.html"><img src="../../../_static/figures/flags/nb_NO.svg" class="flag"></a>
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/christmas/reflection_symmetry.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-snowflakes">
+   Example snowflakes
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Christmas decorations, snowflakes and reflection symmetry</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-snowflakes">
+   Example snowflakes
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="christmas-decorations-snowflakes-and-reflection-symmetry">
+<span id="christmas-reflection-symmetry"></span><h1>Christmas decorations, snowflakes and reflection symmetry<a class="headerlink" href="#christmas-decorations-snowflakes-and-reflection-symmetry" title="Permalink to this heading">#</a></h1>
+<p>An observant reader of <a class="reference internal" href="snowflake.html#christmas-rotation-symmetry"><span class="std std-ref">Christmas decoration, snowflakes and rotational symmetry</span></a> (which we recommend you read before this tutorial) might have noticed snowflakes often have more than just rotational symmetry.
+Snowflakes also have reflection symmetry, meaning that if we look at the mirror image of one of the “arms”, it’s the same as the original image.</p>
+<figure class="align-default" id="id1" style="width: 99%">
+<img alt="../_images/pexels-eberhard-grossgasteiger-12366087.jpg" src="../_images/pexels-eberhard-grossgasteiger-12366087.jpg" />
+<figcaption>
+<p><span class="caption-text">Reflective symmetry</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<div class="legend">
+<p>Landscape reflected in water (<a class="reference external" href="https://www.pexels.com/photo/symmetrical-view-of-rocky-landscape-reflecting-in-a-pond-12366087/">image by  Eberhard Grossgasteiger</a>).</p>
+</div>
+</figcaption>
+</figure>
+<p>When drawing an image with reflection symmetry, we can use a loop to cut down on how many lines of code we need (like what we did with rotation symmetry).
+Below is the code we used to create a snowflake in <a class="reference internal" href="snowflake.html#christmas-rotation-symmetry"><span class="std std-ref">Christmas decoration, snowflakes and rotational symmetry</span></a>.
+Looking closely, we can see that lines 11-14 and 21-24 are very similar, but the angles point in opposite directions.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">turtlethread</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">turtlethread</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 8</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="hll"><span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">12</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</span><span class="linenos">15</span>    
+<span class="linenos">16</span>        <span class="c1"># Move forward and then back again</span>
+<span class="linenos">17</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">19</span>    
+<span class="linenos">20</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="hll"><span class="linenos">21</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">22</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">23</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">24</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</span><span class="linenos">25</span>
+<span class="linenos">26</span>        <span class="c1"># Move backwards to the starting point</span>
+<span class="linenos">27</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>        <span class="c1"># Rotate 60 degrees to the right to draw six branches</span>
+<span class="linenos">30</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/011.svg"><img alt="The result from the above code. A snowflake with six arms." class="sphx-glr-script-out" src="../_images/011.svg" width="360" /></a>
+<p>To take advantage of the reflection symmetry, we first need to notice that rotating 30 degrees to the left is the same as rotating -30 degrees to the right.
+This means we can replace <code class="docutils literal notranslate"><span class="pre">left</span></code> with <code class="docutils literal notranslate"><span class="pre">right</span></code> if we add a negative sign to the angle.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">turtlethread</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">turtlethread</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">11</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="hll"><span class="linenos">14</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+</span><span class="linenos">15</span>    
+<span class="linenos">16</span>        <span class="c1"># Move forward and then back again</span>
+<span class="linenos">17</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">19</span>    
+<span class="linenos">20</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="hll"><span class="linenos">21</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+</span><span class="linenos">22</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">23</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">24</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>        <span class="c1"># Move backwards to the starting point</span>
+<span class="linenos">27</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>        <span class="c1"># Rotate 60 degrees to the right to draw six branches</span>
+<span class="linenos">30</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/021.svg"><img alt="Result from the code above. A snowflake with six arms." class="sphx-glr-script-out" src="../_images/021.svg" width="360" /></a>
+<p>Because we can change direction by changing the sign of the angle, we can use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop over <code class="docutils literal notranslate"><span class="pre">-1</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code> to loop over two different directions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">turtlethread</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">turtlethread</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 7</span>        <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span>
+</span><span class="linenos"> 8</span>            <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 9</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>            <span class="c1"># Draw the &quot;branch&quot;, which will point either downards or upwards, depending on the direction</span>
+<span class="hll"><span class="linenos">12</span>            <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="o">*</span><span class="n">direction</span><span class="p">)</span>
+</span><span class="linenos">13</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">14</span>            <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="hll"><span class="linenos">15</span>            <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="o">*</span><span class="n">direction</span><span class="p">)</span>
+</span><span class="linenos">16</span>        
+<span class="linenos">17</span>            <span class="c1"># Move a bit forward and then back to start</span>
+<span class="linenos">18</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">19</span>            <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>        <span class="c1"># Rotate 60 degrees to the right to draw six branches</span>
+<span class="linenos">22</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/031.svg"><img alt="Result from the code above. It's identical to the image generated by the previous conde snippet." class="sphx-glr-script-out" src="../_images/031.svg" width="360" /></a>
+<p>We can see that this code contains a lot fewer lines!</p>
+<div class="admonition-try-it-yourself admonition">
+<p class="admonition-title">Try it yourself:</p>
+<p>Use code to embroider your own snowflake with both rotational and reflection symmetry! Below is a gallery of examples you can use as a starting point or for inspiration:</p>
+</div>
+<section id="example-snowflakes">
+<h2>Example snowflakes<a class="headerlink" href="#example-snowflakes" title="Permalink to this heading">#</a></h2>
+<p><strong>Snowflake 1</strong></p>
+<a class="snowflake-gallery-arm reference internal image-reference" href="../_images/gallery011.svg"><img alt="A snow flake arm with four branches, the first points backward and the rest point forward." class="snowflake-gallery-arm" src="../_images/gallery011.svg" width="180" /></a>
+<details class="snowflake-gallery-snowflake summary-snowflake">
+<summary>Snowflake</summary><a class="reference internal image-reference" href="../_images/gallery01_full.svg"><img alt="A snow flake with six arms where each arm has four arms on each side." src="../_images/gallery01_full.svg" width="360" /></a>
+</details><details class="snowflake-gallery-code summary-kode-for-arm">
+<summary>Kode for arm</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="n">direction</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos"> 8</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">120</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos"> 9</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">120</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="k">for</span> <span class="n">branch_length</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">16</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">branch_length</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">branch_length</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos">21</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><details class="snowflake-gallery-code summary-kode-for-snowflake">
+<summary>Kode for snowflake</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+<span class="linenos"> 8</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos"> 9</span>            <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">120</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">10</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos">11</span>            <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos">12</span>            <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">120</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>            <span class="k">for</span> <span class="n">branch_length</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos">15</span>                <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">16</span>                <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">17</span>                <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">branch_length</span><span class="p">)</span>
+<span class="linenos">18</span>                <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">branch_length</span><span class="p">)</span>
+<span class="linenos">19</span>                <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos">22</span>            <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><p><strong>Snowflake 2</strong></p>
+<a class="snowflake-gallery-arm reference internal image-reference" href="../_images/gallery021.svg"><img alt="A snow flake arm that looks like a half heart." class="snowflake-gallery-arm" src="../_images/gallery021.svg" width="180" /></a>
+<details class="snowflake-gallery-snowflake summary-snowflake">
+<summary>Snowflake</summary><a class="reference internal image-reference" href="../_images/gallery02_full.svg"><img alt="A snow flake that looks like four hearts." src="../_images/gallery02_full.svg" width="360" /></a>
+</details><details class="snowflake-gallery-code summary-kode-for-arm">
+<summary>Kode for arm</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="n">direction</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+<span class="linenos"> 8</span>    <span class="n">needle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">direction</span> <span class="o">*</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">220</span><span class="p">)</span>
+<span class="linenos"> 9</span>    <span class="n">needle</span><span class="o">.</span><span class="n">home</span><span class="p">()</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><details class="snowflake-gallery-code summary-kode-for-snowflake">
+<summary>Kode for snowflake</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+<span class="linenos"> 8</span>            <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="n">arm</span><span class="o">*</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 9</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+<span class="linenos">10</span>            <span class="n">needle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">direction</span> <span class="o">*</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">220</span><span class="p">)</span>
+<span class="linenos">11</span>            <span class="n">needle</span><span class="o">.</span><span class="n">home</span><span class="p">()</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><p><strong>Snowflake 3</strong></p>
+<a class="snowflake-gallery-arm reference internal image-reference" href="../_images/gallery031.svg"><img alt="A snow flake arm with four circles next to each other. Each subsequent circle is smaller than the previous." class="snowflake-gallery-arm" src="../_images/gallery031.svg" width="180" /></a>
+<details class="snowflake-gallery-snowflake summary-snowflake">
+<summary>Snowflake</summary><a class="reference internal image-reference" href="../_images/gallery03_full.svg"><img alt="A snow flake where each arm has four circles on each side." src="../_images/gallery03_full.svg" width="360" /></a>
+</details><details class="snowflake-gallery-code summary-kode-for-arm">
+<summary>Kode for arm</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="n">direction</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="k">for</span> <span class="n">radius</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos"> 8</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="n">needle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">radius</span><span class="o">*</span><span class="n">direction</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><details class="snowflake-gallery-code summary-kode-for-snowflake">
+<summary>Kode for snowflake</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="k">for</span> <span class="n">direction</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+<span class="linenos"> 8</span>            <span class="k">for</span> <span class="n">radius</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">):</span>
+<span class="linenos"> 9</span>                <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">10</span>                <span class="n">needle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">radius</span><span class="o">*</span><span class="n">direction</span><span class="p">)</span>
+<span class="linenos">11</span>            <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details></section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="snowflake.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Christmas decoration, snowflakes and rotational symmetry</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="randomness.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Christmas decorations, starry nights, and randomness</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Marie Roald & Yngve Mardal Moe<br/>
+  
+      &copy; Copyright 2021, Marie Roald &amp; Yngve Mardal Moe.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

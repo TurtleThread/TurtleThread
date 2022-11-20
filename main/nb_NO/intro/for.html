@@ -1,0 +1,746 @@
+
+<!DOCTYPE html>
+
+<html lang="nb">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>For løkker &#8212; TurtleThread  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/javascript/print.js"></script>
+    <link rel="shortcut icon" href="../_static/turtlethread_logo_notext.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Søk" href="../search.html" />
+    <link rel="next" title="Oversikt over sømmetyper i TurtleThread" href="stitch_types.html" />
+    <link rel="prev" title="Ditt første skilpaddebroderi" href="introduction.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="nb">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/turtlethread_logo.svg" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../installation.html">
+   Installasjonsguide
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Komme i gang med TurtleThread
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="introduction.html">
+     Ditt første skilpaddebroderi
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     For løkker
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="stitch_types.html">
+     Oversikt over sømmetyper i TurtleThread
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="morse.html">
+     Brodere en beskjed med morsekode
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../christmas/index.html">
+   Juleverksted med TurtleThread
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../christmas/snowflake.html">
+     Julekuler, snøflak og rotasjonssymmetri
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../christmas/reflection_symmetry.html">
+     Julekuler, snøflak og speilsymmetri
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../christmas/randomness.html">
+     Julekuler, stjernehimler og tilfeldighet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../christmas/fractal.html">
+     Julekuler, snøflak og rekursjon
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../auto_examples/index.html">
+   Eksempelgalleri
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../auto_examples/gallery_sierpinsky_arrowhead.html">
+     Tegn en Sierpinsky pilspisskurve
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../auto_examples/gallery_hilbert.html">
+     Tegn en hilbertkurve
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../auto_examples/gallery_stotter_line.html">
+     Stotter-inspirert linjekunst
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../api.html">
+   API manual (engelsk)
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO"  href="#"><img src="../../../_static/figures/flags/nb_NO.svg" class="current flag"></a><a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en" href="../../en/intro/for.html"><img src="../../../_static/figures/flags/en.svg" class="flag"></a>
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/intro/for.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mer-om-range">
+   Mer om
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     range
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>For løkker</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mer-om-range">
+   Mer om
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     range
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="for-lokker">
+<span id="for"></span><h1>For løkker<a class="headerlink" href="#for-lokker" title="Permalink to this heading">#</a></h1>
+<p>Gjentakelser og repetisjon dukker ofte opp i både natur, kunst og arkitektur. Og det som er så praktisk er at datamaskinen er spesielt godt egnet til å repetere.
+Den kan gjøre det samme tusenvis av ganger, ja hundretusenvis av ganger, uten å bli lei.</p>
+<figure class="align-default" id="id1" style="width: 32.5%">
+<img alt="../_images/pexels-visually-us-2248572.jpg" src="../_images/pexels-visually-us-2248572.jpg" />
+<figcaption>
+<p><span class="caption-text">Natur</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<div class="legend">
+<p>Nærbilde av en kaktus sine pigger (<a class="reference external" href="https://www.pexels.com/photo/spikes-of-a-cactus-2248572/">bilde av Visually Us</a>).</p>
+</div>
+</figcaption>
+</figure>
+<figure class="align-default" id="id2" style="width: 32.5%">
+<img alt="../_images/pexels-magda-ehlers-4239915.jpg" src="../_images/pexels-magda-ehlers-4239915.jpg" />
+<figcaption>
+<p><span class="caption-text">Kunst</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+<div class="legend">
+<p>Trykk på stoff (<a class="reference external" href="https://www.pexels.com/photo/white-pink-and-green-floral-textile-4239915/">bilde av Magda Ehlers</a>).</p>
+</div>
+</figcaption>
+</figure>
+<figure class="align-default" id="id3" style="width: 32.5%">
+<img alt="../_images/pexels-david-underland-3432813.jpg" src="../_images/pexels-david-underland-3432813.jpg" />
+<figcaption>
+<p><span class="caption-text">Arkitektur</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+<div class="legend">
+<p>Svart-hvitt bilde av en bygning (<a class="reference external" href="https://www.pexels.com/photo/grayscale-photo-of-a-building-3432813//">bilde av David Underland</a>).</p>
+</div>
+</figcaption>
+</figure>
+<p>Når vi programmerer, kan vi bruke løkker for å gjenta en bit kode mange ganger uten å skrive den samme koden flere ganger.
+I Python finnes det to typer løkker: <code class="docutils literal notranslate"><span class="pre">for</span></code>-løkker og <code class="docutils literal notranslate"><span class="pre">while</span></code>-løkker.
+I denne guiden skal vi se på <code class="docutils literal notranslate"><span class="pre">for</span></code> løkker. Først, la oss se på et eksempel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 7</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">14</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">15</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">18</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">19</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">22</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">23</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">26</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">27</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/013.svg"><img alt="Resultat fra koden over. En &quot;stjerne&quot; bestående av seks streker som kommer ut fra samme punkt." class="sphx-glr-script-out" src="../_images/013.svg" width="100" /></a>
+<p>Denne koden kan vi forenkle med en <code class="docutils literal notranslate"><span class="pre">for</span></code>-løkke</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</span><span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/023.svg"><img alt="Resultat fra koden over. En &quot;stjerne&quot; bestående av seks streker som kommer ut fra samme punkt." class="sphx-glr-script-out" src="../_images/023.svg" width="100" /></a>
+<p>Vi ser at den nye koden er mye kortere, og kanskje til og med litt enklere å forstå. Det viktige å forstå på er det som skjer på linje 5-9.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Linje 5<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Sier vi at vi skal repetere den etterfølgende <em>kodeblokka</em> 6 ganger, en gang for hver stråle.</p>
+</dd>
+<dt class="field-even">Linje 6-9<span class="colon">:</span></dt>
+<dd class="field-even"><p>Disse linjene ligger ett innrykk inn sammenliknet med <code class="docutils literal notranslate"><span class="pre">for</span></code>-løkka som startet på linje 5, og representerer derfor en kodeblokk. Disse tre linjene blir dermed repetert 6 ganger.</p>
+</dd>
+</dl>
+<div class="admonition-prov-selv admonition">
+<p class="admonition-title">Prøv selv:</p>
+<p>Modifiser koden over slik at du tegner en stjerne med åtte stråler istedenfor 6 (hint: Da må det være 45° mellom hver stråle).</p>
+<details class="summary-klikk-her-for-a-se-programmet-slik-det-skal-vaere-om-du-har-gjort-det-rett">
+<summary>Klikk her for å se programmet slik det skal være om du har gjort det rett:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+</span><span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+</span><span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/033.svg"><img alt="Resultat fra koden over. En &quot;stjerne&quot; bestående av åtte streker som kommer ut fra samme punkt." class="sphx-glr-script-out" src="../_images/033.svg" width="90" /></a>
+</details></div>
+<div class="admonition attention">
+<p class="admonition-title">Obs</p>
+<p>Pass på at koden stemmer med løsningsforslaget over før du går videre.</p>
+</div>
+<section id="mer-om-range">
+<h2>Mer om <code class="docutils literal notranslate"><span class="pre">range</span></code><a class="headerlink" href="#mer-om-range" title="Permalink to this heading">#</a></h2>
+<p>Foreløpig har vi hoppet litt over hva selve <code class="docutils literal notranslate"><span class="pre">range</span></code>-funksjonen gjør.
+Hvis vi leser koden over står det jo <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">stråle</span> <span class="pre">in</span> <span class="pre">range(8)</span></code>. Altså for hver stråle i <code class="docutils literal notranslate"><span class="pre">range(8)</span></code>.
+Å skrive <code class="docutils literal notranslate"><span class="pre">range(8)</span></code> blir litt som å be Python generere listen <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">7]</span></code>.
+Vi kan se dette i praksis ved å skrive ut variabelen <code class="docutils literal notranslate"><span class="pre">stråle</span></code> i terminalvinduet</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 9</span>        <span class="nb">print</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+</span><span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/043.svg"><img alt="Resultat fra koden over. En &quot;stjerne&quot; bestående av åtte streker som kommer ut fra samme punkt." class="sphx-glr-script-out" src="../_images/043.svg" width="100" /></a>
+<p>Vi ser altså at <code class="docutils literal notranslate"><span class="pre">range</span></code>-funksjonen skaper en rekke med heltall frem til, men ikke med, avslutningstallet, som i dette tilfellet var 6. Og at <code class="docutils literal notranslate"><span class="pre">stråle</span></code> blir en variabel som løkker seg igjennom rekka.</p>
+<aside class="sidebar">
+<p class="sidebar-title">Sidespor: Hvorfor har linje 6-9 ekstra innrykk?</p>
+<p>Innrykk er det Python bruker for å gruppere kodelinjer sammen i <em>kodeblokker</em>.
+Når vi starter en løkke med f.eks. <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">stråle</span> <span class="pre">in</span> <span class="pre">range(8)</span></code>, må vi også definere en <em>kodeblokk</em> rett under som inneholder de kodelinjene som skal kjøres for hver runde i løkka.
+Alt som skal gjentas i løkka må altså være på samme innrykknivå.
+Under er to eksempler, et hvor skilpadden går frem og tilbake 8 ganger, men roterer bare en gang etter løkka
+og et slik at skilpadden går frem 8 ganger, men går tilbake og roterer bare en gang etter løkka.</p>
+<a class="reference internal image-reference" href="../_images/053.svg"><img alt="Resultat fra koden under. En kort rett strek hvor &quot;skilpadda&quot; er i venstre kant av streken." src="../_images/053.svg" width="180" /></a>
+<details class="summary-kode">
+<summary>Kode:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 8</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 9</span>    <span class="nb">print</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+</span><span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span>
+</pre></div>
+</div>
+</details><a class="reference internal image-reference" href="../_images/062.svg"><img alt="Resultat fra koden under. En lengre rett strek hvor &quot;skilpadda&quot; er nesten i høyre kant av streken." src="../_images/062.svg" width="180" /></a>
+<details class="summary-kode">
+<summary>Kode:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 7</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 8</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 9</span>    <span class="nb">print</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+</span><span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span>
+</pre></div>
+</div>
+</details><div class="admonition attention">
+<p class="admonition-title">Obs</p>
+<p>Legg merke til at alle linjene under <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">nål.running_stitch(25):</span></code> også har ett innrykk inn. Dette definerer en kodeblokk av linjer som skal sys med rettsøm.
+Dette kan du lese mer om <a class="reference external" href="../auto_examples/gallery_introduksjon.html">her</a>.</p>
+</div>
+</aside>
+<p>Siden stråle blir en variabel, kan vi bruke den i tegningen vår. Hvis vi for eksempel ønsker at strålene våre skal ha ulik lengde, kan vi bruke <code class="docutils literal notranslate"><span class="pre">stråle</span></code>-variabelen til å sette lengden.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="nb">print</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/072.svg"><img alt="Resultat fra koden over. Syv veldig små streker med ulik størrelse som danner en &quot;ministjerne&quot;. Det er nesten umulig å se detaljer siden strekene er så korte." class="sphx-glr-script-out" src="../_images/072.svg" width="10" /></a>
+<p>Men dette var jo ikke det vi ønsket! Her fikk vi jo en bitteliten figur hvor alle stingene ble satt i samme sted.
+Dette skjedde siden <code class="docutils literal notranslate"><span class="pre">stråle</span></code>-variabelen tross alt kun har verdier mellom 0 og 5.
+Vi vil jo ha lengre stråler enn som så.
+Og for å få til det må vi bruke en annen funksjonalitet til <code class="docutils literal notranslate"><span class="pre">range</span></code>-funksjonen.
+range kan nemlig også bestemme hvor tallrekka starter, og hvor stor avstand det skal være mellom hver stråle.
+Så hvis vi ønsker at den minste strålen skal ha lengde 50, den største strålen skal ha lengde 225 og at det skal være 25 «steg» mellom hvert strålenummer kan vi skrive</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">25</span><span class="p">):</span>
+</span><span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="nb">print</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">50</span>
+<span class="mi">75</span>
+<span class="mi">100</span>
+<span class="mi">125</span>
+<span class="mi">150</span>
+<span class="mi">175</span>
+<span class="mi">200</span>
+<span class="mi">225</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/081.svg"><img alt="Resultat fra koden over. En stjerne bestående av åtte streker med økende størrelse. Den korteste streken peker til høyre, så øker de i lengde jo lengre man beveger seg med klokka." class="sphx-glr-script-out" src="../_images/081.svg" width="150" /></a>
+<p>Det interessante her er på linje 5 igjen. Vi ser at det nå står <code class="docutils literal notranslate"><span class="pre">range(50,</span> <span class="pre">250,</span> <span class="pre">25)</span></code>. Dette betyr altså at vi starter tallrekka på 50, den slutter før 250 og det er 25 steg mellom hvert tall.</p>
+<div class="admonition-prov-selv admonition">
+<p class="admonition-title">Prøv selv:</p>
+<p>Modifiser koden over slik at den minste strålen har lengde 100, den lengste har lengde 400 og det er 50 steg mellom hvert strålenummer.</p>
+<details class="summary-klikk-her-for-a-se-programmet-slik-det-skal-vaere-om-du-har-gjort-det-rett">
+<summary>Klikk her for å se programmet slik det skal være om du har gjort det rett:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">50</span><span class="p">):</span>
+</span><span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+</span><span class="linenos"> 9</span>        <span class="nb">print</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">100</span>
+<span class="mi">150</span>
+<span class="mi">200</span>
+<span class="mi">250</span>
+<span class="mi">300</span>
+<span class="mi">350</span>
+<span class="mi">400</span>
+<span class="mi">450</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/091.svg"><img alt="Resultat fra koden over. En stjerne bestående av åtte streker med økende størrelse. Den korteste streken peker til høyre, så øker de i lengde jo lengre man beveger seg med klokka." src="../_images/091.svg" width="90" /></a>
+</details></div>
+<p>Vi kan bruke denne teknikken for å tegne enda litt kulere stjerner. For eksempel, hvis antall grader vi roterer nåla er 150 vil vi få denne figuren:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">for</span> <span class="n">stråle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">50</span><span class="p">):</span>
+<span class="linenos"> 6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+</span><span class="linenos"> 9</span>        <span class="nb">print</span><span class="p">(</span><span class="n">stråle</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">100</span>
+<span class="mi">150</span>
+<span class="mi">200</span>
+<span class="mi">250</span>
+<span class="mi">300</span>
+<span class="mi">350</span>
+<span class="mi">400</span>
+<span class="mi">450</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/101.svg"><img alt="Resultat fra koden over. En stjerne bestående av åtte streker med ulik størrelse, tilsynelatende uten mønster om hvilke streker som er korte og lange." class="sphx-glr-script-out" src="../_images/101.svg" width="150" /></a>
+<div class="admonition attention">
+<p class="admonition-title">Obs</p>
+<p>Hvis du lager mange stråler så kan stingene i sentrum bli for tette til at broderimaskinen klarer å sy.</p>
+</div>
+<p>TODO: lenke til flere eksempler:
+•       Firkantblomst
+•       Snøfnugg
+•       Fibonacci
+•       Evt Solsikkefrø
+•       Evt andre</p>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="introduction.html" title="forrige page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">forrige</p>
+            <p class="prev-next-title">Ditt første skilpaddebroderi</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="stitch_types.html" title="neste page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">neste</p>
+        <p class="prev-next-title">Oversikt over sømmetyper i TurtleThread</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Marie Roald & Yngve Mardal Moe<br/>
+  
+      &copy; Copyright 2021, Marie Roald &amp; Yngve Mardal Moe.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

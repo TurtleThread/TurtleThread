@@ -42,3 +42,19 @@ figcaption > div.legend {
 .content-container a.sphx-glr-script-out:hover {
     text-decoration: none;
 }
+
+img.flag{
+    width: 1em;
+    /*padding: .1rem .5rem;
+    margin: 0 .1rem;*/
+    /*margin: .1rem .6rem;*/
+    filter: grayscale(100%);
+}
+
+img.flag:hover{
+    filter: grayscale(0%);
+}
+
+img.flag.current{
+    filter: grayscale(0%);
+}

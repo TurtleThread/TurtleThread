@@ -1,7 +1,7 @@
 :orphan:
 
-Eksempler
-=========
+Eksempelgalleri
+===============
 
 
 .. raw:: html
@@ -45,35 +45,18 @@ Eksempler
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Nå skal vi lage vårt første skilpaddebroderi. Det første vi må gjøre er å importere TurtleThrea...">
+    <div class="sphx-glr-thumbcontainer" tooltip="Stotter-inspirert linjekunst">
 
 .. only:: html
 
-  .. image:: /auto_examples/images/thumb/sphx_glr_gallery_introduksjon_thumb.png
-    :alt: Ditt første skilpaddebroderi
+  .. image:: /auto_examples/images/thumb/sphx_glr_gallery_stotter_line_thumb.png
+    :alt: Stotter-inspirert linjekunst
 
-  :ref:`sphx_glr_auto_examples_gallery_introduksjon.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Ditt første skilpaddebroderi</div>
-    </div>
-
+  :ref:`sphx_glr_auto_examples_gallery_stotter_line.py`
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="I dette eksempelet skal vi se på hvordan vi kan oversette beskjeder til morsekode og hvordan vi...">
-
-.. only:: html
-
-  .. image:: /auto_examples/images/thumb/sphx_glr_gallery_morsekode_thumb.png
-    :alt: Brodere en beskjed med morsekode
-
-  :ref:`sphx_glr_auto_examples_gallery_morsekode.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Brodere en beskjed med morsekode</div>
+      <div class="sphx-glr-thumbnail-title">Stotter-inspirert linjekunst</div>
     </div>
 
 
@@ -87,8 +70,7 @@ Eksempler
 
    /auto_examples/gallery_sierpinsky_arrowhead
    /auto_examples/gallery_hilbert
-   /auto_examples/gallery_introduksjon
-   /auto_examples/gallery_morsekode
+   /auto_examples/gallery_stotter_line
 
 
 .. only:: html

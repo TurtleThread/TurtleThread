@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+
+<html lang="nb">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Oversikt over sømmetyper i TurtleThread &#8212; TurtleThread  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/javascript/print.js"></script>
+    <link rel="shortcut icon" href="../_static/turtlethread_logo_notext.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Søk" href="../search.html" />
+    <link rel="next" title="Brodere en beskjed med morsekode" href="morse.html" />
+    <link rel="prev" title="For løkker" href="for.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="nb">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/turtlethread_logo.svg" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../installation.html">
+   Installasjonsguide
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Komme i gang med TurtleThread
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="introduction.html">
+     Ditt første skilpaddebroderi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="for.html">
+     For løkker
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Oversikt over sømmetyper i TurtleThread
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="morse.html">
+     Brodere en beskjed med morsekode
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../christmas/index.html">
+   Juleverksted med TurtleThread
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../christmas/snowflake.html">
+     Julekuler, snøflak og rotasjonssymmetri
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../christmas/reflection_symmetry.html">
+     Julekuler, snøflak og speilsymmetri
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../christmas/randomness.html">
+     Julekuler, stjernehimler og tilfeldighet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../christmas/fractal.html">
+     Julekuler, snøflak og rekursjon
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../auto_examples/index.html">
+   Eksempelgalleri
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../auto_examples/gallery_sierpinsky_arrowhead.html">
+     Tegn en Sierpinsky pilspisskurve
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../auto_examples/gallery_hilbert.html">
+     Tegn en hilbertkurve
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../auto_examples/gallery_stotter_line.html">
+     Stotter-inspirert linjekunst
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../api.html">
+   API manual (engelsk)
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO"  href="#"><img src="../../../_static/figures/flags/nb_NO.svg" class="current flag"></a><a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en" href="../../en/intro/stitch_types.html"><img src="../../../_static/figures/flags/en.svg" class="flag"></a>
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/intro/stitch_types.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ingen-som">
+   Ingen søm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rettsom">
+   Rettsøm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#innrykk-er-viktig">
+   Innrykk er viktig
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hoppesom">
+   Hoppesøm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hva-er-en-konteksthandterer">
+   Hva er en konteksthåndterer?
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Oversikt over sømmetyper i TurtleThread</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ingen-som">
+   Ingen søm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rettsom">
+   Rettsøm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#innrykk-er-viktig">
+   Innrykk er viktig
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hoppesom">
+   Hoppesøm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hva-er-en-konteksthandterer">
+   Hva er en konteksthåndterer?
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="oversikt-over-sommetyper-i-turtlethread">
+<span id="stitch-types"></span><h1>Oversikt over sømmetyper i TurtleThread<a class="headerlink" href="#oversikt-over-sommetyper-i-turtlethread" title="Permalink to this heading">#</a></h1>
+<p>TurtleThread støtter for øyeblikket to sømmetyper: rettsøm og hoppesøm (sikksakksøm er under utvikling).
+I denne guiden skal vi se på hva en sømmetype gjør og hva forskjellen på disse to sømmetypene er.</p>
+<section id="ingen-som">
+<h2>Ingen søm<a class="headerlink" href="#ingen-som" title="Permalink to this heading">#</a></h2>
+<p>La oss starte med å opprette en skilpadde som skal styre nåla vår og be den gå 60 steg fremover.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">4</span><span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Hva skjer hvis vi visualiserer dette?</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">4</span><span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="hll"><span class="linenos">5</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/025.svg"><img alt="Resultat fra koden over. Et bilde med kun en trekant som markerer hvor nåla er." class="sphx-glr-script-out" src="../_images/025.svg" width="10" /></a>
+<p>Her ser vi kun markøren for nåla!
+Grunnen til det er at vi kun har bedt skilpadden gå fremover, vi har ikke bedt den om å sy med en søm.
+Vi kan se dette enda tydeligere hvis vi lagrer broderimønsteret som tekstfil og ser på innholdet i fila.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">4</span><span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">5</span><span class="n">nål</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;pattern_no_stitch.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">14605080</span> <span class="n">command</span><span class="p">:</span><span class="n">END</span> <span class="n">flags</span><span class="p">:</span><span class="mi">4</span>
+</pre></div>
+</div>
+<p>Her ser vi at broderimønsteret vårt ikke inneholder noen sting!</p>
+</section>
+<section id="rettsom">
+<h2>Rettsøm<a class="headerlink" href="#rettsom" title="Permalink to this heading">#</a></h2>
+<p>For å få skilpadden til å sy mens den beveger seg kan vi bruke en konteksthåndterer som bestemmer sømtype.
+Hvis vi for eksempel ønsker rettsøm (running stitch på engelsk) kan vi skrive</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="hll"><span class="linenos">4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+</span><span class="linenos">5</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">6</span>
+<span class="linenos">7</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+<span class="linenos">8</span><span class="n">nål</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;pattern_running_stitch_20.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/045.svg"><img alt="Resultat fra koden over. En horisontal blå strek med fire korte vertikale streker med lik avstand mellom hver strek." class="sphx-glr-script-out" src="../_images/045.svg" width="100" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">8752242</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">20.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">8752242</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">40.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">8752242</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">8752242</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">8752242</span> <span class="n">command</span><span class="p">:</span><span class="n">END</span> <span class="n">flags</span><span class="p">:</span><span class="mi">4</span>
+</pre></div>
+</div>
+<p>I visualiseringen har det nå dukket opp noen små linjer på tvers som indikerer hvor stingene skal plasseres.
+Vi ser at det er sting på posisjonene (0, 0), (20, 0), (40, 0) og (60, 0) altså med 20 steg mellom hvert sting.
+Grunnen til at det er akkurat 20 steg mellom hvert sting er at vi bestemte det på linje 4 ved å skrive <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">nål.running_stitch(20)</span></code>.
+Hvis vi ønsker at stingene skal være 30 steg lange kan vi isteden skrive:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="hll"><span class="linenos">4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+</span><span class="linenos">5</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">6</span>
+<span class="linenos">7</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+<span class="linenos">8</span><span class="n">nål</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;pattern_running_stitch_30.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/055.svg"><img alt="Resultat fra koden over. En horisontal blå strek med tre korte vertikale streker, en i hver ende og en på midten." class="sphx-glr-script-out" src="../_images/055.svg" width="100" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">11468253</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">30.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">11468253</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">11468253</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">11468253</span> <span class="n">command</span><span class="p">:</span><span class="n">END</span> <span class="n">flags</span><span class="p">:</span><span class="mi">4</span>
+</pre></div>
+</div>
+</section>
+<section id="innrykk-er-viktig">
+<h2>Innrykk er viktig<a class="headerlink" href="#innrykk-er-viktig" title="Permalink to this heading">#</a></h2>
+<p>Legg merke til at line 5 ligger et innrykknivå inn.
+Innrykknivå er det Python bruker for å gruppere linjer med kode sammen til en blokk.
+Hvis vi legger til nye linjer på samme innrykknivå vil de høre til i samme blokk, altså rettsømblokken, og de vil også utføres med rettsøm:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 6</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 7</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</span><span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+<span class="linenos">10</span><span class="n">nål</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;pattern_angle.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/064.svg"><img alt="Resultat fra koden over. En horisontal blå strek etterfulgt av en vertikal strek nedover som er halvparten så stor som den horisontale streken. Hver strek har små tverrstreker som markerer hvor stingene skal være." class="sphx-glr-script-out" src="../_images/064.svg" width="100" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">3665913</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">30.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">3665913</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">3665913</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">60.0</span><span class="p">,</span><span class="mf">30.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">3665913</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">60.0</span><span class="p">,</span><span class="mf">30.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">3665913</span> <span class="n">command</span><span class="p">:</span><span class="n">END</span> <span class="n">flags</span><span class="p">:</span><span class="mi">4</span>
+</pre></div>
+</div>
+<p>Her ser vi at linje 5-7 hører sammen i en blokk som hører under rettsøm konteksten.
+Vi kan fortsette å legge så mange linjer vi vil innenfor samme innrykksnivå og de vil bli utført med rettsøm.
+Her er et eksempel hvor vi har en for løkke innenfor rettsømkonteksten:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="hll"><span class="linenos">5</span>    <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos">6</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+</span><span class="linenos">8</span>
+<span class="linenos">9</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/074.svg"><img alt="Resultat fra koden over. En blå firkant med korte tverrstreker som markerer sting." class="sphx-glr-script-out" src="../_images/074.svg" width="100" /></a>
+<p>Hvis vi derimot legger til en linje på et innrykksnivå utenfor vil den ikke bli utført med rettsøm</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">5</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="hll"><span class="linenos">6</span><span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">7</span><span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</span><span class="linenos">8</span>
+<span class="linenos">9</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/082.svg"><img alt="Resultat fra koden over. En horisontal blå strek med tre korte vertikale streker, en i hver ende og en på midten." class="sphx-glr-script-out" src="../_images/082.svg" width="100" /></a>
+</section>
+<section id="hoppesom">
+<h2>Hoppesøm<a class="headerlink" href="#hoppesom" title="Permalink to this heading">#</a></h2>
+<p>Hvis vi ønsker å flytte nåla uten å lage sting kan vi bruke hoppesøm (også kjent som forbindende sting, eller jump stitch på engelsk).
+Koden under viser hvordan vi kan bruke hoppesøm til å tegne to streker med et mellomrom mellom</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span><span class="c1"># Sy først 2 sting med 30 steg mellom hvert sting</span>
+<span class="linenos"> 5</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos"> 7</span>    
+<span class="hll"><span class="linenos"> 8</span><span class="c1"># Hopp 45 steg fremover uten å sy sting. Om maskina støtter det kuttes tråden.</span>
+</span><span class="hll"><span class="linenos"> 9</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">jump_stitch</span><span class="p">():</span>
+</span><span class="hll"><span class="linenos">10</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+</span><span class="linenos">11</span>
+<span class="linenos">12</span><span class="c1"># Sy så 2 sting med 30 steg mellom hvert sting</span>
+<span class="linenos">13</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">14</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+<span class="linenos">17</span><span class="n">nål</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;pattern_jump.txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/092.svg"><img alt="Resultat fra koden over. En horisontal blå strek med tre korte vertikale streker, en i hver ende og en på midten, etterfulgt av ett sort kryss som indikerer at tråden skal kuttes, en rød strek som ender i en rød sirkel, som indikerer at nåla skal flyttes dit uten å sy og til slutt en ny horisontal blå strek med tre korte vertikale streker." class="sphx-glr-script-out" src="../_images/092.svg" width="100" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">6596218</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">30.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">6596218</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">6596218</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="hll"><span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">6596218</span> <span class="n">command</span><span class="p">:</span><span class="n">TRIM</span> <span class="n">flags</span><span class="p">:</span><span class="mi">2</span>
+</span><span class="hll"><span class="mf">105.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">6596218</span> <span class="n">command</span><span class="p">:</span><span class="n">JUMP</span> <span class="n">flags</span><span class="p">:</span><span class="mi">1</span>
+</span><span class="mf">105.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">6596218</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">135.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">6596218</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">165.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">6596218</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">165.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">6596218</span> <span class="n">command</span><span class="p">:</span><span class="n">END</span> <span class="n">flags</span><span class="p">:</span><span class="mi">4</span>
+</pre></div>
+</div>
+<p>I visualiseringen ser vi at den første blå linja slutter med et sort kryss.
+Hvis broderimaskinen du skal bruke til å utføre instruksjonene støtter det vil tråden bli kuttet her, men ikke alle maskiner støtter dette.
+Hvis maskinen din ikke støtter å kutte tråden, må du gjøre det manuelt til slutt.
+I mønsterfila ser vi kommandoene <code class="docutils literal notranslate"><span class="pre">TRIM</span></code> på linje 4, som indikerer at tråden skal kuttes her, og <code class="docutils literal notranslate"><span class="pre">JUMP</span></code> på linje 5 som indikerer at nåla skal flyttes hit uten å sy.</p>
+</section>
+<section id="hva-er-en-konteksthandterer">
+<h2>Hva er en konteksthåndterer?<a class="headerlink" href="#hva-er-en-konteksthandterer" title="Permalink to this heading">#</a></h2>
+<p>Som vi nevnte på starten er <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">nål.running_stitch(30)</span></code> og <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">nål.jump_stitch()</span></code> konteksthåndterere som bestemmer hvilken søm skilpadde skal sy med mens den beveger seg.
+Konteksthåndterere i Python brukes når vi har noe som består av en startinstruks og en sluttinstruks.
+I vårt tilfelle er det å starte og avslutte en sømtype. Bak scenen blir</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="hll"><span class="linenos">4</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+</span><span class="linenos">5</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Det samme som</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="hll"><span class="linenos">4</span><span class="n">nål</span><span class="o">.</span><span class="n">start_running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</span><span class="linenos">5</span><span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="hll"><span class="linenos">6</span><span class="n">nål</span><span class="o">.</span><span class="n">cleanup_stitch_type</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p>Men det anbefales å bruke konteksthåndtereren i de aller fleste tilfeller fordi det er ryddigere og det garanterer at man alltid avslutter den sømmetypen man har startet på.</p>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="for.html" title="forrige page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">forrige</p>
+            <p class="prev-next-title">For løkker</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="morse.html" title="neste page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">neste</p>
+        <p class="prev-next-title">Brodere en beskjed med morsekode</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Marie Roald & Yngve Mardal Moe<br/>
+  
+      &copy; Copyright 2021, Marie Roald &amp; Yngve Mardal Moe.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

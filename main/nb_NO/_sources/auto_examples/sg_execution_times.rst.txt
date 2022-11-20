@@ -5,14 +5,12 @@
 
 Computation times
 =================
-**00:00.526** total execution time for **auto_examples** files:
+**00:00.227** total execution time for **auto_examples** files:
 
 +-----------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_gallery_morsekode.py` (``gallery_morsekode.py``)                       | 00:00.365 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_gallery_stotter_line.py` (``gallery_stotter_line.py``)                 | 00:00.190 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_gallery_introduksjon.py` (``gallery_introduksjon.py``)                 | 00:00.115 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_gallery_sierpinsky_arrowhead.py` (``gallery_sierpinsky_arrowhead.py``) | 00:00.025 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_gallery_sierpinsky_arrowhead.py` (``gallery_sierpinsky_arrowhead.py``) | 00:00.031 | 0.0 MB |
-+-----------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_gallery_hilbert.py` (``gallery_hilbert.py``)                           | 00:00.016 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_gallery_hilbert.py` (``gallery_hilbert.py``)                           | 00:00.013 | 0.0 MB |
 +-----------------------------------------------------------------------------------------------------+-----------+--------+

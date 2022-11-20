@@ -1,0 +1,1086 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Decorating for Christmas with recursive snowflakes &#8212; TurtleThread  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/javascript/print.js"></script>
+    <link rel="shortcut icon" href="../_static/turtlethread_logo_notext.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Example gallery" href="../auto_examples/index.html" />
+    <link rel="prev" title="Christmas decorations, starry nights, and randomness" href="randomness.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/turtlethread_logo.svg" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../installation.html">
+   Installation guide
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro/index.html">
+   Getting started TurtleThread
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro/introduction.html">
+     Your first turtle embroidery
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro/for.html">
+     For loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro/stitch_types.html">
+     Overview of stitch types in TurtleThread
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro/morse.html">
+     Embroidering a message with morse code
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Decorating for Christmas with TurtleThread
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="snowflake.html">
+     Christmas decoration, snowflakes and rotational symmetry
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reflection_symmetry.html">
+     Christmas decorations, snowflakes and reflection symmetry
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="randomness.html">
+     Christmas decorations, starry nights, and randomness
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Decorating for Christmas with recursive snowflakes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../auto_examples/index.html">
+   Example gallery
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../auto_examples/gallery_sierpinsky_arrowhead.html">
+     Sierpinsky arrowhead curve
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../auto_examples/gallery_hilbert.html">
+     Hilbert curve
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../auto_examples/gallery_stotter_line.html">
+     Stotter-inspired line art
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../api.html">
+   API Reference
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en"  href="#"><img src="../../../_static/figures/flags/en.svg" class="current flag"></a><a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO" href="../../nb_NO/christmas/fractal.html"><img src="../../../_static/figures/flags/nb_NO.svg" class="flag"></a>
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/christmas/fractal.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-fractals">
+   Example fractals
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Decorating for Christmas with recursive snowflakes</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-fractals">
+   Example fractals
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="decorating-for-christmas-with-recursive-snowflakes">
+<span id="christmas-fractal"></span><h1>Decorating for Christmas with recursive snowflakes<a class="headerlink" href="#decorating-for-christmas-with-recursive-snowflakes" title="Permalink to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This tutorial is a little advanced and assumes that you are already somewhat familiar with functions in Python.</p>
+</div>
+<p>If we look closer at the “arms” of a snowflake, we may notice that it appears to contain more miniature versions of it self, smaller “arms”. When a pattern appears to contain smaller copies of it self we call it a “fractal” or recursive pattern.</p>
+<figure class="align-default" id="id1" style="width: 500px">
+<img alt="../_images/SIA-SIA2013-09119.png" src="../_images/SIA-SIA2013-09119.png" />
+<figcaption>
+<p><span class="caption-text">Fractal snowflake</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+<div class="legend">
+<p>A snowflake where each branch of the arms have new branches (<a class="reference external" href="https://www.si.edu/object/wilson-bentley-photomicrograph-fernlike-stellar-snowflake-no-1095:siris_arc_403547">image by Wilson Alwyn Bentley (1865-1931)</a>).</p>
+</div>
+</figcaption>
+</figure>
+<p>Fraktale mønstre dukker opp mange steder i naturen og kunst.
+Fractal patterns appear many places in both art and nature.</p>
+<figure class="align-default" id="id2" style="width: 24%">
+<img alt="../_images/3104423642_31665c5fe4_c.jpg" src="../_images/3104423642_31665c5fe4_c.jpg" />
+<figcaption>
+<p><span class="caption-text">Fractal cauliflower</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+<div class="legend">
+<p>A cauliflower where each flower looks like a small cauliflower (<a class="reference external" href="https://www.flickr.com/photos/caseorganic/3104423642">image by Amber Case (CC-BY-NC)</a>).</p>
+</div>
+</figcaption>
+</figure>
+<figure class="align-default" id="id3" style="width: 24%">
+<img alt="../_images/pexels-jeremy-bishop-14061015.jpg" src="../_images/pexels-jeremy-bishop-14061015.jpg" />
+<figcaption>
+<p><span class="caption-text">Fractal tree</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+<div class="legend">
+<p>The branches of a tree looks like a tree, and is therefore fractal (<a class="reference external" href="https://www.pexels.com/nb-no/bilde/silhuett-bakke-as-utendors-14061015/">image by Jeremy Bishop</a>).</p>
+</div>
+</figcaption>
+</figure>
+<figure class="align-default" id="id4" style="width: 24%">
+<img alt="../_images/5419811742_9068550c29_c.jpg" src="../_images/5419811742_9068550c29_c.jpg" />
+<figcaption>
+<p><span class="caption-text">Mathematical fractal</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+<div class="legend">
+<p>A visualisation of a fractal <em>Julia set</em> (<a class="reference external" href="https://www.flickr.com/photos/dominicspics/5419811742">image by Dominic Alves</a>).</p>
+</div>
+</figcaption>
+</figure>
+<figure class="align-default" id="id5" style="width: 24%">
+<img alt="../_images/Kandariya_mahadeva_temple.jpg" src="../_images/Kandariya_mahadeva_temple.jpg" />
+<figcaption>
+<p><span class="caption-text">The Kandariya Mahadeva Temple</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+<div class="legend">
+<p>An image of the Kandariya Mahadeva Temple, which is constructed as a three dimensional fractal (<a class="reference external" href="https://en.wikipedia.org/wiki/Kandariya_Mahadeva_Temple#/media/File:Kandariya_mahadeva_temple.jpg">image by the Wikipedia user Antorjal</a>).</p>
+</div>
+</figcaption>
+</figure>
+<p>We can draw fractal patterns with code by using recursive functions.
+A recursive function is a function that calls itself.
+So what we need to do is to define a function that draws an arm that consists of smaller arms which are drawn by the same function.
+This may be a bit confusing, so let’s start by creating a simple <code class="docutils literal notranslate"><span class="pre">draw_arm</span></code> function that draws a simple snowflake arm.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">def</span> <span class="nf">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="c1"># Move forward a little bit</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mf">0.4</span><span class="o">*</span><span class="n">length</span><span class="p">)</span>
+</span><span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos"> 8</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 9</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+</span><span class="linenos">10</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">12</span>    <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">13</span>    <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="hll"><span class="linenos">14</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+</span><span class="linenos">15</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">16</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>    <span class="c1"># Move forward a little bit</span>
+<span class="hll"><span class="linenos">19</span>    <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.6</span><span class="p">)</span>
+</span><span class="linenos">20</span>
+<span class="linenos">21</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">22</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">23</span>    <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/01.svg"><img alt="Snowflake arm. A straight line with two branches, one pointing upwards and one pointing downwards." class="sphx-glr-script-out" src="../_images/01.svg" width="180" /></a>
+<p>If we call this function, we get a drawing of an arm, and we observe that this arm is built up of four “pieces”, where each piece is a line segment.
+Instead of a simple line segment, we want each piece to contain a small arm with two new branches. For this, we can replace the call to the <code class="docutils literal notranslate"><span class="pre">forward</span></code> function with a call to the <code class="docutils literal notranslate"><span class="pre">draw_arm</span></code> function.
+Then we get a function which calls itself, also known as a recursive function.</p>
+<a class="reference internal image-reference" href="../_images/recursion_dictionary_en.png"><img alt="Image of a dictionary, focusing on the word &quot;recursion&quot;. The definition is: &quot;See definition of recursion&quot;." src="../_images/recursion_dictionary_en.png" style="width: 400px;" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">def</span> <span class="nf">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="c1"># Move forward a little bit</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">length</span><span class="p">)</span>
+</span><span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos"> 8</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="hll"><span class="linenos"> 9</span>    <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+</span><span class="linenos">10</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">12</span>    <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">13</span>    <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="hll"><span class="linenos">14</span>    <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+</span><span class="linenos">15</span>    <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">16</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>    <span class="c1"># Move forward a little bit</span>
+<span class="hll"><span class="linenos">19</span>    <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.6</span><span class="p">)</span>
+</span><span class="linenos">20</span>
+<span class="linenos">21</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">22</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">23</span>    <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If we run this code, the turtle will never be able to finish the drawing as each branch will consist of an arm with branches where each branch consists of an arm with brances where each branch…. etc.
+This will result in an infinite amount of details that the computer cannot handle, so the program will terminate with a <code class="docutils literal notranslate"><span class="pre">RecursionError</span></code>.</p>
+<p>To ensure that the drawing is eventually completed, we need a variable that keeps track of which “recursion level” we are at. Then we can ensure that we stop after a certain amount of levels:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="hll"><span class="linenos"> 3</span><span class="k">def</span> <span class="nf">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos"> 4</span>    <span class="k">if</span> <span class="n">rekursion_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class="hll"><span class="linenos"> 5</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+</span><span class="linenos"> 6</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="c1"># Move forward a little bit</span>
+<span class="hll"><span class="linenos"> 8</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="hll"><span class="linenos">12</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">16</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="hll"><span class="linenos">17</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class="linenos">18</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>        <span class="c1"># Move forward a little bit</span>
+<span class="hll"><span class="linenos">22</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">25</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="hll"><span class="linenos">26</span>    <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class="linenos">27</span>
+<span class="linenos">28</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="sphx-glr-script-out reference internal image-reference" href="../_images/03_2.svg"><img alt="A snowflake arm. The arm looks like the snowflake arm above, but each straight line has been replaced with a smaller arm." class="sphx-glr-script-out" src="../_images/03_2.svg" width="180" /></a>
+<dl class="field-list simple">
+<dt class="field-odd">Line 3<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Here we have added an input argument, recursion_level which keeps track of which level of recursion we are currently at.</p>
+</dd>
+<dt class="field-even">Lines 4-5<span class="colon">:</span></dt>
+<dd class="field-even"><p>Here we check if we have reached level 0. In that case we should only draw a simple line segment without any branches. This ensures that the drawing is eventually completed.</p>
+</dd>
+<dt class="field-odd">Lines 8, 12, 17 og 22<span class="colon">:</span></dt>
+<dd class="field-odd"><p>When we call the <code class="docutils literal notranslate"><span class="pre">draw_arm</span></code> function inside the <code class="docutils literal notranslate"><span class="pre">draw_arm</span></code> function, we input <code class="docutils literal notranslate"><span class="pre">recursion_level</span> <span class="pre">-</span> <span class="pre">1</span></code> to indicate that we have “used up” one level of recursion.
+This ensures that we can keep track of how many levels we have.</p>
+</dd>
+<dt class="field-even">Line 26<span class="colon">:</span></dt>
+<dd class="field-even"><p>When we call the <code class="docutils literal notranslate"><span class="pre">draw_arm</span></code> function outside the function to draw an arm, we can specify how many levels of recursion we want.</p>
+</dd>
+</dl>
+<p>Below are some examples of how the arm looks for different levels of recursion:</p>
+<p><strong>Recursion level 0</strong></p>
+<a class="reference internal image-reference" href="../_images/03_0.svg"><img alt="A straight line" src="../_images/03_0.svg" width="180" /></a>
+<details class="summary-kode">
+<summary>Kode:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">def</span> <span class="nf">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="k">if</span> <span class="n">rekursion_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 5</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 8</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">16</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos">22</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">25</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">26</span>    <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><p><strong>Recursion level 1</strong></p>
+<a class="reference internal image-reference" href="../_images/03_1.svg"><img alt="The same snowflake arm shown in the first code example above." src="../_images/03_1.svg" width="180" /></a>
+<details class="summary-kode">
+<summary>Kode:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">def</span> <span class="nf">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="k">if</span> <span class="n">rekursion_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 5</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 8</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">16</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos">22</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">25</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">26</span>    <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><p><strong>Recursion level 2</strong></p>
+<a class="reference internal image-reference" href="../_images/03_2.svg"><img alt="A snowflake arm The arm looks like the snowflake arm above, but each straight line has been replaced with a smaller arm." src="../_images/03_2.svg" width="180" /></a>
+<details class="summary-kode">
+<summary>Kode:</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">def</span> <span class="nf">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="k">if</span> <span class="n">rekursion_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 5</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 8</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">16</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos">22</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">25</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">26</span>    <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><div class="admonition-try-it-yourself admonition">
+<p class="admonition-title">Try it yourself:</p>
+<ul class="simple">
+<li><p>Update the code to draw snowflake arms with recursion levels 3 and 4.</p></li>
+</ul>
+<details class="summary-click-here-to-see-the-snowflake-arm-and-the-code-for-recursion-level-3">
+<summary>Click here to see the snowflake arm and the code for recursion level 3:</summary><a class="reference internal image-reference" href="../_images/03_3.svg"><img alt="A snowflake arm The arm looks like the snowflake arm above, but each straight line has been replaced with a smaller arm. This process is repeated twice." src="../_images/03_3.svg" width="180" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">def</span> <span class="nf">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="k">if</span> <span class="n">rekursion_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 5</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 8</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">16</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos">22</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">25</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">26</span>    <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><details class="summary-klikk-her-for-a-se-snofnugg-armen-og-koden-for-rekursjonsniva-4">
+<summary>Klikk her for å se snøfnugg-armen og koden for rekursjonsnivå 4:</summary><a class="reference internal image-reference" href="../_images/03_4.svg"><img alt="A snowflake arm The arm looks like the snowflake arm above, but each straight line has been replaced with a smaller arm. This process is repeated three times." src="../_images/03_4.svg" width="180" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">def</span> <span class="nf">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="k">if</span> <span class="n">rekursion_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 5</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 8</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">16</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos">22</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">25</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">26</span>    <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details></div>
+<p>Now that we have code to draw a snowflake arm, we can use repetition to draw a complete snowflake:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">def</span> <span class="nf">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="k">if</span> <span class="n">rekursion_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 5</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 8</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">16</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos">22</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">25</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="hll"><span class="linenos">26</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+</span><span class="linenos">27</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="hll"><span class="linenos">28</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">29</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</span><span class="linenos">30</span>
+<span class="linenos">31</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/04.svg"><img alt="A snowflake where each arm has recursion level 2." src="../_images/04.svg" width="360" /></a>
+<div class="admonition-try-it-yourself admonition">
+<p class="admonition-title">Try it yourself:</p>
+<ul class="simple">
+<li><p>Run the code and see what you get.</p></li>
+<li><p>Update the code, so the branches point at a different angle (e.g. 60 degrees).</p></li>
+<li><p>Create a modified version of the code where each arm has two sets of branches. Below is a visualisation of how this can look.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/04.svg"><img alt="A snowflake arm with two sets of branches." src="../_images/04.svg" width="180" /></a>
+<details class="summary-click-here-to-see-an-example-of-how-the-finished-code-can-look">
+<summary>Click here to see an example of how the finished code can look</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">def</span> <span class="nf">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="k">if</span> <span class="n">rekursion_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 5</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 8</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">16</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos">22</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">25</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">26</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos">27</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="linenos">28</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="linenos">29</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><ul class="simple">
+<li><p>Create your own fractal! Below is a gallery of examples:</p></li>
+</ul>
+</div>
+<section id="example-fractals">
+<h2>Example fractals<a class="headerlink" href="#example-fractals" title="Permalink to this heading">#</a></h2>
+<p><strong>Example fractal 1</strong></p>
+<a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery01_1.svg"><img alt="A different type of fractal snowflake called the &quot;Koch snowflake&quot;." class="randomness-gallery-arm" src="../_images/gallery01_1.svg" width="180" /></a>
+<a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery01_2.svg"><img alt="A different type of fractal snowflake called the &quot;Koch snowflake&quot;." class="randomness-gallery-arm" src="../_images/gallery01_2.svg" width="180" /></a>
+<details class="randomness-gallery-code summary-code-for-recursion-level-1">
+<summary>Code for recursion level 1</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="k">def</span> <span class="nf">tegn_side</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="p">):</span>
+<span class="linenos"> 5</span>    <span class="k">if</span> <span class="n">rekursion_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 6</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos"> 7</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 8</span>        <span class="n">tegn_side</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">10</span>        <span class="n">tegn_side</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">tegn_side</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">tegn_side</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">17</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">18</span>    <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+<span class="linenos">19</span>        <span class="n">tegn_side</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">20</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><details class="randomness-gallery-code summary-code-for-recursion-level-2">
+<summary>Code for recursion level 2</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">def</span> <span class="nf">tegn_side</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="k">if</span> <span class="n">rekursion_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 5</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="n">tegn_side</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="n">tegn_side</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">10</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">tegn_side</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">tegn_side</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">16</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">17</span>    <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+<span class="linenos">18</span>        <span class="n">tegn_side</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><p><strong>Example fractal 2</strong></p>
+<a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery02_1.svg"><img alt="A fractal tree." class="randomness-gallery-arm" height="180" src="../_images/gallery02_1.svg" /></a>
+<a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery02_3.svg"><img alt="A fractal tree." class="randomness-gallery-arm" height="180" src="../_images/gallery02_3.svg" /></a>
+<details class="randomness-gallery-code summary-code-for-recursion-level-1">
+<summary>Code for recursion level 1</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">def</span> <span class="nf">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="k">if</span> <span class="n">rekursion_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 5</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 8</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.75</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mf">0.75</span><span class="o">*</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">16</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.75</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mf">0.75</span><span class="o">*</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">22</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">23</span>    <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">24</span>    <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos">25</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><details class="randomness-gallery-code summary-code-for-recursion-level-3">
+<summary>Code for recursion level 3</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">def</span> <span class="nf">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="k">if</span> <span class="n">rekursion_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 5</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 8</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.75</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mf">0.75</span><span class="o">*</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">16</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.75</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mf">0.75</span><span class="o">*</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">22</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos">23</span>    <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">24</span>    <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="linenos">25</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><p><strong>Example fractal 3</strong></p>
+<a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery03_2.svg"><img alt="A fractal snowflake with two different arm types, one for even recursion levels and one for odd recursion levels." class="randomness-gallery-arm" src="../_images/gallery03_2.svg" width="180" /></a>
+<a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery03_3.svg"><img alt="A fractal snowflake with two different arm types, one for even recursion levels and one for odd recursion levels." class="randomness-gallery-arm" src="../_images/gallery03_3.svg" width="180" /></a>
+<details class="randomness-gallery-code summary-code-for-recursion-level-2">
+<summary>Code for recursion level 2</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">def</span> <span class="nf">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="k">if</span> <span class="n">rekursion_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 5</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="k">elif</span> <span class="n">rekursion_level</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 8</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">16</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos">22</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">23</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos">24</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos">25</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">28</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">29</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">30</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="linenos">31</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">32</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">33</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">34</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">35</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="linenos">36</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">37</span>        
+<span class="linenos">38</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span>        <span class="c1"># Draw the third &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">41</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">42</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">43</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="linenos">44</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">45</span>        <span class="c1"># Draw the fourth &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">46</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">47</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">48</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="linenos">49</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos">52</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">53</span>
+<span class="linenos">54</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">55</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+<span class="linenos">56</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos">57</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="linenos">58</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+<span class="linenos">59</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">60</span>
+<span class="linenos">61</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><details class="randomness-gallery-code summary-code-for-recursion-level-3">
+<summary>Code for recursion level 3</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">def</span> <span class="nf">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="p">):</span>
+<span class="linenos"> 4</span>    <span class="k">if</span> <span class="n">rekursion_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 5</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<span class="linenos"> 6</span>    <span class="k">elif</span> <span class="n">rekursion_level</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos"> 7</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos"> 8</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">16</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos">22</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">23</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos">24</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos">25</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>        <span class="c1"># Draw the first &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">28</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">29</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">30</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="linenos">31</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">32</span>        <span class="c1"># Draw the second &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">33</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">34</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">35</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="linenos">36</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">37</span>        
+<span class="linenos">38</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">length</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span>        <span class="c1"># Draw the third &quot;branch&quot; pointing a little downwards</span>
+<span class="linenos">41</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">42</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">43</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="linenos">44</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">45</span>        <span class="c1"># Draw the fourth &quot;branch&quot; pointing a little upwards</span>
+<span class="linenos">46</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">47</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">48</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">length</span><span class="o">*</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="linenos">49</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span>        <span class="c1"># Move forward a little bit</span>
+<span class="linenos">52</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">length</span><span class="o">*</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">rekursion_level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">53</span>
+<span class="linenos">54</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos">55</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+<span class="linenos">56</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos">57</span>        <span class="n">draw_arm</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="linenos">58</span>        <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+<span class="linenos">59</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">60</span>
+<span class="linenos">61</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details></section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="randomness.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Christmas decorations, starry nights, and randomness</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../auto_examples/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Example gallery</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Marie Roald & Yngve Mardal Moe<br/>
+  
+      &copy; Copyright 2021, Marie Roald &amp; Yngve Mardal Moe.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
