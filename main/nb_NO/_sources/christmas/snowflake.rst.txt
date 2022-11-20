@@ -252,8 +252,6 @@ Nå har vi kode for å tegne et helt snøfnugg!
     
     Bruk kode til å tegne dit eget snøfnugg med rotasjonssymmetri. Under er et galleri med noen eksempler til inspirasjon:
 
-    TODO: galleri
-
 Lage en julekule med snøflakmønster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -261,10 +259,99 @@ For å lage en julekule med snøflakmønster gjør du følgende:
 
 1. Brodere to snøfnugg (enten på samme stoff eller to forskjellige hvis du vil ha ulike sider),
 2. legg de to stoffbitene oppå hverandre slik at broderiene er rett over hverandre og peker utover,
-3. og sy sammen stoffbitene (enten for hånd eller ved å tegne en sirkel med turtlethread). Her er en guide til sying og sammensetning *TODO*.
+3. og sy sammen stoffbitene (enten for hånd eller ved å tegne en sirkel med turtlethread).
 
 
 Eksempelsnøflak
 ~~~~~~~~~~~~~~~
 
-**TODO: Eksempelgalleri**
+**Snøflak 1**
+
+.. image:: snowflake/manual_code_output/gallery01.svg
+    :width: 180
+    :alt: To armer av ulike snøflak oppå hverandre (med 30 graders rotasjon mellom de to armene).
+        Den en arm-typen består av en lang linje med tre sirkler av ulik størrelse på enden.
+        Den andre arm-typen består av en liten strek med en liten sirkel på enden.
+    :class: snowflake-gallery-arm
+
+.. collapse:: Snøflak
+    :class: snowflake-gallery-snowflake
+
+    .. image:: snowflake/manual_code_output/gallery01_full.svg
+        :width: 360 
+        :alt: To snøflak oppå hverandre som danner et snøflak med tolv armer av alternerende utseende.
+            Den en arm-typen består av en lang linje med tre sirkler av ulik størrelse på enden.
+            Den andre arm-typen består av en liten strek med en liten sirkel på enden.
+
+
+.. collapse:: Kode for arm
+    :class: snowflake-gallery-code
+
+    .. include-turtlethread:: snowflake/gallery01.py
+        :linenos:
+
+.. collapse:: Kode for snøflak
+    :class: snowflake-gallery-code
+
+    .. include-turtlethread:: snowflake/gallery01_full.py
+        :linenos:
+
+
+**Snøflak 2**
+
+.. image:: snowflake/manual_code_output/gallery02.svg
+    :width: 180
+    :alt: En rettvinklet trekant hvor hypotenusen er horisontal.
+        Katetenes forhold til hypotenusen er 3/5 og 4/5.
+    :class: snowflake-gallery-arm
+
+.. collapse:: Snøflak
+    :class: snowflake-gallery-snowflake
+
+    .. image:: snowflake/manual_code_output/gallery02_full.svg
+        :width: 360
+        :alt: Et snøflak med armer som er rettvinklede trekanter.
+            Det ser ut som en papir-vindmølle.
+
+
+.. collapse:: Kode for arm
+    :class: snowflake-gallery-code
+
+    .. include-turtlethread:: snowflake/gallery02.py
+        :linenos:
+
+.. collapse:: Kode for snøflak
+    :class: snowflake-gallery-code
+
+    .. include-turtlethread:: snowflake/gallery02_full.py
+        :linenos:
+
+
+**Snøflak 3**
+
+.. image:: snowflake/manual_code_output/gallery03.svg
+    :width: 180
+    :alt: To armer av ulike snøflak oppå hverandre (med 30 graders rotasjon mellom).
+        Begge armene likner på de i guiden, men har ulik størrelse.
+    :class: snowflake-gallery-arm
+
+.. collapse:: Snøflak
+    :class: snowflake-gallery-snowflake
+
+    .. image:: snowflake/manual_code_output/gallery03_full.svg
+        :width: 360
+        :alt: To snøflak oppå hverandre som danner et snøflak med tolv armer av alternerende utseende.
+            Begge snøflakene har armer som likner på de i guiden, men med ulik størrelse.
+
+
+.. collapse:: Kode for arm
+    :class: snowflake-gallery-code
+
+    .. include-turtlethread:: snowflake/gallery03.py
+        :linenos:
+
+.. collapse:: Kode for snøflak
+    :class: snowflake-gallery-code
+
+    .. include-turtlethread:: snowflake/gallery03_full.py
+        :linenos:

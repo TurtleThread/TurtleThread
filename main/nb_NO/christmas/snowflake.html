@@ -4,7 +4,7 @@
 <html lang="nb">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Julekuler, snøflak og rotasjonssymmetri &#8212; TurtleThread  documentation</title>
     
@@ -256,7 +256,7 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
-        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO"  href="#"><img src="../_static/figures/flags/nb_NO.svg" class="current flag"></a><a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en" href="../../en/christmas/snowflake.html"><img src="../../../_static/figures/flags/en.svg" class="flag"></a>
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO"  href="#"><span class="current nb_NO flag"></span></a><a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en" href="../../en/christmas/snowflake.html"><span class="en flag"></span></a>
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -850,7 +850,6 @@ Det forteller python at disse linjene er inne i løkka og skal gjentas for hver 
 <div class="admonition-prov-selv admonition">
 <p class="admonition-title">Prøv selv:</p>
 <p>Bruk kode til å tegne dit eget snøfnugg med rotasjonssymmetri. Under er et galleri med noen eksempler til inspirasjon:</p>
-<p>TODO: galleri</p>
 </div>
 </section>
 <section id="lage-en-julekule-med-snoflakmonster">
@@ -859,13 +858,249 @@ Det forteller python at disse linjene er inne i løkka og skal gjentas for hver 
 <ol class="arabic simple">
 <li><p>Brodere to snøfnugg (enten på samme stoff eller to forskjellige hvis du vil ha ulike sider),</p></li>
 <li><p>legg de to stoffbitene oppå hverandre slik at broderiene er rett over hverandre og peker utover,</p></li>
-<li><p>og sy sammen stoffbitene (enten for hånd eller ved å tegne en sirkel med turtlethread). Her er en guide til sying og sammensetning <em>TODO</em>.</p></li>
+<li><p>og sy sammen stoffbitene (enten for hånd eller ved å tegne en sirkel med turtlethread).</p></li>
 </ol>
 </section>
 <section id="eksempelsnoflak">
 <h3>Eksempelsnøflak<a class="headerlink" href="#eksempelsnoflak" title="Permalink to this heading">#</a></h3>
-<p><strong>TODO: Eksempelgalleri</strong></p>
-</section>
+<p><strong>Snøflak 1</strong></p>
+<a class="snowflake-gallery-arm reference internal image-reference" href="../_images/gallery012.svg"><img alt="To armer av ulike snøflak oppå hverandre (med 30 graders rotasjon mellom de to armene). Den en arm-typen består av en lang linje med tre sirkler av ulik størrelse på enden. Den andre arm-typen består av en liten strek med en liten sirkel på enden." class="snowflake-gallery-arm" src="../_images/gallery012.svg" width="180" /></a>
+<details class="snowflake-gallery-snowflake summary-snoflak">
+<summary>Snøflak</summary><a class="reference internal image-reference" href="../_images/gallery01_full1.svg"><img alt="To snøflak oppå hverandre som danner et snøflak med tolv armer av alternerende utseende. Den en arm-typen består av en lang linje med tre sirkler av ulik størrelse på enden. Den andre arm-typen består av en liten strek med en liten sirkel på enden." src="../_images/gallery01_full1.svg" width="360" /></a>
+</details><details class="snowflake-gallery-code summary-kode-for-arm">
+<summary>Kode for arm</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="c1"># Roter snøflaket en halv runde</span>
+<span class="linenos"> 7</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos"> 8</span>    
+<span class="linenos"> 9</span>    <span class="c1"># Tegn en av armene til hovedsnøflaket</span>
+<span class="linenos">10</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">12</span>    <span class="n">nål</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">13</span>    <span class="n">nål</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">14</span>    <span class="n">nål</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos">15</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">16</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">17</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">18</span>        
+<span class="linenos">19</span>
+<span class="linenos">20</span>    <span class="c1"># Roter snøflaket 30 grader før vi tegner det andre snøflaket</span>
+<span class="linenos">21</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">22</span>    <span class="c1"># Tegn armen til det andre snøflaket</span>
+<span class="linenos">23</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">24</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">25</span>    <span class="n">nål</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos">26</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">27</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">28</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><details class="snowflake-gallery-code summary-kode-for-snoflak">
+<summary>Kode for snøflak</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="c1"># Roter snøflaket en halv runde</span>
+<span class="linenos"> 7</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>    <span class="c1"># Tegn en av armene til hovedsnøflaket</span>
+<span class="linenos">10</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">nål</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">nål</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">nål</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">16</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">18</span>        
+<span class="linenos">19</span>
+<span class="linenos">20</span>    <span class="c1"># Roter snøflaket 30 grader før vi tegner det andre snøflaket</span>
+<span class="linenos">21</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">22</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>    <span class="c1"># Tegn det andre snøflaket</span>
+<span class="linenos">23</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">24</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">25</span>        <span class="n">nål</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos">26</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">27</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">28</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><p><strong>Snøflak 2</strong></p>
+<a class="snowflake-gallery-arm reference internal image-reference" href="../_images/gallery022.svg"><img alt="En rettvinklet trekant hvor hypotenusen er horisontal. Katetenes forhold til hypotenusen er 3/5 og 4/5." class="snowflake-gallery-arm" src="../_images/gallery022.svg" width="180" /></a>
+<details class="snowflake-gallery-snowflake summary-snoflak">
+<summary>Snøflak</summary><a class="reference internal image-reference" href="../_images/gallery02_full1.svg"><img alt="Et snøflak med armer som er rettvinklede trekanter. Det ser ut som en papir-vindmølle." src="../_images/gallery02_full1.svg" width="360" /></a>
+</details><details class="snowflake-gallery-code summary-kode-for-arm">
+<summary>Kode for arm</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">40</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos"> 7</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 8</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos"> 9</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">127</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">50</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">127</span><span class="p">)</span>
+<span class="linenos">12</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">13</span>    
+<span class="linenos">14</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">15</span>    
+<span class="linenos">16</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><details class="snowflake-gallery-code summary-kode-for-snoflak">
+<summary>Kode for snøflak</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+<span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">40</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">10</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">127</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">50</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">127</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+<span class="linenos">14</span>        
+<span class="linenos">15</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">16</span>    
+<span class="linenos">17</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><p><strong>Snøflak 3</strong></p>
+<a class="snowflake-gallery-arm reference internal image-reference" href="../_images/gallery032.svg"><img alt="To armer av ulike snøflak oppå hverandre (med 30 graders rotasjon mellom). Begge armene likner på de i guiden, men har ulik størrelse." class="snowflake-gallery-arm" src="../_images/gallery032.svg" width="180" /></a>
+<details class="snowflake-gallery-snowflake summary-snoflak">
+<summary>Snøflak</summary><a class="reference internal image-reference" href="../_images/gallery03_full1.svg"><img alt="To snøflak oppå hverandre som danner et snøflak med tolv armer av alternerende utseende. Begge snøflakene har armer som likner på de i guiden, men med ulik størrelse." src="../_images/gallery03_full1.svg" width="360" /></a>
+</details><details class="snowflake-gallery-code summary-kode-for-arm">
+<summary>Kode for arm</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="c1"># Tegn armen til hovedsnøflaket</span>
+<span class="linenos"> 7</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 8</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos"> 9</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">12</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">13</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">14</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">15</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">16</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">17</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">22</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">23</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">24</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">29</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">30</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">31</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">32</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">33</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span>    <span class="c1"># Roter 30 grader før det andre snøflaket tegnes</span>
+<span class="linenos">36</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span>    <span class="c1"># Tegn armen til det andre snøflaket</span>
+<span class="linenos">39</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">42</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">43</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">44</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">45</span>
+<span class="linenos">46</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">47</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">48</span>
+<span class="linenos">49</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">50</span>    <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">51</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">52</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">53</span>
+<span class="linenos">54</span>    <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="linenos">55</span>    <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">56</span>
+<span class="linenos">57</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details><details class="snowflake-gallery-code summary-kode-for-snoflak">
+<summary>Kode for snøflak</summary><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<span class="linenos"> 6</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>  <span class="c1"># Tegn av armene til hovedsnøflaket</span>
+<span class="linenos"> 7</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos"> 8</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos"> 9</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">10</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">12</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">14</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">15</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">16</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">17</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">22</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">23</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">24</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">29</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">30</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">31</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="o">-</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">32</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos">33</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span>    <span class="c1"># Roter 30 grader før det andre snøflaket tegnes</span>
+<span class="linenos">36</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span>    <span class="k">for</span> <span class="n">arm</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>  <span class="c1"># Tegn en av armene til det andre snøflaket</span>
+<span class="linenos">39</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">42</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">43</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">44</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">45</span>
+<span class="linenos">46</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">47</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">48</span>
+<span class="linenos">49</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">50</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">51</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">52</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="linenos">53</span>
+<span class="linenos">54</span>        <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="linenos">55</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">56</span>
+<span class="linenos">57</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+</pre></div>
+</div>
+</details></section>
 </section>
 </section>
 
