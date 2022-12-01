@@ -23,7 +23,10 @@ def get_pattern_info(pattern):
         "x_max": -float("inf"),
         "y_min": float("inf"),
         "y_max": -float("inf"),
+        "closest_subsequent_stitches": float("inf"),
     }
+    min_squared_distance = float("inf")
+    prev_x, prev_y, prev_command = None, None, None
     for x, y, command in pattern.stitches:
         if command == JUMP:
             info["num_jumps"] += 1
@@ -41,6 +44,15 @@ def get_pattern_info(pattern):
             info["y_min"] = y
         if y > info["y_max"]:
             info["y_max"] = y
+    
+        if prev_command is None or command != prev_command or command != STITCH:
+            prev_x, prev_y, prev_command = x, y, command
+            continue
+
+        squared_distance = (x - prev_x)**2 + (y - prev_y)**2
+        min_squared_distance = min(min_squared_distance, squared_distance)
+        prev_x, prev_y, prev_command = x, y, command
+    info["closest_subsequent_stitches"] = math.sqrt(min_squared_distance)
     return info
 
 
@@ -63,13 +75,15 @@ def show_info(pattern, scale=1):
         pattern_info["num_trims"] + 1,
     )
     num_digits = int(max(map(math.log, info_fields)))
-    print(f"{'Pattern info':>{20 + num_digits}}")
-    print("-" * 30)
-    print(f"{'Width [steps]':>20} | {width/scale:{num_digits}.0f}")
-    print(f"{'Height [steps]':>20} | {height/scale:{num_digits}.0f}")
-    print(f"{'Width [mm]':>20} | {width/10:{num_digits}.0f}")
-    print(f"{'Height [mm]':>20} | {height/10:{num_digits}.0f}")
-    # TODO: print(f"{'Minimum distance between stitches':>40} | {pattern_info[mind_distance]}")
-    print(f"{'Number of stitches':>20} | {pattern_info['num_stitches']:{num_digits}.0f}")
-    print(f"{'Number of jumps':>20} | {pattern_info['num_jumps']:{num_digits}.0f}")
-    print(f"{'Number of trims':>20} | {pattern_info['num_trims']:{num_digits}.0f}")
+    closest_stitches = pattern_info['closest_subsequent_stitches']/10
+    print(f"{'Pattern info':>{25 + num_digits}}")
+    print("-" * (25 + num_digits + 3))
+    print(f"{'Width [steps]':>25} | {width/scale:{num_digits}.0f}")
+    print(f"{'Height [steps]':>25} | {height/scale:{num_digits}.0f}")
+    print(f"{'Width [mm]':>25} | {width/10:{num_digits}.0f}")
+    print(f"{'Height [mm]':>25} | {height/10:{num_digits}.0f}")
+    print(f"{'Min distance between':>25} |")
+    print(f"{'subsequent stitches [mm]':>25} | {closest_stitches:{num_digits}.0f}")
+    print(f"{'Number of stitches':>25} | {pattern_info['num_stitches']:{num_digits}.0f}")
+    print(f"{'Number of jumps':>25} | {pattern_info['num_jumps']:{num_digits}.0f}")
+    print(f"{'Number of trims':>25} | {pattern_info['num_trims']:{num_digits}.0f}")
