@@ -2,6 +2,11 @@
 Hilbert curve
 =============
 
+.. figure:: /../../_static/figures/auto_examples/hilbert/hilbert.jpg
+     :width: 100%
+     :alt: An image of the embroidery machine making the Hilbert curve.
+
+
 """
 
 from turtlethread import Turtle

@@ -1,6 +1,6 @@
 """
-Tegn en Sierpinsky pilspisskurve
-================================
+Sierpinsky pilspisskurve
+========================
 
 """
 from turtlethread import Turtle

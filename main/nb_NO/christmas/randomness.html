@@ -4,7 +4,7 @@
 <html lang="nb">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Julekuler, stjernehimler og tilfeldighet &#8212; TurtleThread  documentation</title>
     
@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_nb_NO.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
@@ -34,9 +35,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script src="../_static/javascript/print.js"></script>
     <link rel="shortcut icon" href="../_static/turtlethread_logo_notext.svg"/>
@@ -185,12 +184,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../auto_examples/gallery_sierpinsky_arrowhead.html">
-     Tegn en Sierpinsky pilspisskurve
+     Sierpinsky pilspisskurve
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../auto_examples/gallery_hilbert.html">
-     Tegn en hilbertkurve
+     Hilbertkurve
     </a>
    </li>
    <li class="toctree-l2">
@@ -256,7 +255,9 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
-        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO"  href="#"><span class="current nb_NO flag"></span></a><a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en" href="../../en/christmas/randomness.html"><span class="en flag"></span></a>
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en" href="../../en/christmas/randomness.html"><span class="en flag"></span></a>
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO"  href="#"><span class="current nb_NO flag"></span></a>
+        
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -339,6 +340,11 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tilfeldighet-med-python">
+   Tilfeldighet med Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#eksempelbroderi-med-tilfeldighet">
    Eksempelbroderi med tilfeldighet
   </a>
@@ -363,6 +369,11 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tilfeldighet-med-python">
+   Tilfeldighet med Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#eksempelbroderi-med-tilfeldighet">
    Eksempelbroderi med tilfeldighet
   </a>
@@ -378,8 +389,9 @@ title="Print to PDF"
               <div>
                 
   <section id="julekuler-stjernehimler-og-tilfeldighet">
-<span id="christmas-randomness"></span><h1>Julekuler, stjernehimler og tilfeldighet<a class="headerlink" href="#julekuler-stjernehimler-og-tilfeldighet" title="Permalink to this heading">#</a></h1>
-<p><strong>TODO: Tegn stjernehimmel</strong></p>
+<span id="christmas-randomness"></span><h1>Julekuler, stjernehimler og tilfeldighet<a class="headerlink" href="#julekuler-stjernehimler-og-tilfeldighet" title="Permalink til denne oversikten">#</a></h1>
+<a class="reference internal image-reference" href="../_images/ordered_starscape.svg"><img alt="En enkel uniform stjernehimmel." src="../_images/ordered_starscape.svg" width="49.5%" /></a>
+<a class="reference internal image-reference" href="../_images/random_starscape.svg"><img alt="En enkel stjernehimmel med tilfeldige plasserte stjerner." src="../_images/random_starscape.svg" width="49.5%" /></a>
 <p>Hvilken av de to stjernehimlene over ser mest «naturlig» ut? Når vi lager kunst med programmering, blir tegningene våre fort veldig ryddige og perfekte.
 Dette kan føre til veldig vakre mønstere, men naturen er ikke helt perfekt, så det kan også se litt «kunstig» ut.
 Et triks for å få litt av naturens «ikke-perfekthet» inn in kodekunsten vår er å bruke tilfeldighet.
@@ -419,6 +431,10 @@ Et triks for å få litt av naturens «ikke-perfekthet» inn in kodekunsten vår
 </div>
 </figcaption>
 </figure>
+<section id="tilfeldighet-med-python">
+<h2>Tilfeldighet med Python<a class="headerlink" href="#tilfeldighet-med-python" title="Permalink til denne oversikten">#</a></h2>
+<p>Under er et eksempel på broderi som vi skal lage i denne guiden.</p>
+<a class="reference internal image-reference" href="../_images/embroidered_random_stars.jpg"><img alt="Et bilde av broderi av en tilfeldig stjernehimmel." src="../_images/embroidered_random_stars.jpg" style="width: 400px;" /></a>
 <p>Det første vi kan starte med er å se hvordan vi kan lage tilfeldige tall i Python. Nedenfor er en kodesnutt som printer ut et tilfeldig tall.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">1</span><span class="kn">import</span> <span class="nn">random</span>
 </span><span class="linenos">2</span>
@@ -426,14 +442,14 @@ Et triks for å få litt av naturens «ikke-perfekthet» inn in kodekunsten vår
 </span><span class="linenos">4</span><span class="nb">print</span><span class="p">(</span><span class="n">tilfeldig_tall</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Linje 1<span class="colon">:</span></dt>
+<dt class="field-odd">Linje 1</dt>
 <dd class="field-odd"><p>Importerer <code class="docutils literal notranslate"><span class="pre">random</span></code>-biblioteket som vi kan bruke for å trekke tilfeldige tall.</p>
 </dd>
-<dt class="field-even">Linje 3<span class="colon">:</span></dt>
+<dt class="field-even">Linje 3</dt>
 <dd class="field-even"><p>Bruker <code class="docutils literal notranslate"><span class="pre">random.randint</span></code>-funksjonen til å trekke et tilfeldig tall fra og med <code class="docutils literal notranslate"><span class="pre">1</span></code> til og med <code class="docutils literal notranslate"><span class="pre">6</span></code> og lagrer dette tilfeldige tallet i <code class="docutils literal notranslate"><span class="pre">tilfeldig_tall</span></code>-variabelen.</p>
 </dd>
 </dl>
@@ -478,7 +494,7 @@ Her er kode for å generere en enkel stjerne</p>
 </div>
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/03.svg"><img alt="En enkel stjerne med seks stråler som hver har litt ulik lengde." class="sphx-glr-script-out" src="../_images/03.svg" width="180" /></a>
 <dl class="field-list simple">
-<dt class="field-odd">Linje 7<span class="colon">:</span></dt>
+<dt class="field-odd">Linje 7</dt>
 <dd class="field-odd"><p>Trekker et tilfeldig tall mellom 80 og 120 og lagrer det i <code class="docutils literal notranslate"><span class="pre">strålelengde</span></code> variabelen.</p>
 </dd>
 </dl>
@@ -537,16 +553,16 @@ Koden nedenfor tegner en stjernehimmel med fire tilfeldige stjerner plassert til
 </div>
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/051.svg"><img alt="Resultat fra koden over. Et sett med fire stjerner, hver plassert tilfeldig på skjermen med et tilfeldig antall stråler og tilfeldig lengde. Det er en søm mellom hver stjerne" class="sphx-glr-script-out" src="../_images/051.svg" width="360" /></a>
 <dl class="field-list simple">
-<dt class="field-odd">Linje 6<span class="colon">:</span></dt>
+<dt class="field-odd">Linje 6</dt>
 <dd class="field-odd"><p>Definerer en antall_stjerner variabel som sier hvor mange stjerner vi ønsker å tegne</p>
 </dd>
-<dt class="field-even">Linje 7<span class="colon">:</span></dt>
+<dt class="field-even">Linje 7</dt>
 <dd class="field-even"><p>Starter løkka vi bruker for å tegne flere stjerner</p>
 </dd>
-<dt class="field-odd">Linje 8-9<span class="colon">:</span></dt>
+<dt class="field-odd">Linje 8-9</dt>
 <dd class="field-odd"><p>Trekker tilfeldige koordinater mellom <code class="docutils literal notranslate"><span class="pre">-250</span></code> og <code class="docutils literal notranslate"><span class="pre">250</span></code> for hver av stjernene våre</p>
 </dd>
-<dt class="field-even">Linje 10<span class="colon">:</span></dt>
+<dt class="field-even">Linje 10</dt>
 <dd class="field-even"><p>Beveger nåla til den tilfeldige posisjonen hver av stjernene skal ha</p>
 </dd>
 </dl>
@@ -578,15 +594,15 @@ Det kan gi en kul effekt som kanskje kan minne om stjernetegn, men hvis vi ikke 
 </div>
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/06.svg"><img alt="Resultat fra koden over. Et sett med fire stjerner, hver plassert tilfeldig på skjermen med et tilfeldig antall stråler og tilfeldig lengde. Nå er stjernene koblet sammen med en rød strek som symboliserer at nåla skal &quot;hoppe over&quot; denne biten. Det er også en rød sirkel i midten av hver stjerne, som symboliserer starten på en ny søm." class="sphx-glr-script-out" src="../_images/06.svg" width="360" /></a>
 <dl class="field-list simple">
-<dt class="field-odd">Linje 6-7<span class="colon">:</span></dt>
+<dt class="field-odd">Linje 6-7</dt>
 <dd class="field-odd"><p>Løkka som itererer over stjernene er flyttet ut av kodeblokka hvor nåla har sømmeinstrukser.
 Vi flytta løkka siden vi ønsker å bruke forskjellige sømmeinstrukser når vi tegner stjernene og når vi flytter nåla mellom stjernene.</p>
 </dd>
-<dt class="field-even">Linje 10<span class="colon">:</span></dt>
+<dt class="field-even">Linje 10</dt>
 <dd class="field-even"><p>Gir nåla instruks om å flytte seg uten å sy sting.
 Dersom broderimaskina støtter det vil den klippe tråden om den allerede har sydd noen sting.</p>
 </dd>
-<dt class="field-odd">Linje 13<span class="colon">:</span></dt>
+<dt class="field-odd">Linje 13</dt>
 <dd class="field-odd"><p>Her er kodeblokka hvor vi tegner hver enkelt stjerne.</p>
 </dd>
 </dl>
@@ -619,6 +635,7 @@ Dersom broderimaskina støtter det vil den klippe tråden om den allerede har sy
 </div>
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/07.svg"><img alt="Resultat fra koden over. Et sett med et tilfeldig antall stjerner, hver plassert tilfeldig på skjermen med et tilfeldig antall stråler og tilfeldig lengde. Nå er stjernene koblet sammen med en rød strek som symboliserer at nåla skal &quot;hoppe over&quot; denne biten. Det er også ett svart kryss i starten av hver røde strek, som symbolserer at tråden skal kuttes der og en rød sirkel i enden av hver røde strek som symboliserer at det er dit nåla skal hoppe." class="sphx-glr-script-out" src="../_images/07.svg" width="360" /></a>
 </details></div>
+<a class="reference internal image-reference" href="../_images/embroidered_random_stars_action.jpg"><img alt="Et bilde av broderimaskinen mens den lager en tilfeldig stjernehimmel." src="../_images/embroidered_random_stars_action.jpg" style="width: 400px;" /></a>
 <div class="admonition attention">
 <p class="admonition-title">Obs</p>
 <p>I dette eksempelet bruker vi <code class="docutils literal notranslate"><span class="pre">randint</span></code>-funksjonen i <code class="docutils literal notranslate"><span class="pre">random</span></code>-biblioteket, som trekker tall fra og med første argument, til og med andre argument.
@@ -631,8 +648,9 @@ For eksempel vil <code class="docutils literal notranslate"><span class="pre">ra
 <li><p>Lag ditt eget broderimønster med tilfeldighet. Nedenfor er et galleri som du kan ta inspirasjon fra.</p></li>
 </ul>
 </div>
+</section>
 <section id="eksempelbroderi-med-tilfeldighet">
-<h2>Eksempelbroderi med tilfeldighet<a class="headerlink" href="#eksempelbroderi-med-tilfeldighet" title="Permalink to this heading">#</a></h2>
+<h2>Eksempelbroderi med tilfeldighet<a class="headerlink" href="#eksempelbroderi-med-tilfeldighet" title="Permalink til denne oversikten">#</a></h2>
 <p><strong>Eksempel 1</strong></p>
 <a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery01.svg"><img alt="En spiral hvor hver linje har tilfeldig, men økende, lengde." class="randomness-gallery-arm" src="../_images/gallery01.svg" width="180" /></a>
 <details class="randomness-gallery-code summary-kode">
@@ -679,34 +697,41 @@ For eksempel vil <code class="docutils literal notranslate"><span class="pre">ra
 <span class="linenos"> 3</span>
 <span class="linenos"> 4</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
 <span class="linenos"> 5</span>
-<span class="linenos"> 6</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
-<span class="linenos"> 7</span>    <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
-<span class="linenos"> 8</span>        <span class="n">antall_grener</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+<span class="linenos"> 7</span>    <span class="c1"># Tegn ett snøfnugg med seks sider</span>
+<span class="linenos"> 8</span>    <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
 <span class="linenos"> 9</span>
-<span class="linenos">10</span>        <span class="k">for</span> <span class="n">retning</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-<span class="linenos">11</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">10</span>        <span class="c1"># Bestem hvor mange grener vi ønsker</span>
+<span class="linenos">11</span>        <span class="n">antall_grener</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="linenos">12</span>
-<span class="linenos">13</span>            <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">120</span> <span class="o">*</span> <span class="n">retning</span><span class="p">)</span>
-<span class="linenos">14</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
-<span class="linenos">15</span>            <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
-<span class="linenos">16</span>            <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">120</span> <span class="o">*</span> <span class="n">retning</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="c1"># Gi det speilsymmetri</span>
+<span class="linenos">14</span>        <span class="k">for</span> <span class="n">retning</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
 <span class="linenos">17</span>
-<span class="linenos">18</span>            <span class="k">for</span> <span class="n">gren</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">antall_grener</span><span class="p">):</span>
-<span class="linenos">19</span>                <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-<span class="linenos">20</span>                <span class="n">grenvinkel</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
-<span class="linenos">21</span>                <span class="n">grenlengde</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
-<span class="linenos">22</span>
-<span class="linenos">23</span>                <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="n">grenvinkel</span> <span class="o">*</span> <span class="n">retning</span><span class="p">)</span>
-<span class="linenos">24</span>                <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">grenlengde</span><span class="p">)</span>
-<span class="linenos">25</span>                <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">grenlengde</span><span class="p">)</span>
-<span class="linenos">26</span>                <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="n">grenvinkel</span> <span class="o">*</span> <span class="n">retning</span><span class="p">)</span>
-<span class="linenos">27</span>
-<span class="linenos">28</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="linenos">29</span>            <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">40</span> <span class="o">+</span> <span class="mi">20</span><span class="o">*</span><span class="n">antall_grener</span><span class="p">)</span>
-<span class="linenos">30</span>
-<span class="linenos">31</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
-<span class="linenos">32</span>
-<span class="linenos">33</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
+<span class="linenos">18</span>            <span class="c1"># Legg til en liten gren i starten</span>
+<span class="linenos">19</span>            <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">120</span> <span class="o">*</span> <span class="n">retning</span><span class="p">)</span>
+<span class="linenos">20</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">21</span>            <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">22</span>            <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">120</span> <span class="o">*</span> <span class="n">retning</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span>            <span class="c1"># Legg til et tilfeldig antall grener hvor hver gren har tilfeldig vinkel og lengde</span>
+<span class="linenos">25</span>            <span class="k">for</span> <span class="n">gren</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">antall_grener</span><span class="p">):</span>
+<span class="linenos">26</span>                <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">27</span>                <span class="n">grenvinkel</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="linenos">28</span>                <span class="n">grenlengde</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span>                <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="n">grenvinkel</span> <span class="o">*</span> <span class="n">retning</span><span class="p">)</span>
+<span class="linenos">31</span>                <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">grenlengde</span><span class="p">)</span>
+<span class="linenos">32</span>                <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">grenlengde</span><span class="p">)</span>
+<span class="linenos">33</span>                <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="n">grenvinkel</span> <span class="o">*</span> <span class="n">retning</span><span class="p">)</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span>            <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos">36</span>            <span class="n">nål</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span> <span class="o">+</span> <span class="mi">30</span><span class="o">*</span><span class="n">antall_grener</span><span class="p">)</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
 </pre></div>
 </div>
 </details><p><strong>Eksempel 4</strong></p>
@@ -717,14 +742,14 @@ For eksempel vil <code class="docutils literal notranslate"><span class="pre">ra
 <span class="linenos"> 3</span>
 <span class="linenos"> 4</span><span class="n">nål</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
 <span class="linenos"> 5</span>
-<span class="linenos"> 6</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">nål</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
 <span class="linenos"> 7</span>
 <span class="linenos"> 8</span>    <span class="c1"># Tegn stjerna i toppen av juletreet</span>
 <span class="linenos"> 9</span>    <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="mi">5</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
 <span class="linenos">10</span>    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-<span class="linenos">11</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
 <span class="linenos">12</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
-<span class="linenos">13</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">nål</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
 <span class="linenos">14</span>        <span class="n">nål</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
 <span class="linenos">15</span>        <span class="n">nål</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
 <span class="linenos">16</span>    
@@ -735,7 +760,7 @@ For eksempel vil <code class="docutils literal notranslate"><span class="pre">ra
 <span class="linenos">21</span>    <span class="n">retning</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="linenos">22</span>    <span class="k">for</span> <span class="n">gren_nummer</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
 <span class="linenos">23</span>        <span class="n">retning</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># Snu nåla hver runde</span>
-<span class="linenos">24</span>        <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">gren_nummer</span>
+<span class="linenos">24</span>        <span class="n">y</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="n">gren_nummer</span>
 <span class="linenos">25</span>        <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">gren_nummer</span>
 <span class="linenos">26</span>        
 <span class="linenos">27</span>        <span class="c1"># Legg på litt tilfeldighet mtp hvor grena ender</span>
@@ -746,7 +771,7 @@ For eksempel vil <code class="docutils literal notranslate"><span class="pre">ra
 <span class="linenos">32</span>        <span class="n">nål</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="n">retning</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">jitter_x</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">jitter_y</span><span class="p">)</span>
 <span class="linenos">33</span>
 <span class="linenos">34</span>        <span class="c1"># Tegn julekule</span>
-<span class="linenos">35</span>        <span class="n">radius</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="linenos">35</span>        <span class="n">radius</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 <span class="linenos">36</span>        <span class="n">nål</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="o">-</span><span class="n">radius</span><span class="p">)</span>
 <span class="linenos">37</span>
 <span class="linenos">38</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>

@@ -7,6 +7,11 @@ Decorating for Christmas with recursive snowflakes
     
     This tutorial is a little advanced and assumes that you are already somewhat familiar with functions in Python. 
 
+The image below shows an example of the decorations can create by using fractals and turtle programming.
+
+.. image:: /../../_static/figures/manual_examples/fractal/embroidered_fractal_snowflake.jpg
+    :width: 400
+    :alt: Et bilde av det ferdigbroderte snøfnugget.
 
 If we look closer at the "arms" of a snowflake, we may notice that it appears to contain more miniature versions of it self, smaller "arms". When a pattern appears to contain smaller copies of it self we call it a "fractal" or recursive pattern. 
 
@@ -191,11 +196,16 @@ Now that we have code to draw a snowflake arm, we can use repetition to draw a c
         .. include-turtlethread:: fractal/04.py
             :linenos:
 
-
-    * Create your own fractal! Below is a gallery of examples:
+.. image:: /../../_static/figures/manual_examples/fractal/fractal_actionshot.jpg
+    :width: 400
+    :alt: An action shot of the embroidery machine making a snowflake.
 
 Example fractals
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
+
+.. admonition:: Try it yourself:
+
+    * Create your own fractal! Below is a gallery of examples:
 
 **Example fractal 1**
 

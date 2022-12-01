@@ -25,9 +25,9 @@ Schotter-inspirert linjekunst
 
 
 
-.. image-sg:: /auto_examples/images/sphx_glr_gallery_schotter_line_001.png
-   :alt: stotter_linje.png
-   :srcset: /auto_examples/images/sphx_glr_gallery_schotter_line_001.png
+.. image-sg:: /auto_examples/images/sphx_glr_gallery_schotter_line_001.svg
+   :alt: stotter_linje.svg
+   :srcset: /auto_examples/images/sphx_glr_gallery_schotter_line_001.svg
    :class: sphx-glr-single-img
 
 
@@ -71,12 +71,12 @@ Schotter-inspirert linjekunst
 
 
     nål.save("stotter_linje.jef")
-    nål.save("stotter_linje.png")
+    nål.save("stotter_linje.svg")
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.188 seconds)
+   **Total running time of the script:** ( 0 minutes  0.022 seconds)
 
 
 .. _sphx_glr_download_auto_examples_gallery_schotter_line.py:

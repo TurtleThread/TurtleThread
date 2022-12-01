@@ -3,6 +3,14 @@
 Christmas decorations, starry nights, and randomness
 ----------------------------------------------------
 
+.. image::  /../../_static/figures/manual_examples/randomness/ordered_starscape.svg
+    :width: 49.5%
+    :alt: A simple uniform starry sky.
+
+.. image::  /../../_static/figures/manual_examples/randomness/random_starscape.svg
+    :width: 49.5%
+    :alt: A  starry sky with randomly placed stars.
+
 Which one of the starry skies above looks the most "natural"?
 When we create art with programming, it is easy to end up with very ordered and perfect-looking images.
 This can lead to gorgeous patterns, but nature is not perfectly ordered, so it can also look slightly "artificial".
@@ -41,6 +49,14 @@ Adding randomness is a technique that is commonly found in art, game design, ani
 
     Photograph of a modular synthesizer. These instruments can often play sequences of sounds in random order. (`Image by Muff on Flickr (CC-BY 2.0) <https://www.flickr.com/photos/61547250@N02/5612345200>`_)
 
+Randomness with Python
+^^^^^^^^^^^^^^^^^^^^^^
+
+Below we se an example of the type of embroidery we will make in this tutorial.
+
+.. image:: /../../_static/figures/manual_examples/randomness/embroidered_random_stars.jpg
+    :width: 400
+    :alt: An image of a random embroidered starscape.
 
 Let's start by looking at how to generate random numbers in Python. Below is some code to print a random number to the terminal. 
 
@@ -173,6 +189,10 @@ However, if we don't want these lines, we can use jump stitches to tell the need
                 There is also a black cross in the start of each red line that symbolises that the thread should be cut and a red circle at the end that symbolises the end of a jump stitch.
             :class: sphx-glr-script-out
 
+.. image:: /../../_static/figures/manual_examples/randomness/embroidered_random_stars_action.jpg
+    :width: 400
+    :alt: An image of the embroidery machine while it embroiders a random starscape.
+
 .. attention::
 
     For this example, we use the randint function from the random library.
@@ -187,7 +207,7 @@ However, if we don't want these lines, we can use jump stitches to tell the need
 
 
 Example patterns with randomness
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Example 1**
 

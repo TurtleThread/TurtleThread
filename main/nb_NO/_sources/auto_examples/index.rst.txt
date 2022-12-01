@@ -28,35 +28,35 @@ Eksempelgalleri
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Tegn en Sierpinsky pilspisskurve">
+    <div class="sphx-glr-thumbcontainer" tooltip="Sierpinsky pilspisskurve">
 
 .. only:: html
 
   .. image:: /auto_examples/images/thumb/sphx_glr_gallery_sierpinsky_arrowhead_thumb.png
-    :alt: Tegn en Sierpinsky pilspisskurve
+    :alt: Sierpinsky pilspisskurve
 
   :ref:`sphx_glr_auto_examples_gallery_sierpinsky_arrowhead.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Tegn en Sierpinsky pilspisskurve</div>
+      <div class="sphx-glr-thumbnail-title">Sierpinsky pilspisskurve</div>
     </div>
 
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Tegn en hilbertkurve">
+    <div class="sphx-glr-thumbcontainer" tooltip="Hilbertkurve">
 
 .. only:: html
 
   .. image:: /auto_examples/images/thumb/sphx_glr_gallery_hilbert_thumb.png
-    :alt: Tegn en hilbertkurve
+    :alt: Hilbertkurve
 
   :ref:`sphx_glr_auto_examples_gallery_hilbert.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Tegn en hilbertkurve</div>
+      <div class="sphx-glr-thumbnail-title">Hilbertkurve</div>
     </div>
 
 
@@ -66,7 +66,7 @@ Eksempelgalleri
 
 .. only:: html
 
-  .. image:: /auto_examples/images/thumb/sphx_glr_gallery_schotter_line_thumb.png
+  .. image:: /auto_examples/images/thumb/sphx_glr_gallery_schotter_line_thumb.svg
     :alt: Schotter-inspirert linjekunst
 
   :ref:`sphx_glr_auto_examples_gallery_schotter_line.py`

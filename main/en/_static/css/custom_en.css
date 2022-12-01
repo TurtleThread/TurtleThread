@@ -1,0 +1,3 @@
+.sphx-glr-script-out::before, a.sphx-glr-script-out::before, div.sphx-glr-script-out::before, pre.sphx-glr-script-out::before {
+    content: "Out:";
+}

@@ -38,4 +38,4 @@ with nål.running_stitch(steg):
 
 
 nål.save("stotter_linje.jef")
-nål.save("stotter_linje.png")
+nål.save("stotter_linje.svg")

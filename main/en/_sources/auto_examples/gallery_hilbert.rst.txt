@@ -21,7 +21,11 @@
 Hilbert curve
 =============
 
-.. GENERATED FROM PYTHON SOURCE LINES 6-36
+.. figure:: /../../_static/figures/auto_examples/hilbert/hilbert.jpg
+     :width: 100%
+     :alt: An image of the embroidery machine making the Hilbert curve.
+
+.. GENERATED FROM PYTHON SOURCE LINES 11-42
 
 
 
@@ -68,9 +72,10 @@ Hilbert curve
     needle.save("hilbert.jef")
     needle.save("hilbert.png")
 
+
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.100 seconds)
+   **Total running time of the script:** ( 0 minutes  0.091 seconds)
 
 
 .. _sphx_glr_download_auto_examples_gallery_hilbert.py:

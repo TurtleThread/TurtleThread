@@ -2,7 +2,7 @@ span.linenos {
     padding-right: 15px;
 }
 
-.admonition-prov-selv.admonition > .admonition-title::before{
+.admonition-prov-selv.admonition > .admonition-title::before, .admonition-try-it-yourself.admonition > .admonition-title::before{
     position: absolute;
     left: .6rem;
     width: 1rem;
@@ -13,11 +13,11 @@ span.linenos {
     content: "\f11c";
 }
 
-div.admonition-prov-selv.admonition{
+div.admonition-prov-selv.admonition, div.admonition-try-it-yourself.admonition{
     border-color: #28a745;
 }
 
-div.admonition-prov-selv.admonition>.admonition-title{
+div.admonition-prov-selv.admonition>.admonition-title, div.admonition-try-it-yourself.admonition>.admonition-title{
     background-color: rgba(40, 167, 70, 0.1);
 }
 
@@ -31,7 +31,7 @@ figcaption > div.legend {
 }
 
 .sphx-glr-script-out::before, a.sphx-glr-script-out::before, div.sphx-glr-script-out::before, pre.sphx-glr-script-out::before {
-    content: "Ut:";
+    content: "Out:";
     line-height: 1.4;
     padding-top: 10px;
 }

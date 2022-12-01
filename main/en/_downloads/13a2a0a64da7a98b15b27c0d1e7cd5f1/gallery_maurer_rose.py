@@ -13,8 +13,8 @@ needle = Turtle()
 
 n = 5
 d = 97
-with needle.running_stitch(10):
-    for theta in range(181):
+with needle.running_stitch(50):
+    for theta in range(361):
         k = theta * d * pi / 180
         r = 300 * sin(n * k)
         x = r * cos(k)

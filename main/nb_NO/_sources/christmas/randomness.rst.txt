@@ -3,7 +3,13 @@
 Julekuler, stjernehimler og tilfeldighet
 ----------------------------------------
 
-**TODO: Tegn stjernehimmel**
+.. image::  /../../_static/figures/manual_examples/randomness/ordered_starscape.svg
+    :width: 49.5%
+    :alt: En enkel uniform stjernehimmel.
+
+.. image::  /../../_static/figures/manual_examples/randomness/random_starscape.svg
+    :width: 49.5%
+    :alt: En enkel stjernehimmel med tilfeldige plasserte stjerner.
 
 Hvilken av de to stjernehimlene over ser mest "naturlig" ut? Når vi lager kunst med programmering, blir tegningene våre fort veldig ryddige og perfekte.
 Dette kan føre til veldig vakre mønstere, men naturen er ikke helt perfekt, så det kan også se litt "kunstig" ut.
@@ -39,6 +45,15 @@ Et triks for å få litt av naturens "ikke-perfekthet" inn in kodekunsten vår e
     Musikk
 
     Bilde av en modulær sythesizer. Slike kan ofte spille av lydsekvenser i en tilfeldig rekkefølge (`Bilde av Muff på Flickr (CC-BY 2.0) <https://www.flickr.com/photos/61547250@N02/5612345200>`_)
+
+Tilfeldighet med Python
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Under er et eksempel på broderi som vi skal lage i denne guiden. 
+
+.. image:: /../../_static/figures/manual_examples/randomness/embroidered_random_stars.jpg
+    :width: 400
+    :alt: Et bilde av broderi av en tilfeldig stjernehimmel.
 
 Det første vi kan starte med er å se hvordan vi kan lage tilfeldige tall i Python. Nedenfor er en kodesnutt som printer ut et tilfeldig tall.
 
@@ -164,6 +179,10 @@ Det kan gi en kul effekt som kanskje kan minne om stjernetegn, men hvis vi ikke 
                 Det er også ett svart kryss i starten av hver røde strek, som symbolserer at tråden skal kuttes der og en rød sirkel i enden av hver røde strek som symboliserer at det er dit nåla skal hoppe.
             :class: sphx-glr-script-out
 
+.. image:: /../../_static/figures/manual_examples/randomness/embroidered_random_stars_action.jpg
+    :width: 400
+    :alt: Et bilde av broderimaskinen mens den lager en tilfeldig stjernehimmel.
+
 .. attention:: 
 
     I dette eksempelet bruker vi ``randint``-funksjonen i ``random``-biblioteket, som trekker tall fra og med første argument, til og med andre argument.
@@ -176,7 +195,7 @@ Det kan gi en kul effekt som kanskje kan minne om stjernetegn, men hvis vi ikke 
 
 
 Eksempelbroderi med tilfeldighet
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Eksempel 1**
 

@@ -5,7 +5,10 @@ Julekuler, snøflak og rotasjonssymmetri
 
 I denne guiden skal vi lære hvordan dekorere julepynt med snøfnuggbroderi i Python. Bildet under viser et eksempel på julepynten vi skal lage med programmering.
 
-[TODO: legg inn bilde]
+.. image:: /../../_static/figures/manual_examples/snowflake/embroidered_rotational_snowflake.jpg
+    :width: 400
+    :alt: Et brodert snøfnugg
+
 
 .. admonition:: Notis
     
@@ -253,17 +256,30 @@ Nå har vi kode for å tegne et helt snøfnugg!
     Bruk kode til å tegne dit eget snøfnugg med rotasjonssymmetri. Under er et galleri med noen eksempler til inspirasjon:
 
 Lage en julekule med snøflakmønster
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For å lage en julekule med snøflakmønster gjør du følgende:
+.. image:: /../../_static/figures/manual_examples/snowflake/actionshot.jpg
+    :width: 400
+    :alt: Et bilde av broderimaskinen mens den lager et snøfnugg.
 
-1. Brodere to snøfnugg (enten på samme stoff eller to forskjellige hvis du vil ha ulike sider),
+For å lage juletrepynt med snøflakbroderiet må du først lagre mønsteret som en broderifil.
+Dette kan du gjøre ved å legge til
+
+.. code:: python
+    
+    nål.save("snøflak.jef")
+
+på slutten av scriptet ditt.
+Merk at vi her bruker ``.jef``-filtypen, som vi har funnet ut at virker bra med Bernina 500 broderimaskinen vi har brukt, men du vil kanskje bruke en annen filtype for din maskin (f.eks. ``snøflak.pes``).
+Når du har lagd broderifilen kan du følge disse instruksene for å lage en julekule:
+
+1. Broder ett eller to snøfnugg, avhengig av om du vil ha snøfnugg på begge sidene av julekulen,
 2. legg de to stoffbitene oppå hverandre slik at broderiene er rett over hverandre og peker utover,
 3. og sy sammen stoffbitene (enten for hånd eller ved å tegne en sirkel med turtlethread).
 
 
 Eksempelsnøflak
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 **Snøflak 1**
 

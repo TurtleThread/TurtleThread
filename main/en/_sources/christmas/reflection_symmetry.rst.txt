@@ -13,6 +13,8 @@ Snowflakes also have reflection symmetry, meaning that if we look at the mirror 
 
     Landscape reflected in water (`image by  Eberhard Grossgasteiger <https://www.pexels.com/photo/symmetrical-view-of-rocky-landscape-reflecting-in-a-pond-12366087/>`_).
 
+Use reflection symmetry to reduce the number of code lines
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When drawing an image with reflection symmetry, we can use a loop to cut down on how many lines of code we need (like what we did with rotation symmetry).
 Below is the code we used to create a snowflake in :ref:`christmas-rotation-symmetry`.
@@ -55,12 +57,20 @@ Because we can change direction by changing the sign of the angle, we can use a 
 We can see that this code contains a lot fewer lines!
 
 
-.. admonition:: Try it yourself:
-    
-    Use code to embroider your own snowflake with both rotational and reflection symmetry! Below is a gallery of examples you can use as a starting point or for inspiration:
+Finished snowflake
+^^^^^^^^^^^^^^^^^^
+
+.. image:: /../../_static/figures/manual_examples/reflection_symmetry/embroidered_reflection_snowflake.jpg
+    :width: 400
+    :alt: An image of the finished embroidered snowflake.
 
 Example snowflakes
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
+
+.. admonition:: Try it yourself:
+    
+    Use code to embroider your own snowflake with both rotational and reflection symmetry!
+    Below is a gallery of examples you can use as a starting point or for inspiration.
 
 **Snowflake 1**
 

@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>For loops &#8212; TurtleThread  documentation</title>
     
@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_en.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
@@ -34,9 +35,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script src="../_static/javascript/print.js"></script>
     <link rel="shortcut icon" href="../_static/turtlethread_logo_notext.svg"/>
@@ -256,7 +255,9 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
-        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en"  href="#"><span class="current en flag"></span></a><a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO" href="../../nb_NO/intro/for.html"><span class="nb_NO flag"></span></a>
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO" href="../../nb_NO/intro/for.html"><span class="nb_NO flag"></span></a>
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en"  href="#"><span class="current en flag"></span></a>
+        
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -388,7 +389,7 @@ title="Print to PDF"
               <div>
                 
   <section id="for-loops">
-<span id="for"></span><h1>For loops<a class="headerlink" href="#for-loops" title="Permalink to this heading">#</a></h1>
+<span id="for"></span><h1>For loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">#</a></h1>
 <p>Repetition is often seen in both nature, art and architecture.
 And the computer is particularly suited for repetitive tasks.
 The computer can repeat the same actions over and over for thousands or even hundreds of thousands of times without getting tired.</p>
@@ -470,10 +471,10 @@ In this tutorial, we will use for loop. Let’s start with an example:</p>
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/023.svg"><img alt="Result from the code above. A &quot;star&quot; consisting of six rays that come from the same point." class="sphx-glr-script-out" src="../_images/023.svg" width="100" /></a>
 <p>We see that the modified code is much shorter and more readable. The most important lines to understand here are lines 5-9.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Line 5<span class="colon">:</span></dt>
+<dt class="field-odd">Line 5</dt>
 <dd class="field-odd"><p>Tells Python that the code block below should be repeated 6 times, one for each ray in the star.</p>
 </dd>
-<dt class="field-even">Lines 6-9<span class="colon">:</span></dt>
+<dt class="field-even">Lines 6-9</dt>
 <dd class="field-even"><p>These lines are indented one more level than the other lines and represent a code block. The code block is directly below the definition of the for loop. Therefore this code block belongs to the for loop, so these lines will be repeated for each loop iteration (6 times).</p>
 </dd>
 </dl>
@@ -500,7 +501,7 @@ In this tutorial, we will use for loop. Let’s start with an example:</p>
 <p>Make sure your code matches the finished code above before you proceed.</p>
 </div>
 <section id="more-on-range">
-<h2>More on <code class="docutils literal notranslate"><span class="pre">range</span></code><a class="headerlink" href="#more-on-range" title="Permalink to this heading">#</a></h2>
+<h2>More on <code class="docutils literal notranslate"><span class="pre">range</span></code><a class="headerlink" href="#more-on-range" title="Permalink to this headline">#</a></h2>
 <p>So far, we haven’t explained much about the <code class="docutils literal notranslate"><span class="pre">range</span></code> function.
 If we read the code above, we see the line <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">ray</span> <span class="pre">in</span> <span class="pre">range(8)</span></code>, which means for each ray in “<code class="docutils literal notranslate"><span class="pre">range(8)</span></code>”.
 Typing <code class="docutils literal notranslate"><span class="pre">range(8)</span></code> is almost like asking Python to generate a list of numbers <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">7]</span></code>.

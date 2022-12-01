@@ -1,11 +1,11 @@
 TurtleThread
 ============
 
-.. image:: ../../_static/figures/firkantblomst_sydd.png
-  :width: 400
-  :alt: Example generated with TurtleThread.
+.. image:: ../../_static/figures/collage.png
+  :width: 800
+  :alt: Embroideries made with TurtleThread.
 
-TurtleThread is a tool inspired by `TurtleStitch <https://www.turtlestitch.org/>`_ that lets you
+TurtleThread is a tool inspired by `TurtleStitch <https://www.turtlestitch.org/>`_ and powered by `pyembroidery <https://github.com/EmbroidePy/pyembroidery>`_ that lets you
 program an embroidery machine with a Turtle interface. 
 
 To learn how to use TurtleThread, we recommend looking at the `introduction to TurtleThread <auto_examples/gallery_introduksjon.html>`_

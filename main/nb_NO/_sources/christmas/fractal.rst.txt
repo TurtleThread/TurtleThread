@@ -7,6 +7,12 @@ Julekuler, snøflak og rekursjon
     
     Denne guiden er litt avansert og krever at du har litt forkunnskaper om funksjoner i Python fra før.
 
+Bildet under viser et eksempel av mønstrene vi kan lage ved å bruke fraktaler og skilpaddeprogrammering.
+
+.. image:: /../../_static/figures/manual_examples/fractal/embroidered_fractal_snowflake.jpg
+    :width: 400
+    :alt: Et bilde av det ferdigbroderte snøfnugget.
+
 Ser vi nærmere på "armene" til et snøfnugg, kan vi se at det ser ut til å bestå av mindre "armer".
 Når et mønster ser ut til å bestå av mindre kopier av seg selv kaller vi det et "fraktalt" mønster.
 
@@ -186,13 +192,17 @@ Nå som vi har kode for å tegne en snøfnuggarm kan vi bruke repetisjon til å 
 
         .. include-turtlethread:: fractal/05.py
             :linenos:
-    
-    * Lag din egen fraktal! Under er et galleri med eksempler for inspirasjon
 
-    
+.. image:: /../../_static/figures/manual_examples/fractal/fractal_actionshot.jpg
+    :width: 400
+    :alt: Et bilde av broderimaskinen mens den lager et fraktalt snøfnugg.
 
 Eksempelfraktaler
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
+
+.. admonition:: Prøv selv:
+    
+    * Lag din egen fraktal! Under er et galleri med eksempler for inspirasjon
 
 **Eksempelfraktal 1**
 

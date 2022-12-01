@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Christmas decorations, starry nights, and randomness &#8212; TurtleThread  documentation</title>
     
@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_en.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
@@ -34,9 +35,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script src="../_static/javascript/print.js"></script>
     <link rel="shortcut icon" href="../_static/turtlethread_logo_notext.svg"/>
@@ -256,7 +255,9 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
-        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en"  href="#"><span class="current en flag"></span></a><a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO" href="../../nb_NO/christmas/randomness.html"><span class="nb_NO flag"></span></a>
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO" href="../../nb_NO/christmas/randomness.html"><span class="nb_NO flag"></span></a>
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en"  href="#"><span class="current en flag"></span></a>
+        
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -339,6 +340,11 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#randomness-with-python">
+   Randomness with Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-patterns-with-randomness">
    Example patterns with randomness
   </a>
@@ -363,6 +369,11 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#randomness-with-python">
+   Randomness with Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-patterns-with-randomness">
    Example patterns with randomness
   </a>
@@ -378,7 +389,9 @@ title="Print to PDF"
               <div>
                 
   <section id="christmas-decorations-starry-nights-and-randomness">
-<span id="christmas-randomness"></span><h1>Christmas decorations, starry nights, and randomness<a class="headerlink" href="#christmas-decorations-starry-nights-and-randomness" title="Permalink to this heading">#</a></h1>
+<span id="christmas-randomness"></span><h1>Christmas decorations, starry nights, and randomness<a class="headerlink" href="#christmas-decorations-starry-nights-and-randomness" title="Permalink to this headline">#</a></h1>
+<a class="reference internal image-reference" href="../_images/ordered_starscape.svg"><img alt="A simple uniform starry sky." src="../_images/ordered_starscape.svg" width="49.5%" /></a>
+<a class="reference internal image-reference" href="../_images/random_starscape.svg"><img alt="A  starry sky with randomly placed stars." src="../_images/random_starscape.svg" width="49.5%" /></a>
 <p>Which one of the starry skies above looks the most “natural”?
 When we create art with programming, it is easy to end up with very ordered and perfect-looking images.
 This can lead to gorgeous patterns, but nature is not perfectly ordered, so it can also look slightly “artificial”.
@@ -419,6 +432,10 @@ Adding randomness is a technique that is commonly found in art, game design, ani
 </div>
 </figcaption>
 </figure>
+<section id="randomness-with-python">
+<h2>Randomness with Python<a class="headerlink" href="#randomness-with-python" title="Permalink to this headline">#</a></h2>
+<p>Below we se an example of the type of embroidery we will make in this tutorial.</p>
+<a class="reference internal image-reference" href="../_images/embroidered_random_stars.jpg"><img alt="An image of a random embroidered starscape." src="../_images/embroidered_random_stars.jpg" style="width: 400px;" /></a>
 <p>Let’s start by looking at how to generate random numbers in Python. Below is some code to print a random number to the terminal.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">1</span><span class="kn">import</span> <span class="nn">random</span>
 </span><span class="linenos">2</span>
@@ -426,14 +443,14 @@ Adding randomness is a technique that is commonly found in art, game design, ani
 </span><span class="linenos">4</span><span class="nb">print</span><span class="p">(</span><span class="n">random_number</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span>
+<div class="sphx-glr-script-out highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Line 1<span class="colon">:</span></dt>
+<dt class="field-odd">Line 1</dt>
 <dd class="field-odd"><p>Imports the <code class="docutils literal notranslate"><span class="pre">random</span></code> library, which we can use to draw random numbers.</p>
 </dd>
-<dt class="field-even">Line 3<span class="colon">:</span></dt>
+<dt class="field-even">Line 3</dt>
 <dd class="field-even"><p>Uses the <code class="docutils literal notranslate"><span class="pre">random.randint</span></code>-function to draw a random number between <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">6</span></code> (including endpoints) and stores this random number in the <code class="docutils literal notranslate"><span class="pre">random_number</span></code> variable.</p>
 </dd>
 </dl>
@@ -478,7 +495,7 @@ The code below embroiders a simple star:</p>
 </div>
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/03.svg"><img alt="Result from the code above. A simple star with six rays with slightly varying length." class="sphx-glr-script-out" src="../_images/03.svg" width="180" /></a>
 <dl class="field-list simple">
-<dt class="field-odd">Line 7<span class="colon">:</span></dt>
+<dt class="field-odd">Line 7</dt>
 <dd class="field-odd"><p>draws a random number between <code class="docutils literal notranslate"><span class="pre">80</span></code> and <code class="docutils literal notranslate"><span class="pre">120</span></code> and stores it in the <code class="docutils literal notranslate"><span class="pre">ray_length</span></code> variable.</p>
 </dd>
 </dl>
@@ -537,16 +554,16 @@ The code below draws a starry sky with four random stars randomly placed in the 
 </div>
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/05.svg"><img alt="Result from the code above. Four stars randomly placed. Each star has a random number of rays, each with a random length. There is a seam between each star." class="sphx-glr-script-out" src="../_images/05.svg" width="360" /></a>
 <dl class="field-list simple">
-<dt class="field-odd">Line 6<span class="colon">:</span></dt>
+<dt class="field-odd">Line 6</dt>
 <dd class="field-odd"><p>Defines a number_of_stars variable that decides how many stars we want to draw</p>
 </dd>
-<dt class="field-even">Line 7<span class="colon">:</span></dt>
+<dt class="field-even">Line 7</dt>
 <dd class="field-even"><p>Starts the loop we will use to draw multiple stars</p>
 </dd>
-<dt class="field-odd">Lines 8-9<span class="colon">:</span></dt>
+<dt class="field-odd">Lines 8-9</dt>
 <dd class="field-odd"><p>Draws random coordinates between -250 and 250 for each star</p>
 </dd>
-<dt class="field-even">Line 10<span class="colon">:</span></dt>
+<dt class="field-even">Line 10</dt>
 <dd class="field-even"><p>Moves the needle to a random position before drawing a star</p>
 </dd>
 </dl>
@@ -578,15 +595,15 @@ However, if we don’t want these lines, we can use jump stitches to tell the ne
 </div>
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/06.svg"><img alt="Result from the code above. Four stars randomly placed. Each star has a random number of rays, each with a random length. There is a seam between each star. The stars are now connected with a red line that symbolises that the needle should &quot;jump over&quot; this stretch. There is also a black cross in the start of each red line that symbolises that the thread should be cut and a red circle at the end that symbolises the end of a jump stitch." class="sphx-glr-script-out" src="../_images/06.svg" width="360" /></a>
 <dl class="field-list simple">
-<dt class="field-odd">Lines 6-7<span class="colon">:</span></dt>
+<dt class="field-odd">Lines 6-7</dt>
 <dd class="field-odd"><p>The loop that iterates over the stars is moved outside the code block that defines stitch type.
 We move the loop to allow for different stitch types when embroidering a star and moving the needle between stars.</p>
 </dd>
-<dt class="field-even">Line 10<span class="colon">:</span></dt>
+<dt class="field-even">Line 10</dt>
 <dd class="field-even"><p>Instructs the needle to move without creating any stitches.
 If the embroidery machine supports it, the thread will be cut (if some stitches have already been embroidered so far).</p>
 </dd>
-<dt class="field-odd">Line 13<span class="colon">:</span></dt>
+<dt class="field-odd">Line 13</dt>
 <dd class="field-odd"><p>Starts the code block where we embroider each star with a running stitch.</p>
 </dd>
 </dl>
@@ -619,6 +636,7 @@ If the embroidery machine supports it, the thread will be cut (if some stitches 
 </div>
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/07.svg"><img alt="Result from the code above. A random number of stars randomly placed. Each star has a random number of rays, each with a random length. There is a seam between each star. The stars are now connected with a red line that symbolises that the needle should &quot;jump over&quot; this stretch. There is also a black cross in the start of each red line that symbolises that the thread should be cut and a red circle at the end that symbolises the end of a jump stitch." class="sphx-glr-script-out" src="../_images/07.svg" width="360" /></a>
 </details></div>
+<a class="reference internal image-reference" href="../_images/embroidered_random_stars_action.jpg"><img alt="An image of the embroidery machine while it embroiders a random starscape." src="../_images/embroidered_random_stars_action.jpg" style="width: 400px;" /></a>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>For this example, we use the randint function from the random library.
@@ -632,8 +650,9 @@ For example, <code class="docutils literal notranslate"><span class="pre">random
 <li><p>Create your own embroidery pattern that uses randomness. Below is a gallery of that you can take inspiration from.</p></li>
 </ul>
 </div>
+</section>
 <section id="example-patterns-with-randomness">
-<h2>Example patterns with randomness<a class="headerlink" href="#example-patterns-with-randomness" title="Permalink to this heading">#</a></h2>
+<h2>Example patterns with randomness<a class="headerlink" href="#example-patterns-with-randomness" title="Permalink to this headline">#</a></h2>
 <p><strong>Example 1</strong></p>
 <a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery01.svg"><img alt="A sort of spiral where each line has a random but increasing length." class="randomness-gallery-arm" src="../_images/gallery01.svg" width="180" /></a>
 <details class="randomness-gallery-code summary-kode">
@@ -680,7 +699,7 @@ For example, <code class="docutils literal notranslate"><span class="pre">random
 <span class="linenos"> 3</span>
 <span class="linenos"> 4</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
 <span class="linenos"> 5</span>
-<span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
 <span class="linenos"> 7</span>    <span class="c1"># Draw snowflake with six sides</span>
 <span class="linenos"> 8</span>    <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
 <span class="linenos"> 9</span>
@@ -694,13 +713,13 @@ For example, <code class="docutils literal notranslate"><span class="pre">random
 <span class="linenos">17</span>
 <span class="linenos">18</span>            <span class="c1"># Add one small branch in the beginning</span>
 <span class="linenos">19</span>            <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">120</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
-<span class="linenos">20</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
-<span class="linenos">21</span>            <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="linenos">20</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">21</span>            <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
 <span class="linenos">22</span>            <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">120</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
 <span class="linenos">23</span>
 <span class="linenos">24</span>            <span class="c1"># Add a random number of branches, each having a random angle and length</span>
 <span class="linenos">25</span>            <span class="k">for</span> <span class="n">gren</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">antall_grener</span><span class="p">):</span>
-<span class="linenos">26</span>                <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">26</span>                <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
 <span class="linenos">27</span>                <span class="n">branch_angle</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
 <span class="linenos">28</span>                <span class="n">branch_length</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
 <span class="linenos">29</span>
@@ -709,8 +728,8 @@ For example, <code class="docutils literal notranslate"><span class="pre">random
 <span class="linenos">32</span>                <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">branch_length</span><span class="p">)</span>
 <span class="linenos">33</span>                <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="n">branch_angle</span> <span class="o">*</span> <span class="n">direction</span><span class="p">)</span>
 <span class="linenos">34</span>
-<span class="linenos">35</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="linenos">36</span>            <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">40</span> <span class="o">+</span> <span class="mi">20</span><span class="o">*</span><span class="n">antall_grener</span><span class="p">)</span>
+<span class="linenos">35</span>            <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="linenos">36</span>            <span class="n">needle</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="mi">60</span> <span class="o">+</span> <span class="mi">30</span><span class="o">*</span><span class="n">antall_grener</span><span class="p">)</span>
 <span class="linenos">37</span>
 <span class="linenos">38</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
 <span class="linenos">39</span>
@@ -725,14 +744,14 @@ For example, <code class="docutils literal notranslate"><span class="pre">random
 <span class="linenos"> 3</span>
 <span class="linenos"> 4</span><span class="n">needle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
 <span class="linenos"> 5</span>
-<span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="linenos"> 6</span><span class="k">with</span> <span class="n">needle</span><span class="o">.</span><span class="n">running_stitch</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
 <span class="linenos"> 7</span>
 <span class="linenos"> 8</span>    <span class="c1"># Draw the star in the top of the christmas tree</span>
 <span class="linenos"> 9</span>    <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span> <span class="o">/</span> <span class="mi">5</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
 <span class="linenos">10</span>    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
 <span class="linenos">12</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
-<span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="linenos">13</span>        <span class="n">needle</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
 <span class="linenos">14</span>        <span class="n">needle</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
 <span class="linenos">15</span>        <span class="n">needle</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">360</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
 <span class="linenos">16</span>    
@@ -743,7 +762,7 @@ For example, <code class="docutils literal notranslate"><span class="pre">random
 <span class="linenos">21</span>    <span class="n">retning</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="linenos">22</span>    <span class="k">for</span> <span class="n">gren_nummer</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
 <span class="linenos">23</span>        <span class="n">retning</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># Turn around for each branch</span>
-<span class="linenos">24</span>        <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">gren_nummer</span>
+<span class="linenos">24</span>        <span class="n">y</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="n">gren_nummer</span>
 <span class="linenos">25</span>        <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">gren_nummer</span>
 <span class="linenos">26</span>        
 <span class="linenos">27</span>        <span class="c1"># Add some randomness with regards to where the branch ends up</span>
@@ -754,7 +773,7 @@ For example, <code class="docutils literal notranslate"><span class="pre">random
 <span class="linenos">32</span>        <span class="n">needle</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="n">retning</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">jitter_x</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">jitter_y</span><span class="p">)</span>
 <span class="linenos">33</span>
 <span class="linenos">34</span>        <span class="c1"># Draw ornament</span>
-<span class="linenos">35</span>        <span class="n">radius</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="linenos">35</span>        <span class="n">radius</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 <span class="linenos">36</span>        <span class="n">needle</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="o">-</span><span class="n">radius</span><span class="p">)</span>
 <span class="linenos">37</span>
 <span class="linenos">38</span><span class="n">needle</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>

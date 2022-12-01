@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Overview of stitch types in TurtleThread &#8212; TurtleThread  documentation</title>
     
@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_en.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
@@ -34,9 +35,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script src="../_static/javascript/print.js"></script>
     <link rel="shortcut icon" href="../_static/turtlethread_logo_notext.svg"/>
@@ -256,7 +255,9 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
-        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en"  href="#"><span class="current en flag"></span></a><a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO" href="../../nb_NO/intro/stitch_types.html"><span class="nb_NO flag"></span></a>
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO" href="../../nb_NO/intro/stitch_types.html"><span class="nb_NO flag"></span></a>
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en"  href="#"><span class="current en flag"></span></a>
+        
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -418,11 +419,11 @@ title="Print to PDF"
               <div>
                 
   <section id="overview-of-stitch-types-in-turtlethread">
-<span id="stitch-types"></span><h1>Overview of stitch types in TurtleThread<a class="headerlink" href="#overview-of-stitch-types-in-turtlethread" title="Permalink to this heading">#</a></h1>
+<span id="stitch-types"></span><h1>Overview of stitch types in TurtleThread<a class="headerlink" href="#overview-of-stitch-types-in-turtlethread" title="Permalink to this headline">#</a></h1>
 <p>TurtleThread currently supports two stitch types: running stitch and jump stitch (zig-zag stitch is under development).
 In this tutorial, we will look at what a stitch type does and what the differences between these two types are.</p>
 <section id="no-stitches">
-<h2>No stitches<a class="headerlink" href="#no-stitches" title="Permalink to this heading">#</a></h2>
+<h2>No stitches<a class="headerlink" href="#no-stitches" title="Permalink to this headline">#</a></h2>
 <p>Let’s start by creating a turtle to control our needle and ask the turtle to walk 60 steps forward.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
 <span class="linenos">2</span>
@@ -449,13 +450,13 @@ We can see these clearly if we save the embroidery pattern as a text file and lo
 <span class="linenos">5</span><span class="n">needle</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;pattern_no_stitch.txt&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">16161860</span> <span class="n">command</span><span class="p">:</span><span class="n">END</span> <span class="n">flags</span><span class="p">:</span><span class="mi">4</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">905754</span> <span class="n">command</span><span class="p">:</span><span class="n">END</span> <span class="n">flags</span><span class="p">:</span><span class="mi">4</span>
 </pre></div>
 </div>
 <p>The embroidery pattern doesn’t contain any stitches at all!</p>
 </section>
 <section id="running-stitch">
-<h2>Running stitch<a class="headerlink" href="#running-stitch" title="Permalink to this heading">#</a></h2>
+<h2>Running stitch<a class="headerlink" href="#running-stitch" title="Permalink to this headline">#</a></h2>
 <p>To get the turtle to sew with stitches while it moves,
 we can use a context manager that decides the stitch type.
 So if we, for example, want a running stitch, we can write.</p>
@@ -470,11 +471,11 @@ So if we, for example, want a running stitch, we can write.</p>
 </pre></div>
 </div>
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/045.svg"><img alt=":alt: Result from the above code. A horizontal blue line with four short vertical lines with equal distance between them." class="sphx-glr-script-out" src="../_images/045.svg" width="100" /></a>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">1331472</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="mf">20.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">1331472</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="mf">40.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">1331472</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">1331472</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">1331472</span> <span class="n">command</span><span class="p">:</span><span class="n">END</span> <span class="n">flags</span><span class="p">:</span><span class="mi">4</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">5640357</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">20.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">5640357</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">40.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">5640357</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">5640357</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">5640357</span> <span class="n">command</span><span class="p">:</span><span class="n">END</span> <span class="n">flags</span><span class="p">:</span><span class="mi">4</span>
 </pre></div>
 </div>
 <p>The visualization now shows some short lines across, indicating where the stitches are.
@@ -492,15 +493,15 @@ If we want the stitches to be 30 steps long instead, we can write:</p>
 </pre></div>
 </div>
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/054.svg"><img alt="Result from the above code. A horizontal blue line with three short vertical lines, one at each end and one in the middle." class="sphx-glr-script-out" src="../_images/054.svg" width="100" /></a>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">38406</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="mf">30.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">38406</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">38406</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">38406</span> <span class="n">command</span><span class="p">:</span><span class="n">END</span> <span class="n">flags</span><span class="p">:</span><span class="mi">4</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">12497733</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">30.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">12497733</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">12497733</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">12497733</span> <span class="n">command</span><span class="p">:</span><span class="n">END</span> <span class="n">flags</span><span class="p">:</span><span class="mi">4</span>
 </pre></div>
 </div>
 </section>
 <section id="indentation-is-important">
-<h2>Indentation is important<a class="headerlink" href="#indentation-is-important" title="Permalink to this heading">#</a></h2>
+<h2>Indentation is important<a class="headerlink" href="#indentation-is-important" title="Permalink to this headline">#</a></h2>
 <p>Notice that line 5 is indented one step.
 Python uses indenting to group lines of code into one block.
 Suppose we add new lines that are indented equally.
@@ -519,11 +520,11 @@ and will be executed with a running stitch.</p>
 </pre></div>
 </div>
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/064.svg"><img alt="Result from the above code. A horizontal blue line is followed by a vertical line down, which is half as long as the horizontal line. Every line has short lines across to indicate the position of the stitches" class="sphx-glr-script-out" src="../_images/064.svg" width="100" /></a>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">15607627</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="mf">30.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">15607627</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">15607627</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="mf">60.0</span><span class="p">,</span><span class="mf">30.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">15607627</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="mf">60.0</span><span class="p">,</span><span class="mf">30.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">15607627</span> <span class="n">command</span><span class="p">:</span><span class="n">END</span> <span class="n">flags</span><span class="p">:</span><span class="mi">4</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">20722</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">30.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">20722</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">20722</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">60.0</span><span class="p">,</span><span class="mf">30.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">20722</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">60.0</span><span class="p">,</span><span class="mf">30.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">20722</span> <span class="n">command</span><span class="p">:</span><span class="n">END</span> <span class="n">flags</span><span class="p">:</span><span class="mi">4</span>
 </pre></div>
 </div>
 <p>We see lines 5-7 belong together in a block under the running stitch context.
@@ -556,7 +557,7 @@ Here is an example where we have placed a for loop inside the running stitch con
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/082.svg"><img alt="Result from the above code. A horizontal blue line with three short vertical lines, one at each end and one in the middle." class="sphx-glr-script-out" src="../_images/082.svg" width="100" /></a>
 </section>
 <section id="jump-stitch">
-<h2>Jump stitch<a class="headerlink" href="#jump-stitch" title="Permalink to this heading">#</a></h2>
+<h2>Jump stitch<a class="headerlink" href="#jump-stitch" title="Permalink to this headline">#</a></h2>
 <p>If we want to move the needle without creating stitches, we can use the jump stitch.
 For example, the code below shows how we can use a jump stitch to draw two lines with a gap in between.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">turtlethread</span> <span class="kn">import</span> <span class="n">Turtle</span>
@@ -580,15 +581,15 @@ For example, the code below shows how we can use a jump stitch to draw two lines
 </pre></div>
 </div>
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/092.svg"><img alt="Result from the above code. A horizontal blue line with three short vertical lines, one at each end and one in the middle, followed by a black cross to indicate that the thread should be cut, a red line ending in a red circle, indicating that the needle should be moved without stitches and finally a new horizontal blue line with three short vertical lines." class="sphx-glr-script-out" src="../_images/092.svg" width="100" /></a>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">16398755</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="mf">30.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">16398755</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">16398755</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="hll"><span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">16398755</span> <span class="n">command</span><span class="p">:</span><span class="n">TRIM</span> <span class="n">flags</span><span class="p">:</span><span class="mi">2</span>
-</span><span class="hll"><span class="mf">105.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">16398755</span> <span class="n">command</span><span class="p">:</span><span class="n">JUMP</span> <span class="n">flags</span><span class="p">:</span><span class="mi">1</span>
-</span><span class="mf">105.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">16398755</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="mf">135.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">16398755</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="mf">165.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">16398755</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
-<span class="mf">165.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">16398755</span> <span class="n">command</span><span class="p">:</span><span class="n">END</span> <span class="n">flags</span><span class="p">:</span><span class="mi">4</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">13779708</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">30.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">13779708</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">13779708</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="hll"><span class="mf">60.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">13779708</span> <span class="n">command</span><span class="p">:</span><span class="n">TRIM</span> <span class="n">flags</span><span class="p">:</span><span class="mi">2</span>
+</span><span class="hll"><span class="mf">105.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">13779708</span> <span class="n">command</span><span class="p">:</span><span class="n">JUMP</span> <span class="n">flags</span><span class="p">:</span><span class="mi">1</span>
+</span><span class="mf">105.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">13779708</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">135.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">13779708</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">165.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">13779708</span> <span class="n">command</span><span class="p">:</span><span class="n">STITCH</span> <span class="n">flags</span><span class="p">:</span><span class="mi">0</span>
+<span class="mf">165.0</span><span class="p">,</span><span class="mf">0.0</span> <span class="n">color</span><span class="p">:</span><span class="mi">13779708</span> <span class="n">command</span><span class="p">:</span><span class="n">END</span> <span class="n">flags</span><span class="p">:</span><span class="mi">4</span>
 </pre></div>
 </div>
 <p>The visualization above shows that the first blue line ends with a black cross.
@@ -600,7 +601,7 @@ indicating that the thread should be cut if supported.
 On line 5, we see <code class="docutils literal notranslate"><span class="pre">JUMP</span></code>, indicating that the needle should move here without creating stitches.</p>
 </section>
 <section id="what-is-a-context-manager">
-<h2>What is a context manager?<a class="headerlink" href="#what-is-a-context-manager" title="Permalink to this heading">#</a></h2>
+<h2>What is a context manager?<a class="headerlink" href="#what-is-a-context-manager" title="Permalink to this headline">#</a></h2>
 <p>As we mentioned at the beginning of this tutorial,
 <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">needle.running_stitch(30)</span></code> and <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">needle.jump_stitch()</span></code> are context managers defining which stitch types the turtle should sew with while it moves.
 Context managers in Python are used when we have something that needs a start and end instruction.

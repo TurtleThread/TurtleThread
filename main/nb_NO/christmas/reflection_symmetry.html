@@ -4,7 +4,7 @@
 <html lang="nb">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Julekuler, snøflak og speilsymmetri &#8212; TurtleThread  documentation</title>
     
@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_nb_NO.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
@@ -34,9 +35,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script src="../_static/javascript/print.js"></script>
     <link rel="shortcut icon" href="../_static/turtlethread_logo_notext.svg"/>
@@ -185,12 +184,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../auto_examples/gallery_sierpinsky_arrowhead.html">
-     Tegn en Sierpinsky pilspisskurve
+     Sierpinsky pilspisskurve
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../auto_examples/gallery_hilbert.html">
-     Tegn en hilbertkurve
+     Hilbertkurve
     </a>
    </li>
    <li class="toctree-l2">
@@ -256,7 +255,9 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
-        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO"  href="#"><span class="current nb_NO flag"></span></a><a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en" href="../../en/christmas/reflection_symmetry.html"><span class="en flag"></span></a>
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en" href="../../en/christmas/reflection_symmetry.html"><span class="en flag"></span></a>
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO"  href="#"><span class="current nb_NO flag"></span></a>
+        
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -339,8 +340,18 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#eksempelsnoflak">
-   Eksempelsnøflak
+  <a class="reference internal nav-link" href="#bruk-speilsymmetri-for-a-redusere-antall-kodelinjer">
+   Bruk speilsymmetri for å redusere antall kodelinjer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ferdig-snofnugg">
+   Ferdig snøfnugg
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eksempelsnofnugg">
+   Eksempelsnøfnugg
   </a>
  </li>
 </ul>
@@ -363,8 +374,18 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#eksempelsnoflak">
-   Eksempelsnøflak
+  <a class="reference internal nav-link" href="#bruk-speilsymmetri-for-a-redusere-antall-kodelinjer">
+   Bruk speilsymmetri for å redusere antall kodelinjer
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ferdig-snofnugg">
+   Ferdig snøfnugg
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eksempelsnofnugg">
+   Eksempelsnøfnugg
   </a>
  </li>
 </ul>
@@ -378,7 +399,7 @@ title="Print to PDF"
               <div>
                 
   <section id="julekuler-snoflak-og-speilsymmetri">
-<span id="christmas-reflection-symmetry"></span><h1>Julekuler, snøflak og speilsymmetri<a class="headerlink" href="#julekuler-snoflak-og-speilsymmetri" title="Permalink to this heading">#</a></h1>
+<span id="christmas-reflection-symmetry"></span><h1>Julekuler, snøflak og speilsymmetri<a class="headerlink" href="#julekuler-snoflak-og-speilsymmetri" title="Permalink til denne oversikten">#</a></h1>
 <p>Den observante leser av <a class="reference internal" href="snowflake.html#christmas-rotation-symmetry"><span class="std std-ref">Julekuler, snøflak og rotasjonssymmetri</span></a> (som vi anbefaler at du leser først) har kanskje oppdaget at snøflak ofte har flere typer symmetri enn bare rotasjonssymmetri.
 Snøflak har nemlig det som heter for speilsymmetri: Hvis vi speiler snøfnugget langs en «gren» vil det ikke endres.</p>
 <figure class="align-default" id="id1" style="width: 99%">
@@ -390,6 +411,8 @@ Snøflak har nemlig det som heter for speilsymmetri: Hvis vi speiler snøfnugget
 </div>
 </figcaption>
 </figure>
+<section id="bruk-speilsymmetri-for-a-redusere-antall-kodelinjer">
+<h2>Bruk speilsymmetri for å redusere antall kodelinjer<a class="headerlink" href="#bruk-speilsymmetri-for-a-redusere-antall-kodelinjer" title="Permalink til denne oversikten">#</a></h2>
 <p>Når vi tenger figurer med speilsymmetri kan vi bruke en løkke til å kutte ned antall linjer kode (sånn som vi allerede har gjort for rotasjonssymmetri).
 Under er koden vi lagde for å tegne et snøfnugg i <a class="reference internal" href="snowflake.html#christmas-rotation-symmetry"><span class="std std-ref">Julekuler, snøflak og rotasjonssymmetri</span></a>. Ser vi nøye etter så kan vi se at linje 11-14 og 21-24 er veldig like, men vinklene peker i motsatt retning</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">turtlethread</span>
@@ -493,12 +516,18 @@ Vi kan altså bytte ut <code class="docutils literal notranslate"><span class="p
 </div>
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/031.svg"><img alt="Resultat fra koden over. Det er likt bildet som ble generert av forrige kodesnutt." class="sphx-glr-script-out" src="../_images/031.svg" width="360" /></a>
 <p>Her ser vi at koden ble mye kortere!</p>
+</section>
+<section id="ferdig-snofnugg">
+<h2>Ferdig snøfnugg<a class="headerlink" href="#ferdig-snofnugg" title="Permalink til denne oversikten">#</a></h2>
+<a class="reference internal image-reference" href="../_images/embroidered_reflection_snowflake.jpg"><img alt="Et bilde av det ferdigbroderte snøfnugget." src="../_images/embroidered_reflection_snowflake.jpg" style="width: 400px;" /></a>
+</section>
+<section id="eksempelsnofnugg">
+<h2>Eksempelsnøfnugg<a class="headerlink" href="#eksempelsnofnugg" title="Permalink til denne oversikten">#</a></h2>
 <div class="admonition-prov-selv admonition">
 <p class="admonition-title">Prøv selv:</p>
-<p>Bruk kode til å tegne dit eget snøfnugg med både rotasjonssymmetri og speilsymmetri. Under er et galleri med noen eksempler til inspirasjon:</p>
+<p>Bruk kode til å tegne dit eget snøfnugg med både rotasjonssymmetri og speilsymmetri.
+Under er et galleri med noen eksempler til inspirasjon.</p>
 </div>
-<section id="eksempelsnoflak">
-<h2>Eksempelsnøflak<a class="headerlink" href="#eksempelsnoflak" title="Permalink to this heading">#</a></h2>
 <p><strong>Snøflak 1</strong></p>
 <a class="snowflake-gallery-arm reference internal image-reference" href="../_images/gallery011.svg"><img alt="En snøfnuggarm med fire grener, den første peker bakover og resten peker fremover." class="snowflake-gallery-arm" src="../_images/gallery011.svg" width="180" /></a>
 <details class="snowflake-gallery-snowflake summary-snoflak">

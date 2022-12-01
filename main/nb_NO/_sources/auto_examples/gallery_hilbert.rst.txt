@@ -18,10 +18,14 @@
 .. _sphx_glr_auto_examples_gallery_hilbert.py:
 
 
-Tegn en hilbertkurve
+Hilbertkurve
 ====================
 
-.. GENERATED FROM PYTHON SOURCE LINES 6-36
+.. figure:: /../../_static/figures/auto_examples/hilbert/hilbert.jpg
+    :width: 100%
+    :alt: Et bilde av at en broderimaskin som broderer en hilbertkurve.
+
+.. GENERATED FROM PYTHON SOURCE LINES 9-41
 
 
 
@@ -62,15 +66,17 @@ Tegn en hilbertkurve
 
     nål = Turtle()
 
-    with nål.running_stitch(10):
-        tegn_hilbertkurve(nål, 10, 5)
+    with nål.running_stitch(20):
+        tegn_hilbertkurve(nål, 20, 5)
 
     nål.save("hilbert.jef")
     nål.save("hilbert.png")
 
+
+
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.048 seconds)
+   **Total running time of the script:** ( 0 minutes  0.089 seconds)
 
 
 .. _sphx_glr_download_auto_examples_gallery_hilbert.py:

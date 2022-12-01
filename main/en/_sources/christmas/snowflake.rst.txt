@@ -5,6 +5,10 @@ Christmas decoration, snowflakes and rotational symmetry
 
 This guide will show you how to decorate for Christmas with Python-embroidered ornaments. The image below shows an example of the decorations we will create through turtle programming.
 
+.. image:: /../../_static/figures/manual_examples/snowflake/embroidered_rotational_snowflake.jpg
+    :width: 400
+    :alt: An embroidered snowflake
+
 .. note:::
 
     This guide assumes that you have already installed turtlethread. If this isn't the case, :ref:`click here for instructions<installation>`. 
@@ -265,16 +269,28 @@ Now we have code to draw a complete snowflake!
     Use code to draw your own snowflake with rotational symmetry. Below is a gallery with some examples you can use as a starting point or just for inspiration!
 
 Create an ornament with your snowflake 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To create an ornament with the snowflake embroidery you can follow these instructions:
+.. image:: /../../_static/figures/manual_examples/snowflake/actionshot.jpg
+    :width: 400
+    :alt: An action shot of the embroidery machine making a snowflake.
 
-1.	Embroider two snowflakes (either on the same fabric or two different if you want different sides) 
+To create an ornament with the snowflake embroidery you first need to save the pattern as an embroidery file.
+You can do this by adding
+
+.. code:: python
+    
+    needle.save("snowflake.jef")
+
+at the end of your script. Note that we here used the ``.jef`` extension, which we have found to work well with the Bernina 500 machine, but you might want to use another filetype for your machine (e.g. ``snowflake.pes``).
+Once you've created the embroidery file, you can follow these instructions:
+
+1.	Embroider one or two snowflakes, depending on whether you want a snowflake on both sides of the ornament.
 2.	Place the two fabric pieces on top of each other so the embroidery patterns are on top of each other and pointing outwards. 
 3.	Sew the pieces together (either by hand or by drawing a circle with turtlethread). 
 
 Example snowflakes
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 **Snowflake 1**
 

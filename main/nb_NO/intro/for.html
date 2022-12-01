@@ -4,7 +4,7 @@
 <html lang="nb">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>For løkker &#8212; TurtleThread  documentation</title>
     
@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_nb_NO.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
@@ -34,9 +35,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script src="../_static/javascript/print.js"></script>
     <link rel="shortcut icon" href="../_static/turtlethread_logo_notext.svg"/>
@@ -185,12 +184,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../auto_examples/gallery_sierpinsky_arrowhead.html">
-     Tegn en Sierpinsky pilspisskurve
+     Sierpinsky pilspisskurve
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../auto_examples/gallery_hilbert.html">
-     Tegn en hilbertkurve
+     Hilbertkurve
     </a>
    </li>
    <li class="toctree-l2">
@@ -256,7 +255,9 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
-        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO"  href="#"><span class="current nb_NO flag"></span></a><a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en" href="../../en/intro/for.html"><span class="en flag"></span></a>
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en" href="../../en/intro/for.html"><span class="en flag"></span></a>
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO"  href="#"><span class="current nb_NO flag"></span></a>
+        
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -388,7 +389,7 @@ title="Print to PDF"
               <div>
                 
   <section id="for-lokker">
-<span id="for"></span><h1>For løkker<a class="headerlink" href="#for-lokker" title="Permalink to this heading">#</a></h1>
+<span id="for"></span><h1>For løkker<a class="headerlink" href="#for-lokker" title="Permalink til denne oversikten">#</a></h1>
 <p>Gjentakelser og repetisjon dukker ofte opp i både natur, kunst og arkitektur. Og det som er så praktisk er at datamaskinen er spesielt godt egnet til å repetere.
 Den kan gjøre det samme tusenvis av ganger, ja hundretusenvis av ganger, uten å bli lei.</p>
 <figure class="align-default" id="id1" style="width: 32.5%">
@@ -469,10 +470,10 @@ I denne guiden skal vi se på <code class="docutils literal notranslate"><span c
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/023.svg"><img alt="Resultat fra koden over. En &quot;stjerne&quot; bestående av seks streker som kommer ut fra samme punkt." class="sphx-glr-script-out" src="../_images/023.svg" width="100" /></a>
 <p>Vi ser at den nye koden er mye kortere, og kanskje til og med litt enklere å forstå. Det viktige å forstå på er det som skjer på linje 5-9.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Linje 5<span class="colon">:</span></dt>
+<dt class="field-odd">Linje 5</dt>
 <dd class="field-odd"><p>Sier vi at vi skal repetere den etterfølgende <em>kodeblokka</em> 6 ganger, en gang for hver stråle.</p>
 </dd>
-<dt class="field-even">Linje 6-9<span class="colon">:</span></dt>
+<dt class="field-even">Linje 6-9</dt>
 <dd class="field-even"><p>Disse linjene ligger ett innrykk inn sammenliknet med <code class="docutils literal notranslate"><span class="pre">for</span></code>-løkka som startet på linje 5, og representerer derfor en kodeblokk. Disse tre linjene blir dermed repetert 6 ganger.</p>
 </dd>
 </dl>
@@ -499,7 +500,7 @@ I denne guiden skal vi se på <code class="docutils literal notranslate"><span c
 <p>Pass på at koden stemmer med løsningsforslaget over før du går videre.</p>
 </div>
 <section id="mer-om-range">
-<h2>Mer om <code class="docutils literal notranslate"><span class="pre">range</span></code><a class="headerlink" href="#mer-om-range" title="Permalink to this heading">#</a></h2>
+<h2>Mer om <code class="docutils literal notranslate"><span class="pre">range</span></code><a class="headerlink" href="#mer-om-range" title="Permalink til denne oversikten">#</a></h2>
 <p>Foreløpig har vi hoppet litt over hva selve <code class="docutils literal notranslate"><span class="pre">range</span></code>-funksjonen gjør.
 Hvis vi leser koden over står det jo <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">stråle</span> <span class="pre">in</span> <span class="pre">range(8)</span></code>. Altså for hver stråle i <code class="docutils literal notranslate"><span class="pre">range(8)</span></code>.
 Å skrive <code class="docutils literal notranslate"><span class="pre">range(8)</span></code> blir litt som å be Python generere listen <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">7]</span></code>.

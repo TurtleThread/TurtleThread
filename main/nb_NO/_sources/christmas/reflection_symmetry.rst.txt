@@ -13,6 +13,9 @@ Snøflak har nemlig det som heter for speilsymmetri: Hvis vi speiler snøfnugget
 
     Naturlandskap reflektert i vann (`bilde av Eberhard Grossgasteiger <https://www.pexels.com/photo/symmetrical-view-of-rocky-landscape-reflecting-in-a-pond-12366087/>`_).
 
+Bruk speilsymmetri for å redusere antall kodelinjer
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Når vi tenger figurer med speilsymmetri kan vi bruke en løkke til å kutte ned antall linjer kode (sånn som vi allerede har gjort for rotasjonssymmetri).
 Under er koden vi lagde for å tegne et snøfnugg i :ref:`christmas-rotation-symmetry`. Ser vi nøye etter så kan vi se at linje 11-14 og 21-24 er veldig like, men vinklene peker i motsatt retning
 
@@ -51,14 +54,20 @@ Siden vi kan styre retning ved hjelp av fortegn kan vi også endre retning i en 
 
 Her ser vi at koden ble mye kortere!
 
+Ferdig snøfnugg
+^^^^^^^^^^^^^^^
+
+.. image:: /../../_static/figures/manual_examples/reflection_symmetry/embroidered_reflection_snowflake.jpg
+    :width: 400
+    :alt: Et bilde av det ferdigbroderte snøfnugget.
+
+Eksempelsnøfnugg
+^^^^^^^^^^^^^^^^
 
 .. admonition:: Prøv selv:
     
-    Bruk kode til å tegne dit eget snøfnugg med både rotasjonssymmetri og speilsymmetri. Under er et galleri med noen eksempler til inspirasjon:
-
-
-Eksempelsnøflak
-~~~~~~~~~~~~~~~
+    Bruk kode til å tegne dit eget snøfnugg med både rotasjonssymmetri og speilsymmetri.
+    Under er et galleri med noen eksempler til inspirasjon.
 
 **Snøflak 1**
 

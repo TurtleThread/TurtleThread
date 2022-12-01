@@ -4,7 +4,7 @@
 <html lang="nb">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Julekuler, snøflak og rekursjon &#8212; TurtleThread  documentation</title>
     
@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_nb_NO.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
@@ -34,9 +35,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script src="../_static/javascript/print.js"></script>
     <link rel="shortcut icon" href="../_static/turtlethread_logo_notext.svg"/>
@@ -185,12 +184,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../auto_examples/gallery_sierpinsky_arrowhead.html">
-     Tegn en Sierpinsky pilspisskurve
+     Sierpinsky pilspisskurve
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../auto_examples/gallery_hilbert.html">
-     Tegn en hilbertkurve
+     Hilbertkurve
     </a>
    </li>
    <li class="toctree-l2">
@@ -256,7 +255,9 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
-        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO"  href="#"><span class="current nb_NO flag"></span></a><a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en" href="../../en/christmas/fractal.html"><span class="en flag"></span></a>
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en" href="../../en/christmas/fractal.html"><span class="en flag"></span></a>
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO"  href="#"><span class="current nb_NO flag"></span></a>
+        
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -378,11 +379,13 @@ title="Print to PDF"
               <div>
                 
   <section id="julekuler-snoflak-og-rekursjon">
-<span id="christmas-fractal"></span><h1>Julekuler, snøflak og rekursjon<a class="headerlink" href="#julekuler-snoflak-og-rekursjon" title="Permalink to this heading">#</a></h1>
+<span id="christmas-fractal"></span><h1>Julekuler, snøflak og rekursjon<a class="headerlink" href="#julekuler-snoflak-og-rekursjon" title="Permalink til denne oversikten">#</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Obs</p>
 <p>Denne guiden er litt avansert og krever at du har litt forkunnskaper om funksjoner i Python fra før.</p>
 </div>
+<p>Bildet under viser et eksempel av mønstrene vi kan lage ved å bruke fraktaler og skilpaddeprogrammering.</p>
+<a class="reference internal image-reference" href="../_images/embroidered_fractal_snowflake.jpg"><img alt="Et bilde av det ferdigbroderte snøfnugget." src="../_images/embroidered_fractal_snowflake.jpg" style="width: 400px;" /></a>
 <p>Ser vi nærmere på «armene» til et snøfnugg, kan vi se at det ser ut til å bestå av mindre «armer».
 Når et mønster ser ut til å bestå av mindre kopier av seg selv kaller vi det et «fraktalt» mønster.</p>
 <figure class="align-default" id="id1" style="width: 500px">
@@ -531,17 +534,17 @@ Da kan vi passe på at vi stopper etter en viss mengde nivåer:</p>
 </div>
 <a class="sphx-glr-script-out reference internal image-reference" href="../_images/03_2.svg"><img alt="En arm av et snøfnugg. Det likner på snøfnugg-arm-figuren over, men hver rette strek fra figuren over er byttet ut med en liten arm." class="sphx-glr-script-out" src="../_images/03_2.svg" width="180" /></a>
 <dl class="field-list simple">
-<dt class="field-odd">Linje 3<span class="colon">:</span></dt>
+<dt class="field-odd">Linje 3</dt>
 <dd class="field-odd"><p>Her har vi lagt inn en inputvariabel, rekursjonsnivå som holder orden på hvilket «nivå» av rekursjon vi er på</p>
 </dd>
-<dt class="field-even">Linje 4-5<span class="colon">:</span></dt>
+<dt class="field-even">Linje 4-5</dt>
 <dd class="field-even"><p>Her sjekker vi om vi har nådd nivå 0. I så fall skal vi tegne kun en enkel strek og ikke noen grener. Dette passer på at koden ikke kjører for alltid</p>
 </dd>
-<dt class="field-odd">Linje 8, 12, 17 og 22<span class="colon">:</span></dt>
+<dt class="field-odd">Linje 8, 12, 17 og 22</dt>
 <dd class="field-odd"><p>Når vi kaller på <code class="docutils literal notranslate"><span class="pre">tegn_arm</span></code> funksjonen inne i <code class="docutils literal notranslate"><span class="pre">tegn_arm</span></code> funksjonen sender vi inn <code class="docutils literal notranslate"><span class="pre">rekursjonsnivå-1</span></code> for å indikere at vi har brukt opp et nivå av rekursjon.
 Dette gjør at vi kan holde orden på hvor mange nivåer vi har.</p>
 </dd>
-<dt class="field-even">Linje 26<span class="colon">:</span></dt>
+<dt class="field-even">Linje 26</dt>
 <dd class="field-even"><p>Når vi bruker <code class="docutils literal notranslate"><span class="pre">tegn_arm</span></code> funksjonen utenfor funksjonen for å tegne en arm spesifiserer vi hvor mange rekursjonsnivåer vi ønsker.</p>
 </dd>
 </dl>
@@ -805,12 +808,16 @@ Dette gjør at vi kan holde orden på hvor mange nivåer vi har.</p>
 <span class="linenos">44</span><span class="n">nål</span><span class="o">.</span><span class="n">visualise</span><span class="p">()</span>
 </pre></div>
 </div>
-</details><ul class="simple">
+</details></div>
+<a class="reference internal image-reference" href="../_images/fractal_actionshot.jpg"><img alt="Et bilde av broderimaskinen mens den lager et fraktalt snøfnugg." src="../_images/fractal_actionshot.jpg" style="width: 400px;" /></a>
+<section id="eksempelfraktaler">
+<h2>Eksempelfraktaler<a class="headerlink" href="#eksempelfraktaler" title="Permalink til denne oversikten">#</a></h2>
+<div class="admonition-prov-selv admonition">
+<p class="admonition-title">Prøv selv:</p>
+<ul class="simple">
 <li><p>Lag din egen fraktal! Under er et galleri med eksempler for inspirasjon</p></li>
 </ul>
 </div>
-<section id="eksempelfraktaler">
-<h2>Eksempelfraktaler<a class="headerlink" href="#eksempelfraktaler" title="Permalink to this heading">#</a></h2>
 <p><strong>Eksempelfraktal 1</strong></p>
 <a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery01_1.svg"><img alt="Et annet type fraktalt snøflak kalt &quot;Koch-snøflaket&quot;." class="randomness-gallery-arm" src="../_images/gallery01_1.svg" width="180" /></a>
 <a class="randomness-gallery-arm reference internal image-reference" href="../_images/gallery01_2.svg"><img alt="Et annet type fraktalt snøflak kalt &quot;Koch-snøflaket&quot;." class="randomness-gallery-arm" src="../_images/gallery01_2.svg" width="180" /></a>
