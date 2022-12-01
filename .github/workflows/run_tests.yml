@@ -15,7 +15,7 @@ jobs:
           sudo apt-get install xvfb
       - name: Install turtlethread
         run: |
-          pip3 install -e .[dev]
+          pip3 install --user .[dev]
       - name: Run tests
         run: |
           # Start virtual display driver
