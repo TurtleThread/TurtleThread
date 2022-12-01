@@ -48,4 +48,3 @@ There are a few features we currently do not support but aim to in the future.
  * Other stitches like zig-zag or satin stitch
  * Text
  * Filled dots
- * Visualisation with Turtle graphics
