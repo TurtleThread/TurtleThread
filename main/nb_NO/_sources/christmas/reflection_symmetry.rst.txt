@@ -57,7 +57,7 @@ Her ser vi at koden ble mye kortere!
 Ferdig snøfnugg
 ^^^^^^^^^^^^^^^
 
-.. image:: /../../_static/figures/manual_examples/reflection_symmetry/embroidered_reflection_snowflake.jpg
+.. image:: /../../_static/figures/manual_examples/reflection_symmetry/embroidered_reflection_snowflake_tree.jpg
     :width: 400
     :alt: Et bilde av det ferdigbroderte snøfnugget.
 

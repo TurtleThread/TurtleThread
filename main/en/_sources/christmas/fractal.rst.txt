@@ -9,7 +9,7 @@ Decorating for Christmas with recursive snowflakes
 
 The image below shows an example of the decorations can create by using fractals and turtle programming.
 
-.. image:: /../../_static/figures/manual_examples/fractal/embroidered_fractal_snowflake.jpg
+.. image:: /../../_static/figures/manual_examples/fractal/embroidered_fractal_snowflake_tree.jpg
     :width: 400
     :alt: Et bilde av det ferdigbroderte snøfnugget.
 

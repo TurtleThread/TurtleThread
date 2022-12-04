@@ -5,7 +5,7 @@ Christmas decoration, snowflakes and rotational symmetry
 
 This guide will show you how to decorate for Christmas with Python-embroidered ornaments. The image below shows an example of the decorations we will create through turtle programming.
 
-.. image:: /../../_static/figures/manual_examples/snowflake/embroidered_rotational_snowflake.jpg
+.. image:: /../../_static/figures/manual_examples/snowflake/embroidered_on_tree.jpg
     :width: 400
     :alt: An embroidered snowflake
 

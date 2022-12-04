@@ -1,3 +1,7 @@
+#main-content {
+    overflow: hidden;
+}
+
 span.linenos {
     padding-right: 15px;
 }
