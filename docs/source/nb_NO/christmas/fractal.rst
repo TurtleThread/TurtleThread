@@ -9,7 +9,7 @@ Julekuler, snøflak og rekursjon
 
 Bildet under viser et eksempel av mønstrene vi kan lage ved å bruke fraktaler og skilpaddeprogrammering.
 
-.. image:: /../../_static/figures/manual_examples/fractal/embroidered_fractal_snowflake.jpg
+.. image:: /../../_static/figures/manual_examples/fractal/embroidered_fractal_snowflake_tree.jpg
     :width: 400
     :alt: Et bilde av det ferdigbroderte snøfnugget.
 

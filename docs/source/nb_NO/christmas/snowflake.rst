@@ -5,7 +5,7 @@ Julekuler, snøflak og rotasjonssymmetri
 
 I denne guiden skal vi lære hvordan dekorere julepynt med snøfnuggbroderi i Python. Bildet under viser et eksempel på julepynten vi skal lage med programmering.
 
-.. image:: /../../_static/figures/manual_examples/snowflake/embroidered_rotational_snowflake.jpg
+.. image:: /../../_static/figures/manual_examples/snowflake/embroidered_on_tree.jpg
     :width: 400
     :alt: Et brodert snøfnugg
 

@@ -32,7 +32,7 @@ with nål.running_stitch(30):
                 nål.backward(grenlengde)
                 nål.left(grenvinkel * retning)
 
-            nål.forward(10)
+            nål.forward(30)
             nål.backward(60 + 30*antall_grener)
 
         nål.right(60)

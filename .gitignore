@@ -12,6 +12,7 @@ manual_code_output
 *.afphoto
 *.DS_Store
 raw_assets
+!docs/_static/figures/auto_examples
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
