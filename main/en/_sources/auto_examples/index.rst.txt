@@ -16,7 +16,7 @@ Example gallery
 .. only:: html
 
   .. image:: /auto_examples/images/thumb/sphx_glr_gallery_maurer_rose_thumb.svg
-    :alt: Maurer rose
+    :alt:
 
   :ref:`sphx_glr_auto_examples_gallery_maurer_rose.py`
 
@@ -33,7 +33,7 @@ Example gallery
 .. only:: html
 
   .. image:: /auto_examples/images/thumb/sphx_glr_gallery_sierpinsky_arrowhead_thumb.png
-    :alt: Sierpinsky arrowhead curve
+    :alt:
 
   :ref:`sphx_glr_auto_examples_gallery_sierpinsky_arrowhead.py`
 
@@ -50,7 +50,7 @@ Example gallery
 .. only:: html
 
   .. image:: /auto_examples/images/thumb/sphx_glr_gallery_hilbert_thumb.png
-    :alt: Hilbert curve
+    :alt:
 
   :ref:`sphx_glr_auto_examples_gallery_hilbert.py`
 
@@ -67,7 +67,7 @@ Example gallery
 .. only:: html
 
   .. image:: /auto_examples/images/thumb/sphx_glr_gallery_schotter_line_thumb.png
-    :alt: Schotter-inspired line art
+    :alt:
 
   :ref:`sphx_glr_auto_examples_gallery_schotter_line.py`
 

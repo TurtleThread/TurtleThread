@@ -21,12 +21,12 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_nb_NO.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom_nb_NO.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
@@ -252,9 +252,9 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en" href="../../../en/_modules/turtlethread/turtle.html"><span class="en flag"></span></a>
         <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO"  href="#"><span class="current nb_NO flag"></span></a>
         
-        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en" href="../../../en/_modules/turtlethread/turtle.html"><span class="en flag"></span></a>
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -300,27 +300,35 @@ title="Fullscreen mode"
 
 <span class="kn">from</span> <span class="nn">pyembroidery</span> <span class="kn">import</span> <span class="n">JUMP</span><span class="p">,</span> <span class="n">STITCH</span><span class="p">,</span> <span class="n">TRIM</span><span class="p">,</span> <span class="n">EmbPattern</span><span class="p">,</span> <span class="n">write</span>
 
+<span class="kn">from</span> <span class="nn">.base_turtle</span> <span class="kn">import</span> <span class="n">TNavigator</span><span class="p">,</span> <span class="n">Vec2D</span>
 <span class="kn">from</span> <span class="nn">.pattern_info</span> <span class="kn">import</span> <span class="n">show_info</span>
 <span class="kn">from</span> <span class="nn">.visualise</span> <span class="kn">import</span> <span class="n">visualise_pattern</span>
 
 <span class="n">USE_SPHINX_GALLERY</span> <span class="o">=</span> <span class="kc">False</span>
 
 
-<span class="k">class</span> <span class="nc">ConfigValue</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">ConfigValueMixin</span><span class="p">:</span>
+    <span class="n">NO_VALUE</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>
+
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">NO_VALUE</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">item</span>
         <span class="n">valid_items</span> <span class="o">=</span> <span class="p">{</span><span class="n">enum</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">enum</span> <span class="ow">in</span> <span class="bp">cls</span><span class="p">}</span>
-        <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_items</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_items</span> <span class="ow">and</span> <span class="n">default</span> <span class="ow">is</span> <span class="bp">cls</span><span class="o">.</span><span class="n">NO_VALUE</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2"> is not a valid </span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">. Must be one of </span><span class="si">{</span><span class="n">valid_items</span><span class="si">}</span><span class="s2"> (case insensitive)&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">item</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_items</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">default</span>
+
         <span class="k">return</span> <span class="bp">cls</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span>
 
 
-<span class="k">class</span> <span class="nc">AngleMode</span><span class="p">(</span><span class="n">ConfigValue</span><span class="p">):</span>
-    <span class="n">RADIANS</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
-    <span class="n">DEGREES</span> <span class="o">=</span> <span class="n">auto</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">AngleMode</span><span class="p">(</span><span class="n">ConfigValueMixin</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+    <span class="n">RADIANS</span> <span class="o">=</span> <span class="s2">&quot;radians&quot;</span>
+    <span class="n">DEGREES</span> <span class="o">=</span> <span class="s2">&quot;degrees&quot;</span>
 
 
-<div class="viewcode-block" id="Turtle"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle">[dokumentasjon]</a><span class="k">class</span> <span class="nc">Turtle</span><span class="p">:</span>
+<div class="viewcode-block" id="Turtle"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle">[dokumentasjon]</a><span class="k">class</span> <span class="nc">Turtle</span><span class="p">(</span><span class="n">TNavigator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Turtle object that to make embroidery files. Mirrored after the official `turtle &lt;https://docs.python.org/3/library/turtle.html&gt;`_ library.</span>
 
 <span class="sd">    Any undocumented functions have the same interface as the official turtle library.</span>
@@ -331,34 +339,41 @@ title="Fullscreen mode"
 <span class="sd">    ----------</span>
 <span class="sd">    pattern : pyembroidery.EmbPattern (optional)</span>
 <span class="sd">        The embroidery pattern to work with. If not supplied, then an empty pattern will be created.</span>
-<span class="sd">    angle_mode : &quot;degrees&quot; or &quot;radians&quot; (optional, default=&quot;degrees&quot;)</span>
-<span class="sd">        How angles are computed.</span>
 <span class="sd">    scale : float (optional, default=1)</span>
 <span class="sd">        Scaling between turtle steps and units in the embroidery file. Below are some example scaling</span>
 
 <span class="sd">         * `scale=1`  - One step is one unit in the embroidery file (0.1 mm)</span>
 <span class="sd">         * `scale=10` - One step equals 1 mm</span>
 <span class="sd">         * `scale=2`  - The scaling TurtleStitch uses</span>
+<span class="sd">    angle_mode : &quot;degrees&quot; or &quot;radians&quot; (optional, default=&quot;degrees&quot;)</span>
+<span class="sd">        How angles are computed.</span>
+<span class="sd">    mode : &quot;standard&quot;, &quot;world&quot; or &quot;logo&quot; (optional, default=&quot;standard&quot;)</span>
+<span class="sd">        Mode &quot;standard&quot; is compatible with turtle.py.</span>
+<span class="sd">        Mode &quot;logo&quot; is compatible with most Logo-Turtle-Graphics.</span>
+<span class="sd">        Mode &quot;world&quot; is the same as &#39;standard&#39; for TurtleThread.</span>
+
+<span class="sd">             Mode      Initial turtle heading     positive angles</span>
+<span class="sd">         ------------|-------------------------|-------------------</span>
+<span class="sd">          &quot;standard&quot;    to the right (east)       counterclockwise</span>
+<span class="sd">            &quot;logo&quot;        upward    (north)         clockwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">angle_mode</span><span class="o">=</span><span class="s2">&quot;degrees&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">angle_mode</span><span class="o">=</span><span class="s2">&quot;degrees&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">TNavigator</span><span class="o">.</span><span class="n">DEFAULT_MODE</span><span class="p">):</span>
         <span class="c1"># TODO: Flag that can enable/disable changing angle when angle mode is changed</span>
         <span class="k">if</span> <span class="n">pattern</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span> <span class="o">=</span> <span class="n">EmbPattern</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span> <span class="o">=</span> <span class="n">pattern</span>
 
-        <span class="c1"># TODO: What should be default?</span>
+        <span class="c1"># Set up stitch parameters prior to super.__init__ since self.reset() depends on stitch type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span> <span class="o">=</span> <span class="s2">&quot;no_stitch&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stitch_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;length&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_previous_stitch_type</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_previous_stitch_parameters</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stitch_parameters</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">angle_mode</span> <span class="o">=</span> <span class="n">angle_mode</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">angle</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">angle_mode</span> <span class="o">=</span> <span class="n">angle_mode</span>
 
         <span class="c1"># For integration with sphinx-gallery</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_gallery_patterns</span> <span class="o">=</span> <span class="p">[]</span>
@@ -366,28 +381,33 @@ title="Fullscreen mode"
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">angle_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;The angle mode, either &quot;degrees&quot; or &quot;radians&quot;.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_angle_mode</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_degreesPerAU</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-5</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;degrees&quot;</span>
+        <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_degreesPerAU</span> <span class="o">-</span> <span class="mi">360</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">tau</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-5</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;radians&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;other (_setDegreesPerAU has been called explicitly)&quot;</span>
 
     <span class="nd">@angle_mode</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">angle_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Setter that ensures that a valid angle mode is used.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">AngleMode</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_angle_mode</span> <span class="o">=</span> <span class="n">value</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_angle_mode</span> <span class="o">=</span> <span class="n">AngleMode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">AngleMode</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Angle mode must be one of &#39;degrees&#39; or &#39;radians&#39; (case insensitive), not </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">AngleMode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="n">AngleMode</span><span class="o">.</span><span class="n">DEGREES</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">degrees</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">AngleMode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="n">AngleMode</span><span class="o">.</span><span class="n">RADIANS</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">radians</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Angle mode must be a string or </span><span class="si">{</span><span class="n">AngleMode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Angle mode must be one of &#39;degrees&#39; or &#39;radians&#39; (case insensitive), not </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">angle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">angle_mode</span> <span class="o">==</span> <span class="n">AngleMode</span><span class="o">.</span><span class="n">RADIANS</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_angle</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">angle_mode</span> <span class="o">==</span> <span class="n">AngleMode</span><span class="o">.</span><span class="n">DEGREES</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_angle</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">heading</span><span class="p">()</span>
 
     <span class="nd">@angle</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">angle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_angle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_counter_clockwise_radians</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setheading</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_steps_from_stitch_length</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stitch_length</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">extent</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">radius</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -400,7 +420,7 @@ title="Fullscreen mode"
                 <span class="o">+</span> <span class="s2">&quot; `steps`, decrease `stitch_length` or increase the circle `radius`&quot;</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">extent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_counter_clockwise_radians</span><span class="p">(</span><span class="n">extent</span><span class="p">)</span>
+            <span class="n">extent</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">extent</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_degreesPerAU</span><span class="p">)</span>
             <span class="n">steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_sides_from_side_length</span><span class="p">(</span><span class="n">stitch_length</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">extent</span><span class="p">)</span>
             <span class="n">steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">steps</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">steps</span>
@@ -416,33 +436,15 @@ title="Fullscreen mode"
         <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span> <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">radius</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;``radius`` cannot be nan or inf, it is </span><span class="si">{</span><span class="n">radius</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">angle_mode</span> <span class="o">==</span> <span class="n">AngleMode</span><span class="o">.</span><span class="n">DEGREES</span><span class="p">:</span>
-            <span class="n">fullcircle</span> <span class="o">=</span> <span class="mi">360</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">fullcircle</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span>
-
         <span class="k">if</span> <span class="n">extent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">extent</span> <span class="o">=</span> <span class="n">fullcircle</span>
-
+            <span class="n">extent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fullcircle</span>
         <span class="k">if</span> <span class="n">steps</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">&quot;length&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stitch_parameters</span><span class="p">:</span>
             <span class="n">stitch_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stitch_parameters</span><span class="p">[</span><span class="s2">&quot;length&quot;</span><span class="p">]</span>
             <span class="n">steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_steps_from_stitch_length</span><span class="p">(</span><span class="n">stitch_length</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">radius</span><span class="p">),</span> <span class="n">extent</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">steps</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">steps</span> <span class="o">=</span> <span class="mi">20</span>
 
-        <span class="n">w</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">copysign</span><span class="p">(</span><span class="n">extent</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span> <span class="o">/</span> <span class="n">steps</span>
-        <span class="n">angle</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">w</span>
-        <span class="n">sidelength</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_to_counter_clockwise_radians</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">sidelength</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Turtle.position"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.position">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Get the position, see the `official documentation &lt;https://docs.python.org/3/library/turtle.html#turtle.position&gt;`_.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="n">steps</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_push_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_previous_stitch_type</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span><span class="p">)</span>
@@ -572,8 +574,14 @@ title="Fullscreen mode"
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="n">y</span>
 
-<div class="viewcode-block" id="Turtle.goto"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.goto">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">goto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Vec2D</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="nd">@_position</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Goto a given position, see the `official documentation &lt;https://docs.python.org/3/library/turtle.html#turtle.goto&gt;`_.&quot;&quot;&quot;</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">other</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span> <span class="o">==</span> <span class="s2">&quot;running_stitch&quot;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_goto_running_stitch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span> <span class="o">==</span> <span class="s2">&quot;jump_stitch&quot;</span><span class="p">:</span>
@@ -581,28 +589,7 @@ title="Fullscreen mode"
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span> <span class="o">==</span> <span class="s2">&quot;no_stitch&quot;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_goto_no_stitch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span><span class="si">}</span><span class="s2"> is not a valid stitch pattern&quot;</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Turtle.forward"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.forward">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Move forward a set distance, see the `official documentation &lt;https://docs.python.org/3/library/turtle.html#turtle.forward&gt;`_.&quot;&quot;&quot;</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">distance</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_angle</span><span class="p">)</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">distance</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_angle</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Turtle.backward"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.backward">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Move backward a set distance, see the `official documentation &lt;https://docs.python.org/3/library/turtle.html#turtle.backward&gt;`_.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="o">-</span><span class="n">distance</span><span class="p">)</span></div>
-
-    <span class="k">def</span> <span class="nf">_rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">angle</span> <span class="o">+=</span> <span class="n">angle</span>
-
-<div class="viewcode-block" id="Turtle.right"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.right">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Rotate right the specified angle, see the `official documentation &lt;https://docs.python.org/3/library/turtle.html#turtle.right&gt;`_.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Turtle.left"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.left">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Rotate left the specified angle, see the `official documentation &lt;https://docs.python.org/3/library/turtle.html#turtle.left&gt;`_.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rotate</span><span class="p">(</span><span class="o">-</span><span class="n">angle</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span><span class="si">}</span><span class="s2"> is not a valid stitch pattern&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Turtle.save"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.save">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save the embroidery pattern as an embroidery or image file.</span>
@@ -619,10 +606,6 @@ title="Fullscreen mode"
             <span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_gallery_patterns</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">filename</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="o">.</span><span class="n">copy</span><span class="p">()))</span></div>
-
-<div class="viewcode-block" id="Turtle.setheading"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.setheading">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">setheading</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Set the turtle&#39;s heading, 0 degrees is pointing right. See the `official documentation &lt;https://docs.python.org/3/library/turtle.html#turtle.setheading&gt;`_.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">angle</span> <span class="o">=</span> <span class="n">angle</span></div>
 
 <div class="viewcode-block" id="Turtle.home"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.home">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">home</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Move the needle home (position (0, 0)), see the `official documentation &lt;https://docs.python.org/3/library/turtle.html#turtle.home&gt;`_.&quot;&quot;&quot;</span>
@@ -654,30 +637,7 @@ title="Fullscreen mode"
 
 <div class="viewcode-block" id="Turtle.show_info"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.show_info">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">show_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Display information about this turtle&#39;s embroidery pattern.&quot;&quot;&quot;</span>
-        <span class="n">show_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Turtle.heading"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.heading">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">heading</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the turtle&#39;s heading (i.e. angle)</span>
-
-<span class="sd">        writing ``turtle.heading()`` gives the same result as writing ``turtle.angle``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">angle</span></div>
-
-    <span class="k">def</span> <span class="nf">_to_counter_clockwise_radians</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">angle_mode</span> <span class="o">==</span> <span class="n">AngleMode</span><span class="o">.</span><span class="n">DEGREES</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">angle_mode</span> <span class="o">==</span> <span class="n">AngleMode</span><span class="o">.</span><span class="n">RADIANS</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">angle</span>
-
-    <span class="n">fd</span> <span class="o">=</span> <span class="n">forward</span>
-    <span class="n">bk</span> <span class="o">=</span> <span class="n">backward</span>
-    <span class="n">back</span> <span class="o">=</span> <span class="n">backward</span>
-    <span class="n">rt</span> <span class="o">=</span> <span class="n">right</span>
-    <span class="n">lt</span> <span class="o">=</span> <span class="n">left</span>
-    <span class="n">setpos</span> <span class="o">=</span> <span class="n">goto</span>
-    <span class="n">setposition</span> <span class="o">=</span> <span class="n">goto</span>
-    <span class="n">seth</span> <span class="o">=</span> <span class="n">setheading</span>
-    <span class="n">pos</span> <span class="o">=</span> <span class="n">position</span></div>
+        <span class="n">show_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span></div></div>
 </pre></div>
 
               </div>

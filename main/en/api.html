@@ -22,12 +22,12 @@
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom_en.css" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom_en.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
@@ -254,9 +254,9 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
-        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO" href="../nb_NO/api.html"><span class="nb_NO flag"></span></a>
         <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en"  href="#"><span class="current en flag"></span></a>
         
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO" href="../nb_NO/api.html"><span class="nb_NO flag"></span></a>
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -393,7 +393,7 @@ title="Print to PDF"
 <h2>Main functionality<a class="headerlink" href="#main-functionality" title="Permalink to this headline">#</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="turtlethread.Turtle">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">turtlethread.</span></span><span class="sig-name descname"><span class="pre">Turtle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'degrees'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#turtlethread.Turtle" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">turtlethread.</span></span><span class="sig-name descname"><span class="pre">Turtle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'degrees'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'standard'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#turtlethread.Turtle" title="Permalink to this definition">#</a></dt>
 <dd><p>Turtle object that to make embroidery files. Mirrored after the official <a class="reference external" href="https://docs.python.org/3/library/turtle.html">turtle</a> library.</p>
 <p>Any undocumented functions have the same interface as the official turtle library.</p>
 <p>One turtle-step is equivalent to 0.1 mm.</p>
@@ -402,8 +402,6 @@ title="Print to PDF"
 <dd class="field-odd"><dl>
 <dt><strong>pattern</strong><span class="classifier">pyembroidery.EmbPattern (optional)</span></dt><dd><p>The embroidery pattern to work with. If not supplied, then an empty pattern will be created.</p>
 </dd>
-<dt><strong>angle_mode</strong><span class="classifier">“degrees” or “radians” (optional, default=”degrees”)</span></dt><dd><p>How angles are computed.</p>
-</dd>
 <dt><strong>scale</strong><span class="classifier">float (optional, default=1)</span></dt><dd><p>Scaling between turtle steps and units in the embroidery file. Below are some example scaling</p>
 <blockquote>
 <div><ul class="simple">
@@ -411,6 +409,24 @@ title="Print to PDF"
 <li><p><cite>scale=10</cite> - One step equals 1 mm</p></li>
 <li><p><cite>scale=2</cite>  - The scaling TurtleStitch uses</p></li>
 </ul>
+</div></blockquote>
+</dd>
+<dt><strong>angle_mode</strong><span class="classifier">“degrees” or “radians” (optional, default=”degrees”)</span></dt><dd><p>How angles are computed.</p>
+</dd>
+<dt><strong>mode</strong><span class="classifier">“standard”, “world” or “logo” (optional, default=”standard”)</span></dt><dd><p>Mode “standard” is compatible with turtle.py.
+Mode “logo” is compatible with most Logo-Turtle-Graphics.
+Mode “world” is the same as ‘standard’ for TurtleThread.</p>
+<blockquote>
+<div><blockquote>
+<div><p>Mode      Initial turtle heading     positive angles</p>
+</div></blockquote>
+<dl class="simple">
+<dt>————<a href="#id9"><span class="problematic" id="id10">|-------------------------|</span></a>——————-</dt><dd><dl class="simple">
+<dt>“standard”    to the right (east)       counterclockwise</dt><dd><p>“logo”        upward    (north)         clockwise</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </div></blockquote>
 </dd>
 </dl>
@@ -431,37 +447,37 @@ title="Print to PDF"
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.back" title="turtlethread.Turtle.back"><code class="xref py py-obj docutils literal notranslate"><span class="pre">back</span></code></a>(distance)</p></td>
-<td><p>Move backward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.backward">official documentation</a>.</p></td>
+<td><p>Move the turtle backward by distance.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.backward" title="turtlethread.Turtle.backward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">backward</span></code></a>(distance)</p></td>
-<td><p><p>Move backward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.backward">official documentation</a>.</p>
-</p></td>
+<td><p>Move the turtle backward by distance.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.bk" title="turtlethread.Turtle.bk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bk</span></code></a>(distance)</p></td>
-<td><p><p>Move backward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.backward">official documentation</a>.</p>
-</p></td>
+<td><p>Move the turtle backward by distance.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.circle" title="turtlethread.Turtle.circle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">circle</span></code></a>(radius[, extent, steps])</p></td>
-<td><p><p>Draw a circle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.circle">official documentation</a>.</p>
-</p></td>
+<td><p>Draw a circle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.circle">official documentation</a>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.cleanup_stitch_type" title="turtlethread.Turtle.cleanup_stitch_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cleanup_stitch_type</span></code></a>()</p></td>
 <td><p>Cleanup after switching to running stitch.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.degrees" title="turtlethread.Turtle.degrees"><code class="xref py py-obj docutils literal notranslate"><span class="pre">degrees</span></code></a>([fullcircle])</p></td>
+<td><p>Set angle measurement units to degrees.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.distance" title="turtlethread.Turtle.distance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">distance</span></code></a>(x[, y])</p></td>
+<td><p>Return the distance from the turtle to (x,y) in turtle step units.</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.fd" title="turtlethread.Turtle.fd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fd</span></code></a>(distance)</p></td>
-<td><p><p>Move forward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.forward">official documentation</a>.</p>
-</p></td>
+<td><p>Move the turtle forward by the specified distance.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.forward" title="turtlethread.Turtle.forward"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward</span></code></a>(distance)</p></td>
-<td><p><p>Move forward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.forward">official documentation</a>.</p>
-</p></td>
+<td><p>Move the turtle forward by the specified distance.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.goto" title="turtlethread.Turtle.goto"><code class="xref py py-obj docutils literal notranslate"><span class="pre">goto</span></code></a>(x, y)</p></td>
-<td><p><p>Goto a given position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.goto">official documentation</a>.</p>
-</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.goto" title="turtlethread.Turtle.goto"><code class="xref py py-obj docutils literal notranslate"><span class="pre">goto</span></code></a>(x[, y])</p></td>
+<td><p>Move turtle to an absolute position.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.heading" title="turtlethread.Turtle.heading"><code class="xref py py-obj docutils literal notranslate"><span class="pre">heading</span></code></a>()</p></td>
-<td><p>Returns the turtle's heading (i.e.</p></td>
+<td><p>Return the turtle's current heading.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.home" title="turtlethread.Turtle.home"><code class="xref py py-obj docutils literal notranslate"><span class="pre">home</span></code></a>()</p></td>
 <td><p><p>Move the needle home (position (0, 0)), see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.home">official documentation</a>.</p>
@@ -471,28 +487,28 @@ title="Print to PDF"
 <td><p>Set the stitch mode to jump-stitch and cleanup afterwards.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.left" title="turtlethread.Turtle.left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">left</span></code></a>(angle)</p></td>
-<td><p><p>Rotate left the specified angle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.left">official documentation</a>.</p>
-</p></td>
+<td><p>Turn turtle left by angle units.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.lt" title="turtlethread.Turtle.lt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lt</span></code></a>(angle)</p></td>
-<td><p><p>Rotate left the specified angle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.left">official documentation</a>.</p>
-</p></td>
+<td><p>Turn turtle left by angle units.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.pos" title="turtlethread.Turtle.pos"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pos</span></code></a>()</p></td>
-<td><p><p>Get the position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.position">official documentation</a>.</p>
-</p></td>
+<td><p>Return the turtle's current location (x,y), as a Vec2D-vector.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.position" title="turtlethread.Turtle.position"><code class="xref py py-obj docutils literal notranslate"><span class="pre">position</span></code></a>()</p></td>
-<td><p><p>Get the position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.position">official documentation</a>.</p>
-</p></td>
+<td><p>Return the turtle's current location (x,y), as a Vec2D-vector.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.radians" title="turtlethread.Turtle.radians"><code class="xref py py-obj docutils literal notranslate"><span class="pre">radians</span></code></a>()</p></td>
+<td><p>Set the angle measurement units to radians.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.reset" title="turtlethread.Turtle.reset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset</span></code></a>()</p></td>
+<td><p>reset turtle to its initial values</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.right" title="turtlethread.Turtle.right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">right</span></code></a>(angle)</p></td>
-<td><p><p>Rotate right the specified angle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.right">official documentation</a>.</p>
-</p></td>
+<td><p>Turn turtle right by angle units.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.rt" title="turtlethread.Turtle.rt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rt</span></code></a>(angle)</p></td>
-<td><p><p>Rotate right the specified angle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.right">official documentation</a>.</p>
-</p></td>
+<td><p>Turn turtle right by angle units.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.running_stitch" title="turtlethread.Turtle.running_stitch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">running_stitch</span></code></a>(stitch_length)</p></td>
 <td><p>Set the stitch mode to running stitch and cleanup afterwards.</p></td>
@@ -500,31 +516,47 @@ title="Print to PDF"
 <tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.save" title="turtlethread.Turtle.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>(filename)</p></td>
 <td><p>Save the embroidery pattern as an embroidery or image file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.seth" title="turtlethread.Turtle.seth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">seth</span></code></a>(angle)</p></td>
-<td><p>Set the turtle's heading, 0 degrees is pointing right.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.seth" title="turtlethread.Turtle.seth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">seth</span></code></a>(to_angle)</p></td>
+<td><p>Set the orientation of the turtle to to_angle.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.setheading" title="turtlethread.Turtle.setheading"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setheading</span></code></a>(angle)</p></td>
-<td><p>Set the turtle's heading, 0 degrees is pointing right.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.setheading" title="turtlethread.Turtle.setheading"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setheading</span></code></a>(to_angle)</p></td>
+<td><p>Set the orientation of the turtle to to_angle.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.setpos" title="turtlethread.Turtle.setpos"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setpos</span></code></a>(x, y)</p></td>
-<td><p><p>Goto a given position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.goto">official documentation</a>.</p>
-</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.setpos" title="turtlethread.Turtle.setpos"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setpos</span></code></a>(x[, y])</p></td>
+<td><p>Move turtle to an absolute position.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.setposition" title="turtlethread.Turtle.setposition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setposition</span></code></a>(x, y)</p></td>
-<td><p><p>Goto a given position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.goto">official documentation</a>.</p>
-</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.setposition" title="turtlethread.Turtle.setposition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setposition</span></code></a>(x[, y])</p></td>
+<td><p>Move turtle to an absolute position.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.setx" title="turtlethread.Turtle.setx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setx</span></code></a>(x)</p></td>
+<td><p>Set the turtle's first coordinate to x</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.sety" title="turtlethread.Turtle.sety"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sety</span></code></a>(y)</p></td>
+<td><p>Set the turtle's second coordinate to y</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.show_info" title="turtlethread.Turtle.show_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">show_info</span></code></a>()</p></td>
 <td><p>Display information about this turtle's embroidery pattern.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.start_jump_stitch" title="turtlethread.Turtle.start_jump_stitch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_jump_stitch</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.speed" title="turtlethread.Turtle.speed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">speed</span></code></a>([s])</p></td>
+<td><p>dummy method - to be overwritten by child class</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.start_jump_stitch" title="turtlethread.Turtle.start_jump_stitch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_jump_stitch</span></code></a>()</p></td>
 <td><p>Set the stitch mode to jump-stitch (not recommended, use <code class="docutils literal notranslate"><span class="pre">jump_stitch</span></code>-context instead).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.start_running_stitch" title="turtlethread.Turtle.start_running_stitch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_running_stitch</span></code></a>(stitch_length)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.start_running_stitch" title="turtlethread.Turtle.start_running_stitch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_running_stitch</span></code></a>(stitch_length)</p></td>
 <td><p>Set the stitch mode to running stitch (not recommended, use <code class="docutils literal notranslate"><span class="pre">running_stitch</span></code>-context instead).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.towards" title="turtlethread.Turtle.towards"><code class="xref py py-obj docutils literal notranslate"><span class="pre">towards</span></code></a>(x[, y])</p></td>
+<td><p>Return the angle of the line from the turtle's position to (x, y).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.visualise" title="turtlethread.Turtle.visualise"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualise</span></code></a>([turtle, width, height, scale, ...])</p></td>
 <td><p>Use the builtin <code class="docutils literal notranslate"><span class="pre">turtle</span></code> library to visualise this turtle's embroidery pattern.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#turtlethread.Turtle.xcor" title="turtlethread.Turtle.xcor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">xcor</span></code></a>()</p></td>
+<td><p>Return the turtle's x coordinate.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#turtlethread.Turtle.ycor" title="turtlethread.Turtle.ycor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ycor</span></code></a>()</p></td>
+<td><p>Return the turtle's y coordinate</p></td>
 </tr>
 </tbody>
 </table>
@@ -537,19 +569,52 @@ title="Print to PDF"
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.back">
 <span class="sig-name descname"><span class="pre">back</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.back" title="Permalink to this definition">#</a></dt>
-<dd><p>Move backward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.backward">official documentation</a>.</p>
+<dd><p>Move the turtle backward by distance.</p>
+<p>Aliases: back | backward | bk</p>
+<p>Argument:
+distance – a number</p>
+<p>Move the turtle backward by distance, opposite to the direction the
+turtle is headed. Do not change the turtle’s heading.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.position()
+(0.00, 0.00)
+&gt;&gt;&gt; turtle.backward(30)
+&gt;&gt;&gt; turtle.position()
+(-30.00, 0.00)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.backward">
-<span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.backward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.backward" title="Permalink to this definition">#</a></dt>
-<dd><p>Move backward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.backward">official documentation</a>.</p>
+<span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.backward" title="Permalink to this definition">#</a></dt>
+<dd><p>Move the turtle backward by distance.</p>
+<p>Aliases: back | backward | bk</p>
+<p>Argument:
+distance – a number</p>
+<p>Move the turtle backward by distance, opposite to the direction the
+turtle is headed. Do not change the turtle’s heading.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.position()
+(0.00, 0.00)
+&gt;&gt;&gt; turtle.backward(30)
+&gt;&gt;&gt; turtle.position()
+(-30.00, 0.00)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.bk">
 <span class="sig-name descname"><span class="pre">bk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.bk" title="Permalink to this definition">#</a></dt>
-<dd><p>Move backward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.backward">official documentation</a>.</p>
+<dd><p>Move the turtle backward by distance.</p>
+<p>Aliases: back | backward | bk</p>
+<p>Argument:
+distance – a number</p>
+<p>Move the turtle backward by distance, opposite to the direction the
+turtle is headed. Do not change the turtle’s heading.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.position()
+(0.00, 0.00)
+&gt;&gt;&gt; turtle.backward(30)
+&gt;&gt;&gt; turtle.position()
+(-30.00, 0.00)</p>
 </dd></dl>
 
 <dl class="py method">
@@ -565,28 +630,124 @@ title="Print to PDF"
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.degrees">
+<span class="sig-name descname"><span class="pre">degrees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fullcircle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">360.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.degrees" title="Permalink to this definition">#</a></dt>
+<dd><p>Set angle measurement units to degrees.</p>
+<p>Optional argument:
+fullcircle -  a number</p>
+<p>Set angle measurement units, i. e. set number
+of ‘degrees’ for a full circle. Default value is
+360 degrees.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.left(90)
+&gt;&gt;&gt; turtle.heading()
+90</p>
+<p>Change angle measurement unit to grad (also known as gon,
+grade, or gradian and equals 1/100-th of the right angle.)
+&gt;&gt;&gt; turtle.degrees(400.0)
+&gt;&gt;&gt; turtle.heading()
+100</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.distance">
+<span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.distance" title="Permalink to this definition">#</a></dt>
+<dd><p>Return the distance from the turtle to (x,y) in turtle step units.</p>
+<p>Arguments:
+x – a number   or  a pair/vector of numbers   or   a turtle instance
+y – a number       None                            None</p>
+<p>call: distance(x, y)         # two coordinates
+–or: distance((x, y))       # a pair (tuple) of coordinates
+–or: distance(vec)          # e.g. as returned by pos()
+–or: distance(mypen)        # where mypen is another turtle</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.pos()
+(0.00, 0.00)
+&gt;&gt;&gt; turtle.distance(30,40)
+50.0
+&gt;&gt;&gt; pen = Turtle()
+&gt;&gt;&gt; pen.forward(77)
+&gt;&gt;&gt; turtle.distance(pen)
+77.0</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.fd">
 <span class="sig-name descname"><span class="pre">fd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.fd" title="Permalink to this definition">#</a></dt>
-<dd><p>Move forward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.forward">official documentation</a>.</p>
+<dd><p>Move the turtle forward by the specified distance.</p>
+<p>Aliases: forward | fd</p>
+<p>Argument:
+distance – a number (integer or float)</p>
+<p>Move the turtle forward by the specified distance, in the direction
+the turtle is headed.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.position()
+(0.00, 0.00)
+&gt;&gt;&gt; turtle.forward(25)
+&gt;&gt;&gt; turtle.position()
+(25.00,0.00)
+&gt;&gt;&gt; turtle.forward(-75)
+&gt;&gt;&gt; turtle.position()
+(-50.00,0.00)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.forward" title="Permalink to this definition">#</a></dt>
-<dd><p>Move forward a set distance, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.forward">official documentation</a>.</p>
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.forward" title="Permalink to this definition">#</a></dt>
+<dd><p>Move the turtle forward by the specified distance.</p>
+<p>Aliases: forward | fd</p>
+<p>Argument:
+distance – a number (integer or float)</p>
+<p>Move the turtle forward by the specified distance, in the direction
+the turtle is headed.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.position()
+(0.00, 0.00)
+&gt;&gt;&gt; turtle.forward(25)
+&gt;&gt;&gt; turtle.position()
+(25.00,0.00)
+&gt;&gt;&gt; turtle.forward(-75)
+&gt;&gt;&gt; turtle.position()
+(-50.00,0.00)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.goto">
-<span class="sig-name descname"><span class="pre">goto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.goto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.goto" title="Permalink to this definition">#</a></dt>
-<dd><p>Goto a given position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.goto">official documentation</a>.</p>
+<span class="sig-name descname"><span class="pre">goto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.goto" title="Permalink to this definition">#</a></dt>
+<dd><p>Move turtle to an absolute position.</p>
+<p>Aliases: setpos | setposition | goto:</p>
+<p>Arguments:
+x – a number      or     a pair/vector of numbers
+y – a number             None</p>
+<p>call: goto(x, y)         # two coordinates
+–or: goto((x, y))       # a pair (tuple) of coordinates
+–or: goto(vec)          # e.g. as returned by pos()</p>
+<p>Move turtle to an absolute position. If the pen is down,
+a line will be drawn. The turtle’s orientation does not change.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; tp = turtle.pos()
+&gt;&gt;&gt; tp
+(0.00, 0.00)
+&gt;&gt;&gt; turtle.setpos(60,30)
+&gt;&gt;&gt; turtle.pos()
+(60.00,30.00)
+&gt;&gt;&gt; turtle.setpos((20,80))
+&gt;&gt;&gt; turtle.pos()
+(20.00,80.00)
+&gt;&gt;&gt; turtle.setpos(tp)
+&gt;&gt;&gt; turtle.pos()
+(0.00,0.00)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.heading">
-<span class="sig-name descname"><span class="pre">heading</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.heading"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.heading" title="Permalink to this definition">#</a></dt>
-<dd><p>Returns the turtle’s heading (i.e. angle)</p>
-<p>writing <code class="docutils literal notranslate"><span class="pre">turtle.heading()</span></code> gives the same result as writing <code class="docutils literal notranslate"><span class="pre">turtle.angle</span></code>.</p>
+<span class="sig-name descname"><span class="pre">heading</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.heading" title="Permalink to this definition">#</a></dt>
+<dd><p>Return the turtle’s current heading.</p>
+<p>No arguments.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.left(67)
+&gt;&gt;&gt; turtle.heading()
+67.0</p>
 </dd></dl>
 
 <dl class="py method">
@@ -604,38 +765,116 @@ title="Print to PDF"
 
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.left">
-<span class="sig-name descname"><span class="pre">left</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.left"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.left" title="Permalink to this definition">#</a></dt>
-<dd><p>Rotate left the specified angle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.left">official documentation</a>.</p>
+<span class="sig-name descname"><span class="pre">left</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.left" title="Permalink to this definition">#</a></dt>
+<dd><p>Turn turtle left by angle units.</p>
+<p>Aliases: left | lt</p>
+<p>Argument:
+angle – a number (integer or float)</p>
+<p>Turn turtle left by angle units. (Units are by default degrees,
+but can be set via the degrees() and radians() functions.)
+Angle orientation depends on mode. (See this.)</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.heading()
+22.0
+&gt;&gt;&gt; turtle.left(45)
+&gt;&gt;&gt; turtle.heading()
+67.0</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.lt">
 <span class="sig-name descname"><span class="pre">lt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.lt" title="Permalink to this definition">#</a></dt>
-<dd><p>Rotate left the specified angle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.left">official documentation</a>.</p>
+<dd><p>Turn turtle left by angle units.</p>
+<p>Aliases: left | lt</p>
+<p>Argument:
+angle – a number (integer or float)</p>
+<p>Turn turtle left by angle units. (Units are by default degrees,
+but can be set via the degrees() and radians() functions.)
+Angle orientation depends on mode. (See this.)</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.heading()
+22.0
+&gt;&gt;&gt; turtle.left(45)
+&gt;&gt;&gt; turtle.heading()
+67.0</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.pos">
 <span class="sig-name descname"><span class="pre">pos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.pos" title="Permalink to this definition">#</a></dt>
-<dd><p>Get the position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.position">official documentation</a>.</p>
+<dd><p>Return the turtle’s current location (x,y), as a Vec2D-vector.</p>
+<p>Aliases: pos | position</p>
+<p>No arguments.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.pos()
+(0.00, 240.00)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.position">
-<span class="sig-name descname"><span class="pre">position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.position" title="Permalink to this definition">#</a></dt>
-<dd><p>Get the position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.position">official documentation</a>.</p>
+<span class="sig-name descname"><span class="pre">position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.position" title="Permalink to this definition">#</a></dt>
+<dd><p>Return the turtle’s current location (x,y), as a Vec2D-vector.</p>
+<p>Aliases: pos | position</p>
+<p>No arguments.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.pos()
+(0.00, 240.00)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.radians">
+<span class="sig-name descname"><span class="pre">radians</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.radians" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the angle measurement units to radians.</p>
+<p>No arguments.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.heading()
+90
+&gt;&gt;&gt; turtle.radians()
+&gt;&gt;&gt; turtle.heading()
+1.5707963267948966</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.reset" title="Permalink to this definition">#</a></dt>
+<dd><p>reset turtle to its initial values</p>
+<p>Will be overwritten by parent class</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.right">
-<span class="sig-name descname"><span class="pre">right</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.right"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.right" title="Permalink to this definition">#</a></dt>
-<dd><p>Rotate right the specified angle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.right">official documentation</a>.</p>
+<span class="sig-name descname"><span class="pre">right</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.right" title="Permalink to this definition">#</a></dt>
+<dd><p>Turn turtle right by angle units.</p>
+<p>Aliases: right | rt</p>
+<p>Argument:
+angle – a number (integer or float)</p>
+<p>Turn turtle right by angle units. (Units are by default degrees,
+but can be set via the degrees() and radians() functions.)
+Angle orientation depends on mode. (See this.)</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.heading()
+22.0
+&gt;&gt;&gt; turtle.right(45)
+&gt;&gt;&gt; turtle.heading()
+337.0</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.rt">
 <span class="sig-name descname"><span class="pre">rt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.rt" title="Permalink to this definition">#</a></dt>
-<dd><p>Rotate right the specified angle, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.right">official documentation</a>.</p>
+<dd><p>Turn turtle right by angle units.</p>
+<p>Aliases: right | rt</p>
+<p>Argument:
+angle – a number (integer or float)</p>
+<p>Turn turtle right by angle units. (Units are by default degrees,
+but can be set via the degrees() and radians() functions.)
+Angle orientation depends on mode. (See this.)</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.heading()
+22.0
+&gt;&gt;&gt; turtle.right(45)
+&gt;&gt;&gt; turtle.heading()
+337.0</p>
 </dd></dl>
 
 <dl class="py method">
@@ -673,32 +912,160 @@ such as <code class="docutils literal notranslate"><span class="pre">.dst</span>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.seth">
-<span class="sig-name descname"><span class="pre">seth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.seth" title="Permalink to this definition">#</a></dt>
-<dd><p>Set the turtle’s heading, 0 degrees is pointing right. See the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.setheading">official documentation</a>.</p>
+<span class="sig-name descname"><span class="pre">seth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.seth" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the orientation of the turtle to to_angle.</p>
+<p>Aliases:  setheading | seth</p>
+<p>Argument:
+to_angle – a number (integer or float)</p>
+<p>Set the orientation of the turtle to to_angle.
+Here are some common directions in degrees:</p>
+<blockquote>
+<div><p>standard - mode:          logo-mode:</p>
+</div></blockquote>
+<dl>
+<dt>——————-<a href="#id5"><span class="problematic" id="id6">|</span></a>——————–</dt><dd><blockquote>
+<div><blockquote>
+<div><p>0 - east                0 - north</p>
+</div></blockquote>
+<p>90 - north              90 - east</p>
+</div></blockquote>
+<p>180 - west              180 - south
+270 - south             270 - west</p>
+</dd>
+</dl>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.setheading(90)
+&gt;&gt;&gt; turtle.heading()
+90</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.setheading">
-<span class="sig-name descname"><span class="pre">setheading</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.setheading"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.setheading" title="Permalink to this definition">#</a></dt>
-<dd><p>Set the turtle’s heading, 0 degrees is pointing right. See the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.setheading">official documentation</a>.</p>
+<span class="sig-name descname"><span class="pre">setheading</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.setheading" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the orientation of the turtle to to_angle.</p>
+<p>Aliases:  setheading | seth</p>
+<p>Argument:
+to_angle – a number (integer or float)</p>
+<p>Set the orientation of the turtle to to_angle.
+Here are some common directions in degrees:</p>
+<blockquote>
+<div><p>standard - mode:          logo-mode:</p>
+</div></blockquote>
+<dl>
+<dt>——————-<a href="#id7"><span class="problematic" id="id8">|</span></a>——————–</dt><dd><blockquote>
+<div><blockquote>
+<div><p>0 - east                0 - north</p>
+</div></blockquote>
+<p>90 - north              90 - east</p>
+</div></blockquote>
+<p>180 - west              180 - south
+270 - south             270 - west</p>
+</dd>
+</dl>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.setheading(90)
+&gt;&gt;&gt; turtle.heading()
+90</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.setpos">
-<span class="sig-name descname"><span class="pre">setpos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.setpos" title="Permalink to this definition">#</a></dt>
-<dd><p>Goto a given position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.goto">official documentation</a>.</p>
+<span class="sig-name descname"><span class="pre">setpos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.setpos" title="Permalink to this definition">#</a></dt>
+<dd><p>Move turtle to an absolute position.</p>
+<p>Aliases: setpos | setposition | goto:</p>
+<p>Arguments:
+x – a number      or     a pair/vector of numbers
+y – a number             None</p>
+<p>call: goto(x, y)         # two coordinates
+–or: goto((x, y))       # a pair (tuple) of coordinates
+–or: goto(vec)          # e.g. as returned by pos()</p>
+<p>Move turtle to an absolute position. If the pen is down,
+a line will be drawn. The turtle’s orientation does not change.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; tp = turtle.pos()
+&gt;&gt;&gt; tp
+(0.00, 0.00)
+&gt;&gt;&gt; turtle.setpos(60,30)
+&gt;&gt;&gt; turtle.pos()
+(60.00,30.00)
+&gt;&gt;&gt; turtle.setpos((20,80))
+&gt;&gt;&gt; turtle.pos()
+(20.00,80.00)
+&gt;&gt;&gt; turtle.setpos(tp)
+&gt;&gt;&gt; turtle.pos()
+(0.00,0.00)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.setposition">
-<span class="sig-name descname"><span class="pre">setposition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.setposition" title="Permalink to this definition">#</a></dt>
-<dd><p>Goto a given position, see the <a class="reference external" href="https://docs.python.org/3/library/turtle.html#turtle.goto">official documentation</a>.</p>
+<span class="sig-name descname"><span class="pre">setposition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.setposition" title="Permalink to this definition">#</a></dt>
+<dd><p>Move turtle to an absolute position.</p>
+<p>Aliases: setpos | setposition | goto:</p>
+<p>Arguments:
+x – a number      or     a pair/vector of numbers
+y – a number             None</p>
+<p>call: goto(x, y)         # two coordinates
+–or: goto((x, y))       # a pair (tuple) of coordinates
+–or: goto(vec)          # e.g. as returned by pos()</p>
+<p>Move turtle to an absolute position. If the pen is down,
+a line will be drawn. The turtle’s orientation does not change.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; tp = turtle.pos()
+&gt;&gt;&gt; tp
+(0.00, 0.00)
+&gt;&gt;&gt; turtle.setpos(60,30)
+&gt;&gt;&gt; turtle.pos()
+(60.00,30.00)
+&gt;&gt;&gt; turtle.setpos((20,80))
+&gt;&gt;&gt; turtle.pos()
+(20.00,80.00)
+&gt;&gt;&gt; turtle.setpos(tp)
+&gt;&gt;&gt; turtle.pos()
+(0.00,0.00)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.setx">
+<span class="sig-name descname"><span class="pre">setx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.setx" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the turtle’s first coordinate to x</p>
+<p>Argument:
+x – a number (integer or float)</p>
+<p>Set the turtle’s first coordinate to x, leave second coordinate
+unchanged.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.position()
+(0.00, 240.00)
+&gt;&gt;&gt; turtle.setx(10)
+&gt;&gt;&gt; turtle.position()
+(10.00, 240.00)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.sety">
+<span class="sig-name descname"><span class="pre">sety</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.sety" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the turtle’s second coordinate to y</p>
+<p>Argument:
+y – a number (integer or float)</p>
+<p>Set the turtle’s first coordinate to x, second coordinate remains
+unchanged.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.position()
+(0.00, 40.00)
+&gt;&gt;&gt; turtle.sety(-10)
+&gt;&gt;&gt; turtle.position()
+(0.00, -10.00)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.show_info">
 <span class="sig-name descname"><span class="pre">show_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.show_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.show_info" title="Permalink to this definition">#</a></dt>
 <dd><p>Display information about this turtle’s embroidery pattern.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.speed">
+<span class="sig-name descname"><span class="pre">speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.speed" title="Permalink to this definition">#</a></dt>
+<dd><p>dummy method - to be overwritten by child class</p>
 </dd></dl>
 
 <dl class="py method">
@@ -728,6 +1095,27 @@ since they will automatically cleanup afterwards.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.towards">
+<span class="sig-name descname"><span class="pre">towards</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.towards" title="Permalink to this definition">#</a></dt>
+<dd><p>Return the angle of the line from the turtle’s position to (x, y).</p>
+<p>Arguments:
+x – a number   or  a pair/vector of numbers   or   a turtle instance
+y – a number       None                            None</p>
+<p>call: distance(x, y)         # two coordinates
+–or: distance((x, y))       # a pair (tuple) of coordinates
+–or: distance(vec)          # e.g. as returned by pos()
+–or: distance(mypen)        # where mypen is another turtle</p>
+<p>Return the angle, between the line from turtle-position to position
+specified by x, y and the turtle’s start orientation. (Depends on
+modes - “standard” or “logo”)</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; turtle.pos()
+(10.00, 10.00)
+&gt;&gt;&gt; turtle.towards(0,0)
+225.0</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="turtlethread.Turtle.visualise">
 <span class="sig-name descname"><span class="pre">visualise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">turtle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bye</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/turtlethread/turtle.html#Turtle.visualise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#turtlethread.Turtle.visualise" title="Permalink to this definition">#</a></dt>
 <dd><p>Use the builtin <code class="docutils literal notranslate"><span class="pre">turtle</span></code> library to visualise this turtle’s embroidery pattern.</p>
@@ -752,6 +1140,33 @@ is used.</p>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.xcor">
+<span class="sig-name descname"><span class="pre">xcor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.xcor" title="Permalink to this definition">#</a></dt>
+<dd><p>Return the turtle’s x coordinate.</p>
+<p>No arguments.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; reset()
+&gt;&gt;&gt; turtle.left(60)
+&gt;&gt;&gt; turtle.forward(100)
+&gt;&gt;&gt; print turtle.xcor()
+50.0</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.Turtle.ycor">
+<span class="sig-name descname"><span class="pre">ycor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#turtlethread.Turtle.ycor" title="Permalink to this definition">#</a></dt>
+<dd><p>Return the turtle’s y coordinate
+—
+No arguments.</p>
+<p>Example (for a Turtle instance named turtle):
+&gt;&gt;&gt; reset()
+&gt;&gt;&gt; turtle.left(60)
+&gt;&gt;&gt; turtle.forward(100)
+&gt;&gt;&gt; print turtle.ycor()
+86.6025403784</p>
 </dd></dl>
 
 </dd></dl>
