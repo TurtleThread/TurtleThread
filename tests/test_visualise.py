@@ -9,6 +9,7 @@ from turtlethread.visualise import centered_dot, centered_line, centered_cross, 
 
 from .create_postscript import draw_square_flower, draw_stamp, draw_test_scene, draw_empty_scene
 
+
 @fixture
 def tempdir():
     tmpdir = TemporaryDirectory()

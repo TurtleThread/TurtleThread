@@ -44,12 +44,12 @@ def get_pattern_info(pattern):
             info["y_min"] = y
         if y > info["y_max"]:
             info["y_max"] = y
-    
+
         if prev_command is None or command != prev_command or command != STITCH:
             prev_x, prev_y, prev_command = x, y, command
             continue
 
-        squared_distance = (x - prev_x)**2 + (y - prev_y)**2
+        squared_distance = (x - prev_x) ** 2 + (y - prev_y) ** 2
         min_squared_distance = min(min_squared_distance, squared_distance)
         prev_x, prev_y, prev_command = x, y, command
     info["closest_subsequent_stitches"] = math.sqrt(min_squared_distance)
@@ -75,7 +75,7 @@ def show_info(pattern, scale=1):
         pattern_info["num_trims"] + 1,
     )
     num_digits = int(max(map(math.log, info_fields)))
-    closest_stitches = pattern_info['closest_subsequent_stitches']/10
+    closest_stitches = pattern_info["closest_subsequent_stitches"] / 10
     print(f"{'Pattern info':>{25 + num_digits}}")
     print("-" * (25 + num_digits + 3))
     print(f"{'Width [steps]':>25} | {width/scale:{num_digits}.0f}")

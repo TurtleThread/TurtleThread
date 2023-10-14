@@ -36,7 +36,7 @@ class IncludeTurtlethread(LiteralInclude):
         out = super().run()
         if stdout.strip():
             stdout_node = nodes.literal_block(stdout, stdout)
-            stdout_node['classes'].append("sphx-glr-script-out")
+            stdout_node["classes"].append("sphx-glr-script-out")
             out.append(stdout_node)
 
         return out
@@ -67,13 +67,15 @@ class IncludeTurtlethread(LiteralInclude):
         code = change_save_dir(code, out_dir)
         # TODO: Make sure that only one call to visualise
 
-        save_eps_code = dedent(f"""
+        save_eps_code = dedent(
+            f"""
             s = turtle.Screen()
             s.setup(3_000, 3_000)
             turtle.update()
             s.getcanvas().postscript(file='{eps_file}')
             turtle.bye()
-            """)
+            """
+        )
         code = f"import turtle\nturtle.tracer(0)\n{code}\n{save_eps_code}"
         print(f"Creating figure for {filename}")
 

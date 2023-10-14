@@ -42,7 +42,7 @@ def centered_line(turtle, length):
 
 def _finish_visualise(done, bye):
     import turtle  # Import turtle only here to avoid cluttering module namespace
-    
+
     if done:
         try:
             turtle.done()
