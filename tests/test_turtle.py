@@ -1,4 +1,5 @@
-from math import cos, copysign, degrees, pi, radians, sin, sqrt
+import math
+from math import copysign, cos, degrees, pi, radians, sin, sqrt
 
 import pytest
 from pyembroidery import JUMP, STITCH, TRIM
@@ -22,38 +23,31 @@ def approx_list(nested_list):
 
 class TestTurtle:
     @pytest.mark.parametrize("angle", [0, -10, 10])
-    def test_to_counter_clockwise_radians(self, turtle, angle):
-        turtle.angle_mode = "degrees"
-        assert turtle._to_counter_clockwise_radians(angle) == radians(angle)
-        turtle.angle_mode = "radians"
-        assert turtle._to_counter_clockwise_radians(angle) == angle
-
-    @pytest.mark.parametrize("angle", [0, -10, 10])
     @pytest.mark.parametrize("angle_mode", ["degrees", "radians"])
     def test_angle_property_set(self, turtle, angle, angle_mode):
         turtle.angle_mode = angle_mode
         turtle.angle = angle
-        assert turtle.angle == angle
+        assert turtle.angle == pytest.approx(angle % turtle._fullcircle)
 
     @pytest.mark.parametrize("angle", [0, -10, 10])
     def test_angle_property_correct_switch_degrees_radians(self, turtle, angle):
         turtle.angle_mode = "degrees"
         turtle.angle = angle
         turtle.angle_mode = "radians"
-        assert turtle.angle == radians(angle)
+        assert turtle.angle == radians(angle % 360)
 
     @pytest.mark.parametrize("angle", [0, -pi / 4, pi])
     def test_angle_property_correct_switch_radians_degrees(self, turtle, angle):
         turtle.angle_mode = "radians"
         turtle.angle = angle
         turtle.angle_mode = "degrees"
-        assert turtle.angle == degrees(angle)
+        assert turtle.angle == degrees(angle) % 360
 
     @pytest.mark.parametrize("angle", [0, -10, 10])
     def test_heading_same_as_angle(self, turtle, angle):
         turtle.setheading(angle)
         assert turtle.heading() == turtle.angle
-        assert turtle.angle == angle
+        assert turtle.angle == angle % 360
 
     @pytest.mark.parametrize("invalid_input", [0, 0.0, [0], float("nan"), float("inf")])
     def test_angle_mode_fails_for_invalid_input_type(self, turtle, invalid_input):
@@ -66,11 +60,11 @@ class TestTurtle:
 
     def test_turtle_left(self, turtle):
         turtle.left(90)
-        assert turtle.angle == -90  # y-axis points down to be consistent with turtlestitch
+        assert turtle.angle == 90
 
     def test_turtle_right(self, turtle):
         turtle.right(90)
-        assert turtle.angle == 90  # y-axis points down to be consistent with turtlestitch
+        assert turtle.angle == 270
 
     @pytest.mark.parametrize("invalid_radius", [float("inf"), float("-inf"), float("-nan")])
     def test_circle_fails_for_invalid_radius(self, turtle, invalid_radius):
@@ -117,24 +111,23 @@ class TestTurtle:
     @pytest.mark.parametrize("angle_mode", ["degrees", "radians"])
     def test_circle_stops_and_starts_with_same_angle(self, turtle, radius, steps, angle_mode):
         turtle.angle_mode = angle_mode
-        start_angle = turtle._to_counter_clockwise_radians(turtle.angle)
+        start_angle = math.radians(turtle.angle * turtle._degreesPerAU)
 
         turtle.circle(radius=radius, steps=steps)
 
-        end_angle = turtle._to_counter_clockwise_radians(turtle.angle)
-        sign = copysign(1, radius)
-        assert end_angle == approx(start_angle - sign * 2 * pi)
+        end_angle = math.radians(turtle.angle * turtle._degreesPerAU)
+        assert end_angle == approx(start_angle)
 
     def test_circle_considers_radius_sign(self, turtle):
         turtle.angle_mode = "radians"
         turtle.angle = 0
         turtle.circle(radius=100, extent=pi, steps=1)
         assert turtle.x == pytest.approx(0)
-        assert turtle.y == pytest.approx(-200)
+        assert turtle.y == pytest.approx(200)
         turtle.home()
         turtle.circle(radius=-100, extent=pi, steps=1)
         assert turtle.x == pytest.approx(0)
-        assert turtle.y == pytest.approx(200)
+        assert turtle.y == pytest.approx(-200)
 
 
 class TestTurtleJumpStitch:
@@ -206,9 +199,9 @@ class TestTurtleJumpStitch:
             turtle.circle(radius, extent=extent, steps=steps)
 
         center_x = 0
-        center_y = -radius
+        center_y = radius
         assert len(turtle.pattern.stitches) == steps + 1
-        for (x, y, stitch_type) in turtle.pattern.stitches[1:]:
+        for x, y, stitch_type in turtle.pattern.stitches[1:]:
             distance_to_center = sqrt((x - center_x) ** 2 + (y - center_y) ** 2)
             assert distance_to_center == approx(radius)
             assert stitch_type == JUMP
@@ -266,9 +259,9 @@ class TestTurtleRunningStitch:
             turtle.circle(radius, extent=extent, steps=steps)
 
         center_x = 0
-        center_y = -radius
+        center_y = radius
         tol = 10e-8
-        for (x, y, stitch_type) in turtle.pattern.stitches[1:]:
+        for x, y, stitch_type in turtle.pattern.stitches[1:]:
             distance_to_center = sqrt((x - center_x) ** 2 + (y - center_y) ** 2)
             assert distance_to_center <= radius + tol
             assert distance_to_center >= inner_radius - tol
@@ -287,7 +280,7 @@ class TestTurtleRunningStitch:
         with turtle.running_stitch(stitch_length):
             turtle.circle(radius, extent=extent, steps=steps)
 
-        extent = turtle._to_counter_clockwise_radians(extent)
+        extent = math.radians(extent * turtle._degreesPerAU)
         side_length = 2 * radius * sin(0.5 * extent / steps)
         tol = 1e-8
         for (x1, y1, st1), (x2, y2, st2) in zip(turtle.pattern.stitches[1:], turtle.pattern.stitches[2:]):

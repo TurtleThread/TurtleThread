@@ -5,27 +5,35 @@ from warnings import warn
 
 from pyembroidery import JUMP, STITCH, TRIM, EmbPattern, write
 
+from .base_turtle import TNavigator, Vec2D
 from .pattern_info import show_info
 from .visualise import visualise_pattern
 
 USE_SPHINX_GALLERY = False
 
 
-class ConfigValue(Enum):
+class ConfigValueMixin:
+    NO_VALUE = object()
+
     @classmethod
-    def get(cls, item):
+    def get(cls, item, default=NO_VALUE):
+        if isinstance(item, cls):
+            return item
         valid_items = {enum.name.lower() for enum in cls}
-        if item.lower() not in valid_items:
+        if item.lower() not in valid_items and default is cls.NO_VALUE:
             raise KeyError(f"{item} is not a valid {cls.__name__}. Must be one of {valid_items} (case insensitive)")
+        elif item.lower() not in valid_items:
+            return default
+
         return cls[item.upper()]
 
 
-class AngleMode(ConfigValue):
-    RADIANS = auto()
-    DEGREES = auto()
+class AngleMode(ConfigValueMixin, Enum):
+    RADIANS = "radians"
+    DEGREES = "degrees"
 
 
-class Turtle:
+class Turtle(TNavigator):
     """Turtle object that to make embroidery files. Mirrored after the official `turtle <https://docs.python.org/3/library/turtle.html>`_ library.
 
     Any undocumented functions have the same interface as the official turtle library.
@@ -36,34 +44,41 @@ class Turtle:
     ----------
     pattern : pyembroidery.EmbPattern (optional)
         The embroidery pattern to work with. If not supplied, then an empty pattern will be created.
-    angle_mode : "degrees" or "radians" (optional, default="degrees")
-        How angles are computed.
     scale : float (optional, default=1)
         Scaling between turtle steps and units in the embroidery file. Below are some example scaling
 
          * `scale=1`  - One step is one unit in the embroidery file (0.1 mm)
          * `scale=10` - One step equals 1 mm
          * `scale=2`  - The scaling TurtleStitch uses
+    angle_mode : "degrees" or "radians" (optional, default="degrees")
+        How angles are computed.
+    mode : "standard", "world" or "logo" (optional, default="standard")
+        Mode "standard" is compatible with turtle.py.
+        Mode "logo" is compatible with most Logo-Turtle-Graphics.
+        Mode "world" is the same as 'standard' for TurtleThread.
+
+             Mode      Initial turtle heading     positive angles
+         ------------|-------------------------|-------------------
+          "standard"    to the right (east)       counterclockwise
+            "logo"        upward    (north)         clockwise
     """
 
-    def __init__(self, pattern=None, angle_mode="degrees", scale=1):
+    def __init__(self, pattern=None, scale=1, angle_mode="degrees", mode=TNavigator.DEFAULT_MODE):
         # TODO: Flag that can enable/disable changing angle when angle mode is changed
         if pattern is None:
             self.pattern = EmbPattern()
         else:
             self.pattern = pattern
 
-        # TODO: What should be default?
+        # Set up stitch parameters prior to super.__init__ since self.reset() depends on stitch type
         self.stitch_type = "no_stitch"
         self.stitch_parameters = {"length": 10}
         self._previous_stitch_type = [self.stitch_type]
         self._previous_stitch_parameters = [self.stitch_parameters]
-        self.angle_mode = angle_mode
         self.scale = scale
 
-        self.angle = 0
-        self.x = 0
-        self.y = 0
+        super().__init__(mode=mode)
+        self.angle_mode = angle_mode
 
         # For integration with sphinx-gallery
         self._gallery_patterns = []
@@ -71,28 +86,33 @@ class Turtle:
     @property
     def angle_mode(self):
         """The angle mode, either "degrees" or "radians"."""
-        return self._angle_mode
+        if abs(self._degreesPerAU - 1) < 1e-5:
+            return "degrees"
+        elif abs(self._degreesPerAU - 360 / math.tau) < 1e-5:
+            return "radians"
+        else:
+            return "other (_setDegreesPerAU has been called explicitly)"
 
     @angle_mode.setter
     def angle_mode(self, value):
         """Setter that ensures that a valid angle mode is used."""
-        if isinstance(value, AngleMode):
-            self._angle_mode = value
-        elif isinstance(value, str):
-            self._angle_mode = AngleMode.get(value.upper())
+        if not isinstance(value, (str, AngleMode)):
+            raise TypeError(f"Angle mode must be one of 'degrees' or 'radians' (case insensitive), not {value}")
+
+        if AngleMode.get(value, None) == AngleMode.DEGREES:
+            self.degrees()
+        elif AngleMode.get(value, None) == AngleMode.RADIANS:
+            self.radians()
         else:
-            raise TypeError(f"Angle mode must be a string or {AngleMode}")
+            raise KeyError(f"Angle mode must be one of 'degrees' or 'radians' (case insensitive), not {value}")
 
     @property
     def angle(self):
-        if self.angle_mode == AngleMode.RADIANS:
-            return self._angle
-        elif self.angle_mode == AngleMode.DEGREES:
-            return math.degrees(self._angle)
+        return self.heading()
 
     @angle.setter
     def angle(self, value):
-        self._angle = self._to_counter_clockwise_radians(value)
+        self.setheading(value)
 
     def _steps_from_stitch_length(self, stitch_length, radius, extent):
         if radius == 0:
@@ -105,7 +125,7 @@ class Turtle:
                 + " `steps`, decrease `stitch_length` or increase the circle `radius`"
             )
         else:
-            extent = self._to_counter_clockwise_radians(extent)
+            extent = math.radians(extent * self._degreesPerAU)
             steps = self._n_sides_from_side_length(stitch_length, radius, extent)
             steps = int(round(steps))
         return steps
@@ -121,33 +141,15 @@ class Turtle:
         if math.isinf(radius) or math.isnan(radius):
             raise ValueError(f"``radius`` cannot be nan or inf, it is {radius}")
 
-        if self.angle_mode == AngleMode.DEGREES:
-            fullcircle = 360
-        else:
-            fullcircle = 2 * math.pi
-
         if extent is None:
-            extent = fullcircle
-
+            extent = self._fullcircle
         if steps is None and "length" in self.stitch_parameters:
             stitch_length = self.stitch_parameters["length"]
             steps = self._steps_from_stitch_length(stitch_length, abs(radius), extent)
         elif steps is None:
             steps = 20
 
-        w = math.copysign(extent, radius) / steps
-        angle = 0.5 * w
-        sidelength = 2 * radius * math.sin(self._to_counter_clockwise_radians(angle))
-
-        self.left(0.5 * w)
-        for i in range(steps):
-            self.forward(sidelength)
-            self.left(w)
-        self.right(0.5 * w)
-
-    def position(self):
-        """Get the position, see the `official documentation <https://docs.python.org/3/library/turtle.html#turtle.position>`_."""
-        return self.x, self.y
+        super().circle(radius=radius, extent=extent, steps=steps)
 
     def _push_settings(self):
         self._previous_stitch_type.append(self.stitch_type)
@@ -277,8 +279,14 @@ class Turtle:
         self.x = self.scale * x
         self.y = self.scale * y
 
-    def goto(self, x, y):
+    @property
+    def _position(self):
+        return Vec2D(self.x, self.y)
+
+    @_position.setter
+    def _position(self, other):
         """Goto a given position, see the `official documentation <https://docs.python.org/3/library/turtle.html#turtle.goto>`_."""
+        x, y = other
         if self.stitch_type == "running_stitch":
             self._goto_running_stitch(x, y)
         elif self.stitch_type == "jump_stitch":
@@ -287,27 +295,6 @@ class Turtle:
             self._goto_no_stitch(x, y)
         else:
             raise ValueError(f"{self.stitch_type} is not a valid stitch pattern")
-
-    def forward(self, distance):
-        """Move forward a set distance, see the `official documentation <https://docs.python.org/3/library/turtle.html#turtle.forward>`_."""
-        x = self.x + distance * math.cos(self._angle)
-        y = self.y + distance * math.sin(self._angle)
-        self.goto(x, y)
-
-    def backward(self, distance):
-        """Move backward a set distance, see the `official documentation <https://docs.python.org/3/library/turtle.html#turtle.backward>`_."""
-        self.forward(-distance)
-
-    def _rotate(self, angle):
-        self.angle += angle
-
-    def right(self, angle):
-        """Rotate right the specified angle, see the `official documentation <https://docs.python.org/3/library/turtle.html#turtle.right>`_."""
-        self._rotate(angle)
-
-    def left(self, angle):
-        """Rotate left the specified angle, see the `official documentation <https://docs.python.org/3/library/turtle.html#turtle.left>`_."""
-        self._rotate(-angle)
 
     def save(self, filename):
         """Save the embroidery pattern as an embroidery or image file.
@@ -324,10 +311,6 @@ class Turtle:
             write(self.pattern, filename)
         else:
             self._gallery_patterns.append((filename, self.pattern.copy()))
-
-    def setheading(self, angle):
-        """Set the turtle's heading, 0 degrees is pointing right. See the `official documentation <https://docs.python.org/3/library/turtle.html#turtle.setheading>`_."""
-        self.angle = angle
 
     def home(self):
         """Move the needle home (position (0, 0)), see the `official documentation <https://docs.python.org/3/library/turtle.html#turtle.home>`_."""
@@ -360,26 +343,3 @@ class Turtle:
     def show_info(self):
         """Display information about this turtle's embroidery pattern."""
         show_info(self.pattern, scale=self.scale)
-
-    def heading(self):
-        """Returns the turtle's heading (i.e. angle)
-
-        writing ``turtle.heading()`` gives the same result as writing ``turtle.angle``.
-        """
-        return self.angle
-
-    def _to_counter_clockwise_radians(self, angle):
-        if self.angle_mode == AngleMode.DEGREES:
-            return math.radians(angle)
-        elif self.angle_mode == AngleMode.RADIANS:
-            return angle
-
-    fd = forward
-    bk = backward
-    back = backward
-    rt = right
-    lt = left
-    setpos = goto
-    setposition = goto
-    seth = setheading
-    pos = position
