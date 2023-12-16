@@ -107,7 +107,7 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done
     raise_error = False
     for x, y, command in pattern.stitches:
         x = scale * x
-        y = -scale * y
+        y = scale * y
         if command == JUMP:
             turtle.color("red")
             turtle.goto(x, y)
