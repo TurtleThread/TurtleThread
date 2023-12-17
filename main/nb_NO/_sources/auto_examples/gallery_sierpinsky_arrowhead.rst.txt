@@ -34,7 +34,7 @@ Sierpinsky pilspisskurve
 
 
 
-.. code-block:: default
+.. code-block:: Python
 
     from turtlethread import Turtle
 
@@ -62,7 +62,7 @@ Sierpinsky pilspisskurve
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.069 seconds)
+   **Total running time of the script:** (0 minutes 0.053 seconds)
 
 
 .. _sphx_glr_download_auto_examples_gallery_sierpinsky_arrowhead.py:
@@ -71,16 +71,13 @@ Sierpinsky pilspisskurve
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: gallery_sierpinsky_arrowhead.ipynb <gallery_sierpinsky_arrowhead.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: gallery_sierpinsky_arrowhead.py <gallery_sierpinsky_arrowhead.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: gallery_sierpinsky_arrowhead.ipynb <gallery_sierpinsky_arrowhead.ipynb>`
 
 
 .. only:: html

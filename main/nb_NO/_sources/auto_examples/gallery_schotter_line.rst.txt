@@ -34,7 +34,7 @@ Schotter-inspirert linjekunst
 
 
 
-.. code-block:: default
+.. code-block:: Python
 
     import random
     from turtlethread import Turtle
@@ -76,7 +76,7 @@ Schotter-inspirert linjekunst
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.033 seconds)
+   **Total running time of the script:** (0 minutes 0.025 seconds)
 
 
 .. _sphx_glr_download_auto_examples_gallery_schotter_line.py:
@@ -85,16 +85,13 @@ Schotter-inspirert linjekunst
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: gallery_schotter_line.ipynb <gallery_schotter_line.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: gallery_schotter_line.py <gallery_schotter_line.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: gallery_schotter_line.ipynb <gallery_schotter_line.ipynb>`
 
 
 .. only:: html
