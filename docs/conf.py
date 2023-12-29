@@ -50,6 +50,7 @@ language = os.environ["TURTLETHREAD_DOC_LANGUAGE"]
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.viewcode",
+    "sphinx.ext.intersphinx",
     "numpydoc",
     "sphinx_gallery.gen_gallery",
     "sphinx_toolbox.collapse",
@@ -63,6 +64,9 @@ sphinx_gallery_conf = {
     "filename_pattern": "/gallery",
     "reset_argv": lambda x, y: ["MOCK_TURTLE"],
 }
+numpydoc_show_class_members = False
+numpydoc_show_inherited_class_members = False
+intersphinx_mapping = {"python": ("https://docs.python.org/3", None)}
 
 
 # Add any paths that contain templates here, relative to this directory.
@@ -116,23 +120,18 @@ html_favicon = "../logo/turtlethread_logo_notext.svg"
 # theme further.  For a list of options available for each theme, see the
 # documentation.
 #
-html_theme_options = {
-    "logo_only": True
-}
+html_theme_options = {"logo_only": True}
 
 languages = {"nb_NO", "en"}
 # other_languages = languages - {language}
 
-html_context = {
-    'current_language': language,
-    'all_languages': languages
-    }
+html_context = {"current_language": language, "all_languages": languages}
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
-html_css_files = ['css/custom.css', f'css/custom_{language}.css']
-html_js_files = ['javascript/print.js']
+html_css_files = ["css/custom.css", f"css/custom_{language}.css"]
+html_js_files = ["javascript/print.js"]
 
 
 if os.name == "nt":
