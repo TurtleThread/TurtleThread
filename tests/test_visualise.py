@@ -5,7 +5,6 @@ from pytest import fixture
 import pytest
 
 import turtlethread.visualise
-from turtlethread.visualise import centered_dot, centered_line, centered_cross, visualise_pattern
 
 from .create_postscript import draw_square_flower, draw_stamp, draw_test_scene, draw_empty_scene
 

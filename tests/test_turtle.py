@@ -5,6 +5,7 @@ import pytest
 from pyembroidery import JUMP, STITCH, TRIM
 from pytest import approx
 
+import turtlethread.stitches
 from turtlethread import Turtle
 
 
@@ -133,14 +134,14 @@ class TestTurtle:
 class TestTurtleJumpStitch:
     def test_turtle_jump_stitch_context(self, turtle):
         # Check that we get a trim command in the beginning
-        # Maybe more?
+        # TODO: Maybe more?
         with turtle.jump_stitch():
-            assert turtle.stitch_type == "jump_stitch"
-        assert turtle.pattern.stitches == [[0, 0, TRIM]]
+            assert isinstance(turtle._stitch_group_stack[-1], turtlethread.stitches.JumpStitch)
+        assert not turtle.pattern.to_pyembroidery().stitches
 
     def test_turtle_forward(self, turtle):
         """Test ``turtle.forward`` with different angles."""
-        with turtle.jump_stitch():
+        with turtle.jump_stitch(skip_intermediate_jumps=False):
             turtle.angle = 0
             turtle.forward(10)
 
@@ -153,7 +154,7 @@ class TestTurtleJumpStitch:
             turtle.angle = 45 + 180
             turtle.forward(10)
 
-        assert turtle.pattern.stitches == approx_list(
+        assert turtle.pattern.to_pyembroidery().stitches == approx_list(
             [
                 [0, 0, TRIM],  # From the jump_stitch context manager. Should this be here?
                 [10.0, 0, JUMP],
@@ -165,7 +166,7 @@ class TestTurtleJumpStitch:
 
     def test_turtle_backward(self, turtle):
         """Test ``turtle.backward`` with different angles."""
-        with turtle.jump_stitch():
+        with turtle.jump_stitch(skip_intermediate_jumps=False):
             turtle.angle = 0
             turtle.backward(10)
 
@@ -178,7 +179,7 @@ class TestTurtleJumpStitch:
             turtle.angle = 45 + 180
             turtle.backward(10)
 
-        assert turtle.pattern.stitches == approx_list(
+        assert turtle.pattern.to_pyembroidery().stitches == approx_list(
             [
                 [0, 0, TRIM],  # From the jump_stitch context manager.
                 [-10.0, 0, JUMP],
@@ -192,16 +193,23 @@ class TestTurtleJumpStitch:
     @pytest.mark.parametrize("extent", [30, 90, 180, 360])
     @pytest.mark.parametrize("radius", [0, 1, 5, 10])
     @pytest.mark.parametrize("angle_mode", ["degrees", "radians"])
-    def test_circle(self, turtle, radius, extent, steps, angle_mode):
+    @pytest.mark.parametrize("skip_intermediate_jumps", [True, False])
+    def test_circle(self, turtle, radius, extent, steps, angle_mode, skip_intermediate_jumps):
         turtle.angle_mode = angle_mode
-        with turtle.jump_stitch():
+        with turtle.jump_stitch(skip_intermediate_jumps=skip_intermediate_jumps):
             turtle.angle = 0
             turtle.circle(radius, extent=extent, steps=steps)
 
         center_x = 0
         center_y = radius
-        assert len(turtle.pattern.stitches) == steps + 1
-        for x, y, stitch_type in turtle.pattern.stitches[1:]:
+        if skip_intermediate_jumps:
+            # Only two stitches (TRIM and JUMP)
+            assert len(turtle.pattern.to_pyembroidery().stitches) == 2
+        else:
+            # One JUMP stitch for every step and an additional TRIM stitch
+            assert len(turtle.pattern.to_pyembroidery().stitches) == steps + 1
+
+        for x, y, stitch_type in turtle.pattern.to_pyembroidery().stitches[1:]:
             distance_to_center = sqrt((x - center_x) ** 2 + (y - center_y) ** 2)
             assert distance_to_center == approx(radius)
             assert stitch_type == JUMP
@@ -212,7 +220,7 @@ class TestTurtleJumpStitch:
         with turtle.jump_stitch():
             turtle.goto(x, y)
 
-        assert turtle.pattern.stitches == approx_list(
+        assert turtle.pattern.to_pyembroidery().stitches == approx_list(
             [
                 [0, 0, TRIM],  # From the jump_stitch context manager.
                 [x, y, JUMP],
@@ -222,11 +230,11 @@ class TestTurtleJumpStitch:
     @pytest.mark.parametrize("x", [0, -10, 10])
     @pytest.mark.parametrize("y", [0, -10, 10])
     def test_home(self, turtle, x, y):
-        with turtle.jump_stitch():
+        with turtle.jump_stitch(skip_intermediate_jumps=False):
             turtle.goto(x, y)
             turtle.home()
 
-        assert turtle.pattern.stitches == approx_list(
+        assert turtle.pattern.to_pyembroidery().stitches == approx_list(
             [
                 [0, 0, TRIM],  # From the jump_stitch context manager.
                 [x, y, JUMP],
@@ -261,7 +269,7 @@ class TestTurtleRunningStitch:
         center_x = 0
         center_y = radius
         tol = 10e-8
-        for x, y, stitch_type in turtle.pattern.stitches[1:]:
+        for x, y, stitch_type in turtle.pattern.to_pyembroidery().stitches[1:]:
             distance_to_center = sqrt((x - center_x) ** 2 + (y - center_y) ** 2)
             assert distance_to_center <= radius + tol
             assert distance_to_center >= inner_radius - tol
@@ -283,7 +291,8 @@ class TestTurtleRunningStitch:
         extent = math.radians(extent * turtle._degreesPerAU)
         side_length = 2 * radius * sin(0.5 * extent / steps)
         tol = 1e-8
-        for (x1, y1, st1), (x2, y2, st2) in zip(turtle.pattern.stitches[1:], turtle.pattern.stitches[2:]):
+        pyemb_pattern = turtle.pattern.to_pyembroidery()
+        for (x1, y1, st1), (x2, y2, st2) in zip(pyemb_pattern.stitches[1:], pyemb_pattern.stitches[2:]):
             distance = sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
             assert distance >= min(0.5 * stitch_length, side_length) - tol
             assert distance < 1.5 * stitch_length + tol
@@ -298,8 +307,9 @@ class TestTurtleRunningStitch:
             turtle.circle(radius, extent=extent, steps=None)
         n_steps = turtle._steps_from_stitch_length(stitch_length, radius, extent)
 
-        assert len(turtle.pattern.stitches) == n_steps + 1
-        for (x1, y1, st1), (x2, y2, st2) in zip(turtle.pattern.stitches[1:], turtle.pattern.stitches[2:]):
+        pyemb_pattern = turtle.pattern.to_pyembroidery()
+        assert len(pyemb_pattern.stitches) == n_steps + 1
+        for (x1, y1, st1), (x2, y2, st2) in zip(pyemb_pattern.stitches[1:], pyemb_pattern.stitches[2:]):
             distance = sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
             assert distance >= 0.5 * stitch_length
             assert distance < 1.5 * stitch_length
@@ -316,13 +326,13 @@ class TestTurtleRunningStitch:
         with pytest.warns(UserWarning):
             with turtle.running_stitch(100):
                 turtle.circle(10, steps=None)
-        assert len(turtle.pattern.stitches) == 5
+        assert len(turtle.pattern.to_pyembroidery().stitches) == 5
 
     def test_just_one_step_for_zero_radius(self, turtle):
         with pytest.warns(UserWarning):
             with turtle.running_stitch(5):
                 turtle.circle(0, steps=None)
-        assert len(turtle.pattern.stitches) == 2
+        assert len(turtle.pattern.to_pyembroidery().stitches) == 2
 
     @pytest.mark.parametrize("stitch_length", [1, 2, 10, 30])
     @pytest.mark.parametrize("step_length", [10, 100, 500])
@@ -330,7 +340,7 @@ class TestTurtleRunningStitch:
         with turtle.running_stitch(stitch_length):
             turtle.forward(step_length)
 
-        stitches = turtle.pattern.stitches
+        stitches = turtle.pattern.to_pyembroidery().stitches
         for (x1, y1, st1), (x2, y2, st2) in zip(stitches[1:-2], stitches[2:-1]):
             distance = sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
             assert st1 == st2 == STITCH
@@ -352,7 +362,7 @@ class TestTurtleRunningStitch:
         with turtle.running_stitch(stitch_length):
             turtle.backward(step_length)
 
-        stitches = turtle.pattern.stitches
+        stitches = turtle.pattern.to_pyembroidery().stitches
         for (x1, y1, st1), (x2, y2, st2) in zip(stitches[1:-2], stitches[2:-1]):
             distance = sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
             assert st1 == st2 == STITCH

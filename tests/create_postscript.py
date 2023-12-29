@@ -57,7 +57,7 @@ def draw_test_scene(filename):
         turt.left(45)
         turt.forward(20)
 
-    with turt.jump_stitch():
+    with turt.jump_stitch(skip_intermediate_jumps=False):
         turt.circle(30)
         turt.circle(50)
         turt.circle(100)

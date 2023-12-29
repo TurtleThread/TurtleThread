@@ -1,13 +1,14 @@
 import math
 from contextlib import contextmanager
-from enum import Enum, auto
+from enum import Enum
 from warnings import warn
 
-from pyembroidery import JUMP, STITCH, TRIM, EmbPattern, write
+from pyembroidery import write
 
 from .base_turtle import TNavigator, Vec2D
 from .pattern_info import show_info
 from .visualise import visualise_pattern
+from . import stitches
 
 USE_SPHINX_GALLERY = False
 
@@ -34,15 +35,17 @@ class AngleMode(ConfigValueMixin, Enum):
 
 
 class Turtle(TNavigator):
-    """Turtle object that to make embroidery files. Mirrored after the official `turtle <https://docs.python.org/3/library/turtle.html>`_ library.
+    """Turtle object that to make embroidery files. Mirrored after the official :py:mod:`turtle` library.
 
-    Any undocumented functions have the same interface as the official turtle library.
+    This class has the same API as the builtin ``turtle.Turtle`` class with documented changes, for more information
+    see the official documentation of the
+    `builtin turtle library <https://docs.python.org/3/library/turtle.html#methods-of-rawturtle-turtle-and-corresponding-functions>`_
 
-    One turtle-step is equivalent to 0.1 mm.
+    One turtle-step is equivalent to 0.1 mm (unless scaled otherwise).
 
     Parameters
     ----------
-    pattern : pyembroidery.EmbPattern (optional)
+    pattern : turtlethread.stitches.EmbroideryPattern (optional)
         The embroidery pattern to work with. If not supplied, then an empty pattern will be created.
     scale : float (optional, default=1)
         Scaling between turtle steps and units in the embroidery file. Below are some example scaling
@@ -57,25 +60,30 @@ class Turtle(TNavigator):
         Mode "logo" is compatible with most Logo-Turtle-Graphics.
         Mode "world" is the same as 'standard' for TurtleThread.
 
-             Mode      Initial turtle heading     positive angles
-         ------------|-------------------------|-------------------
-          "standard"    to the right (east)       counterclockwise
-            "logo"        upward    (north)         clockwise
+        .. list-table::
+            :header-rows: 1
+
+            * - Mode
+              - Initial turtle heading
+              - Positive angles
+            * - ``"standard"``
+              - To the right (east)
+              - Counterclockwise
+            * - ``"logo"``
+              - Upward (north)
+              - Clockwise
+
     """
 
     def __init__(self, pattern=None, scale=1, angle_mode="degrees", mode=TNavigator.DEFAULT_MODE):
         # TODO: Flag that can enable/disable changing angle when angle mode is changed
         if pattern is None:
-            self.pattern = EmbPattern()
+            self.pattern = stitches.EmbroideryPattern(scale=scale)
         else:
             self.pattern = pattern
 
         # Set up stitch parameters prior to super.__init__ since self.reset() depends on stitch type
-        self.stitch_type = "no_stitch"
-        self.stitch_parameters = {"length": 10}
-        self._previous_stitch_type = [self.stitch_type]
-        self._previous_stitch_parameters = [self.stitch_parameters]
-        self.scale = scale
+        self._stitch_group_stack = []
 
         super().__init__(mode=mode)
         self.angle_mode = angle_mode
@@ -135,7 +143,18 @@ class Turtle(TNavigator):
         return extent / (2 * math.asin(0.5 * side_length / radius))
 
     def circle(self, radius, extent=None, steps=None):
-        """Draw a circle, see the `official documentation <https://docs.python.org/3/library/turtle.html#turtle.circle>`_."""
+        """Draw a circle or arc, for more info see the official :py:func:`turtle.circle` documentation.
+
+        Parameters
+        ----------
+        radius: float
+            Radius of the circle
+        extent: float
+            The angle of the arc, by default it is a full circle
+        steps: float
+            The circle is approximated as a sequence of ``steps`` line segments. If the ``steps`` are not given, then the optimal number
+            of line segments for the current stitch length is selected.
+        """
         if radius == 0:  # TODO: Maybe use a lower tolerance
             warn("Drawing a circle with radius is 0 is not possible and may lead to many stitches in the same spot")
         if math.isinf(radius) or math.isnan(radius):
@@ -143,21 +162,18 @@ class Turtle(TNavigator):
 
         if extent is None:
             extent = self._fullcircle
-        if steps is None and "length" in self.stitch_parameters:
-            stitch_length = self.stitch_parameters["length"]
+
+        if (
+            steps is None
+            and self._stitch_group_stack  # The stitch group stack is not empty
+            and hasattr(self._stitch_group_stack[-1], "stitch_length")  # length is specified in topmost stitch group
+        ):
+            stitch_length = self._stitch_group_stack[-1].stitch_length
             steps = self._steps_from_stitch_length(stitch_length, abs(radius), extent)
         elif steps is None:
             steps = 20
 
         super().circle(radius=radius, extent=extent, steps=steps)
-
-    def _push_settings(self):
-        self._previous_stitch_type.append(self.stitch_type)
-        self._previous_stitch_parameters.append(self.stitch_parameters)
-
-    def _pop_settings(self):
-        self.stitch_type = self._previous_stitch_type.pop()
-        self.stitch_parameters = self._previous_stitch_parameters.pop()
 
     def start_running_stitch(self, stitch_length):
         """Set the stitch mode to running stitch (not recommended, use ``running_stitch``-context instead).
@@ -175,34 +191,46 @@ class Turtle(TNavigator):
         stitch_length : int
             Number of steps between each stitch.
         """
-        # Store current settings
-        self._push_settings()
-
-        # Set stitch parameters
-        self.stitch_type = "running_stitch"
-        self.stitch_parameters = {"length": stitch_length}
-
-        # Initialise stitch
-        self.pattern.add_stitch_absolute(STITCH, self.x, self.y)
+        self.set_stitch_type(stitches.RunningStitch(self.pos(), stitch_length))
 
     def start_jump_stitch(self):
         """Set the stitch mode to jump-stitch (not recommended, use ``jump_stitch``-context instead).
 
         With a jump-stitch, trim the thread and move the needle without sewing more stitches.
         """
-        # Store current settings
-        self._push_settings()
-
-        # Set stitch parameters
-        self.stitch_type = "jump_stitch"
-        self.stitch_parameters = {}
-        self.pattern.add_stitch_absolute(TRIM, self.x, self.y)
+        self.set_stitch_type(stitches.JumpStitch(self.pos()))
 
     def cleanup_stitch_type(self):
-        """Cleanup after switching to running stitch."""
-        self._pop_settings()
+        """Cleanup after switching stitch type."""
+        self._stitch_group_stack.pop()
+        if self._stitch_group_stack:
+            # This handles nested context managers. We remove the top stitch group
+            # from the stack and make a copy of it that we place back. We do it this
+            # way so the starting position of the copy is where the the turtle is right
+            # now.
+            previous_stitch_group = self._stitch_group_stack.pop()
+            stitch_group = previous_stitch_group.empty_copy(self.position)
+
+            self._stitch_group_stack.append(stitch_group)
+            self.pattern.stitch_groups.append(stitch_group)
+
+    def set_stitch_type(self, stitch_group):
+        self._stitch_group_stack.append(stitch_group)
+        self.pattern.stitch_groups.append(stitch_group)
 
     @contextmanager
+    def use_stitch_group(self, stitch_group):
+        self.set_stitch_type(stitch_group=stitch_group)
+        yield
+        if self._stitch_group_stack[-1] is not stitch_group:
+            raise RuntimeError(
+                "Inconsistent state, likely caused by explicitly calling `cleanup_stitch_type` within a"
+                + " stitch group context (e.g. within a `with turtle.running_stitch(20):` block)."
+                + "\nYou should either set stitch groups with context managers or with the `start_{stitch_type}`"
+                + " methods, not both."
+            )
+        self.cleanup_stitch_type()
+
     def running_stitch(self, stitch_length):
         """Set the stitch mode to running stitch and cleanup afterwards.
 
@@ -216,68 +244,21 @@ class Turtle(TNavigator):
         stitch_length : int
             Number of steps between each stitch.
         """
-        self.start_running_stitch(stitch_length)
-        yield
-        self._pop_settings()
+        return self.use_stitch_group(stitches.RunningStitch(self.pos(), stitch_length))
 
-    @contextmanager
-    def jump_stitch(self):
+    def jump_stitch(self, skip_intermediate_jumps=True):
         """Set the stitch mode to jump-stitch and cleanup afterwards.
 
         With a jump-stitch, trim the thread and move the needle without sewing more stitches.
+
+        Parameters
+        ----------
+        skip_intermediate_jumps : bool (optional, default=True)
+            If True, then multiple jump commands will be collapsed into one jump command. This is useful in the cases
+            where there may be multiple subsequent jumps with no stitches inbetween. Multiple subsequent jumps doesn't
+            make sense but it can happen dependent on how you generate your patterns.
         """
-        # Store current settings
-        self.start_jump_stitch()
-
-        yield
-
-        # Reset settings
-        self.stitch_type = self._previous_stitch_type.pop()
-        self.stitch_parameters = self._previous_stitch_parameters.pop()
-        # TODO: Possibly a flag for cleaning up the stitches-list so we only have a single jump command after the trim
-
-    def _goto_running_stitch(self, x, y):
-        x, y = self.scale * x, self.scale * y
-        distance = math.sqrt((self.x - x) ** 2 + (self.y - y) ** 2)
-        angle = math.atan2(y - self.y, x - self.x)
-        step_length = self.stitch_parameters["length"]
-
-        # TODO: Maybe add a flag in the stitch parameters to customise this behaviour.
-
-        # Running to the exact stopping point. The final stitch will be between 0.5 and 1.5 times the
-        # stitch length.
-
-        # First, the needle does stitches until the distance to the end-point is
-        # less than two stitch-lengths away
-        distance_traveled = 0
-        while distance_traveled + 2 * step_length < distance:
-            self.x += step_length * math.cos(angle)
-            self.y += step_length * math.sin(angle)
-            self.pattern.add_stitch_absolute(STITCH, self.x, self.y)
-            distance_traveled += step_length
-
-        # Then, we check if we need one final stitch, to prevent stitches larger than
-        # 1.5 times the stitch length
-        if distance - distance_traveled >= 1.5 * step_length:
-            self.x += step_length * math.cos(angle)
-            self.y += step_length * math.sin(angle)
-            self.pattern.add_stitch_absolute(STITCH, self.x, self.y)
-            distance_traveled += step_length
-
-        # We add the final stitch at the end-point, which is guaranteed to be at most 1.5 and at least 0.5
-        # stitch-lengths away from the second to last stitch.
-        self.x = x
-        self.y = y
-        self.pattern.add_stitch_absolute(STITCH, self.x, self.y)
-
-    def _goto_jump_stitch(self, x, y):
-        self.x = self.scale * x
-        self.y = self.scale * y
-        self.pattern.add_stitch_absolute(JUMP, self.x, self.y)
-
-    def _goto_no_stitch(self, x, y):
-        self.x = self.scale * x
-        self.y = self.scale * y
+        return self.use_stitch_group(stitches.JumpStitch(self.pos(), skip_intermediate_jumps=skip_intermediate_jumps))
 
     @property
     def _position(self):
@@ -285,16 +266,10 @@ class Turtle(TNavigator):
 
     @_position.setter
     def _position(self, other):
-        """Goto a given position, see the `official documentation <https://docs.python.org/3/library/turtle.html#turtle.goto>`_."""
-        x, y = other
-        if self.stitch_type == "running_stitch":
-            self._goto_running_stitch(x, y)
-        elif self.stitch_type == "jump_stitch":
-            self._goto_jump_stitch(x, y)
-        elif self.stitch_type == "no_stitch":
-            self._goto_no_stitch(x, y)
-        else:
-            raise ValueError(f"{self.stitch_type} is not a valid stitch pattern")
+        """Goto a given position, see the :py:meth:`goto` documentation for more info."""
+        if self._stitch_group_stack:
+            self._stitch_group_stack[-1].add_location(other)
+        self.x, self.y = other
 
     def save(self, filename):
         """Save the embroidery pattern as an embroidery or image file.
@@ -308,12 +283,12 @@ class Turtle(TNavigator):
         filename : str
         """
         if not USE_SPHINX_GALLERY:
-            write(self.pattern, filename)
+            write(self.pattern.to_pyembroidery(), filename)
         else:
-            self._gallery_patterns.append((filename, self.pattern.copy()))
+            self._gallery_patterns.append((filename, self.pattern.to_pyembroidery()))
 
     def home(self):
-        """Move the needle home (position (0, 0)), see the `official documentation <https://docs.python.org/3/library/turtle.html#turtle.home>`_."""
+        """Move the needle home (position (0, 0)), for more info see the official :py:func:`turtle.home` documentation"""
         self.goto(0, 0)
         self.angle = 0
 
@@ -338,8 +313,10 @@ class Turtle(TNavigator):
         bye : bool
             If True, then ``turtle.bye()`` will be called after drawing.
         """
-        visualise_pattern(self.pattern, turtle=turtle, width=width, height=height, scale=scale, done=done, bye=bye)
+        visualise_pattern(
+            self.pattern.to_pyembroidery(), turtle=turtle, width=width, height=height, scale=scale, done=done, bye=bye
+        )
 
     def show_info(self):
         """Display information about this turtle's embroidery pattern."""
-        show_info(self.pattern, scale=self.scale)
+        show_info(self.pattern.to_pyembroidery(), scale=self.pattern.scale)
