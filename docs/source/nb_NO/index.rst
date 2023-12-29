@@ -16,7 +16,7 @@ TurtleThread er et verktøy inspirert av `TurtleStitch <https://www.turtlestitch
    intro/index
    christmas/index
    auto_examples/index
-   api
+   api/index
 
 Indices and tables
 ==================
