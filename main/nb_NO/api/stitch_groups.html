@@ -1,0 +1,560 @@
+
+<!DOCTYPE html>
+
+<html lang="nb">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Patterns and stitch types &#8212; TurtleThread  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom_nb_NO.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/javascript/print.js"></script>
+    <link rel="shortcut icon" href="../_static/turtlethread_logo_notext.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Søk" href="../search.html" />
+    <link rel="next" title="Visualisation" href="visualisation.html" />
+    <link rel="prev" title="Main functionality" href="turtle.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="nb">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/turtlethread_logo.svg" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Contents:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../installation.html">
+   Installasjonsguide
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro/index.html">
+   Komme i gang med TurtleThread
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro/introduction.html">
+     Ditt første skilpaddebroderi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro/for.html">
+     For løkker
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro/stitch_types.html">
+     Oversikt over sømmetyper i TurtleThread
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro/morse.html">
+     Brodere en beskjed med morsekode
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../christmas/index.html">
+   Juleverksted med TurtleThread
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../christmas/snowflake.html">
+     Julekuler, snøflak og rotasjonssymmetri
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../christmas/reflection_symmetry.html">
+     Julekuler, snøflak og speilsymmetri
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../christmas/randomness.html">
+     Julekuler, stjernehimler og tilfeldighet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../christmas/fractal.html">
+     Julekuler, snøflak og rekursjon
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../auto_examples/index.html">
+   Eksempelgalleri
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../auto_examples/gallery_maurer_rose.html">
+     Maurer rose
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../auto_examples/gallery_sierpinsky_arrowhead.html">
+     Sierpinsky pilspisskurve
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../auto_examples/gallery_hilbert.html">
+     Hilbertkurve
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../auto_examples/gallery_schotter_line.html">
+     Schotter-inspirert linjekunst
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   API manual (engelsk)
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="turtle.html">
+     Main functionality
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Patterns and stitch types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="visualisation.html">
+     Visualisation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="utils.html">
+     Additional utilities
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="nb_NO"  href="#"><span class="current nb_NO flag"></span></a>
+        
+        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="en" href="../../en/api/stitch_groups.html"><span class="en flag"></span></a>
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/api/stitch_groups.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Patterns and stitch types</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="patterns-and-stitch-types">
+<h1>Patterns and stitch types<a class="headerlink" href="#patterns-and-stitch-types" title="Permalink til denne oversikten">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="turtlethread.stitches.EmbroideryPattern">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">turtlethread.stitches.</span></span><span class="sig-name descname"><span class="pre">EmbroideryPattern</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turtlethread/stitches.html#EmbroideryPattern"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.stitches.EmbroideryPattern" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Abstract representation of an embroidery pattern.</p>
+<p>Container object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>scale: int (optional, default=1)</strong></dt><dd><p>All coordinates are multiplied by this parameter before converting it to a PyEmbroidery pattern.
+This is useful to control the number of steps per mm (default is 10 steps per mm).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.stitches.EmbroideryPattern.get_stitch_command">
+<span class="sig-name descname"><span class="pre">get_stitch_command</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.12)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/turtlethread/stitches.html#EmbroideryPattern.get_stitch_command"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.stitches.EmbroideryPattern.get_stitch_command" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Get stitch commands for PyEmbroidery.</p>
+<p>This function is used when embroidery patterns contain whole embroidery patterns. If you’re not explicitly
+making patterns within patterns, then you probably want to use the <a class="reference internal" href="#turtlethread.stitches.EmbroideryPattern.to_pyembroidery" title="turtlethread.stitches.EmbroideryPattern.to_pyembroidery"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_pyembroidery()</span></code></a> method instead.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.stitches.EmbroideryPattern.to_pyembroidery">
+<span class="sig-name descname"><span class="pre">to_pyembroidery</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pyembroidery.EmbPattern.EmbPattern</span></span></span><a class="reference internal" href="../_modules/turtlethread/stitches.html#EmbroideryPattern.to_pyembroidery"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.stitches.EmbroideryPattern.to_pyembroidery" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Convert to a PyEmbroidery pattern.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="turtlethread.stitches.StitchGroup">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">turtlethread.stitches.</span></span><span class="sig-name descname"><span class="pre">StitchGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">turtlethread.base_turtle.Vec2D</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turtlethread/stitches.html#StitchGroup"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.stitches.StitchGroup" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Object representing one contiguous set of commands for the embroidery machine.</p>
+<p>Stitch groups are used to convert the Turtle commands into embroidery machine commands. For example, if you want to
+embroider with a running stitch, then you’d create a stitch group for a running stitch with the corresponding
+stitch length.</p>
+<p>Stitch groups work by storing subsequent locations of the Turtle and converts them into embroidery commands.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>start_pos: Vec2D (tuple[float, float])</strong></dt><dd><p>The initial position of the turtle.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.stitches.StitchGroup.add_location">
+<span class="sig-name descname"><span class="pre">add_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">turtlethread.base_turtle.Vec2D</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/turtlethread/stitches.html#StitchGroup.add_location"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.stitches.StitchGroup.add_location" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Add a new location to this stitch group.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.stitches.StitchGroup.empty_copy">
+<span class="sig-name descname"><span class="pre">empty_copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../_modules/turtlethread/stitches.html#StitchGroup.empty_copy"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.stitches.StitchGroup.empty_copy" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Create a copy of the stitch group but with no stored locations (i.e. no stitches).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.stitches.StitchGroup.get_stitch_commands">
+<span class="sig-name descname"><span class="pre">get_stitch_commands</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.12)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/turtlethread/stitches.html#StitchGroup.get_stitch_commands"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.stitches.StitchGroup.get_stitch_commands" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Get the list of PyEmbroidery stitch commands for this stitch group</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="turtlethread.stitches.RunningStitch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">turtlethread.stitches.</span></span><span class="sig-name descname"><span class="pre">RunningStitch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">turtlethread.base_turtle.Vec2D</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stitch_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turtlethread/stitches.html#RunningStitch"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.stitches.RunningStitch" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Stitch group for running stitches.</p>
+<p>With a running stitch, we get stitches with a constant distance between each stitch.</p>
+<p>If the turtle is supposed to move a number of steps that is not a multiple of <code class="docutils literal notranslate"><span class="pre">stitch_length</span></code>, then all but the
+last stitch in that stretch will have the same length and the last stitch will be between <code class="docutils literal notranslate"><span class="pre">0.5*stitch_length</span></code> and
+<code class="docutils literal notranslate"><span class="pre">1.5*stitch_length</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>stitch_length</strong><span class="classifier">int</span></dt><dd><p>Number of steps between each stitch.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.stitches.RunningStitch.add_location">
+<span class="sig-name descname"><span class="pre">add_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">turtlethread.base_turtle.Vec2D</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#turtlethread.stitches.RunningStitch.add_location" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Add a new location to this stitch group.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.stitches.RunningStitch.empty_copy">
+<span class="sig-name descname"><span class="pre">empty_copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="headerlink" href="#turtlethread.stitches.RunningStitch.empty_copy" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Create a copy of the stitch group but with no stored locations (i.e. no stitches).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.stitches.RunningStitch.get_stitch_commands">
+<span class="sig-name descname"><span class="pre">get_stitch_commands</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.12)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#turtlethread.stitches.RunningStitch.get_stitch_commands" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Get the list of PyEmbroidery stitch commands for this stitch group</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="turtlethread.stitches.JumpStitch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">turtlethread.stitches.</span></span><span class="sig-name descname"><span class="pre">JumpStitch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">turtlethread.base_turtle.Vec2D</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_intermediate_jumps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/turtlethread/stitches.html#JumpStitch"><span class="viewcode-link"><span class="pre">[kilde]</span></span></a><a class="headerlink" href="#turtlethread.stitches.JumpStitch" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Stitch group for jump stitches.</p>
+<p>A jump stitch group always starts with a trim command followed by the needle moving without sewing any stitches.</p>
+<p>See <a class="reference internal" href="#turtlethread.stitches.StitchGroup" title="turtlethread.stitches.StitchGroup"><code class="xref py py-class docutils literal notranslate"><span class="pre">StitchGroup</span></code></a> for more information on stitch groups.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>skip_intermediate_jumps</strong><span class="classifier">bool (optional, default=True)</span></dt><dd><p>If True, then multiple jump commands will be collapsed into one jump command. This is useful in the cases
+where there may be multiple subsequent jumps with no stitches inbetween. Multiple subsequent jumps doesn’t
+make sense but it can happen dependent on how you generate your patterns.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.stitches.JumpStitch.add_location">
+<span class="sig-name descname"><span class="pre">add_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">turtlethread.base_turtle.Vec2D</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#turtlethread.stitches.JumpStitch.add_location" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Add a new location to this stitch group.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.stitches.JumpStitch.empty_copy">
+<span class="sig-name descname"><span class="pre">empty_copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="headerlink" href="#turtlethread.stitches.JumpStitch.empty_copy" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Create a copy of the stitch group but with no stored locations (i.e. no stitches).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="turtlethread.stitches.JumpStitch.get_stitch_commands">
+<span class="sig-name descname"><span class="pre">get_stitch_commands</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.12)"><span class="pre">Literal</span></a><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#turtlethread.stitches.JumpStitch.get_stitch_commands" title="Permalink til denne definisjonen">#</a></dt>
+<dd><p>Get the list of PyEmbroidery stitch commands for this stitch group</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="turtle.html" title="forrige page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">forrige</p>
+            <p class="prev-next-title">Main functionality</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="visualisation.html" title="neste page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">neste</p>
+        <p class="prev-next-title">Visualisation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Marie Roald & Yngve Mardal Moe<br/>
+  
+      &copy; Copyright 2021, Marie Roald &amp; Yngve Mardal Moe.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

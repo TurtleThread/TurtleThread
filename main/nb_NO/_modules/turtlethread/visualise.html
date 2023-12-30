@@ -196,10 +196,37 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../api.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../api/index.html">
    API manual (engelsk)
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/turtle.html">
+     Main functionality
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/stitch_groups.html">
+     Patterns and stitch types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/visualisation.html">
+     Visualisation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/utils.html">
+     Additional utilities
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -350,7 +377,7 @@ title="Fullscreen mode"
             <span class="k">pass</span>
 
 
-<div class="viewcode-block" id="visualise_pattern"><a class="viewcode-back" href="../../api.html#turtlethread.visualise.visualise_pattern">[dokumentasjon]</a><span class="k">def</span> <span class="nf">visualise_pattern</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">turtle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">done</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bye</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="visualise_pattern"><a class="viewcode-back" href="../../api/visualisation.html#turtlethread.visualise.visualise_pattern">[dokumentasjon]</a><span class="k">def</span> <span class="nf">visualise_pattern</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">turtle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">done</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bye</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Use the builtin ``turtle`` library to visualise an embroidery pattern.</span>
 
 <span class="sd">    Parameters</span>

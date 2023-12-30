@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:00.377** total execution time for 4 files **from all galleries**:
+**00:00.374** total execution time for 4 files **from all galleries**:
 
 .. container::
 
@@ -39,8 +39,8 @@ Computation times
      - 00:00.108
      - 0.0
    * - :ref:`sphx_glr_auto_examples_gallery_hilbert.py` (``../../../examples/en/gallery_hilbert.py``)
-     - 00:00.091
+     - 00:00.089
      - 0.0
    * - :ref:`sphx_glr_auto_examples_gallery_maurer_rose.py` (``../../../examples/en/gallery_maurer_rose.py``)
-     - 00:00.012
+     - 00:00.011
      - 0.0

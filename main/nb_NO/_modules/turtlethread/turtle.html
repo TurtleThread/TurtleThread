@@ -196,10 +196,37 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../api.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../api/index.html">
    API manual (engelsk)
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/turtle.html">
+     Main functionality
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/stitch_groups.html">
+     Patterns and stitch types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/visualisation.html">
+     Visualisation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/utils.html">
+     Additional utilities
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -295,14 +322,15 @@ title="Fullscreen mode"
   <h1>Kildekode for turtlethread.turtle</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
-<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">auto</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
 <span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
 
-<span class="kn">from</span> <span class="nn">pyembroidery</span> <span class="kn">import</span> <span class="n">JUMP</span><span class="p">,</span> <span class="n">STITCH</span><span class="p">,</span> <span class="n">TRIM</span><span class="p">,</span> <span class="n">EmbPattern</span><span class="p">,</span> <span class="n">write</span>
+<span class="kn">from</span> <span class="nn">pyembroidery</span> <span class="kn">import</span> <span class="n">write</span>
 
 <span class="kn">from</span> <span class="nn">.base_turtle</span> <span class="kn">import</span> <span class="n">TNavigator</span><span class="p">,</span> <span class="n">Vec2D</span>
 <span class="kn">from</span> <span class="nn">.pattern_info</span> <span class="kn">import</span> <span class="n">show_info</span>
 <span class="kn">from</span> <span class="nn">.visualise</span> <span class="kn">import</span> <span class="n">visualise_pattern</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">stitches</span>
 
 <span class="n">USE_SPHINX_GALLERY</span> <span class="o">=</span> <span class="kc">False</span>
 
@@ -328,16 +356,18 @@ title="Fullscreen mode"
     <span class="n">DEGREES</span> <span class="o">=</span> <span class="s2">&quot;degrees&quot;</span>
 
 
-<div class="viewcode-block" id="Turtle"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle">[dokumentasjon]</a><span class="k">class</span> <span class="nc">Turtle</span><span class="p">(</span><span class="n">TNavigator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Turtle object that to make embroidery files. Mirrored after the official `turtle &lt;https://docs.python.org/3/library/turtle.html&gt;`_ library.</span>
+<div class="viewcode-block" id="Turtle"><a class="viewcode-back" href="../../api/turtle.html#turtlethread.Turtle">[dokumentasjon]</a><span class="k">class</span> <span class="nc">Turtle</span><span class="p">(</span><span class="n">TNavigator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Turtle object that to make embroidery files. Mirrored after the official :py:mod:`turtle` library.</span>
 
-<span class="sd">    Any undocumented functions have the same interface as the official turtle library.</span>
+<span class="sd">    This class has the same API as the builtin ``turtle.Turtle`` class with documented changes, for more information</span>
+<span class="sd">    see the official documentation of the</span>
+<span class="sd">    `builtin turtle library &lt;https://docs.python.org/3/library/turtle.html#methods-of-rawturtle-turtle-and-corresponding-functions&gt;`_</span>
 
-<span class="sd">    One turtle-step is equivalent to 0.1 mm.</span>
+<span class="sd">    One turtle-step is equivalent to 0.1 mm (unless scaled otherwise).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    pattern : pyembroidery.EmbPattern (optional)</span>
+<span class="sd">    pattern : turtlethread.stitches.EmbroideryPattern (optional)</span>
 <span class="sd">        The embroidery pattern to work with. If not supplied, then an empty pattern will be created.</span>
 <span class="sd">    scale : float (optional, default=1)</span>
 <span class="sd">        Scaling between turtle steps and units in the embroidery file. Below are some example scaling</span>
@@ -352,25 +382,30 @@ title="Fullscreen mode"
 <span class="sd">        Mode &quot;logo&quot; is compatible with most Logo-Turtle-Graphics.</span>
 <span class="sd">        Mode &quot;world&quot; is the same as &#39;standard&#39; for TurtleThread.</span>
 
-<span class="sd">             Mode      Initial turtle heading     positive angles</span>
-<span class="sd">         ------------|-------------------------|-------------------</span>
-<span class="sd">          &quot;standard&quot;    to the right (east)       counterclockwise</span>
-<span class="sd">            &quot;logo&quot;        upward    (north)         clockwise</span>
+<span class="sd">        .. list-table::</span>
+<span class="sd">            :header-rows: 1</span>
+
+<span class="sd">            * - Mode</span>
+<span class="sd">              - Initial turtle heading</span>
+<span class="sd">              - Positive angles</span>
+<span class="sd">            * - ``&quot;standard&quot;``</span>
+<span class="sd">              - To the right (east)</span>
+<span class="sd">              - Counterclockwise</span>
+<span class="sd">            * - ``&quot;logo&quot;``</span>
+<span class="sd">              - Upward (north)</span>
+<span class="sd">              - Clockwise</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">angle_mode</span><span class="o">=</span><span class="s2">&quot;degrees&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">TNavigator</span><span class="o">.</span><span class="n">DEFAULT_MODE</span><span class="p">):</span>
         <span class="c1"># TODO: Flag that can enable/disable changing angle when angle mode is changed</span>
         <span class="k">if</span> <span class="n">pattern</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span> <span class="o">=</span> <span class="n">EmbPattern</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span> <span class="o">=</span> <span class="n">stitches</span><span class="o">.</span><span class="n">EmbroideryPattern</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span> <span class="o">=</span> <span class="n">pattern</span>
 
         <span class="c1"># Set up stitch parameters prior to super.__init__ since self.reset() depends on stitch type</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span> <span class="o">=</span> <span class="s2">&quot;no_stitch&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stitch_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;length&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_previous_stitch_type</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_previous_stitch_parameters</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">stitch_parameters</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stitch_group_stack</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">angle_mode</span> <span class="o">=</span> <span class="n">angle_mode</span>
@@ -429,8 +464,19 @@ title="Fullscreen mode"
         <span class="c1"># Assumes that radius is converted to radians prior to call</span>
         <span class="k">return</span> <span class="n">extent</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">asin</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">side_length</span> <span class="o">/</span> <span class="n">radius</span><span class="p">))</span>
 
-<div class="viewcode-block" id="Turtle.circle"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.circle">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">circle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Draw a circle, see the `official documentation &lt;https://docs.python.org/3/library/turtle.html#turtle.circle&gt;`_.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Turtle.circle"><a class="viewcode-back" href="../../api/turtle.html#turtlethread.Turtle.circle">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">circle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Draw a circle or arc, for more info see the official :py:func:`turtle.circle` documentation.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        radius: float</span>
+<span class="sd">            Radius of the circle</span>
+<span class="sd">        extent: float</span>
+<span class="sd">            The angle of the arc, by default it is a full circle</span>
+<span class="sd">        steps: float</span>
+<span class="sd">            The circle is approximated as a sequence of ``steps`` line segments. If the ``steps`` are not given, then the optimal number</span>
+<span class="sd">            of line segments for the current stitch length is selected.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">radius</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># TODO: Maybe use a lower tolerance</span>
             <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Drawing a circle with radius is 0 is not possible and may lead to many stitches in the same spot&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span> <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">radius</span><span class="p">):</span>
@@ -438,23 +484,20 @@ title="Fullscreen mode"
 
         <span class="k">if</span> <span class="n">extent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fullcircle</span>
-        <span class="k">if</span> <span class="n">steps</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">&quot;length&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stitch_parameters</span><span class="p">:</span>
-            <span class="n">stitch_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stitch_parameters</span><span class="p">[</span><span class="s2">&quot;length&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">steps</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stitch_group_stack</span>  <span class="c1"># The stitch group stack is not empty</span>
+            <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_stitch_group_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;stitch_length&quot;</span><span class="p">)</span>  <span class="c1"># length is specified in topmost stitch group</span>
+        <span class="p">):</span>
+            <span class="n">stitch_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stitch_group_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">stitch_length</span>
             <span class="n">steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_steps_from_stitch_length</span><span class="p">(</span><span class="n">stitch_length</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">radius</span><span class="p">),</span> <span class="n">extent</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">steps</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">steps</span> <span class="o">=</span> <span class="mi">20</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="n">steps</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">_push_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_previous_stitch_type</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_previous_stitch_parameters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stitch_parameters</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_pop_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_previous_stitch_type</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stitch_parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_previous_stitch_parameters</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-
-<div class="viewcode-block" id="Turtle.start_running_stitch"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.start_running_stitch">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">start_running_stitch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stitch_length</span><span class="p">):</span>
+<div class="viewcode-block" id="Turtle.start_running_stitch"><a class="viewcode-back" href="../../api/turtle.html#turtlethread.Turtle.start_running_stitch">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">start_running_stitch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stitch_length</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the stitch mode to running stitch (not recommended, use ``running_stitch``-context instead).</span>
 
 <span class="sd">        With a running stitch, we get stitches with a constant distance between each stitch.</span>
@@ -470,35 +513,47 @@ title="Fullscreen mode"
 <span class="sd">        stitch_length : int</span>
 <span class="sd">            Number of steps between each stitch.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Store current settings</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_push_settings</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_stitch_type</span><span class="p">(</span><span class="n">stitches</span><span class="o">.</span><span class="n">RunningStitch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">(),</span> <span class="n">stitch_length</span><span class="p">))</span></div>
 
-        <span class="c1"># Set stitch parameters</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span> <span class="o">=</span> <span class="s2">&quot;running_stitch&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stitch_parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;length&quot;</span><span class="p">:</span> <span class="n">stitch_length</span><span class="p">}</span>
-
-        <span class="c1"># Initialise stitch</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="o">.</span><span class="n">add_stitch_absolute</span><span class="p">(</span><span class="n">STITCH</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Turtle.start_jump_stitch"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.start_jump_stitch">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">start_jump_stitch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Turtle.start_jump_stitch"><a class="viewcode-back" href="../../api/turtle.html#turtlethread.Turtle.start_jump_stitch">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">start_jump_stitch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the stitch mode to jump-stitch (not recommended, use ``jump_stitch``-context instead).</span>
 
 <span class="sd">        With a jump-stitch, trim the thread and move the needle without sewing more stitches.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Store current settings</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_push_settings</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_stitch_type</span><span class="p">(</span><span class="n">stitches</span><span class="o">.</span><span class="n">JumpStitch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">()))</span></div>
 
-        <span class="c1"># Set stitch parameters</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span> <span class="o">=</span> <span class="s2">&quot;jump_stitch&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stitch_parameters</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="o">.</span><span class="n">add_stitch_absolute</span><span class="p">(</span><span class="n">TRIM</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span></div>
+<div class="viewcode-block" id="Turtle.cleanup_stitch_type"><a class="viewcode-back" href="../../api/turtle.html#turtlethread.Turtle.cleanup_stitch_type">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">cleanup_stitch_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Cleanup after switching stitch type.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stitch_group_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stitch_group_stack</span><span class="p">:</span>
+            <span class="c1"># This handles nested context managers. We remove the top stitch group</span>
+            <span class="c1"># from the stack and make a copy of it that we place back. We do it this</span>
+            <span class="c1"># way so the starting position of the copy is where the the turtle is right</span>
+            <span class="c1"># now.</span>
+            <span class="n">previous_stitch_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stitch_group_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">stitch_group</span> <span class="o">=</span> <span class="n">previous_stitch_group</span><span class="o">.</span><span class="n">empty_copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Turtle.cleanup_stitch_type"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.cleanup_stitch_type">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">cleanup_stitch_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Cleanup after switching to running stitch.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_pop_settings</span><span class="p">()</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_stitch_group_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stitch_group</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="o">.</span><span class="n">stitch_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stitch_group</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Turtle.running_stitch"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.running_stitch">[dokumentasjon]</a>    <span class="nd">@contextmanager</span>
-    <span class="k">def</span> <span class="nf">running_stitch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stitch_length</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_stitch_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stitch_group</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stitch_group_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stitch_group</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="o">.</span><span class="n">stitch_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stitch_group</span><span class="p">)</span>
+
+    <span class="nd">@contextmanager</span>
+    <span class="k">def</span> <span class="nf">use_stitch_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stitch_group</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_stitch_type</span><span class="p">(</span><span class="n">stitch_group</span><span class="o">=</span><span class="n">stitch_group</span><span class="p">)</span>
+        <span class="k">yield</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stitch_group_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">stitch_group</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">&quot;Inconsistent state, likely caused by explicitly calling `cleanup_stitch_type` within a&quot;</span>
+                <span class="o">+</span> <span class="s2">&quot; stitch group context (e.g. within a `with turtle.running_stitch(20):` block).&quot;</span>
+                <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">You should either set stitch groups with context managers or with the `start_</span><span class="si">{stitch_type}</span><span class="s2">`&quot;</span>
+                <span class="o">+</span> <span class="s2">&quot; methods, not both.&quot;</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_stitch_type</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Turtle.running_stitch"><a class="viewcode-back" href="../../api/turtle.html#turtlethread.Turtle.running_stitch">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">running_stitch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stitch_length</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the stitch mode to running stitch and cleanup afterwards.</span>
 
 <span class="sd">        With a running stitch, we get stitches with a constant distance between each stitch.</span>
@@ -511,68 +566,21 @@ title="Fullscreen mode"
 <span class="sd">        stitch_length : int</span>
 <span class="sd">            Number of steps between each stitch.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">start_running_stitch</span><span class="p">(</span><span class="n">stitch_length</span><span class="p">)</span>
-        <span class="k">yield</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_pop_settings</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_stitch_group</span><span class="p">(</span><span class="n">stitches</span><span class="o">.</span><span class="n">RunningStitch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">(),</span> <span class="n">stitch_length</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Turtle.jump_stitch"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.jump_stitch">[dokumentasjon]</a>    <span class="nd">@contextmanager</span>
-    <span class="k">def</span> <span class="nf">jump_stitch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Turtle.jump_stitch"><a class="viewcode-back" href="../../api/turtle.html#turtlethread.Turtle.jump_stitch">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">jump_stitch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">skip_intermediate_jumps</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the stitch mode to jump-stitch and cleanup afterwards.</span>
 
 <span class="sd">        With a jump-stitch, trim the thread and move the needle without sewing more stitches.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        skip_intermediate_jumps : bool (optional, default=True)</span>
+<span class="sd">            If True, then multiple jump commands will be collapsed into one jump command. This is useful in the cases</span>
+<span class="sd">            where there may be multiple subsequent jumps with no stitches inbetween. Multiple subsequent jumps doesn&#39;t</span>
+<span class="sd">            make sense but it can happen dependent on how you generate your patterns.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Store current settings</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">start_jump_stitch</span><span class="p">()</span>
-
-        <span class="k">yield</span>
-
-        <span class="c1"># Reset settings</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_previous_stitch_type</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stitch_parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_previous_stitch_parameters</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span></div>
-        <span class="c1"># TODO: Possibly a flag for cleaning up the stitches-list so we only have a single jump command after the trim</span>
-
-    <span class="k">def</span> <span class="nf">_goto_running_stitch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="n">y</span>
-        <span class="n">distance</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">angle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">step_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stitch_parameters</span><span class="p">[</span><span class="s2">&quot;length&quot;</span><span class="p">]</span>
-
-        <span class="c1"># TODO: Maybe add a flag in the stitch parameters to customise this behaviour.</span>
-
-        <span class="c1"># Running to the exact stopping point. The final stitch will be between 0.5 and 1.5 times the</span>
-        <span class="c1"># stitch length.</span>
-
-        <span class="c1"># First, the needle does stitches until the distance to the end-point is</span>
-        <span class="c1"># less than two stitch-lengths away</span>
-        <span class="n">distance_traveled</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">while</span> <span class="n">distance_traveled</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">step_length</span> <span class="o">&lt;</span> <span class="n">distance</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">step_length</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">step_length</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="o">.</span><span class="n">add_stitch_absolute</span><span class="p">(</span><span class="n">STITCH</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-            <span class="n">distance_traveled</span> <span class="o">+=</span> <span class="n">step_length</span>
-
-        <span class="c1"># Then, we check if we need one final stitch, to prevent stitches larger than</span>
-        <span class="c1"># 1.5 times the stitch length</span>
-        <span class="k">if</span> <span class="n">distance</span> <span class="o">-</span> <span class="n">distance_traveled</span> <span class="o">&gt;=</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">step_length</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">step_length</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">step_length</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="o">.</span><span class="n">add_stitch_absolute</span><span class="p">(</span><span class="n">STITCH</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-            <span class="n">distance_traveled</span> <span class="o">+=</span> <span class="n">step_length</span>
-
-        <span class="c1"># We add the final stitch at the end-point, which is guaranteed to be at most 1.5 and at least 0.5</span>
-        <span class="c1"># stitch-lengths away from the second to last stitch.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="o">.</span><span class="n">add_stitch_absolute</span><span class="p">(</span><span class="n">STITCH</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_goto_jump_stitch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="n">y</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="o">.</span><span class="n">add_stitch_absolute</span><span class="p">(</span><span class="n">JUMP</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_goto_no_stitch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="n">y</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_stitch_group</span><span class="p">(</span><span class="n">stitches</span><span class="o">.</span><span class="n">JumpStitch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">(),</span> <span class="n">skip_intermediate_jumps</span><span class="o">=</span><span class="n">skip_intermediate_jumps</span><span class="p">))</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -580,18 +588,12 @@ title="Fullscreen mode"
 
     <span class="nd">@_position</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Goto a given position, see the `official documentation &lt;https://docs.python.org/3/library/turtle.html#turtle.goto&gt;`_.&quot;&quot;&quot;</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">other</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span> <span class="o">==</span> <span class="s2">&quot;running_stitch&quot;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_goto_running_stitch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span> <span class="o">==</span> <span class="s2">&quot;jump_stitch&quot;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_goto_jump_stitch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span> <span class="o">==</span> <span class="s2">&quot;no_stitch&quot;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_goto_no_stitch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">stitch_type</span><span class="si">}</span><span class="s2"> is not a valid stitch pattern&quot;</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;Goto a given position, see the :py:meth:`goto` documentation for more info.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stitch_group_stack</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_stitch_group_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">add_location</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">other</span>
 
-<div class="viewcode-block" id="Turtle.save"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.save">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="Turtle.save"><a class="viewcode-back" href="../../api/turtle.html#turtlethread.Turtle.save">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Save the embroidery pattern as an embroidery or image file.</span>
 
 <span class="sd">        Saves the embroiery pattern to file. Supports standard embroidery file formats,</span>
@@ -603,16 +605,16 @@ title="Fullscreen mode"
 <span class="sd">        filename : str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">USE_SPHINX_GALLERY</span><span class="p">:</span>
-            <span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+            <span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="o">.</span><span class="n">to_pyembroidery</span><span class="p">(),</span> <span class="n">filename</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_gallery_patterns</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">filename</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="o">.</span><span class="n">copy</span><span class="p">()))</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_gallery_patterns</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">filename</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="o">.</span><span class="n">to_pyembroidery</span><span class="p">()))</span></div>
 
-<div class="viewcode-block" id="Turtle.home"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.home">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">home</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Move the needle home (position (0, 0)), see the `official documentation &lt;https://docs.python.org/3/library/turtle.html#turtle.home&gt;`_.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Turtle.home"><a class="viewcode-back" href="../../api/turtle.html#turtlethread.Turtle.home">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">home</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Move the needle home (position (0, 0)), for more info see the official :py:func:`turtle.home` documentation&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">angle</span> <span class="o">=</span> <span class="mi">0</span></div>
 
-<div class="viewcode-block" id="Turtle.visualise"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.visualise">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">visualise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turtle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">done</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bye</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Turtle.visualise"><a class="viewcode-back" href="../../api/turtle.html#turtlethread.Turtle.visualise">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">visualise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">turtle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">done</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bye</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Use the builtin ``turtle`` library to visualise this turtle&#39;s embroidery pattern.</span>
 
 <span class="sd">        Parameters</span>
@@ -633,11 +635,13 @@ title="Fullscreen mode"
 <span class="sd">        bye : bool</span>
 <span class="sd">            If True, then ``turtle.bye()`` will be called after drawing.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">visualise_pattern</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="p">,</span> <span class="n">turtle</span><span class="o">=</span><span class="n">turtle</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">done</span><span class="o">=</span><span class="n">done</span><span class="p">,</span> <span class="n">bye</span><span class="o">=</span><span class="n">bye</span><span class="p">)</span></div>
+        <span class="n">visualise_pattern</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="o">.</span><span class="n">to_pyembroidery</span><span class="p">(),</span> <span class="n">turtle</span><span class="o">=</span><span class="n">turtle</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">done</span><span class="o">=</span><span class="n">done</span><span class="p">,</span> <span class="n">bye</span><span class="o">=</span><span class="n">bye</span>
+        <span class="p">)</span></div>
 
-<div class="viewcode-block" id="Turtle.show_info"><a class="viewcode-back" href="../../api.html#turtlethread.Turtle.show_info">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">show_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Turtle.show_info"><a class="viewcode-back" href="../../api/turtle.html#turtlethread.Turtle.show_info">[dokumentasjon]</a>    <span class="k">def</span> <span class="nf">show_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Display information about this turtle&#39;s embroidery pattern.&quot;&quot;&quot;</span>
-        <span class="n">show_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span></div></div>
+        <span class="n">show_info</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="o">.</span><span class="n">to_pyembroidery</span><span class="p">(),</span> <span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span></div></div>
 </pre></div>
 
               </div>
