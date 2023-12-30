@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:00.374** total execution time for 4 files **from auto_examples**:
+**00:00.370** total execution time for 4 files **from auto_examples**:
 
 .. container::
 
@@ -33,13 +33,13 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_auto_examples_gallery_schotter_line.py` (``gallery_schotter_line.py``)
-     - 00:00.166
+     - 00:00.164
      - 0.0
    * - :ref:`sphx_glr_auto_examples_gallery_sierpinsky_arrowhead.py` (``gallery_sierpinsky_arrowhead.py``)
-     - 00:00.108
+     - 00:00.107
      - 0.0
    * - :ref:`sphx_glr_auto_examples_gallery_hilbert.py` (``gallery_hilbert.py``)
-     - 00:00.089
+     - 00:00.088
      - 0.0
    * - :ref:`sphx_glr_auto_examples_gallery_maurer_rose.py` (``gallery_maurer_rose.py``)
      - 00:00.011
