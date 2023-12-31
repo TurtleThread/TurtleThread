@@ -25,6 +25,8 @@ en:
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 html: Makefile nb_NO en
+html:
+	cp "$(SOURCEDIR)/index.html" "$(BUILDDIR)/index.html"
 
 clean:
-	rm -rf _build
+	rm -rf $(BUILDDIR)
