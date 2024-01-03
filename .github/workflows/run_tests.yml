@@ -16,6 +16,9 @@ jobs:
       - name: Install turtlethread
         run: |
           pip3 install --user .[dev]
+      - name: Run linter
+        run: |
+          python -m black --check src tests
       - name: Run tests
         run: |
           # Start virtual display driver
