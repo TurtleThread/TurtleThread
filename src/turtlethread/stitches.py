@@ -74,6 +74,7 @@ class StitchGroup(ABC):
         self._start_pos = start_pos
         self._positions = []
         self._stitch_commands = None
+        self._parent_stitch_group = self
 
     def add_location(self, location: Vec2D) -> None:
         """Add a new location to this stitch group."""
@@ -91,12 +92,13 @@ class StitchGroup(ABC):
 
         return self._stitch_commands.copy()
 
-    def empty_copy(self) -> Self:
+    def empty_copy(self, start_pos) -> Self:
         """Create a copy of the stitch group but with no stored locations (i.e. no stitches)."""
         copied_group = copy(self)
         copied_group._positions = []
-        if self._positions:
-            copied_group._start_pos = self._positions[-1]
+        copied_group._start_pos = start_pos
+        copied_group._parent_stitch_group = self._parent_stitch_group
+
         return copied_group
 
 
