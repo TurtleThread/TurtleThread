@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 from copy import copy
 import itertools
 import math
-from typing import Generator, TypeVar
+from typing import Generator, Iterable, Any
 
 try:
     from typing import TypeAlias, Literal, Self
@@ -167,6 +167,59 @@ class RunningStitch(StitchGroup):
             stitch_commands.extend(self._iter_stitches_between_positions(pos1, pos2))
 
         return stitch_commands
+
+
+def iterate_back_and_forth(iterable: Iterable[Any]) -> Generator[tuple[StitchCommand, float, float], None, None]:
+    """Iterates back and forth trough an iterable
+
+    Each element (except the first) is given twice, with the previous element sandwiched inbetween.
+    (So all element exept he first and last is given in total three times)
+
+    Parameters
+    ----------
+    iterable
+        Iterable to iterate back and forth over
+
+
+    Yields
+    ------
+    Elements from the iterable
+
+    >>> list(iterate_back_and_forth([0, 1, 2, 3]))
+    [0, 1, 0, 1, 2, 1, 2, 3, 2, 3]
+    """
+    iterator = iter(iterable)
+    previous = next(iterator)
+    yield previous
+
+    for item in iterator:
+        yield item
+        yield previous
+        yield item
+        previous = item
+
+
+class TripleStitch(StitchGroup):
+    """Stitch group for triple stitches.
+
+    TripleStitch is the same as a :py:class:`RunningStitch`, but the thread moves back and forth three times for each
+    stitch.
+
+    Parameters
+    ----------
+    stitch_length : int
+        Number of steps between each stitch.
+    """
+
+    def __init__(self, start_pos: Vec2D, stitch_length: float) -> None:
+        super().__init__(start_pos=start_pos)
+        self.running_stitch = RunningStitch(start_pos=start_pos, stitch_length=stitch_length)
+
+    def _get_stitch_commands(self) -> list[tuple[float, float, StitchCommand]]:
+        self.running_stitch._positions = self._positions
+        stitch_commands = self.running_stitch._get_stitch_commands()
+
+        return list(iterate_back_and_forth(stitch_commands))
 
 
 class JumpStitch(StitchGroup):

@@ -193,6 +193,20 @@ class Turtle(TNavigator):
         """
         self.set_stitch_type(stitches.RunningStitch(self.pos(), stitch_length))
 
+    def start_triple_stitch(self, stitch_length):
+        """Set the stitch mode to triple stitch (not recommended, use ``triple_stitch``-context instead).
+
+        Triple stitch is equivalent to running stitch, but the thread moves back and forth three times for each stitch.
+
+        One step is equivalent to 0.1 mm, we recommend setting the minimum length between each stitch to 30 (3 mm).
+
+        Parameters
+        ----------
+        stitch_length : int
+            Number of steps between each stitch.
+        """
+        self.set_stitch_type(stitches.TripleStitch(self.pos(), stitch_length))
+
     def start_jump_stitch(self):
         """Set the stitch mode to jump-stitch (not recommended, use ``jump_stitch``-context instead).
 
@@ -245,6 +259,20 @@ class Turtle(TNavigator):
             Number of steps between each stitch.
         """
         return self.use_stitch_group(stitches.RunningStitch(self.pos(), stitch_length))
+
+    def triple_stitch(self, stitch_length):
+        """Set the stitch mode to triple stitch and cleanup afterwards.
+
+        Triple stitch is equivalent to running stitch, but the thread moves back and forth three times for each stitch.
+
+        One step is equivalent to 0.1 mm, we recommend setting the minimum length between each stitch to 30 (3 mm).
+
+        Parameters
+        ----------
+        stitch_length : int
+            Number of steps between each stitch.
+        """
+        return self.use_stitch_group(stitches.TripleStitch(self.pos(), stitch_length))
 
     def jump_stitch(self, skip_intermediate_jumps=True):
         """Set the stitch mode to jump-stitch and cleanup afterwards.
