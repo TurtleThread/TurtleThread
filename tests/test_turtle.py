@@ -142,6 +142,7 @@ class TestTurtle:
         [
             turtlethread.stitches.JumpStitch(Vec2D(0, 0)),
             turtlethread.stitches.RunningStitch(Vec2D(0, 0), 20),
+            turtlethread.stitches.TripleStitch(Vec2D(0, 0), 20),
         ],
     )
     def test_set_stitch_type_sets_stitch_type(self, turtle, stitch_group):
@@ -451,3 +452,68 @@ class TestTurtleRunningStitch:
     def test_start_running_stitch_sets_stitch_type(self, turtle):
         turtle.start_running_stitch(10)
         assert isinstance(turtle._stitch_group_stack[-1], turtlethread.stitches.RunningStitch)
+
+
+class TestTurtleTripleStitch:
+    @pytest.mark.parametrize("stitch_length", [2, 5, 10, 20, 50, 100])
+    @pytest.mark.parametrize("step_scaling_factor", [0.1, 0.5, 1])
+    def test_forward_single_step(self, turtle, stitch_length, step_scaling_factor):
+        with turtle.triple_stitch(stitch_length):
+            turtle.forward(stitch_length * step_scaling_factor)
+
+        stitches = turtle.pattern.to_pyembroidery().stitches
+        assert len(stitches) == 4
+        assert stitches[0] == (0, 0, STITCH)
+        assert stitches[1] == (stitch_length * step_scaling_factor, 0, STITCH)
+        assert stitches[2] == stitches[0]
+        assert stitches[3] == stitches[1]
+
+    @pytest.mark.parametrize("stitch_length", [2, 5, 10, 20, 50, 100])
+    def test_forward_two_steps(self, turtle, stitch_length):
+        with turtle.triple_stitch(stitch_length):
+            turtle.forward(2 * stitch_length)
+
+        stitches = turtle.pattern.to_pyembroidery().stitches
+        assert len(stitches) == 7
+        assert stitches[0] == (0, 0, STITCH)
+        assert stitches[1] == (stitch_length, 0, STITCH)
+        assert stitches[2] == stitches[0]
+        assert stitches[3] == stitches[1]
+        assert stitches[4] == (stitch_length * 2, 0, STITCH)
+        assert stitches[5] == stitches[3]
+        assert stitches[6] == stitches[4]
+
+    @pytest.mark.parametrize("stitch_length", [2, 5, 10, 20, 50, 100])
+    def test_forward_single_step_twice(self, turtle, stitch_length):
+        with turtle.triple_stitch(stitch_length):
+            turtle.forward(stitch_length)
+            turtle.forward(stitch_length)
+
+        stitches = turtle.pattern.to_pyembroidery().stitches
+        assert len(stitches) == 7
+        assert stitches[0] == (0, 0, STITCH)
+        assert stitches[1] == (stitch_length, 0, STITCH)
+        assert stitches[2] == stitches[0]
+        assert stitches[3] == stitches[1]
+        assert stitches[4] == (stitch_length * 2, 0, STITCH)
+        assert stitches[5] == stitches[3]
+        assert stitches[6] == stitches[4]
+
+    @pytest.mark.parametrize("stitch_length", [2, 5, 10, 20, 50, 100])
+    @pytest.mark.parametrize("steps", [4, 5, 10])
+    def test_circle(self, turtle, stitch_length, steps):
+        """We get the correct number of stitches when creating a circle.
+
+        Here, we use a circle with at least 4 steps, i.e. a square. To make sure that each side consists of only one
+        stitch, we set the radius to stitch_length, which will give us maximum side lengths of sqrt(2)*stitch_length
+        (for 4 steps). Since this is less than 1.5*stitch_length, we only get a single stitch per side of the square.
+        """
+        with turtle.triple_stitch(stitch_length):
+            turtle.circle(stitch_length, steps=steps)
+
+        stitches = turtle.pattern.to_pyembroidery().stitches
+        assert len(stitches) == 3 * steps + 1
+
+    def test_start_triple_stitch_sets_stitch_type(self, turtle):
+        turtle.start_triple_stitch(10)
+        assert isinstance(turtle._stitch_group_stack[-1], turtlethread.stitches.TripleStitch)
