@@ -4,6 +4,7 @@ from math import copysign, cos, degrees, pi, radians, sin, sqrt
 import pytest
 from pyembroidery import JUMP, STITCH, TRIM
 from pytest import approx
+from turtlethread.base_turtle import Vec2D
 
 import turtlethread.stitches
 from turtlethread import Turtle
@@ -130,6 +131,71 @@ class TestTurtle:
         assert turtle.x == pytest.approx(0)
         assert turtle.y == pytest.approx(-200)
 
+    def test_use_stitch_group_fails_if_inconsistent_state(self, turtle):
+        with pytest.raises(RuntimeError):
+            with turtle.running_stitch(20):
+                with turtle.running_stitch(20):
+                    turtle.cleanup_stitch_type()
+
+    @pytest.mark.parametrize(
+        "stitch_group",
+        [
+            turtlethread.stitches.JumpStitch(Vec2D(0, 0)),
+            turtlethread.stitches.RunningStitch(Vec2D(0, 0), 20),
+        ],
+    )
+    def test_set_stitch_type_sets_stitch_type(self, turtle, stitch_group):
+        turtle.set_stitch_type(stitch_group)
+        assert turtle._stitch_group_stack[-1] is stitch_group
+
+    def test_nested_stitch_context(self, turtle):
+        with turtle.running_stitch(20):
+            turtle.forward(20)
+            with turtle.running_stitch(10):
+                turtle.forward(20)
+            turtle.forward(20)
+
+            with turtle.running_stitch(10):
+                turtle.forward(20)
+                with turtle.running_stitch(5):
+                    turtle.forward(10)
+            turtle.forward(20)
+
+            with turtle.jump_stitch():
+                turtle.forward(50)
+                with turtle.running_stitch(10):
+                    turtle.forward(20)
+                turtle.forward(20)
+            turtle.forward(20)
+
+        stitches = turtle.pattern.to_pyembroidery().stitches
+        assert stitches == [
+            (0, 0, STITCH),  # Parent running stitch group
+            (20, 0, STITCH),
+            (20, 0, STITCH),  # First nested running stitch group
+            (30, 0, STITCH),
+            (40, 0, STITCH),
+            (40, 0, STITCH),  # Back to parent running  stitch group
+            (60, 0, STITCH),
+            (60, 0, STITCH),  # Second nested running  stitch group
+            (70, 0, STITCH),
+            (80, 0, STITCH),
+            (80, 0, STITCH),  # Doubly nested running  stitch group
+            (85, 0, STITCH),
+            (90, 0, STITCH),
+            (90, 0, STITCH),  # Back to parent running stitch group
+            (110, 0, STITCH),
+            (110, 0, TRIM),  # Nested jump stitch
+            (160, 0, JUMP),
+            (160, 0, STITCH),  # Running stich within nested jump stitch
+            (170, 0, STITCH),
+            (180, 0, STITCH),
+            (180, 0, TRIM),  # Back to jump stitch
+            (200, 0, JUMP),
+            (200, 0, STITCH),  # Back to parent running stitch
+            (220, 0, STITCH),
+        ]
+
 
 class TestTurtleJumpStitch:
     def test_turtle_jump_stitch_context(self, turtle):
@@ -241,6 +307,10 @@ class TestTurtleJumpStitch:
                 [0, 0, JUMP],
             ]
         )
+
+    def test_start_jump_stitch_sets_stitch_type(self, turtle):
+        turtle.start_jump_stitch()
+        assert isinstance(turtle._stitch_group_stack[-1], turtlethread.stitches.JumpStitch)
 
 
 class TestTurtleRunningStitch:
@@ -377,3 +447,7 @@ class TestTurtleRunningStitch:
             assert final_distance < 1.5 * stitch_length
         else:
             assert final_distance == approx(step_length)
+
+    def test_start_running_stitch_sets_stitch_type(self, turtle):
+        turtle.start_running_stitch(10)
+        assert isinstance(turtle._stitch_group_stack[-1], turtlethread.stitches.RunningStitch)
