@@ -120,9 +120,8 @@ html_favicon = "../logo/turtlethread_logo_notext.svg"
 # theme further.  For a list of options available for each theme, see the
 # documentation.
 #
-html_theme_options = {"logo_only": True}
 
-languages = {"nb_NO", "en"}
+languages = ["nb_NO", "en"]
 # other_languages = languages - {language}
 
 html_context = {"current_language": language, "all_languages": languages}

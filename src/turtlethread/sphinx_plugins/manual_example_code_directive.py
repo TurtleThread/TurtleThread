@@ -4,17 +4,13 @@ from textwrap import dedent
 
 from sphinx.directives.code import (
     LiteralInclude,
-    List,
-    Node,
     nodes,
-    Any,
-    Dict,
 )
 from sphinx.application import Sphinx
 
 
 def change_save_dir(code, out_dir):
-    return re.sub("(\w*.save[(]['\"])(.*[)])", f"\\1{out_dir}/\\2", code)
+    return re.sub(r"(\w*.save[(]['\"])(.*[)])", f"\\1{out_dir}/\\2", code)
 
 
 class IncludeTurtlethread(LiteralInclude):
@@ -24,7 +20,7 @@ class IncludeTurtlethread(LiteralInclude):
     selecting what to include.
     """
 
-    def run(self) -> List[Node]:
+    def run(self):
         document = self.state.document
 
         try:
@@ -95,7 +91,7 @@ class IncludeTurtlethread(LiteralInclude):
         return stdout
 
 
-def setup(app: Sphinx) -> Dict[str, Any]:
+def setup(app: Sphinx):
     app.add_directive("include-turtlethread", IncludeTurtlethread)
     return {
         "parallel_read_safe": True,

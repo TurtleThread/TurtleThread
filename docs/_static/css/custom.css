@@ -1,3 +1,25 @@
+:root, html[data-theme=light] {
+
+    --pst-color-link: 0,113,188;
+}
+
+a {
+    color: rgb(var(--pst-color-link));
+    word-wrap: break-word;
+    text-decoration: none;
+    text-decoration-thickness: max(1px,0.0625rem);
+    text-underline-offset: 0.1578em;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.bd-sidebar-primary .sidebar-primary-items__end {
+    margin-bottom: 0em;
+    margin-top: 0em;
+}
+
 #main-content {
     overflow: hidden;
 }
@@ -47,14 +69,23 @@ figcaption > div.legend {
     text-decoration: none;
 }
 
+.headerbtn {
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.headerbtn:last-child {
+    padding-right: 0px;
+}
+
+
 span.flag{
-    width: 1em;
-    height: 1em;
-    /*padding: .1rem .5rem;
-    margin: 0 .1rem;*/
-    /*margin: .1rem .6rem;*/
+    width: 1.3rem;
+    height: 1.3rem;
     filter: grayscale(100%);
     background-size: contain;
+    display: inline-block;
 }
 
 span.flag:hover{

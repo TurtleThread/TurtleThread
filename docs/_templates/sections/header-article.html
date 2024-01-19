@@ -1,40 +1,27 @@
-{# To trigger whether the TOC and its button show up #}
-{% set page_toc = generate_toc_html() %}
-{% from "../macros/buttons.html" import render_funcs, render_label_input_button with context %}
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        {% if theme_single_page != True %}
-        {{ render_label_input_button(for_input="__navigation", tooltip="Toggle navigation", icon="fas fa-bars", tooltip_placement="right") }}
-        {% endif %}
+{% if theme_article_header_start or theme_article_header_end %}
+<div class="header-article-items header-article__inner">
+  {% if theme_article_header_start %}
+    <div class="header-article-items__start">
+      {% for item in theme_article_header_start %}
+        <div class="header-article-item">{% include item %}</div>
+      {% endfor %}
     </div>
-    <div class="header-article__right">
-        
-        {%- for lang in all_languages -%}
-        {% if lang == current_language %}
-        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="{{lang}}"  href="#"><span class="current {{lang}} flag"></span></a>
-        {% else %}
-        <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="{{lang}}" href="../{% for _ in pagename.split('/')[1:] %}../{% endfor %}{{ lang }}/{{ pagename }}.html"><span class="{{lang}} flag"></span></a>
-        {%- endif %}
-        {%- endfor -%}
-        {%- for button in header_buttons -%}
-        {{ render_funcs[button.pop("type")](**button) }}
-        {%- endfor -%}
-
-        {% if page_toc -%}
-        {{ render_label_input_button("__page-toc", icon="fas fa-list", label="page-toc") }}
-        {%- endif %}
+  {% endif %}
+  {% if theme_article_header_end %}
+    <div class="header-article-items__end">
+        <div class="header-article-item">
+          {%- for lang in all_languages -%}
+          {% if lang == current_language %}
+            <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="{{lang}}"  href="#"><span class="current {{lang}} flag"></span></a>
+          {% else %}
+            <a class="headerbtn" data-toggle="tooltip" data-placement="bottom" title data-original-title="{{lang}}" href="../{% for _ in pagename.split('/')[1:] %}../{% endfor %}{{ lang }}/{{ pagename }}.html"><span class="{{lang}} flag"></span></a>
+          {%- endif %}
+          {%- endfor -%}
+        </div>
+      {% for item in theme_article_header_end %}
+        <div class="header-article-item">{% include item %}</div>
+      {% endfor %}
     </div>
+  {% endif %}
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    {%- if page_toc | length >= 1 %}
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> {{ translate(theme_toc_title) }}
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        {{ page_toc }}
-    </nav>
-    {%- endif %}
-</div>
+{% endif %}
