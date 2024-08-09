@@ -1,8 +1,93 @@
-[tool.black]
-line-length = 120
+[build-system]
+requires = [
+    "setuptools>=61.2",
+]
+build-backend = "setuptools.build_meta"
 
-[tool.isort]
-known_third_party = []
+[project]
+name = "turtlethread"
+keywords = [
+    "turtlethread",
+]
+version = "0.0.11"
+description = "A Turtle-interface for making embroidery files"
+authors = [
+    { name = "Marie Roald & Yngve Mardal Moe", email = "yngve.m.moe@gmail.com" },
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "pyembroidery",
+    "typing_extensions ; python_version < \"3.11\"",
+]
+
+[project.license]
+text = "\"GNU General Public License v3\","
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[project.urls]
+Homepage = "https://github.com/marieroald/turtlethread"
+
+[project.optional-dependencies]
+docs = [
+    "sphinx==7.2.6",
+    "numpydoc",
+    "sphinx-gallery",
+    "sphinx_book_theme==1.1.0",
+    "pydata-sphinx-theme==0.15.2",
+    "sphinx-toolbox",
+    "matplotlib",
+    "Jinja2>=3.0",
+]
+dev = [
+    "pytest",
+    "ruff==0.5.7",
+    "pytest-coverage",
+    "pytest-randomly",
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.packages.find]
+where = [
+    "src",
+]
+namespaces = false
+
+[tool.distutils.bdist_wheel]
+universal = 1
+
+[tool.flake8]
+exclude = "docs"
+max-line-length = "120"
+
+[tool.ruff]
+line-length = 120
+exclude = ["docs/source/"]
+
+[tool.ruff.lint]
+select = ["I"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["turtlethread"]
 
 [tool.coverage.run]
 omit = [

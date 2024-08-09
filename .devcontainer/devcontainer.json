@@ -1,0 +1,16 @@
+
+{
+	"name": "TurtleThread Devcontainer",
+	"context": "..",
+	"dockerFile": "../Dockerfile",
+	"postCreateCommand": "/turtlethread-venv/bin/python -m pip install -e .[docs,dev]",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"charliermarsh.ruff",
+				"tamasfe.even-better-toml"
+			]
+		}
+	}
+}
