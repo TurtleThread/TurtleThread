@@ -5,10 +5,10 @@ from warnings import warn
 
 from pyembroidery import write
 
+from . import stitches
 from .base_turtle import TNavigator, Vec2D
 from .pattern_info import show_info
 from .visualise import visualise_pattern
-from . import stitches
 
 USE_SPHINX_GALLERY = False
 

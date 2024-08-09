@@ -2,11 +2,11 @@ import re
 import sys
 from textwrap import dedent
 
+from sphinx.application import Sphinx
 from sphinx.directives.code import (
     LiteralInclude,
     nodes,
 )
-from sphinx.application import Sphinx
 
 
 def change_save_dir(code, out_dir):

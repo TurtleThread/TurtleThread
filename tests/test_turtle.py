@@ -4,10 +4,10 @@ from math import copysign, cos, degrees, pi, radians, sin, sqrt
 import pytest
 from pyembroidery import JUMP, STITCH, TRIM
 from pytest import approx
-from turtlethread.base_turtle import Vec2D
 
 import turtlethread.stitches
 from turtlethread import Turtle
+from turtlethread.base_turtle import Vec2D
 
 
 @pytest.fixture

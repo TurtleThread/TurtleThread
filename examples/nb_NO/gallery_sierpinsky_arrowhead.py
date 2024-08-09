@@ -3,6 +3,7 @@ Sierpinsky pilspisskurve
 ========================
 
 """
+
 from turtlethread import Turtle
 
 
@@ -11,11 +12,11 @@ def tegn_sierpinsky_pilspiss(nål, steglengde, nivå, vinkel=60):
         nål.forward(steglengde)
         return
 
-    tegn_sierpinsky_pilspiss(nål, steglengde, nivå-1, -vinkel)
+    tegn_sierpinsky_pilspiss(nål, steglengde, nivå - 1, -vinkel)
     nål.left(vinkel)
-    tegn_sierpinsky_pilspiss(nål, steglengde, nivå-1, vinkel)
+    tegn_sierpinsky_pilspiss(nål, steglengde, nivå - 1, vinkel)
     nål.left(vinkel)
-    tegn_sierpinsky_pilspiss(nål, steglengde, nivå-1, -vinkel)
+    tegn_sierpinsky_pilspiss(nål, steglengde, nivå - 1, -vinkel)
 
 
 nål = Turtle()

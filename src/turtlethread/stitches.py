@@ -1,17 +1,18 @@
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
-from copy import copy
 import itertools
 import math
-from typing import Generator, Iterable, Any
+from abc import ABC, abstractmethod
+from copy import copy
+from typing import Any, Generator, Iterable
 
 try:
-    from typing import TypeAlias, Literal, Self
+    from typing import Literal, Self, TypeAlias
 except ImportError:
-    from typing_extensions import TypeAlias, Literal, Self
+    from typing_extensions import Literal, Self, TypeAlias
 
 import pyembroidery
+
 from .base_turtle import Vec2D
 
 # STITCH=0, JUMP=1, TRIM=2

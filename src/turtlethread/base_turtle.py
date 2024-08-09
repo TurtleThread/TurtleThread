@@ -4,6 +4,7 @@ We need to do this since we want TurtleThread to work on platforms with Python c
 without TKinter support. However, we also want to base our Turtle class on the
 TNavigator class in the builtin turtle.py.
 """
+
 # Copyright notice from the builtin turtle.py:
 #
 # turtle.py: a Tkinter based turtle graphics module for Python

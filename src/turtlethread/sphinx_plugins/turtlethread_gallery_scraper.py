@@ -1,8 +1,9 @@
 import re
-import turtlethread
 from textwrap import indent
 
 from sphinx_gallery.scrapers import HLIST_HEADER, HLIST_IMAGE_MATPLOTLIB, figure_rst
+
+import turtlethread
 
 
 def turtlethread_scraper(block, block_vars, gallery_conf, **kwargs):

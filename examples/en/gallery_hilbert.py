@@ -17,18 +17,18 @@ def draw_hilbertkurve(needle, step_length, recursion_level, angle=90):
         return
 
     needle.right(angle)
-    draw_hilbertkurve(needle, step_length, recursion_level-1, -angle)
+    draw_hilbertkurve(needle, step_length, recursion_level - 1, -angle)
 
     needle.forward(step_length)
     needle.left(angle)
-    draw_hilbertkurve(needle, step_length, recursion_level-1, angle)
+    draw_hilbertkurve(needle, step_length, recursion_level - 1, angle)
 
     needle.forward(step_length)
-    draw_hilbertkurve(needle, step_length, recursion_level-1, angle)
+    draw_hilbertkurve(needle, step_length, recursion_level - 1, angle)
 
     needle.left(angle)
     needle.forward(step_length)
-    draw_hilbertkurve(needle, step_length, recursion_level-1, -angle)
+    draw_hilbertkurve(needle, step_length, recursion_level - 1, -angle)
     needle.right(angle)
 
 
