@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-    "setuptools>=61.2",
+    "setuptools>=72.1",
 ]
 build-backend = "setuptools.build_meta"
 
@@ -44,20 +44,20 @@ Homepage = "https://github.com/marieroald/turtlethread"
 
 [project.optional-dependencies]
 docs = [
-    "sphinx==7.2.6",
-    "numpydoc",
-    "sphinx-gallery",
-    "sphinx_book_theme==1.1.0",
-    "pydata-sphinx-theme==0.15.2",
-    "sphinx-toolbox",
-    "matplotlib",
     "Jinja2>=3.0",
+    "matplotlib",
+    "numpydoc",
+    "pydata-sphinx-theme==0.15.2",
+    "sphinx==7.2.6",
+    "sphinx_book_theme==1.1.0",
+    "sphinx-gallery",
+    "sphinx-toolbox",
 ]
 dev = [
     "pytest",
-    "ruff==0.5.7",
     "pytest-coverage",
     "pytest-randomly",
+    "ruff==0.5.7",
 ]
 
 [tool.setuptools]
@@ -81,7 +81,7 @@ max-line-length = "120"
 
 [tool.ruff]
 line-length = 120
-exclude = ["docs/source/"]
+exclude = ["docs/source/"]  # We need the line numbers to stay constant for the documentation
 
 [tool.ruff.lint]
 select = ["I"]
