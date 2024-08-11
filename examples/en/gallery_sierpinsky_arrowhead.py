@@ -3,6 +3,7 @@ Sierpinsky arrowhead curve
 ==========================
 
 """
+
 from turtlethread import Turtle
 
 
@@ -11,11 +12,11 @@ def draw_sierpinsky_arrowhead(needle, step_length, recursion_level, angle=60):
         needle.forward(step_length)
         return
 
-    draw_sierpinsky_arrowhead(needle, step_length, recursion_level-1, -angle)
+    draw_sierpinsky_arrowhead(needle, step_length, recursion_level - 1, -angle)
     needle.left(angle)
-    draw_sierpinsky_arrowhead(needle, step_length, recursion_level-1, angle)
+    draw_sierpinsky_arrowhead(needle, step_length, recursion_level - 1, angle)
     needle.left(angle)
-    draw_sierpinsky_arrowhead(needle, step_length, recursion_level-1, -angle)
+    draw_sierpinsky_arrowhead(needle, step_length, recursion_level - 1, -angle)
 
 
 needle = Turtle()

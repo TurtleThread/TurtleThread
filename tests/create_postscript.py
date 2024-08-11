@@ -1,9 +1,9 @@
-from pathlib import Path
-import turtle
 import argparse
+import turtle
+from pathlib import Path
 
-import turtlethread.visualise as visualise
 import turtlethread
+import turtlethread.visualise as visualise
 
 
 def bye():

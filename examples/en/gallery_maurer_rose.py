@@ -2,12 +2,14 @@
 Maurer rose
 ===========
 
-The Maurer rose is a mathematical pattern that looks like a rose. 
+The Maurer rose is a mathematical pattern that looks like a rose.
 You can read more about this pattern on `the Maurer rose Wikipedia page <https://en.wikipedia.org/wiki/Maurer_rose>`_
 
 """
+
+from math import cos, pi, sin
+
 from turtlethread import Turtle
-from math import pi, sin, cos
 
 needle = Turtle()
 

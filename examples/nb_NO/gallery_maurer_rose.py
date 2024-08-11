@@ -6,8 +6,10 @@ Maurer roser er matematiske mønstre som kan se litt ut som blomster.
 For mer informasjon kan du se `den engelske Wikipedia siden om Maurer roser <https://en.wikipedia.org/wiki/Maurer_rose>`_
 
 """
+
+from math import cos, pi, sin
+
 from turtlethread import Turtle
-from math import pi, sin, cos
 
 nål = Turtle()
 

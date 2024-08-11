@@ -3,7 +3,9 @@ Schotter-inspirert linjekunst
 =============================
 
 """
+
 import random
+
 from turtlethread import Turtle
 
 
@@ -18,12 +20,12 @@ høyde = 100
 bredde = 50
 steg = 10
 with nål.running_stitch(steg):
-    for j in range(høyde//4):
+    for j in range(høyde // 4):
         std = j
         for i in range(bredde):
             sett_tilfeldig_retning(nål, 0, std)
             nål.forward(10)
-        
+
         for i in range(2):
             sett_tilfeldig_retning(nål, 90, std)
             nål.forward(10)
