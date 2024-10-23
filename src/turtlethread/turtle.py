@@ -207,6 +207,20 @@ class Turtle(TNavigator):
         """
         self.set_stitch_type(stitches.TripleStitch(self.pos(), stitch_length))
 
+    def start_zigzag_stitch(self, stitch_length, amplitude, density=1.0):
+        """Set the stitch mode to zigzag stitch (not recommended, use ``zigzag_stitch``-context instead).
+        With a zigzag stitch, we alternate between two points on either side of a line between two locations.
+        Parameters
+        ----------
+        stitch_length : float
+            Distance between each zigzag point.
+        amplitude : float
+            The distance from the central path to each side of the zigzag.
+        density : float (optional, default=1.0)
+            Affects how closely packed the stitches are. Higher density means more stitches per unit of distance.
+        """
+        self.set_stitch_type(stitches.ZigzagStitch(self.pos(), stitch_length, amplitude, density))
+
     def start_jump_stitch(self):
         """Set the stitch mode to jump-stitch (not recommended, use ``jump_stitch``-context instead).
 
@@ -273,6 +287,20 @@ class Turtle(TNavigator):
             Number of steps between each stitch.
         """
         return self.use_stitch_group(stitches.TripleStitch(self.pos(), stitch_length))
+    
+    def zigzag_stitch(self, stitch_length, amplitude, density=1.0):
+        """Set the stitch mode to zigzag stitch and cleanup afterwards.
+        With a zigzag stitch, we alternate between two points on either side of a line between two locations.
+        Parameters
+        ----------
+        stitch_length : float
+            Distance between each zigzag point.
+        amplitude : float
+            The distance from the central path to each side of the zigzag.
+        density : float (optional, default=1.0)
+            Affects how closely packed the stitches are. Higher density means more stitches per unit of distance.
+        """
+        return self.use_stitch_group(stitches.ZigzagStitch(self.pos(), stitch_length, amplitude, density))
 
     def jump_stitch(self, skip_intermediate_jumps=True):
         """Set the stitch mode to jump-stitch and cleanup afterwards.

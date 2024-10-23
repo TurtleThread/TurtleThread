@@ -222,7 +222,55 @@ class TripleStitch(StitchGroup):
 
         return list(iterate_back_and_forth(stitch_commands))
 
-
+class ZigzagStitch(StitchGroup):
+    """Stitch group for zigzag stitches.
+    With a zigzag stitch, we alternate between two points on either side of a line between two locations.
+    
+    Parameters
+    ----------
+    stitch_length : float
+        Distance between each zigzag point.
+    amplitude : float
+        The distance from the central path to each side of the zigzag.
+    density : float
+        Affects how closely packed the stitches are. Higher density means more stitches per unit of distance.
+    """
+    def __init__(self, start_pos: Vec2D, stitch_length: float, amplitude: float, density: float = 1.0) -> None:
+        super().__init__(start_pos=start_pos)
+        self.stitch_length = stitch_length
+        self.amplitude = amplitude
+        self.density = density  # New attribute for controlling stitch density
+    def _iter_zigzag_between_positions(self, position_1: Vec2D, position_2: Vec2D) -> Generator[tuple[float, float, StitchCommand], None, None]:
+        x1, y1 = position_1
+        x2, y2 = position_2
+        distance = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+        angle = math.atan2(y2 - y1, x2 - x1)
+        dx = math.cos(angle)
+        dy = math.sin(angle)
+        # Adjust stitch length based on density
+        effective_stitch_length = self.stitch_length / self.density
+        distance_traveled = 0
+        zigzag_side = -1  # Start on one side of the line
+        while distance_traveled + effective_stitch_length <= distance:
+            x1 += effective_stitch_length * dx
+            y1 += effective_stitch_length * dy
+            distance_traveled += effective_stitch_length
+            # Calculate offset for zigzag pattern
+            offset_x = zigzag_side * self.amplitude * -dy  # Perpendicular to the line
+            offset_y = zigzag_side * self.amplitude * dx
+            yield x1 + offset_x, y1 + offset_y, pyembroidery.STITCH
+            zigzag_side *= -1  # Switch side
+        # Add the final point exactly at the end of the line
+        yield x2, y2, pyembroidery.STITCH
+    def _get_stitch_commands(self) -> list[tuple[float, float, StitchCommand]]:
+        if not self._positions:
+            return []
+        stitch_commands = [(self._start_pos[0], self._start_pos[1], pyembroidery.STITCH)]
+        stitch_commands.extend(self._iter_zigzag_between_positions(self._start_pos, self._positions[0]))
+        for pos1, pos2 in itertools.pairwise(self._positions):
+            stitch_commands.extend(self._iter_zigzag_between_positions(pos1, pos2))
+        return stitch_commands
+    
 class JumpStitch(StitchGroup):
     """Stitch group for jump stitches.
 
