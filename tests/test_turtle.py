@@ -530,3 +530,14 @@ class TestTurtleZigzagStitch:
 
         stitches = turtle.pattern.to_pyembroidery().stitches
         assert len(stitches) > 0
+
+class TestTurtleSatinStitch:
+    # TODO: Add more test cases
+    @pytest.mark.parametrize("width", [1, 5, 20, 50])
+    @pytest.mark.parametrize("center", [True, False])
+    def test_zigzag_stitch(self, turtle, width, center):
+        with turtle.satin_stitch(width, center=center):
+            turtle.forward(100)
+
+        stitches = turtle.pattern.to_pyembroidery().stitches
+        assert len(stitches) > 0

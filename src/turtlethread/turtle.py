@@ -229,6 +229,17 @@ class Turtle(TNavigator):
         
         self.set_stitch_type(stitches.ZigzagStitch(self.pos(), density, width, center=center))
 
+    def start_satin_stitch(self, width, center = True):
+        """Set the stitch mode to satin stitch.
+
+        Parameters
+        ----------
+        width : int
+            Number of steps between the left-most and right-most side of the stitch.
+        center : boolean (default=True)
+            Whether to draw the zig-zag in the center or on the right side of the path.
+        """ 
+        self.set_stitch_type(stitches.SatinStitch(self.pos(), width, center=center))
 
     def cleanup_stitch_type(self):
         """Cleanup after switching stitch type."""
@@ -318,6 +329,18 @@ class Turtle(TNavigator):
         """ 
         
         return self.use_stitch_group(stitches.ZigzagStitch(self.pos(), density, width, center=center))
+
+    def satin_stitch(self, width, center = True):
+        """Set the stitch mode to satin stitch.
+
+        Parameters
+        ----------
+        width : int
+            Number of steps between the left-most and right-most side of the stitch.
+        center : boolean (default=True)
+            Whether to draw the zig-zag in the center or on the right side of the path.
+        """ 
+        return self.use_stitch_group(stitches.SatinStitch(self.pos(), width, center=center))
 
     @property
     def _position(self):
