@@ -517,3 +517,16 @@ class TestTurtleTripleStitch:
     def test_start_triple_stitch_sets_stitch_type(self, turtle):
         turtle.start_triple_stitch(10)
         assert isinstance(turtle._stitch_group_stack[-1], turtlethread.stitches.TripleStitch)
+
+
+class TestTurtleZigzagStitch:
+    # TODO: Add more test cases, preferably concrete ones
+    @pytest.mark.parametrize("density", [1, 5, 20, 50])
+    @pytest.mark.parametrize("width", [1, 5, 20, 50])
+    @pytest.mark.parametrize("center", [True, False])
+    def test_zigzag_stitch(self, turtle, density, width, center):
+        with turtle.zigzag_stitch(density, width, center=center):
+            turtle.forward(100)
+
+        stitches = turtle.pattern.to_pyembroidery().stitches
+        assert len(stitches) > 0
