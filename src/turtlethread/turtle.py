@@ -214,6 +214,22 @@ class Turtle(TNavigator):
         """
         self.set_stitch_type(stitches.JumpStitch(self.pos()))
 
+    def start_zigzag_stitch(self, density, width, center = True):
+        """Set the stitch mode to zigzag stitch.
+
+        Parameters
+        ----------
+        density : int
+            Number of steps for one 'zig-zag'.
+        width : int
+            Number of steps between the left-most and right-most side of the zig-zag.
+        center : boolean (default=True)
+            Whether to draw the zig-zag in the center or on the right side of the path.
+        """ 
+        
+        self.set_stitch_type(stitches.ZigzagStitch(self.pos(), density, width, center=center))
+
+
     def cleanup_stitch_type(self):
         """Cleanup after switching stitch type."""
         self._stitch_group_stack.pop()
@@ -288,6 +304,21 @@ class Turtle(TNavigator):
         """
         return self.use_stitch_group(stitches.JumpStitch(self.pos(), skip_intermediate_jumps=skip_intermediate_jumps))
 
+    def zigzag_stitch(self, density, width, center = True):
+        """Set the stitch mode to zigzag stitch.
+
+        Parameters
+        ----------
+        density : int
+            Number of steps for one 'zig-zag'.
+        width : int
+            Number of steps between the left-most and right-most side of the zig-zag.
+        center : boolean (default=True)
+            Whether to draw the zig-zag in the center or on the right side of the path.
+        """ 
+        
+        return self.use_stitch_group(stitches.ZigzagStitch(self.pos(), density, width, center=center))
+
     @property
     def _position(self):
         return Vec2D(self.x, self.y)
@@ -348,3 +379,4 @@ class Turtle(TNavigator):
     def show_info(self):
         """Display information about this turtle's embroidery pattern."""
         show_info(self.pattern.to_pyembroidery(), scale=self.pattern.scale)
+
