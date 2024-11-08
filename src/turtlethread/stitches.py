@@ -289,6 +289,13 @@ class ZigzagStitch(StitchGroup):
         self.width = width
         self.center = center
 
+    @classmethod
+    def calculate_actual_density(cls, stitch_length : int | float, density : int | float):
+        """Use the formula in the documentation to calculate the actual density of a zig-zag stitch."""
+        if stitch_length < density: 
+            return stitch_length # Density cannot be greater than stitch length
+        return max(1, stitch_length/round(stitch_length/density))
+         
     def _iter_stitches_between_positions(
         self, position_1: Vec2D, position_2: Vec2D
     ) -> Generator[tuple[StitchCommand, float, float], None, None]:
@@ -298,13 +305,13 @@ class ZigzagStitch(StitchGroup):
         x, y = position_1
         x_end, y_end = position_2
 
-        distance = math.sqrt((x - x_end) ** 2 + (y - y_end) ** 2)
+        stitch_length = math.sqrt((x - x_end) ** 2 + (y - y_end) ** 2)
         angle = math.atan2(y_end - y, x_end - x)
         dx = math.cos(angle)
         dy = math.sin(angle)
 
         # Calculate the actual density of the stitch
-        density = max(1, distance/round(distance/self.density)) # Using the formula in the docstring
+        density = ZigzagStitch.calculate_actual_density(stitch_length, self.density)
 
         if self.center:
             step_length = density/3 # Each 'zigzag' goes left, right, then center
@@ -312,7 +319,7 @@ class ZigzagStitch(StitchGroup):
             step_length = density/2 # Each 'zigzag' only goes right
 
         # Move to the end location of the stitch
-        for _ in range(round(distance/density)): # Round to prevent FP errors
+        for _ in range(round(stitch_length/density)): # Round to prevent FP errors
             if self.center:
                 # Left stitch
                 x += step_length * dx
@@ -388,7 +395,7 @@ class SatinStitch(StitchGroup):
         self, position_1: Vec2D, position_2: Vec2D
     ) -> Generator[tuple[StitchCommand, float, float], None, None]:
 
-        # Zigzag stitch between two points, stopping exactly at position 2 and not
+        # Satin stitch between two points, stopping exactly at position 2 and not
         # adding any stitch at position 1. 
         x, y = position_1
         x_end, y_end = position_2
@@ -401,9 +408,9 @@ class SatinStitch(StitchGroup):
         density = 1 
 
         if self.center:
-            step_length = density/3 # Each 'zigzag' goes left, right, then center
+            step_length = density/3 # Each stitch goes left, right, then center
         else:
-            step_length = density/2 # Each 'zigzag' only goes right
+            step_length = density/2 # Each stitch only goes right
 
         # Move to the end location of the stitch
         for _ in range(round(distance/density)): # Round to prevent FP errors
