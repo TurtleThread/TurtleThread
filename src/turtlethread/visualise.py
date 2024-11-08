@@ -4,13 +4,18 @@ USE_SPHINX_GALLERY = False
 
 
 def centered_dot(turtle, diameter):
+    speed = turtle.speed()
+    turtle.speed(0)
     pensize = turtle.pensize()
     turtle.pensize(diameter)
     turtle.goto(turtle.position())
     turtle.pensize(pensize)
+    turtle.speed(speed)
 
 
 def centered_cross(turtle, length):
+    speed = turtle.speed()
+    turtle.speed(0)
     r = length / 2
     x, y = turtle.position()
     turtle.goto(x + r, y + r)
@@ -19,9 +24,12 @@ def centered_cross(turtle, length):
     turtle.goto(x + r, y - r)
     turtle.goto(x - r, y + r)
     turtle.goto(x, y)
+    turtle.speed(speed)
 
 
 def centered_line(turtle, length):
+    speed = turtle.speed()
+    turtle.speed(0)
     r = length / 2
     tr = turtle._tracer()
     dl = turtle._delay()
@@ -38,6 +46,7 @@ def centered_line(turtle, length):
     turtle.left(90)
     turtle.pendown()
     turtle._tracer(tr, dl)
+    turtle.speed(speed)
 
 
 def _finish_visualise(done, bye):
