@@ -320,7 +320,7 @@ class Turtle(TNavigator):
         self.goto(0, 0)
         self.angle = 0
 
-    def visualise(self, turtle=None, width=800, height=800, scale=1, trace_jump=False, done=True, bye=True):
+    def visualise(self, turtle=None, width=800, height=800, scale=1, speed=6, trace_jump=False, done=True, bye=True):
         """Use the builtin ``turtle`` library to visualise this turtle's embroidery pattern.
 
         Parameters
@@ -336,6 +336,8 @@ class Turtle(TNavigator):
             Canvas height
         scale : int
             Factor the embroidery length's are scaled by.
+        speed : int
+            Speed that the turtle object moves at.
         trace_jump : bool
             If True, then draw a grey line connecting the origin and destination of jumps.
         done : bool
@@ -345,7 +347,7 @@ class Turtle(TNavigator):
         """
         visualise_pattern(
             self.pattern.to_pyembroidery(),
-            turtle=turtle, width=width, height=height, scale=scale, trace_jump=trace_jump, done=done, bye=bye
+            turtle=turtle, width=width, height=height, scale=scale, speed=speed, trace_jump=trace_jump, done=done, bye=bye
         )
 
     def show_info(self):
