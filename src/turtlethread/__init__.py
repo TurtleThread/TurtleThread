@@ -6,3 +6,6 @@ __version__ = "0.0.11"
 
 
 from .turtle import AngleMode, Turtle
+from .text import LetterDrawer 
+
+__all__ = ["AngleMode", "Turtle", "LetterDrawer"]
