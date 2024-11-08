@@ -117,7 +117,7 @@ class LetterDrawer():
         return list(self.loaded_fonts.keys()) 
 
 
-    def draw_one_letter(self, fontname, lettername, fontsize=20, colour='#000000', turtle=None): # TODO support changing colours 
+    def draw_one_letter(self, fontname, lettername, fontsize=20, colour='#000000', thickness=1, fill=False, turtle=None): # TODO support changing colours 
         # draws one letter with the turtles, with the specified fields. 
         # turtle defaults to self.turtle 
         if turtle is None: 
@@ -135,9 +135,7 @@ class LetterDrawer():
         # DRAW ONE LETTER OF A FONT WITH A LOADED NAME, GIVEN A COLOUR 
         if fontname in self.loaded_fonts.keys(): 
             try: 
-                drawSVG(turtle, self.loaded_fonts[fontname][lettername], fontsize, colour) 
-                # TODO make it go back to start / next location? 
-                # TODO maybe return the next location so that a letter sequence can be drawn 
+                drawSVG(turtle, self.loaded_fonts[fontname][lettername], fontsize, colour, thickness, fill) 
             except Exception as e: 
                 print("OR, it might be some other error({})".format(e))
                 raise ValueError("font '{}' does not have the letter '{}'".format(fontname, lettername)) 
@@ -151,19 +149,28 @@ class LetterDrawer():
             currpos = list(self.turtle.position())
             self.turtle.goto(currpos[0] + LetterDrawer.letter_gap*fontsize, currpos[1])
         
-    def draw_string(self, fontname, string, fontsize, colours='#000000', turtle=None): 
+    def draw_string(self, fontname, string, fontsize, colours='#000000', thicknesses = 1, fills=False, turtle=None): 
+
         # this draws a multiline string, automatically drawing letter gaps as desired 
         if turtle is None: 
             if self.turtle is None: 
                 raise ValueError("MUST DECLARE turtle TO USE IN LetterDrawer.draw_one_letter in either draw_one_letter() or LetterDrawer() init") 
             turtle = self.turtle 
 
-
         startx, starty = turtle.position() 
+
+        print("DRAWING STRING", string)
 
         if isinstance(colours, list): 
             assert len(colours) >= len(string), "'colours' in LetterDrawer.draw_string is a list; it's length must be at least length of the string! (characters like '\\n' and ' ' will not use the colour, but will still have an item on the colours list assigned to them)" 
 
+        if isinstance(thicknesses, list): 
+            assert len(thicknesses) >= len(string), "'thicknesses' in LetterDrawer.draw_string is a list; it's length must be at least length of the string! (characters like '\\n' and ' ' will not use the colour, but will still have an item on the colours list assigned to them)" 
+
+        if isinstance(fills, list): 
+            assert len(fills) >= len(string), "'fills' in LetterDrawer.draw_string is a list; it's length must be at least length of the string! (characters like '\\n' and ' ' will not use the colour, but will still have an item on the colours list assigned to them)" 
+
+        print("HELLO>..")
 
         for cidx in range(len(string)-1): 
             if string[cidx] in ['\n', '\r']: 
@@ -175,7 +182,19 @@ class LetterDrawer():
                 col = colours 
             else: 
                 col = colours[cidx] 
-            self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[cidx]), fontsize, col, turtle) 
+            
+            if isinstance(thicknesses, int): 
+                thickness = thicknesses 
+            else: 
+                thickness = thicknesses[cidx] 
+
+            if isinstance(fills, bool): 
+                fill = fills 
+            else: 
+                fill = fills[cidx] 
+                
+            print("DRAWING LETTER", string[cidx], "FILL", fill)
+            self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[cidx]), fontsize, col, thickness, fill, turtle) 
             self.draw_letter_gap(fontsize) 
         
         # draw last letter 

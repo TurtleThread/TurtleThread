@@ -1,16 +1,30 @@
+# this code uses code from this link: https://github.com/tfx2001/python-turtle-draw-svg/blob/master/main.py 
+# attribution: 
+
 # -*- coding: utf-8 -*-
 # Author: tfx2001
 # License: GNU GPLv3
 # Time: 2018-08-09 18:27
 
 
-# this code was slightly modified from https://github.com/tfx2001/python-turtle-draw-svg/blob/master/main.py 
 
-#import turtle as te
 import turtle 
 
 import turtlethread 
 from bs4 import BeautifulSoup
+
+
+from PIL import Image
+
+import fitz
+from svglib import svglib
+from reportlab.graphics import renderPDF
+
+from concurrent.futures import ThreadPoolExecutor # to speed up computation 
+
+import numpy as np 
+
+import tempfile 
 
 WriteStep = 15  # 贝塞尔函数的取样次数
 Xh = 0  # 记录前一个贝塞尔函数的手柄
@@ -139,9 +153,9 @@ def readPathAttrD(w_attr):
             curr_parse += i
 
 
-def drawSVG(te:turtlethread.Turtle, filename, height, w_color): # TODO consider colour 
-    # draws an SVG file with the turtle 
 
+def drawSVG(te:turtlethread.Turtle, filename, height, w_color, thickness=1, fill=False): # TODO consider colour 
+    # draws an SVG file with the turtle 
 
     SVGFile = open(filename, 'r')
     SVG = BeautifulSoup(SVGFile.read(), 'lxml')
@@ -180,11 +194,15 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color): # TODO consider 
     turtle.screensize(Width, Height)
     screen = turtle.Screen() 
 
+
+    if fill: 
+        tpe = ThreadPoolExecutor() 
+        future_lines = tpe.submit(svg_get_lines, filename, round(Width), round(Height))
     
     
 
-    
-    with te.running_stitch(30): # though this set context hould be unnecessary but 
+    # TODO: use satin stitch for thickness 
+    with te.running_stitch(99999): # 99999 will make sure we won't have gaps 
         #te.color(w_color) # TODO SWITCH COLOUR OF TEXT 
 
         def get_position(): 
@@ -271,17 +289,20 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color): # TODO consider 
                 else: 
                     print("ERROR", i)
 
-                # if (firstpos is None and i != 'z' and i != 'Z'): 
-                #     firstpos = list(te.position())
-                #     firstpos[0] -= startx
-                #     firstpos[1] *= -1
-                #     firstpos[1] += starty 
 
-    # print("FIRSTPOS:", firstpos)
-                
-    #te.penup()
-    #te.hideturtle()
-    #te.update()
+    # handle fill if needed 
+    if fill: 
+        #lines = svg_get_lines(filename, round(Width), round(Height)) 
+        # get lines - started processing earlier to speed up. 
+        lines = future_lines.result() 
+        tpe.shutdown() 
+        del tpe 
+
+        for p1, p2 in lines: 
+            with te.jump_stitch(): 
+                te.goto(startx+p1[0], -addsy-p1[1]) 
+            with te.running_stitch(99999): 
+                te.goto(startx+p2[0], -addsy-p2[1]) 
 
     with te.jump_stitch(): 
         te.goto(addsx+Width, addsy) 
@@ -308,7 +329,49 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color): # TODO consider 
             turtle.bye()
         except turtle.Terminator:
             pass'''
+    
+    return screen 
 
     
+def svg_to_pil(svgname) -> Image.Image : 
+    # Convert svg to pdf in memory with svglib+reportlab
+    # directly rendering to png does not support transparency nor scaling
+    drawing = svglib.svg2rlg(path=svgname)
+    pdf = renderPDF.drawToString(drawing)
 
+    # Open pdf with fitz (pyMuPdf) to convert to PNG
+    doc = fitz.Document(stream=pdf)
+    pix = doc.load_page(0).get_pixmap(alpha=True, dpi=300)
+
+    with tempfile.NamedTemporaryFile(suffix='.png') as tmpf: 
+        pix.save(tmpf.name)
+
+        image = Image.open(tmpf.name) 
+    #print("FINISHED SVG TO PIL")
+    return image 
+
+
+def svg_get_lines(svgname, width:int, height:int): 
+    lines = [] 
+
+    image = svg_to_pil(svgname).resize((width, height)) 
+    n = np.array(image) 
+    for r in range(width): 
+        prev = 0 
+        prev1 = -1 
+        for c in range(height): 
+            if n[c,r,3] > 0: # not transparent 
+                if prev == 0: 
+                    prev1 = c 
+                prev = 1 
+            else: 
+                if prev == 1: # from non-transparent to transparent 
+                    lines.append([(r,prev1), (r,c-1)]) 
+                prev = 0
+        if prev==1: # end of edge 
+            lines.append([(r,prev1), (r,c)]) 
+
+    #print("GOT LINES:", lines)
+    
+    return lines 
 
