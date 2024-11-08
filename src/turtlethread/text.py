@@ -23,7 +23,8 @@ class Fonts2SVGFakeOptions():
 
 
 class LetterDrawer(): 
-    letter_gap = 0.2 
+    letter_gap = 0.08 
+    line_spacing = 1.15 
 
     def __init__(self, turtle): 
         self.turtle = turtle 
@@ -35,7 +36,7 @@ class LetterDrawer():
         # TODO: default load some common fonts 
 
     # if we want to use .otf or whatever font files 
-    def load_font(self, fontname='OpenDyslexic', fontpath='./turtlethread/fonts/OpenDyslexic_0_91_12_regular.otf'): 
+    def load_font(self, fontname:str, fontpath:str): 
         # LOAD A FONT GIVEN A FONTPATH, AND GIVE IT A NAME 
         td = tempfile.TemporaryDirectory() 
         self.created_tmpdirs.append(td) 
@@ -72,6 +73,13 @@ class LetterDrawer():
                 raise ValueError("MUST DECLARE turtle TO USE IN LetterDrawer.draw_one_letter in either draw_one_letter() or LetterDrawer() init") 
             turtle = self.turtle 
         
+        if lettername == 'space': 
+            currpos = list(turtle.position())
+            # move right a bit 
+            with turtle.jump_stitch(): 
+                turtle.goto(currpos[0]+fontsize, currpos[1]) 
+            return 
+        
         # DRAW ONE LETTER OF A FONT WITH A LOADED NAME, GIVEN A COLOUR 
         if fontname in self.loaded_fonts.keys(): 
             try: 
@@ -90,13 +98,85 @@ class LetterDrawer():
             currpos = list(self.turtle.position())
             self.turtle.goto(currpos[0] + LetterDrawer.letter_gap*fontsize, currpos[1])
         
-    def draw_string(self, fontname, string, colour='#000000', turtle=None): 
+    def draw_string(self, fontname, string, fontsize, colour='#000000', turtle=None): 
         if turtle is None: 
             if self.turtle is None: 
                 raise ValueError("MUST DECLARE turtle TO USE IN LetterDrawer.draw_one_letter in either draw_one_letter() or LetterDrawer() init") 
             turtle = self.turtle 
 
-        # TODO: USE draw_one_letter TO DRAW 
+
+        startx, starty = turtle.position() 
+
+
+        for cidx in range(len(string)-1): 
+            if string[cidx] in ['\n', '\r']: 
+                # newline 
+                with turtle.jump_stitch(): 
+                    turtle.goto(startx, starty-fontsize*LetterDrawer.line_spacing) 
+                continue 
+            self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[cidx]), fontsize, colour, turtle) 
+            self.draw_letter_gap(fontsize) 
+        self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[-1]), fontsize, colour, turtle) 
+        
+
+    punctuation_to_name = {'!': 'exclam', 
+                           '@': 'at', 
+                           '#': 'numbersign', 
+                           '$': 'dollar', 
+                           '%': 'percent', 
+                           '^': 'circumflex', 
+                           '&': 'ampersand', 
+                           '*': 'asterisk', 
+                           '(': 'bracketleft', 
+                           ')': 'bracketright', 
+                           '{': 'braceleft', 
+                           '}': 'braceright', 
+                           '.': 'period', 
+                           ',': 'comma', 
+                           '"': "quotedbl", 
+                           "'": 'quotesingle', 
+                           '?': 'question', 
+                           '<': 'guilsinglleft', 
+                           '>': 'guilsinglright', 
+                           '[': 'bracketleft', 
+                           ']': 'bracketright', 
+                           '_': 'underscore', 
+                           '-': 'hyphen', 
+                           ':': 'colon', 
+                           ';': 'semicolon', 
+                           '/': 'slash', 
+                           '\\': 'backslash', 
+                           '+': 'plus', 
+                           '=': 'equal', 
+                           '|': 'bar', 
+                           '~': 'tilde', 
+                           '`': 'quotereversed', 
+                           '©': 'copyright', 
+                           }
+
+    @classmethod 
+    def char_to_name(cls, char:str): 
+        if char == ' ': 
+            return 'space' 
+        if char.isalpha(): 
+            if char.isdigit(): 
+                digit_to_name = {'0': 'zero', 
+                                 '1': 'one', 
+                                 '2': 'two', 
+                                 '3': 'three', 
+                                 '4': 'four', 
+                                 '5': 'five', 
+                                 '6': 'six', 
+                                 '7': 'seven', 
+                                 '8': 'eight', 
+                                 '9': 'nine', }
+                return digit_to_name[char] 
+            return char # normal letter 
+        
+        try: 
+            return LetterDrawer.punctuation_to_name[char] 
+        except: 
+            raise ValueError("CANNOT RECOGNIZE CHARACTER '{}'".format(char)) 
 
 
     def clear_fonts(self): 

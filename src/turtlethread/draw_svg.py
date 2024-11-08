@@ -158,7 +158,7 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color): # TODO consider 
         #first = False
     #te.tracer(100)
     #te.pensize(1)
-    te.speed(200)
+    te.speed(0)
 
 
     s = Height / float(viewbox[3]) 
@@ -188,6 +188,10 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color): # TODO consider 
     with te.running_stitch(30): # though this set context hould be unnecessary but 
         #te.color(w_color) # TODO SWITCH COLOUR OF TEXT 
 
+        def get_position(): 
+            posx, posy = te.position() 
+            return posx-startx, -posy+starty 
+
         firstpos = None 
 
         def set_firstpos(): 
@@ -202,8 +206,8 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color): # TODO consider 
             f = readPathAttrD(attr)
             lastI = ''
             for i in f:
-                print(i) 
-                # if i.lower() in ['c', 'l', 'h' 'v', 'z']: 
+                #print(i) 
+                # if i.lower() in ['c', 'q', 'l', 'h' 'v', 'z']: 
                 #     set_firstpos() 
                 
                 if i == 'M':
@@ -226,6 +230,16 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color): # TODO consider 
                             next(f) * scale[0], next(f) * scale[1],
                             next(f) * scale[0], next(f) * scale[1])
                     lastI = i
+                elif i == 'Q': 
+                    X_now = te.xcor() #- startx
+                    Y_now = te.ycor() #starty - te.ycor()
+                    Bezier_2(te, X_now, Y_now, next(f) * scale[0] + startx, -next(f) * scale[1] + starty, 
+                             next(f) * scale[0] + startx, -next(f) * scale[1] + starty) 
+                elif i == 'q': 
+                    X_now = te.xcor() 
+                    Y_now = te.ycor()
+                    Bezier_2(te, X_now, Y_now, X_now + next(f) * scale[0], Y_now - next(f) * scale[1], 
+                             X_now + next(f) * scale[0], Y_now - next(f) * scale[1],) 
                 elif i == 'L':
                     Lineto(te, startx, starty, next(f) * scale[0], next(f) * scale[1])
                 elif i == 'l':
@@ -271,14 +285,14 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color): # TODO consider 
     #te.update()
 
     with te.jump_stitch(): 
-        te.goto(startx+Width, starty) 
+        te.goto(addsx+Width, addsy) 
 
     SVGFile.close()
 
 
 
     # save it somewhere, for testing 
-    te.visualise(done=False, bye=False)
+    #te.visualise(done=False, bye=False)
     
 
     '''
