@@ -96,7 +96,8 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, spee
             Turtle._pen = Turtle()
         turtle = Turtle._pen
 
-        turtle.speed(speed)
+    turtle.speed(speed)
+
     screen = Screen()
     screen.setup(width, height)
 
@@ -119,10 +120,7 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, spee
             turtle.goto(x, y)
             turtle.pendown()
 
-            speed = turtle.speed()
-            turtle.speed(speed)
             centered_dot(turtle, 10 * scale)
-            turtle.speed(speed)
         elif command == TRIM:
             turtle.penup()
             turtle.goto(x, y)
@@ -130,15 +128,10 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, spee
 
             # turtle.color("black")
             turtle.color(0.8, 0.8, 0.8)
-            speed = turtle.speed()
-            turtle.speed(speed)
             centered_cross(turtle, 10 * scale)
-            turtle.speed(speed)
         elif command == STITCH:
             turtle.setheading(turtle.towards(x, y))
             turtle.color("blue")
-            speed = turtle.speed()
-            turtle.speed(speed)
 
             # 12.5% 75%  12.5%
             # blank line blank
@@ -152,8 +145,6 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, spee
             turtle.penup()
             turtle.forward(d/8)
             turtle.pendown()
-
-            turtle.speed(speed)
 
         else:
             raise_error = True
