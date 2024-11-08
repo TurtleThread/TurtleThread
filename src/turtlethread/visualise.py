@@ -109,32 +109,47 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done
         x = scale * x
         y = scale * y
         if command == JUMP:
-            turtle.color("red")
+            # turtle.color("red")
+            turtle.color(0.8, 0.8, 0.8)
             turtle.goto(x, y)
 
             speed = turtle.speed()
             turtle.speed("fastest")
-            centered_dot(turtle, 25 * scale)
+            centered_dot(turtle, 10 * scale)
             turtle.speed(speed)
         elif command == TRIM:
             turtle.penup()
             turtle.goto(x, y)
             turtle.pendown()
 
-            turtle.color("black")
+            # turtle.color("black")
+            turtle.color(0.8, 0.8, 0.8)
             speed = turtle.speed()
             turtle.speed("fastest")
-            centered_cross(turtle, 25 * scale)
+            centered_cross(turtle, 10 * scale)
             turtle.speed(speed)
         elif command == STITCH:
             turtle.setheading(turtle.towards(x, y))
-            turtle.pendown()
             turtle.color("blue")
-            turtle.goto(x, y)
             speed = turtle.speed()
             turtle.speed("fastest")
-            centered_line(turtle, 10 * scale)
+
+            # 12.5% 75%  12.5%
+            # blank line blank
+            xcur, ycur = turtle.position()
+            d = ((xcur-x)**2 + (ycur-y)**2)**0.5 # TODO: find a way to avoid fp errors here
+            print(f"{xcur=} {ycur=} {d=}")
+
+            turtle.penup()
+            turtle.forward(d/8)
+            turtle.pendown()
+            turtle.forward(d/4*3)
+            turtle.penup()
+            turtle.forward(d/8)
+            turtle.pendown()
+
             turtle.speed(speed)
+
         else:
             raise_error = True
             break
