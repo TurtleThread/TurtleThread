@@ -55,7 +55,7 @@ def _finish_visualise(done, bye):
             pass
 
 
-def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, trace_jump=False, done=True, bye=True):
+def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, speed=6, trace_jump=False, done=True, bye=True):
     """Use the builtin ``turtle`` library to visualise an embroidery pattern.
 
     Parameters
@@ -71,6 +71,8 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, trac
         Canvas height
     scale : int
         Factor the embroidery length's are scaled by.
+    speed : int
+        Speed that the turtle object moves at.
     trace_jump : bool
         If True, then draw a grey line connecting the origin and destination of jumps.
     done : bool
@@ -94,7 +96,7 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, trac
             Turtle._pen = Turtle()
         turtle = Turtle._pen
 
-        turtle.speed("fastest")
+        turtle.speed(speed)
     screen = Screen()
     screen.setup(width, height)
 
@@ -118,7 +120,7 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, trac
             turtle.pendown()
 
             speed = turtle.speed()
-            turtle.speed("fastest")
+            turtle.speed(speed)
             centered_dot(turtle, 10 * scale)
             turtle.speed(speed)
         elif command == TRIM:
@@ -129,14 +131,14 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, trac
             # turtle.color("black")
             turtle.color(0.8, 0.8, 0.8)
             speed = turtle.speed()
-            turtle.speed("fastest")
+            turtle.speed(speed)
             centered_cross(turtle, 10 * scale)
             turtle.speed(speed)
         elif command == STITCH:
             turtle.setheading(turtle.towards(x, y))
             turtle.color("blue")
             speed = turtle.speed()
-            turtle.speed("fastest")
+            turtle.speed(speed)
 
             # 12.5% 75%  12.5%
             # blank line blank
