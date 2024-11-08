@@ -241,6 +241,22 @@ class Turtle(TNavigator):
         """ 
         self.set_stitch_type(stitches.SatinStitch(self.pos(), width, center=center))
 
+    def start_cross_stitch(self, density, width, center = True):
+        """Set the stitch mode to cross stitch.
+
+        Parameters
+        ----------
+        density : int | float
+            Distance between the left and right sides of the cross stitch.
+        width : int | float
+            Distance between the top and bottom of the cross stitch.
+        center : boolean (default=True)
+            If True, then the turtle will form stitches on both the left and right side of the path. Else, the turtle 
+            will only form stitches on the right side of the path.
+        """ 
+        
+        self.set_stitch_type(stitches.CrossStitch(self.pos(), density, width, center=center))
+
     def cleanup_stitch_type(self):
         """Cleanup after switching stitch type."""
         self._stitch_group_stack.pop()
@@ -341,6 +357,23 @@ class Turtle(TNavigator):
             Whether to draw the zig-zag in the center or on the right side of the path.
         """ 
         return self.use_stitch_group(stitches.SatinStitch(self.pos(), width, center=center))
+
+    
+    def cross_stitch(self, density, width, center = True):
+        """Set the stitch mode to cross stitch.
+
+        Parameters
+        ----------
+        density : int | float
+            Distance between the left and right sides of the cross stitch.
+        width : int | float
+            Distance between the top and bottom of the cross stitch.
+        center : boolean (default=True)
+            If True, then the turtle will form stitches on both the left and right side of the path. Else, the turtle 
+            will only form stitches on the right side of the path.
+        """ 
+        
+        return self.use_stitch_group(stitches.CrossStitch(self.pos(), density, width, center=center))
 
     @property
     def _position(self):
