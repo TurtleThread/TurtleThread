@@ -142,7 +142,6 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, trac
             # blank line blank
             xcur, ycur = turtle.position()
             d = ((xcur-x)**2 + (ycur-y)**2)**0.5 # TODO: find a way to avoid fp errors here
-            print(f"{xcur=} {ycur=} {d=}")
 
             turtle.penup()
             turtle.forward(d/8)
