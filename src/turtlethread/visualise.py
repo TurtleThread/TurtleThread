@@ -72,7 +72,7 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, trac
     scale : int
         Factor the embroidery length's are scaled by.
     trace_jump : bool
-        If True, then draw a red line connecting the origin and destination of jumps.
+        If True, then draw a grey line connecting the origin and destination of jumps.
     done : bool
         If True, then ``turtle.done()`` will be called after drawing.
     bye : bool
