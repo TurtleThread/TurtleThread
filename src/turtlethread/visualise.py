@@ -55,7 +55,7 @@ def _finish_visualise(done, bye):
             pass
 
 
-def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done=True, bye=True):
+def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, trace_jump=False, done=True, bye=True):
     """Use the builtin ``turtle`` library to visualise an embroidery pattern.
 
     Parameters
@@ -71,6 +71,8 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done
         Canvas height
     scale : int
         Factor the embroidery length's are scaled by.
+    trace_jump : bool
+        If True, then draw a red line connecting the origin and destination of jumps.
     done : bool
         If True, then ``turtle.done()`` will be called after drawing.
     bye : bool
@@ -111,7 +113,9 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done
         if command == JUMP:
             # turtle.color("red")
             turtle.color(0.8, 0.8, 0.8)
+            if not trace_jump: turtle.penup()
             turtle.goto(x, y)
+            turtle.pendown()
 
             speed = turtle.speed()
             turtle.speed("fastest")
