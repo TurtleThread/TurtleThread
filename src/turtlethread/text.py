@@ -1,5 +1,9 @@
 import os 
 import tempfile 
+from matplotlib import font_manager 
+from fuzzywuzzy import process, fuzz 
+from pathlib import Path 
+
 from opentypesvg import fonts2svg 
 
 from .draw_svg import drawSVG 
@@ -26,18 +30,59 @@ class LetterDrawer():
     letter_gap = 0.08 
     line_spacing = 1.15 
 
-    def __init__(self, turtle): 
+    def __init__(self, turtle, load_common_fonts:bool=False): 
         self.turtle = turtle 
 
         self.loaded_fonts = {} 
         self.created_tmpdirs = [] 
         # equivalent to self.clear_fonts() 
 
-        # TODO: default load some common fonts 
+        if load_common_fonts: 
+            try: 
+                self.load_font('Arial') 
+            except: 
+                pass 
+            try: 
+                self.load_font("Helvetica") 
+            except: 
+                pass 
+            try: 
+                self.load_font("Comic") # comic sans 
+            except: 
+                pass 
 
+
+    # context manager functions 
+    def __enter__(self): 
+        return self 
+
+    def __exit__(self, type, value, traceback): 
+        self.clear_fonts() # this will delete the temp directories with the .svg files 
+        return True 
+    
+
+    font_search_score_threshold = 90 
     # if we want to use .otf or whatever font files 
-    def load_font(self, fontname:str, fontpath:str): 
-        # LOAD A FONT GIVEN A FONTPATH, AND GIVE IT A NAME 
+    def load_font(self, fontname:str, fontpath:str=None): 
+        # Loads a font file from a fontpath, and gives it a name to be referred to. 
+        # if no fontpath specified, will try to find it in system files 
+
+        if fontpath is None: 
+            # get system fonts 
+            fontpaths = font_manager.findSystemFonts(fontpaths=None, fontext='otf')
+            fontnames = [Path(fp).name.lower() for fp in fontpaths] 
+            res_ttf = process.extract(fontname.lower()+".ttf", fontnames, scorer=fuzz.ratio) 
+            res_otf = process.extract(fontname.lower()+".otf", fontnames, scorer=fuzz.ratio) 
+            for filename, score in res_ttf + res_otf: 
+                if score >= LetterDrawer.font_search_score_threshold: 
+                    # THIS IS A GOOD ENOUGH MATCH! 
+                    fontpath = fontpaths[fontnames.index(filename)] 
+                    break 
+        
+        if fontpath is None: # means it couldn't be found from previously 
+            raise ValueError("Cound not find font in system files") 
+
+
         td = tempfile.TemporaryDirectory() 
         self.created_tmpdirs.append(td) 
         tmpdirname = td.name 
@@ -66,8 +111,15 @@ class LetterDrawer():
                     print("WARNING (GETTING SVGS):", ve) 
 
         self.loaded_fonts[fontname] = paths 
+    
+    def get_loaded_fontnames(self): 
+        # get a list of names of fonts that are already loaded 
+        return list(self.loaded_fonts.keys()) 
 
-    def draw_one_letter(self, fontname, lettername, fontsize=20, colour='#000000', turtle=None): 
+
+    def draw_one_letter(self, fontname, lettername, fontsize=20, colour='#000000', turtle=None): # TODO support changing colours 
+        # draws one letter with the turtles, with the specified fields. 
+        # turtle defaults to self.turtle 
         if turtle is None: 
             if self.turtle is None: 
                 raise ValueError("MUST DECLARE turtle TO USE IN LetterDrawer.draw_one_letter in either draw_one_letter() or LetterDrawer() init") 
@@ -94,11 +146,13 @@ class LetterDrawer():
             raise ValueError("font '{}' not loaded".format(fontname))
     
     def draw_letter_gap(self, fontsize): 
+        # this draws the gap between two letters (not whitespace) 
         with self.turtle.jump_stitch(): 
             currpos = list(self.turtle.position())
             self.turtle.goto(currpos[0] + LetterDrawer.letter_gap*fontsize, currpos[1])
         
-    def draw_string(self, fontname, string, fontsize, colour='#000000', turtle=None): 
+    def draw_string(self, fontname, string, fontsize, colours='#000000', turtle=None): 
+        # this draws a multiline string, automatically drawing letter gaps as desired 
         if turtle is None: 
             if self.turtle is None: 
                 raise ValueError("MUST DECLARE turtle TO USE IN LetterDrawer.draw_one_letter in either draw_one_letter() or LetterDrawer() init") 
@@ -107,6 +161,9 @@ class LetterDrawer():
 
         startx, starty = turtle.position() 
 
+        if isinstance(colours, list): 
+            assert len(colours) >= len(string), "'colours' in LetterDrawer.draw_string is a list; it's length must be at least length of the string! (characters like '\\n' and ' ' will not use the colour, but will still have an item on the colours list assigned to them)" 
+
 
         for cidx in range(len(string)-1): 
             if string[cidx] in ['\n', '\r']: 
@@ -114,9 +171,19 @@ class LetterDrawer():
                 with turtle.jump_stitch(): 
                     turtle.goto(startx, starty-fontsize*LetterDrawer.line_spacing) 
                 continue 
-            self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[cidx]), fontsize, colour, turtle) 
+            if isinstance(colours, str): 
+                col = colours 
+            else: 
+                col = colours[cidx] 
+            self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[cidx]), fontsize, col, turtle) 
             self.draw_letter_gap(fontsize) 
-        self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[-1]), fontsize, colour, turtle) 
+        
+        # draw last letter 
+        if isinstance(colours, str): 
+            col = colours 
+        else: 
+            col = colours[cidx] 
+        self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[-1]), fontsize, col, turtle) 
         
 
     punctuation_to_name = {'!': 'exclam', 
@@ -156,22 +223,24 @@ class LetterDrawer():
 
     @classmethod 
     def char_to_name(cls, char:str): 
+        # converts a 1-length string (character) to its identifier (in the unpacked .otf/.ttf svgs)
         if char == ' ': 
             return 'space' 
+        if char.isdigit(): 
+            digit_to_name = {'0': 'zero', 
+                                '1': 'one', 
+                                '2': 'two', 
+                                '3': 'three', 
+                                '4': 'four', 
+                                '5': 'five', 
+                                '6': 'six', 
+                                '7': 'seven', 
+                                '8': 'eight', 
+                                '9': 'nine', }
+            return digit_to_name[char] 
+        
         if char.isalpha(): 
-            if char.isdigit(): 
-                digit_to_name = {'0': 'zero', 
-                                 '1': 'one', 
-                                 '2': 'two', 
-                                 '3': 'three', 
-                                 '4': 'four', 
-                                 '5': 'five', 
-                                 '6': 'six', 
-                                 '7': 'seven', 
-                                 '8': 'eight', 
-                                 '9': 'nine', }
-                return digit_to_name[char] 
-            return char # normal letter 
+            return char # normal character 
         
         try: 
             return LetterDrawer.punctuation_to_name[char] 
@@ -180,6 +249,7 @@ class LetterDrawer():
 
 
     def clear_fonts(self): 
+        # clears loaded fonts, freeing up memory 
         for td in self.created_tmpdirs: 
             del td 
         self.created_tmpdirs = [] 

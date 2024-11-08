@@ -26,5 +26,6 @@ pytest-randomly
 
 opentypesvg 
 beautifulsoup4 
+pyglet 
 
 -e .

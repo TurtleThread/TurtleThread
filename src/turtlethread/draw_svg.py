@@ -4,8 +4,7 @@
 # Time: 2018-08-09 18:27
 
 
-# this code was slightly modified from [insert link] 
-# TODO modify this code to take in a turtle instead, and use in turtlethread format 
+# this code was slightly modified from https://github.com/tfx2001/python-turtle-draw-svg/blob/master/main.py 
 
 #import turtle as te
 import turtle 
@@ -141,7 +140,7 @@ def readPathAttrD(w_attr):
 
 
 def drawSVG(te:turtlethread.Turtle, filename, height, w_color): # TODO consider colour 
-    #global first
+    # draws an SVG file with the turtle 
 
 
     SVGFile = open(filename, 'r')
