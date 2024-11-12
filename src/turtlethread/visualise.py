@@ -55,7 +55,7 @@ def _finish_visualise(done, bye):
             pass
 
 
-def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done=True, bye=True):
+def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done=True, bye=True, clean=False):
     """Use the builtin ``turtle`` library to visualise an embroidery pattern.
 
     Parameters
@@ -109,32 +109,42 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, done
         x = scale * x
         y = scale * y
         if command == JUMP:
-            turtle.color("red")
+            if clean: 
+                turtle.penup()
+            else: 
+                turtle.color("red")
             turtle.goto(x, y)
 
-            speed = turtle.speed()
-            turtle.speed("fastest")
-            centered_dot(turtle, 25 * scale)
-            turtle.speed(speed)
+            if clean: 
+                turtle.pendown() 
+            else: 
+                speed = turtle.speed()
+                turtle.speed("fastest")
+                centered_dot(turtle, 25 * scale)
+                turtle.speed(speed)
         elif command == TRIM:
             turtle.penup()
             turtle.goto(x, y)
             turtle.pendown()
 
             turtle.color("black")
-            speed = turtle.speed()
-            turtle.speed("fastest")
-            centered_cross(turtle, 25 * scale)
-            turtle.speed(speed)
+            
+            if not clean: 
+                speed = turtle.speed()
+                turtle.speed("fastest")
+                centered_cross(turtle, 25 * scale)
+                turtle.speed(speed)
         elif command == STITCH:
             turtle.setheading(turtle.towards(x, y))
             turtle.pendown()
             turtle.color("blue")
             turtle.goto(x, y)
-            speed = turtle.speed()
-            turtle.speed("fastest")
-            centered_line(turtle, 10 * scale)
-            turtle.speed(speed)
+
+            if not clean: 
+                speed = turtle.speed()
+                turtle.speed("fastest")
+                centered_line(turtle, 10 * scale)
+                turtle.speed(speed)
         else:
             raise_error = True
             break

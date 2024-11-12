@@ -320,7 +320,7 @@ class Turtle(TNavigator):
         self.goto(0, 0)
         self.angle = 0
 
-    def visualise(self, turtle=None, width=800, height=800, scale=1, done=True, bye=True):
+    def visualise(self, turtle=None, width=800, height=800, scale=1, done=True, bye=True, clean=False):
         """Use the builtin ``turtle`` library to visualise this turtle's embroidery pattern.
 
         Parameters
@@ -342,7 +342,7 @@ class Turtle(TNavigator):
             If True, then ``turtle.bye()`` will be called after drawing.
         """
         visualise_pattern(
-            self.pattern.to_pyembroidery(), turtle=turtle, width=width, height=height, scale=scale, done=done, bye=bye
+            self.pattern.to_pyembroidery(), turtle=turtle, width=width, height=height, scale=scale, done=done, bye=bye, clean=clean, 
         )
 
     def show_info(self):

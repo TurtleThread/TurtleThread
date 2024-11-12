@@ -8,7 +8,7 @@
 
 
 
-import turtle 
+#import turtle 
 
 import turtlethread 
 from bs4 import BeautifulSoup
@@ -156,6 +156,7 @@ def readPathAttrD(w_attr):
 
 def drawSVG(te:turtlethread.Turtle, filename, height, w_color, thickness=1, fill=False): # TODO consider colour 
     # draws an SVG file with the turtle 
+    #print("HI DRAWING SVG")
 
     SVGFile = open(filename, 'r')
     SVG = BeautifulSoup(SVGFile.read(), 'lxml')
@@ -171,19 +172,22 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color, thickness=1, fill
         #first = False
     #te.tracer(100)
     #te.pensize(1)
-    te.speed(0)
+    #te.speed(10000)
+
+    #turtle.speed(0) 
+    #turtle.tracer(0,0)
 
 
     s = Height / float(viewbox[3]) 
     scale = [s, s]
-    print("SCALE:", scale) 
+    #print("SCALE:", scale) 
 
     startx, starty = float(viewbox[0])*scale[0], float(viewbox[1])*scale[1] 
     addsx, addsy = te.position() 
     startx += addsx 
     starty += addsy 
 
-    print("START:", [startx, starty])
+    #print("START:", [startx, starty])
 
 
     #te.penup()
@@ -191,8 +195,8 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color, thickness=1, fill
     # TODO: DEAL WITH FILL USING ZIGZAG/SATIN STITCH 
 
 
-    turtle.screensize(Width, Height)
-    screen = turtle.Screen() 
+    #turtle.screensize(Width, Height)
+    #screen = turtle.Screen() 
 
 
     if fill: 
@@ -300,9 +304,9 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color, thickness=1, fill
 
         for p1, p2 in lines: 
             with te.jump_stitch(): 
-                te.goto(startx+p1[0], -addsy-p1[1]) 
+                te.goto(startx+p1[0], addsy-p1[1]) 
             with te.running_stitch(99999): 
-                te.goto(startx+p2[0], -addsy-p2[1]) 
+                te.goto(startx+p2[0], addsy-p2[1]) 
 
     with te.jump_stitch(): 
         te.goto(addsx+Width, addsy) 
@@ -329,8 +333,12 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color, thickness=1, fill
             turtle.bye()
         except turtle.Terminator:
             pass'''
+
+    #turtle.update() 
     
-    return screen 
+    #return screen 
+
+    return 
 
     
 def svg_to_pil(svgname) -> Image.Image : 

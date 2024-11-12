@@ -1,5 +1,5 @@
 # TurtleThread
-TurtleTread is a Python library inspired by [TurtleStitch](https://www.turtlestitch.org/). The goal of TurtleThread is to provide an easy-to-use turtle based interface to making embroidery patterns and learn about Python programming and art. To accomplish this, we use the excellent [PyEmbroidery](https://github.com/EmbroidePy/pyembroidery) library, which implements all the embroidery specific logic (e.g. exporting the patterns as embroidery files).
+TurtleThread is a Python library inspired by [TurtleStitch](https://www.turtlestitch.org/). The goal of TurtleThread is to provide an easy-to-use turtle based interface to making embroidery patterns and learn about Python programming and art. To accomplish this, we use the excellent [PyEmbroidery](https://github.com/EmbroidePy/pyembroidery) library, which implements all the embroidery specific logic (e.g. exporting the patterns as embroidery files).
 
 ## Lisense
 The code is licensed under a GPLv3 license, which means that you can use it for anything you'd like. However, if you use it to make your own tools, your tool must be open source and licensed with the GPLv3 license. For more information, see this [guide](https://www.gnu.org/licenses/quick-guide-gplv3.en.html).

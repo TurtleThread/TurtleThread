@@ -27,7 +27,7 @@ class Fonts2SVGFakeOptions():
 
 
 class LetterDrawer(): 
-    letter_gap = 0.08 
+    letter_gap = 0.03 
     line_spacing = 1.15 
 
     def __init__(self, turtle, load_common_fonts:bool=False): 
@@ -58,29 +58,33 @@ class LetterDrawer():
 
     def __exit__(self, type, value, traceback): 
         self.clear_fonts() # this will delete the temp directories with the .svg files 
-        return True 
+        return False # don't suppress the errors 
     
 
     font_search_score_threshold = 90 
     # if we want to use .otf or whatever font files 
-    def load_font(self, fontname:str, fontpath:str=None): 
+    def load_font(self, fontname:str, fontpath:str=None, search_threshold=None): 
         # Loads a font file from a fontpath, and gives it a name to be referred to. 
         # if no fontpath specified, will try to find it in system files 
 
         if fontpath is None: 
+            # set search threshold 
+            if search_threshold is None: 
+                search_threshold = LetterDrawer.font_search_score_threshold 
+
             # get system fonts 
             fontpaths = font_manager.findSystemFonts(fontpaths=None, fontext='otf')
             fontnames = [Path(fp).name.lower() for fp in fontpaths] 
             res_ttf = process.extract(fontname.lower()+".ttf", fontnames, scorer=fuzz.ratio) 
             res_otf = process.extract(fontname.lower()+".otf", fontnames, scorer=fuzz.ratio) 
             for filename, score in res_ttf + res_otf: 
-                if score >= LetterDrawer.font_search_score_threshold: 
+                if score >= search_threshold: 
                     # THIS IS A GOOD ENOUGH MATCH! 
                     fontpath = fontpaths[fontnames.index(filename)] 
                     break 
         
         if fontpath is None: # means it couldn't be found from previously 
-            raise ValueError("Cound not find font in system files") 
+            raise ValueError("Could not find font in system files: "+str(res_ttf+res_otf)) 
 
 
         td = tempfile.TemporaryDirectory() 
@@ -111,6 +115,8 @@ class LetterDrawer():
                     print("WARNING (GETTING SVGS):", ve) 
 
         self.loaded_fonts[fontname] = paths 
+
+        return fontpath 
     
     def get_loaded_fontnames(self): 
         # get a list of names of fonts that are already loaded 
@@ -136,18 +142,24 @@ class LetterDrawer():
         if fontname in self.loaded_fonts.keys(): 
             try: 
                 drawSVG(turtle, self.loaded_fonts[fontname][lettername], fontsize, colour, thickness, fill) 
+                #print("DREW SVG")
             except Exception as e: 
                 print("OR, it might be some other error({})".format(e))
                 raise ValueError("font '{}' does not have the letter '{}'".format(fontname, lettername)) 
                
         else: 
             raise ValueError("font '{}' not loaded".format(fontname))
+        
+        return 
     
     def draw_letter_gap(self, fontsize): 
+        #print("DRAWING LETTER GAP")
         # this draws the gap between two letters (not whitespace) 
         with self.turtle.jump_stitch(): 
             currpos = list(self.turtle.position())
+            #print(currpos)
             self.turtle.goto(currpos[0] + LetterDrawer.letter_gap*fontsize, currpos[1])
+        #print("DRAEW")
         
     def draw_string(self, fontname, string, fontsize, colours='#000000', thicknesses = 1, fills=False, turtle=None): 
 
@@ -170,13 +182,14 @@ class LetterDrawer():
         if isinstance(fills, list): 
             assert len(fills) >= len(string), "'fills' in LetterDrawer.draw_string is a list; it's length must be at least length of the string! (characters like '\\n' and ' ' will not use the colour, but will still have an item on the colours list assigned to them)" 
 
-        print("HELLO>..")
+        #print("HELLO>..")
 
         for cidx in range(len(string)-1): 
             if string[cidx] in ['\n', '\r']: 
                 # newline 
                 with turtle.jump_stitch(): 
-                    turtle.goto(startx, starty-fontsize*LetterDrawer.line_spacing) 
+                    starty -= fontsize*LetterDrawer.line_spacing
+                    turtle.goto(startx, starty) 
                 continue 
             if isinstance(colours, str): 
                 col = colours 
@@ -198,11 +211,17 @@ class LetterDrawer():
             self.draw_letter_gap(fontsize) 
         
         # draw last letter 
-        if isinstance(colours, str): 
-            col = colours 
+        if string[-1] in ['\n', '\r']: 
+            # newline 
+            with turtle.jump_stitch(): 
+                starty -= fontsize*LetterDrawer.line_spacing
+                turtle.goto(startx, starty) 
         else: 
-            col = colours[cidx] 
-        self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[-1]), fontsize, col, turtle) 
+            if isinstance(colours, str): 
+                col = colours 
+            else: 
+                col = colours[cidx] 
+            self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[-1]), fontsize, col, turtle) 
         
 
     punctuation_to_name = {'!': 'exclam', 
@@ -213,8 +232,8 @@ class LetterDrawer():
                            '^': 'circumflex', 
                            '&': 'ampersand', 
                            '*': 'asterisk', 
-                           '(': 'bracketleft', 
-                           ')': 'bracketright', 
+                           '(': 'parenleft', 
+                           ')': 'parenright', 
                            '{': 'braceleft', 
                            '}': 'braceright', 
                            '.': 'period', 
