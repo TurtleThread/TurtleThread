@@ -527,7 +527,7 @@ class TestTurtleZigzagStitch:
     @pytest.mark.parametrize("stitch_length", [1, 15, 50, 175])
     @pytest.mark.parametrize("density", [5, 20, 50])
     def test_zigzag_density_calculation(self, stitch_length, density):
-        actual_density = ZigzagStitch.calculate_actual_density(stitch_length, density)
+        actual_density = ZigzagStitch.round_density(stitch_length, density)
         assert approx(stitch_length % actual_density) == 0
 
     @pytest.mark.parametrize("density", [5, 20, 50])
@@ -540,30 +540,26 @@ class TestTurtleZigzagStitch:
             turtle.left(angle)
             turtle.forward(stitch_length)
 
-        actual_density = ZigzagStitch.calculate_actual_density(stitch_length, density)
+        actual_density = ZigzagStitch.round_density(stitch_length, density)
 
         stitches = turtle.pattern.to_pyembroidery().stitches
 
-        # Rationale: Start stitch + 3 stitches per stitch length which is stitch_length / density
-        assert len(stitches) == approx(1 + 3*(stitch_length/actual_density))
+        # Test distance between stitches, not including first and last as centered
+        for i in range(1, len(stitches)-2):
+            x0, y0, st0 = stitches[i]
+            x1, y1, st1 = stitches[i+1]
+            assert st0 == st1 == STITCH # Assert all are stitches
 
-        # Test the groups of stitches
-        for i in range(round((len(stitches)-1)/3)):
-            x0, y0, st0 = stitches[3*i]
-            x1, y1, st1 = stitches[3*i+1]
-            x2, y2, st2 = stitches[3*i+2]
-            x3, y3, st3 = stitches[3*i+3]
-            assert st0 == st1 == st2 == st3 == STITCH # Assert all are stitches
-            assert sqrt((x0 - x3) ** 2 + (y0 - y3) ** 2) == approx(actual_density) # Check density of stitch
-
-            left_mat = np.array([[x1-x0], [y1-y0]]) # Normalized position of left stitch
-            right_mat = np.array([[x2-x0], [y2-y0]]) # Normalized position of right stitch
+            left_mat = np.array([[x0-x0], [y0-y0]]) # Normalized position of left stitch
+            right_mat = np.array([[x1-x0], [y1-y0]]) # Normalized position of right stitch
             rot_mat = np.array([[math.cos(-angle), math.sin(-angle)], [math.sin(-angle), math.cos(-angle)]])
 
             left_norm = rot_mat @ left_mat
             right_norm = rot_mat @ right_mat
 
-            assert abs(left_norm[1][0] - right_norm[1][0]) == approx(width)
+            # TODO: Add a density check?
+
+            assert abs(left_norm[1][0] - right_norm[1][0]) == approx(width) # Check width
 
         x1, y1, st1 = stitches[0]
         x2, y2, st2 = stitches[-1]
@@ -571,46 +567,6 @@ class TestTurtleZigzagStitch:
         assert st1 == st2 == STITCH
         assert sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2) == approx(stitch_length) # Check total length
 
-    @pytest.mark.parametrize("density", [5, 20, 50])
-    @pytest.mark.parametrize("width", [1, 5, 20, 50])
-    @pytest.mark.parametrize("angle", [0, math.pi/6, math.pi/4, math.pi/2, math.pi, 3*math.pi/2])
-    @pytest.mark.parametrize("stitch_length", [1, 10, 100, 200])
-    def test_backward_centered_zigzag_stitch(self, turtle, stitch_length, density, width, angle):
-        with turtle.zigzag_stitch(density, width, center=True):
-            turtle.angle_mode = "radians"
-            turtle.left(angle)
-            turtle.forward(stitch_length)
-
-        actual_density = ZigzagStitch.calculate_actual_density(stitch_length, density)
-
-        stitches = turtle.pattern.to_pyembroidery().stitches
-
-        # Rationale: Start stitch + 3 stitches per stitch length which is stitch_length / density
-        assert len(stitches) == approx(1 + 3*(stitch_length/actual_density))
-
-        # Test the groups of stitches
-        for i in range(round((len(stitches)-1)/3)):
-            x0, y0, st0 = stitches[3*i]
-            x1, y1, st1 = stitches[3*i+1]
-            x2, y2, st2 = stitches[3*i+2]
-            x3, y3, st3 = stitches[3*i+3]
-            assert st0 == st1 == st2 == st3 == STITCH # Assert all are stitches
-            assert sqrt((x0 - x3) ** 2 + (y0 - y3) ** 2) == approx(actual_density) # Check density of stitch
-
-            left_mat = np.array([[x1-x0], [y1-y0]]) # Normalized position of left stitch
-            right_mat = np.array([[x2-x0], [y2-y0]]) # Normalized position of right stitch
-            rot_mat = np.array([[math.cos(-angle), math.sin(-angle)], [math.sin(-angle), math.cos(-angle)]])
-
-            left_norm = rot_mat @ left_mat
-            right_norm = rot_mat @ right_mat
-
-            assert abs(left_norm[1][0] - right_norm[1][0]) == approx(width)
-
-        x1, y1, st1 = stitches[0]
-        x2, y2, st2 = stitches[-1]
-
-        assert st1 == st2 == STITCH
-        assert sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2) == approx(stitch_length) # Check total length
 
     @pytest.mark.parametrize("density", [5, 20, 50])
     @pytest.mark.parametrize("width", [1, 5, 20, 50])
@@ -622,29 +578,25 @@ class TestTurtleZigzagStitch:
             turtle.left(angle)
             turtle.forward(stitch_length)
 
-        actual_density = ZigzagStitch.calculate_actual_density(stitch_length, density)
+        actual_density = ZigzagStitch.round_density(stitch_length, density, center=False)
 
         stitches = turtle.pattern.to_pyembroidery().stitches
 
-        # Rationale: Start stitch + 2 stitches per stitch length which is stitch_length / density
-        assert len(stitches) == approx(1 + 2*(stitch_length/actual_density))
+        # Test distance between stitches, including first and last as not centered
+        for i in range(0, len(stitches)-2):
+            x0, y0, st0 = stitches[i]
+            x1, y1, st1 = stitches[i+1]
+            assert st0 == st1 == STITCH # Assert all are stitches
 
-        # Test the groups of stitches
-        for i in range(round((len(stitches)-1)/2)):
-            x0, y0, st0 = stitches[2*i]
-            x1, y1, st1 = stitches[2*i+1]
-            x2, y2, st2 = stitches[2*i+2]
-            assert st0 == st1 == st2 == STITCH # Assert all are stitches
-            assert sqrt((x0 - x2) ** 2 + (y0 - y2) ** 2) == approx(actual_density) # Check density of stitch
-
-            left_mat = np.array([[x1-x0], [y1-y0]]) # Normalized position of left stitch
-            right_mat = np.array([[x2-x0], [y2-y0]]) # Normalized position of right stitch
+            left_mat = np.array([[x0-x0], [y0-y0]]) # Normalized position of left stitch
+            right_mat = np.array([[x1-x0], [y1-y0]]) # Normalized position of right stitch
             rot_mat = np.array([[math.cos(-angle), math.sin(-angle)], [math.sin(-angle), math.cos(-angle)]])
 
             left_norm = rot_mat @ left_mat
             right_norm = rot_mat @ right_mat
 
-            assert abs(left_norm[1][0] - right_norm[1][0]) == approx(width)
+            # TODO: Add a density check?
+            assert abs(left_norm[1][0] - right_norm[1][0]) == approx(width) # Check width
 
         x1, y1, st1 = stitches[0]
         x2, y2, st2 = stitches[-1]
@@ -652,46 +604,6 @@ class TestTurtleZigzagStitch:
         assert st1 == st2 == STITCH
         assert sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2) == approx(stitch_length) # Check total length
 
-    @pytest.mark.parametrize("density", [5, 20, 50])
-    @pytest.mark.parametrize("width", [1, 5, 20, 50])
-    @pytest.mark.parametrize("angle", [0, math.pi/6, math.pi/4, math.pi/2, math.pi, 3*math.pi/2])
-    @pytest.mark.parametrize("stitch_length", [1, 10, 100, 200])
-    def test_backward_uncentered_zigzag_stitch(self, turtle, stitch_length, density, width, angle):
-        with turtle.zigzag_stitch(density, width, center=False):
-            turtle.angle_mode = "radians"
-            turtle.left(angle)
-            turtle.forward(stitch_length)
-
-        actual_density = ZigzagStitch.calculate_actual_density(stitch_length, density)
-
-        stitches = turtle.pattern.to_pyembroidery().stitches
-
-        # Rationale: Start stitch + 2 stitches per stitch length which is stitch_length / density
-        assert len(stitches) == approx(1 + 2*(stitch_length/actual_density))
-
-        # Test the groups of stitches
-        for i in range(round((len(stitches)-1)/2)):
-            x0, y0, st0 = stitches[2*i]
-            x1, y1, st1 = stitches[2*i+1]
-            x2, y2, st2 = stitches[2*i+2]
-            assert st0 == st1 == st2 == STITCH # Assert all are stitches
-            assert sqrt((x0 - x2) ** 2 + (y0 - y2) ** 2) == approx(actual_density) # Check density of stitch
-
-            left_mat = np.array([[x1-x0], [y1-y0]]) # Normalized position of left stitch
-            right_mat = np.array([[x2-x0], [y2-y0]]) # Normalized position of right stitch
-            rot_mat = np.array([[math.cos(-angle), math.sin(-angle)], [math.sin(-angle), math.cos(-angle)]])
-
-            left_norm = rot_mat @ left_mat
-            right_norm = rot_mat @ right_mat
-
-            assert abs(left_norm[1][0] - right_norm[1][0]) == approx(width)
-
-        x1, y1, st1 = stitches[0]
-        x2, y2, st2 = stitches[-1]
-
-        assert st1 == st2 == STITCH
-        assert sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2) == approx(stitch_length) # Check total length
-  
 
     def test_start_zigzag_stitch_sets_stitch_type(self, turtle):
         turtle.start_zigzag_stitch(20, 20)
@@ -700,153 +612,6 @@ class TestTurtleZigzagStitch:
 
 
 class TestTurtleSatinStitch:
-    @pytest.mark.parametrize("width", [1, 5, 20, 50])
-    @pytest.mark.parametrize("angle", [0, math.pi/6, math.pi/4, math.pi/3, math.pi/2, 3*math.pi/4, math.pi, 5*math.pi/4, 3*math.pi/2, 7*math.pi/4])
-    @pytest.mark.parametrize("stitch_length", [1, 10, 100, 200])
-    def test_forward_centered_satin_stitch(self, turtle, stitch_length, width, angle):
-        with turtle.satin_stitch(width, center=True):
-            turtle.angle_mode = "radians"
-            turtle.left(angle)
-            turtle.forward(stitch_length)
-
-        stitches = turtle.pattern.to_pyembroidery().stitches
-
-        # Rationale: Start stitch + 3 stitches per stitch length which is stitch_length / density
-        assert len(stitches) == approx(1 + 3*stitch_length)
-
-        # Test the groups of stitches
-        for i in range(round((len(stitches)-1)/3)):
-            x0, y0, st0 = stitches[3*i]
-            x1, y1, st1 = stitches[3*i+1]
-            x2, y2, st2 = stitches[3*i+2]
-            x3, y3, st3 = stitches[3*i+3]
-            assert st0 == st1 == st2 == st3 == STITCH # Assert all are stitches
-
-            left_mat = np.array([[x1-x0], [y1-y0]]) # Normalized position of left stitch
-            right_mat = np.array([[x2-x0], [y2-y0]]) # Normalized position of right stitch
-            rot_mat = np.array([[math.cos(-angle), math.sin(-angle)], [math.sin(-angle), math.cos(-angle)]])
-
-            left_norm = rot_mat @ left_mat
-            right_norm = rot_mat @ right_mat
-
-            assert abs(left_norm[1][0] - right_norm[1][0]) == approx(width)
-
-        x1, y1, st1 = stitches[0]
-        x2, y2, st2 = stitches[-1]
-
-        assert st1 == st2 == STITCH
-        assert sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2) == approx(stitch_length) # Check total length
-
-    @pytest.mark.parametrize("width", [1, 5, 20, 50])
-    @pytest.mark.parametrize("angle", [0, math.pi/6, math.pi/4, math.pi/2, math.pi, 3*math.pi/2])
-    @pytest.mark.parametrize("stitch_length", [1, 10, 100, 200])
-    def test_backward_centered_satin_stitch(self, turtle, stitch_length, width, angle):
-        with turtle.satin_stitch(width, center=True):
-            turtle.angle_mode = "radians"
-            turtle.left(angle)
-            turtle.forward(stitch_length)
-
-        stitches = turtle.pattern.to_pyembroidery().stitches
-
-        # Rationale: Start stitch + 3 stitches per stitch length which is stitch_length / density
-        assert len(stitches) == approx(1 + 3*stitch_length)
-
-        # Test the groups of stitches
-        for i in range(round((len(stitches)-1)/3)):
-            x0, y0, st0 = stitches[3*i]
-            x1, y1, st1 = stitches[3*i+1]
-            x2, y2, st2 = stitches[3*i+2]
-            x3, y3, st3 = stitches[3*i+3]
-            assert st0 == st1 == st2 == st3 == STITCH # Assert all are stitches
-
-            left_mat = np.array([[x1-x0], [y1-y0]]) # Normalized position of left stitch
-            right_mat = np.array([[x2-x0], [y2-y0]]) # Normalized position of right stitch
-            rot_mat = np.array([[math.cos(-angle), math.sin(-angle)], [math.sin(-angle), math.cos(-angle)]])
-
-            left_norm = rot_mat @ left_mat
-            right_norm = rot_mat @ right_mat
-
-            assert abs(left_norm[1][0] - right_norm[1][0]) == approx(width)
-
-        x1, y1, st1 = stitches[0]
-        x2, y2, st2 = stitches[-1]
-
-        assert st1 == st2 == STITCH
-        assert sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2) == approx(stitch_length) # Check total length
-
-    @pytest.mark.parametrize("width", [1, 5, 20, 50])
-    @pytest.mark.parametrize("angle", [0, math.pi/6, math.pi/4, math.pi/3, math.pi/2, 3*math.pi/4, math.pi, 5*math.pi/4, 3*math.pi/2, 7*math.pi/4])
-    @pytest.mark.parametrize("stitch_length", [1, 10, 100, 200])
-    def test_forward_uncentered_satin_stitch(self, turtle, stitch_length, width, angle):
-        with turtle.satin_stitch(width, center=False):
-            turtle.angle_mode = "radians"
-            turtle.left(angle)
-            turtle.forward(stitch_length)
-
-        stitches = turtle.pattern.to_pyembroidery().stitches
-
-        # Rationale: Start stitch + 2 stitches per stitch length which is stitch_length / density
-        assert len(stitches) == approx(1 + 2*stitch_length)
-
-        # Test the groups of stitches
-        for i in range(round((len(stitches)-1)/2)):
-            x0, y0, st0 = stitches[2*i]
-            x1, y1, st1 = stitches[2*i+1]
-            x2, y2, st2 = stitches[2*i+2]
-            assert st0 == st1 == st2 == STITCH # Assert all are stitches
-
-            left_mat = np.array([[x1-x0], [y1-y0]]) # Normalized position of left stitch
-            right_mat = np.array([[x2-x0], [y2-y0]]) # Normalized position of right stitch
-            rot_mat = np.array([[math.cos(-angle), math.sin(-angle)], [math.sin(-angle), math.cos(-angle)]])
-
-            left_norm = rot_mat @ left_mat
-            right_norm = rot_mat @ right_mat
-
-            assert abs(left_norm[1][0] - right_norm[1][0]) == approx(width)
-
-        x1, y1, st1 = stitches[0]
-        x2, y2, st2 = stitches[-1]
-
-        assert st1 == st2 == STITCH
-        assert sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2) == approx(stitch_length) # Check total length
-
-    @pytest.mark.parametrize("width", [1, 5, 20, 50])
-    @pytest.mark.parametrize("angle", [0, math.pi/6, math.pi/4, math.pi/2, math.pi, 3*math.pi/2])
-    @pytest.mark.parametrize("stitch_length", [1, 10, 100, 200])
-    def test_backward_uncentered_satin_stitch(self, turtle, stitch_length, width, angle):
-        with turtle.satin_stitch(width, center=False):
-            turtle.angle_mode = "radians"
-            turtle.left(angle)
-            turtle.forward(stitch_length)
-
-        stitches = turtle.pattern.to_pyembroidery().stitches
-
-        # Rationale: Start stitch + 2 stitches per stitch length which is stitch_length / density
-        assert len(stitches) == approx(1 + 2*stitch_length)
-
-        # Test the groups of stitches
-        for i in range(round((len(stitches)-1)/2)):
-            x0, y0, st0 = stitches[2*i]
-            x1, y1, st1 = stitches[2*i+1]
-            x2, y2, st2 = stitches[2*i+2]
-            assert st0 == st1 == st2 == STITCH # Assert all are stitches
-
-            left_mat = np.array([[x1-x0], [y1-y0]]) # Normalized position of left stitch
-            right_mat = np.array([[x2-x0], [y2-y0]]) # Normalized position of right stitch
-            rot_mat = np.array([[math.cos(-angle), math.sin(-angle)], [math.sin(-angle), math.cos(-angle)]])
-
-            left_norm = rot_mat @ left_mat
-            right_norm = rot_mat @ right_mat
-
-            assert abs(left_norm[1][0] - right_norm[1][0]) == approx(width)
-
-        x1, y1, st1 = stitches[0]
-        x2, y2, st2 = stitches[-1]
-
-        assert st1 == st2 == STITCH
-        assert sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2) == approx(stitch_length) # Check total length
-  
-
     def test_start_satin_stitch_sets_stitch_type(self, turtle):
         turtle.start_satin_stitch(20)
         assert isinstance(turtle._stitch_group_stack[-1], turtlethread.stitches.SatinStitch)

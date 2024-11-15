@@ -361,7 +361,7 @@ class SatinStitch(ZigzagStitch):
     """Stitch group for satin stitches.
 
     A satin stitch is simply a zigzag stitch with a tight density. This creates a solid fill.
-    We use 0.2mm for the density.
+    We use 0.3mm for the density.
 
     The 'width' is the number of steps between the left-most and right-most point of the satin stitch.
 
@@ -375,4 +375,4 @@ class SatinStitch(ZigzagStitch):
     """
 
     def __init__(self, start_pos: Vec2D, width: int | float, center: bool = True) -> None:
-        super().__init__(start_pos=start_pos, width=width, center=center, density=2)
+        super().__init__(start_pos=start_pos, width=width, center=center, density=3)
