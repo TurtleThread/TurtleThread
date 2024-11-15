@@ -5,6 +5,7 @@ import math
 from abc import ABC, abstractmethod
 from copy import copy
 from typing import Any, Generator, Iterable
+import warnings
 
 try:
     from typing import Literal, Self, TypeAlias
@@ -264,17 +265,18 @@ class ZigzagStitch(StitchGroup):
     By default, as the turtle moves forward, a stitch is done on the left then right side of the turtle, to get a
     zigzag. However, if center=False, the turtle will only form stitches on the right side of the path. 
 
-    The 'density' of a zigzag is the number of steps before the turtle returns to its initial center position after
-    moving to both the left and right, or just the right when center=False. 
+    The 'density' of a zigzag is the distance between two stitches along the direction of the stitch. For example,
+    if the turtle is moving horizontally, the density is the horizontal distance between two adjacent stitches on
+    the zigzag.
     The 'width' is the number of steps between the left-most and right-most point of the zigzag stitch.
 
-    When the turtle moves a distance that is not a multiple of the density, use a density of 
-    length/round(length/density), or 1 if length/density < 1.
+    When the turtle moves a distance that is not a multiple of the density, the program will adjust the density
+    to the closest possible multiple. 
 
     Parameters
     ----------
     density : int
-        Number of steps for one 'zig-zag' (i.e. one movement from center --> left --> right --> center)
+        Number of steps between two stitches along the direction of travel.
     width : int
         Number of steps between the left and right side of the zig-zag.
     center : boolean
@@ -284,17 +286,20 @@ class ZigzagStitch(StitchGroup):
 
     def __init__(self, start_pos: Vec2D, density: int | float, width: int | float, center: bool = True) -> None:
         super().__init__(start_pos=start_pos)
-
-        self.density = density
+        self.density = density 
+        self.step_length = density
         self.width = width
         self.center = center
 
     @classmethod
-    def calculate_actual_density(cls, stitch_length : int | float, density : int | float):
-        """Use the formula in the documentation to calculate the actual density of a zig-zag stitch."""
+    def round_density(cls, stitch_length : int | float, density : int | float, center : bool = True):
         if stitch_length < density: 
             return stitch_length # Density cannot be greater than stitch length
-        return max(1, stitch_length/round(stitch_length/density))
+        if center or (not center and round(stitch_length/density) % 2 == 0):
+            return stitch_length/round(stitch_length/density)
+        else:
+            # Odd number and not center
+            return stitch_length/(round(stitch_length/density) + 1)
          
     def _iter_stitches_between_positions(
         self, position_1: Vec2D, position_2: Vec2D
@@ -305,55 +310,41 @@ class ZigzagStitch(StitchGroup):
         x, y = position_1
         x_end, y_end = position_2
 
-        stitch_length = math.sqrt((x - x_end) ** 2 + (y - y_end) ** 2)
+        distance = math.sqrt((x - x_end) ** 2 + (y - y_end) ** 2)
         angle = math.atan2(y_end - y, x_end - x)
         dx = math.cos(angle)
         dy = math.sin(angle)
 
-        # Calculate the actual density of the stitch
-        density = ZigzagStitch.calculate_actual_density(stitch_length, self.density)
+        distance_traveled = 0
+        stitch_length = self.round_density(distance, self.density, self.center)  
+        if stitch_length < 2: warnings.warn("Stitch length is less than 0.2mm! This may cause your machine to jam.")
+        should_go_right = True # Choose whether to go right or left next stitch
 
         if self.center:
-            step_length = density/3 # Each 'zigzag' goes left, right, then center
-        else:
-            step_length = density/2 # Each 'zigzag' only goes right
+            x += stitch_length/2 * dx
+            y += stitch_length/2 * dy
+            left_angle = angle + math.pi/2 # Left stitch is right angle to the direction of travel
+            x = x + (self.width/2 * math.cos(left_angle)) # Going from center to left, hence half width
+            y = y + (self.width/2 * math.sin(left_angle))
+            yield x, y, pyembroidery.STITCH
 
-        # Move to the end location of the stitch
-        for _ in range(round(stitch_length/density)): # Round to prevent FP errors
-            if self.center:
-                # Left stitch
-                x += step_length * dx
-                y += step_length * dy
-                left_angle = angle + math.pi/2 # Left stitch is right angle to the direction of travel
-                stitch_x = x + (self.width/2 * math.cos(left_angle)) # Width is left-most to right-most, hence half width
-                stitch_y = y + (self.width/2 * math.sin(left_angle))
-                yield stitch_x, stitch_y, pyembroidery.STITCH
+        # Repeat until one stitch away
+        while distance_traveled < distance - stitch_length:
+            x += stitch_length * dx
+            y += stitch_length * dy
 
-                # Right stitch
-                x += step_length * dx
-                y += step_length * dy
+            if should_go_right:
                 right_angle = angle - math.pi/2 # Right stitch is also a right angle to the direction of travel
-                stitch_x = x + (self.width/2 * math.cos(right_angle))
-                stitch_y = y + (self.width/2 * math.sin(right_angle))
-                yield stitch_x, stitch_y, pyembroidery.STITCH
-
-                # Center stitch
-                x += step_length * dx
-                y += step_length * dy
-                yield x, y, pyembroidery.STITCH
-            else:
-                # Right stitch
-                x += step_length * dx
-                y += step_length * dy
-                right_angle = angle - math.pi/2 # Right stitch is also a right angle to the direction of travel
-                stitch_x = x + (self.width * math.cos(right_angle)) # Width is center to right-most, hence not halved
+                stitch_x = x + (self.width * math.cos(right_angle)) # Going from left to right hence full width
                 stitch_y = y + (self.width * math.sin(right_angle))
                 yield stitch_x, stitch_y, pyembroidery.STITCH
+            else:
+                yield x, y, pyembroidery.STITCH # We are already at left position
+            
+            should_go_right = not should_go_right
+            distance_traveled += stitch_length
 
-                # Center stitch
-                x += step_length * dx
-                y += step_length * dy
-                yield x, y, pyembroidery.STITCH
+        yield x_end, y_end, pyembroidery.STITCH
 
     def _get_stitch_commands(self) -> list[tuple[float, float, StitchCommand]]:
         if not self._positions:
@@ -366,13 +357,11 @@ class ZigzagStitch(StitchGroup):
 
         return stitch_commands
 
-class SatinStitch(StitchGroup):
+class SatinStitch(ZigzagStitch):
     """Stitch group for satin stitches.
 
-    A satin stitch is simply a zigzag stitch with a width of 1. This creates a solid fill.
-
-    Similar to the zigzag stitch, as the turtle moves forward, a stitch is done on the left then right side of the
-    turtle. If center=False, the turtle will only form stitches on the right side of the path.
+    A satin stitch is simply a zigzag stitch with a tight density. This creates a solid fill.
+    We use 0.3mm for the density.
 
     The 'width' is the number of steps between the left-most and right-most point of the satin stitch.
 
@@ -386,79 +375,7 @@ class SatinStitch(StitchGroup):
     """
 
     def __init__(self, start_pos: Vec2D, width: int | float, center: bool = True) -> None:
-        super().__init__(start_pos=start_pos)
-
-        self.width = width
-        self.center = center
-
-    def _iter_stitches_between_positions(
-        self, position_1: Vec2D, position_2: Vec2D
-    ) -> Generator[tuple[StitchCommand, float, float], None, None]:
-
-        # Satin stitch between two points, stopping exactly at position 2 and not
-        # adding any stitch at position 1. 
-        x, y = position_1
-        x_end, y_end = position_2
-
-        distance = math.sqrt((x - x_end) ** 2 + (y - y_end) ** 2)
-        angle = math.atan2(y_end - y, x_end - x)
-        dx = math.cos(angle)
-        dy = math.sin(angle)
-
-        density = 1 
-
-        if self.center:
-            step_length = density/3 # Each stitch goes left, right, then center
-        else:
-            step_length = density/2 # Each stitch only goes right
-
-        # Move to the end location of the stitch
-        for _ in range(round(distance/density)): # Round to prevent FP errors
-            if self.center:
-                # Left stitch
-                x += step_length * dx
-                y += step_length * dy
-                left_angle = angle + math.pi/2 # Left stitch is right angle to the direction of travel
-                stitch_x = x + (self.width/2 * math.cos(left_angle)) # Width is left-most to right-most, hence half width
-                stitch_y = y + (self.width/2 * math.sin(left_angle))
-                yield stitch_x, stitch_y, pyembroidery.STITCH
-
-                # Right stitch
-                x += step_length * dx
-                y += step_length * dy
-                right_angle = angle - math.pi/2 # Right stitch is also a right angle to the direction of travel
-                stitch_x = x + (self.width/2 * math.cos(right_angle))
-                stitch_y = y + (self.width/2 * math.sin(right_angle))
-                yield stitch_x, stitch_y, pyembroidery.STITCH
-
-                # Center stitch
-                x += step_length * dx
-                y += step_length * dy
-                yield x, y, pyembroidery.STITCH
-            else:
-                # Right stitch
-                x += step_length * dx
-                y += step_length * dy
-                right_angle = angle - math.pi/2 # Right stitch is also a right angle to the direction of travel
-                stitch_x = x + (self.width * math.cos(right_angle)) # Width is center to right-most, hence not halved
-                stitch_y = y + (self.width * math.sin(right_angle))
-                yield stitch_x, stitch_y, pyembroidery.STITCH
-
-                # Center stitch
-                x += step_length * dx
-                y += step_length * dy
-                yield x, y, pyembroidery.STITCH
-
-    def _get_stitch_commands(self) -> list[tuple[float, float, StitchCommand]]:
-        if not self._positions:
-            return []
-
-        stitch_commands = [(self._start_pos[0], self._start_pos[1], pyembroidery.STITCH)]
-        stitch_commands.extend(self._iter_stitches_between_positions(self._start_pos, self._positions[0]))
-        for pos1, pos2 in itertools.pairwise(self._positions):
-            stitch_commands.extend(self._iter_stitches_between_positions(pos1, pos2))
-
-        return stitch_commands
+        super().__init__(start_pos=start_pos, width=width, center=center, density=3)
 
 class CrossStitch(StitchGroup):
     """Stitch group for cross stitches.
@@ -572,3 +489,5 @@ class CrossStitch(StitchGroup):
             stitch_commands.extend(self._iter_stitches_between_positions(pos1, pos2))
 
         return stitch_commands
+
+
