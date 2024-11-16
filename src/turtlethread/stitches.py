@@ -104,6 +104,182 @@ class StitchGroup(ABC):
         return copied_group
 
 
+class UnitStitch(StitchGroup):
+    """Class to represent stitches that are built off repeating a single pattern, e.g. zigzag, cross stitches.
+
+    Given the distance to travel, the stitch will be repeated the required number of times to reach that distance.
+
+    Contains a starting stitch and an ending stitch function. These functions will be called once at the start and
+    end of the overall stitch, respectively. This is useful, for example, for centering stitches.
+
+    Parameters
+    ----------
+    stitch_length : int
+        Number of steps between each unit stitch, in the direction of travel. If auto-adjustment is not enabled, this
+        will be the exact number of steps between each unit stitch.
+    auto_adjust : bool (optional, default=True)
+        If True, the stitch length will be automatically adjusted to a multiple of the distance travelled. Useful
+        when only drawing a single forward or backwards stitch. 
+        If False, the stitch length will be exactly ``stitch_length``. A final stitch will be added to the end position
+        unless enforce_end_position is False.
+    enforce_end_stitch : bool (optional, default=True)
+        If True, the final stitch must be positioned at the end position. This will ensure that the total length of the
+        stitch is the total distance to be traveled. 
+        If False, there is no such guarantee. Any ending stitch will not occur.
+        Useful in conjunction with enforce_start_stitch, to seamlessly blend two stitches together.
+    enforce_start_stitch : bool (optional, default=True)
+        If True, the first stitch must be positioned at the start position. 
+        If False, the starting stitch pattern will not occur.
+
+    Internal Attributes
+    -------------------
+    stitch_stop_multiplier : float (default=0)
+        When stitching, the unit stitch will be repeated until there is stitch_stop_multiplier * stitch_length left to
+        stitch. Useful when implementing an ending stitch pattern.
+    """
+    def __init__(
+        self, 
+        start_pos: Vec2D, 
+        stitch_length: int | float, 
+        auto_adjust: bool = True, 
+        enforce_end_stitch: bool = True, 
+        enforce_start_stitch: bool = True) -> None:
+
+        super().__init__(start_pos=start_pos)
+        self.stitch_length = stitch_length
+        self.auto_adjust = auto_adjust
+        self.enforce_end_stitch = enforce_end_stitch
+        self.enforce_start_stitch = enforce_start_stitch
+
+        self.stitch_stop_multiplier
+
+    @classmethod
+    def round_stitch_length(cls, stitch_length : int | float, distance : int | float):
+        """Method to round the stitch length to a multiple of the distance.
+
+        Parameters
+        ----------
+        stitch_length : int | float
+            The stitch length to round.
+        distance : int | float
+            The distance of travel.
+        """
+        if distance < stitch_length: 
+            # Stitch length cannot be less than the total distance
+            return distance 
+
+        # Find the closest stitch_length that is a multiple of stitch_length
+        return stitch_length/round(stitch_length/density)
+         
+    def _start_stitch_unit(self, start_pos: Vec2D, angle: float, stitch_length: float) -> list[tuple[float, float, StitchCommand]]:
+        """Stitch a pattern at the start of a stitch. To be implemented by children.
+        The stitch should start from start_pos, but should not have a stitch at that position.
+        There should be a stitch at the end position.
+
+        Due to the many variations in the distance travelled in this section, children are encouraged to use the
+        nonlocal keyword to access the variables x and y, which should be set to the end position after the starting
+        stitch pattern, as well as the distance_traveled variable to set the distance travelled along the direction
+        of the stitch.
+
+        Parameters
+        ----------
+        start_pos: Vec2D (tuple[float, float])
+            The start position of the stitch.
+        angle: float    
+            The angle of the stitch.
+        stitch_length: float
+            The stitch length of the stitch.
+        """
+        nonlocal x, y, distance_traveled
+        pass
+        
+    def _stitch_unit(self, start_pos: Vec2D, angle: float, stitch_length: float) -> list[tuple[float, float, StitchCommand]]:
+        """Stitch a single unit. To be implemented by children.
+        The stitch should start from start_pos, but should not have a stitch at that position.
+        There should be a stitch at the end position.
+
+        Parameters
+        ----------
+        start_pos: Vec2D (tuple[float, float])
+            The start position of the stitch.
+        angle: float    
+            The angle of the stitch.
+        stitch_length: float
+            The stitch length of the stitch.
+        """
+        raise NotImplementedError
+
+    def _end_stitch_unit(self, start_pos: Vec2D, angle: float, stitch_length: float) -> list[tuple[float, float, StitchCommand]]:
+        """Stitch a pattern at the start of a stitch. To be implemented by children.
+        The stitch should start from start_pos, but should not have a stitch at that position.
+        There should NOT be a stitch at the end position.
+
+        Due to the many variations in the distance travelled in this section, children are encouraged to use the
+        nonlocal keyword to access the variables x and y, which should be set to the end position after the starting
+        stitch pattern, as well as the distance_traveled variable to set the distance travelled along the direction
+        of the stitch.
+
+        Parameters
+        ----------
+        start_pos: Vec2D (tuple[float, float])
+            The start position of the stitch.
+        angle: float    
+            The angle of the stitch.
+        stitch_length: float
+            The stitch length of the stitch.
+        """
+        nonlocal x, y, distance_traveled
+        pass
+    
+    def _iter_stitches_between_positions(
+        self, position_1: Vec2D, position_2: Vec2D
+    ) -> Generator[tuple[StitchCommand, float, float], None, None]:
+
+        x, y = position_1
+        x_end, y_end = position_2
+
+        distance = math.sqrt((x - x_end) ** 2 + (y - y_end) ** 2)
+        angle = math.atan2(y_end - y, x_end - x)
+        dx = math.cos(angle)
+        dy = math.sin(angle)
+
+        distance_traveled = 0
+        stitch_length = self.stitch_length
+        if self.auto_adjust: # Adjust stitch length if auto-adjustment is enabled
+            stitch_length = self.round_stitch_length(self.stitch_length, distance)
+
+        if self.enforce_start_stitch:
+            for stitch in self._start_stitch_unit(Vec2D(x, y), angle, stitch_length): yield stitch
+
+        # Repeat until one stitch away
+        while distance_traveled + stitch_length*self.stitch_stop_multiplier < distance:
+            for stitch in self._stitch_unit(Vec2D(x, y), angle, stitch_length): yield stitch
+            x += stitch_length * dx
+            y += stitch_length * dy
+            distance_traveled += stitch_length
+
+        if self.enforce_end_stitch:
+            for stitch in self._end_stitch_unit(Vec2D(x, y), angle, stitch_length): yield stitch
+            yield x_end, y_end, pyembroidery.STITCH
+
+
+    def _get_stitch_commands(self) -> list[tuple[float, float, StitchCommand]]:
+        if not self._positions:
+            return []
+
+        stitch_commands = []
+
+        # Start the stitch at the start position if enforce_start_stitch is True.
+        if self.enforce_start_stitch:
+            stitch_commands.append((self._start_pos[0], self._start_pos[1], pyembroidery.STITCH))
+
+        stitch_commands.extend(self._iter_stitches_between_positions(self._start_pos, self._positions[0]))
+        for pos1, pos2 in itertools.pairwise(self._positions):
+            stitch_commands.extend(self._iter_stitches_between_positions(pos1, pos2))
+
+        return stitch_commands
+
+
 class RunningStitch(StitchGroup):
     """Stitch group for running stitches.
 
@@ -382,6 +558,8 @@ class CrossStitch(StitchGroup):
 
     A cross stitch is a stitch that stitches in a cross shape. Due to limitations with a sewing machine, it is
     not a true cross stich, as there is a visible line at the bottom connecting the 'crosses' in the stitch.
+
+    This is also known as a Knit Overlock stitch.
     
     The cross stitch is implemented by going from the top left corner to the bottom right corner, then moving
     from the bottom right to the bottom left, before finally going to the top right corner. This corner will
