@@ -214,20 +214,25 @@ class Turtle(TNavigator):
         """
         self.set_stitch_type(stitches.JumpStitch(self.pos()))
 
-    def start_zigzag_stitch(self, density, width, center = True):
-        """Set the stitch mode to zigzag stitch.
-
-        Parameters
-        ----------
-        density : int
-            Number of steps for one 'zig-zag'.
-        width : int
-            Number of steps between the left-most and right-most side of the zig-zag.
-        center : boolean (default=True)
-            Whether to draw the zig-zag in the center or on the right side of the path.
-        """ 
+    def start_zigzag_stitch(
+        self,
+        stitch_length: int | float,
+        stitch_width: int | float,
+        center: bool = False,
+        auto_adjust: bool = True,
+        enforce_end_stitch: bool = True,
+        enforce_start_stitch: bool = True) -> None:
+        """Set the stitch mode to zigzag stitch.""" 
         
-        self.set_stitch_type(stitches.ZigzagStitch(self.pos(), density, width, center=center))
+        self.set_stitch_type(stitches.ZigzagStitch(
+            self.pos(),
+            stitch_length,
+            stitch_width,
+            center=center,
+            auto_adjust=auto_adjust,
+            enforce_end_stitch=enforce_end_stitch,
+            enforce_start_stitch=enforce_start_stitch
+        ))
 
     def start_satin_stitch(self, width, center = True):
         """Set the stitch mode to satin stitch.
@@ -331,20 +336,25 @@ class Turtle(TNavigator):
         """
         return self.use_stitch_group(stitches.JumpStitch(self.pos(), skip_intermediate_jumps=skip_intermediate_jumps))
 
-    def zigzag_stitch(self, density, width, center = True):
-        """Set the stitch mode to zigzag stitch.
-
-        Parameters
-        ----------
-        density : int
-            Number of steps for one 'zig-zag'.
-        width : int
-            Number of steps between the left-most and right-most side of the zig-zag.
-        center : boolean (default=True)
-            Whether to draw the zig-zag in the center or on the right side of the path.
-        """ 
+    def zigzag_stitch(
+        self,
+        stitch_length: int | float,
+        stitch_width: int | float,
+        center: bool = False,
+        auto_adjust: bool = True,
+        enforce_end_stitch: bool = True,
+        enforce_start_stitch: bool = True) -> None:
+        """Set the stitch mode to zigzag stitch.""" 
         
-        return self.use_stitch_group(stitches.ZigzagStitch(self.pos(), density, width, center=center))
+        return self.use_stitch_group(stitches.ZigzagStitch(
+            self.pos(),
+            stitch_length,
+            stitch_width,
+            center=center,
+            auto_adjust=auto_adjust,
+            enforce_end_stitch=enforce_end_stitch,
+            enforce_start_stitch=enforce_start_stitch
+        ))
 
     def satin_stitch(self, width, center = True):
         """Set the stitch mode to satin stitch.
