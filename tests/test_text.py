@@ -14,7 +14,7 @@ Pte. Ltd. '''
 
 
 if __name__ == '__main__': 
-    print("STARTE")
+    print("STARTED")
     with turtlethread.LetterDrawer(turtlethread.Turtle(scale=0.75)) as ld: 
 
         with ld.turtle.jump_stitch(): 
@@ -28,37 +28,45 @@ if __name__ == '__main__':
 
         # multi-font text part 
         #print("HEF:OIDN")
-        ld.draw_one_letter('Arial', 'T', 70, fill=True) 
-        ld.draw_letter_gap(70) 
-        #print("DREW A LTTEER")
-        ld.draw_one_letter('Calibri', 'E', 70, fill=True) 
-        ld.draw_letter_gap(70) 
-        ld.draw_one_letter('Comic', 'X', 70, fill=True) 
-        ld.draw_letter_gap(70) 
-        ld.draw_one_letter('Times', 'T', 70, fill=True) 
-        ld.draw_letter_gap(70) 
+        ld.draw_one_letter('Arial', 'T', 120, fill=True, outline=False) 
+        ld.draw_letter_gap(120) 
+        #print("DREW A LETTER")
+        ld.draw_one_letter('Calibri', 'E', 120, fill=True, outline=False) 
+        ld.draw_letter_gap(120) 
+        ld.draw_one_letter('Comic', 'X', 120, fill=True, outline=False) 
+        ld.draw_letter_gap(120) 
+        ld.draw_one_letter('Times', 'T', 120, fill=True, outline=False) 
+        ld.draw_letter_gap(120) 
 
         
-        ld.draw_string('Arial', "SAMPLE", 70, fills=False) 
+        ld.draw_string('Arial', "SAMPLE", 120, fills=True, outlines=True) 
         
         with ld.turtle.jump_stitch(): 
             ld.turtle.goto(-350, 300)
         
-        ld.draw_string('Arial', '\n', 70, fills=False) # go down 
+        ld.draw_string('Arial', "\n\n\n© Bernina \n(Singapore) \nPte. Ltd. ", 120, fills=False, outlines=True)
 
-        ld.draw_string('Arial', "\n\n© Bernina \n(Singapore) \nPte. Ltd. ", 60, fills=False)
-
-        ld.turtle.visualise(done=False, bye=False, clean=True)
-
-        #print("FINISHED VISUALIZAION")
+        # flip y axis 
+        '''from turtlethread.base_turtle import Vec2D 
+        for sg in ld.turtle.pattern.stitch_groups: 
+            for pidx in range(len(sg._positions)): 
+                sg._positions[pidx] = Vec2D(sg._positions[pidx][0], -sg._positions[pidx][1]) '''
 
         # save 
         from pathlib import Path
         savedir = Path(__file__).parent / "visualise_postscript" 
         eps_path = savedir / "test_text.eps" 
         png_path = savedir / "test_text.png" 
+
+        ld.turtle.save(str(savedir / "test_text.exp"))
         
+
+        # visualize 
         import turtle 
+        #turtle.screensize(5000, 5000)
+        ld.turtle.visualise(done=False, bye=False, clean=True)
+
+
         turtle.Screen().getcanvas().postscript(file=eps_path)
         
         # get png version - requires Ghostscript, https://stackoverflow.com/questions/44587376/oserror-unable-to-locate-ghostscript-on-paths 

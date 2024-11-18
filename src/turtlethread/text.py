@@ -123,7 +123,7 @@ class LetterDrawer():
         return list(self.loaded_fonts.keys()) 
 
 
-    def draw_one_letter(self, fontname, lettername, fontsize=20, colour='#000000', thickness=1, fill=False, turtle=None): # TODO support changing colours 
+    def draw_one_letter(self, fontname, lettername, fontsize=20, colour='#000000', thickness=1, fill=True, outline=False, turtle=None): # TODO support changing colours 
         # draws one letter with the turtles, with the specified fields. 
         # turtle defaults to self.turtle 
         if turtle is None: 
@@ -141,7 +141,7 @@ class LetterDrawer():
         # DRAW ONE LETTER OF A FONT WITH A LOADED NAME, GIVEN A COLOUR 
         if fontname in self.loaded_fonts.keys(): 
             try: 
-                drawSVG(turtle, self.loaded_fonts[fontname][lettername], fontsize, colour, thickness, fill) 
+                drawSVG(turtle, self.loaded_fonts[fontname][lettername], fontsize, colour, thickness, fill, outline) 
                 #print("DREW SVG")
             except Exception as e: 
                 print("OR, it might be some other error({})".format(e))
@@ -161,9 +161,11 @@ class LetterDrawer():
             self.turtle.goto(currpos[0] + LetterDrawer.letter_gap*fontsize, currpos[1])
         #print("DRAEW")
         
-    def draw_string(self, fontname, string, fontsize, colours='#000000', thicknesses = 1, fills=False, turtle=None): 
+    def draw_string(self, fontname, string, fontsize, colours='#000000', thicknesses = 1, fills=True, outlines=False, turtle=None):  
 
         # this draws a multiline string, automatically drawing letter gaps as desired 
+        # if fills is True, will fill the text with satin stitch. else, will draw the text outline 
+
         if turtle is None: 
             if self.turtle is None: 
                 raise ValueError("MUST DECLARE turtle TO USE IN LetterDrawer.draw_one_letter in either draw_one_letter() or LetterDrawer() init") 
@@ -171,7 +173,7 @@ class LetterDrawer():
 
         startx, starty = turtle.position() 
 
-        print("DRAWING STRING", string)
+        #print("DRAWING STRING", string)
 
         if isinstance(colours, list): 
             assert len(colours) >= len(string), "'colours' in LetterDrawer.draw_string is a list; it's length must be at least length of the string! (characters like '\\n' and ' ' will not use the colour, but will still have an item on the colours list assigned to them)" 
@@ -180,7 +182,10 @@ class LetterDrawer():
             assert len(thicknesses) >= len(string), "'thicknesses' in LetterDrawer.draw_string is a list; it's length must be at least length of the string! (characters like '\\n' and ' ' will not use the colour, but will still have an item on the colours list assigned to them)" 
 
         if isinstance(fills, list): 
-            assert len(fills) >= len(string), "'fills' in LetterDrawer.draw_string is a list; it's length must be at least length of the string! (characters like '\\n' and ' ' will not use the colour, but will still have an item on the colours list assigned to them)" 
+            assert len(fills) >= len(string), "'fills' in LetterDrawer.draw_string is a list; it's length must be at least length of the string! (characters like '\\n' and ' ' will not consider the fill variable, but will still have an item on the fills list assigned to them)" 
+
+        if isinstance(outlines, list): 
+            assert len(outlines) >= len(string), "'outlines' in LetterDrawer.draw_string is a list; it's length must be at least length of the string! (characters like '\\n' and ' ' will not consider the outline variable, but will still have an item on theoutlines list assigned to them)" 
 
         #print("HELLO>..")
 
@@ -206,8 +211,13 @@ class LetterDrawer():
             else: 
                 fill = fills[cidx] 
                 
-            print("DRAWING LETTER", string[cidx], "FILL", fill)
-            self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[cidx]), fontsize, col, thickness, fill, turtle) 
+            if isinstance(outlines, bool): 
+                outline = outlines 
+            else: 
+                outline = outlines[cidx] 
+                
+            #print("DRAWING LETTER", string[cidx], "FILL", fill)
+            self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[cidx]), fontsize, col, thickness, fill, outline, turtle) 
             self.draw_letter_gap(fontsize) 
         
         # draw last letter 
