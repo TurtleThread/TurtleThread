@@ -221,6 +221,21 @@ class Turtle(TNavigator):
         """
         self.set_stitch_type(stitches.ZigzagStitch(self.pos(), stitch_length, amplitude, density))
 
+    def start_satin_stitch(self, stitch_length, amplitude, density=5.0):
+            """Set the stitch mode to satin stitch (not recommended, use ``satin_stitch``-context instead).
+            Satin stitches create a dense, closely packed fill of stitches between two locations, similar to a zigzag stitch,
+            but with more closely spaced and finer stitch density.
+            Parameters
+            ----------
+            stitch_length : float
+                Distance between each satin stitch point.
+            amplitude : float
+                The distance from the central path to each side of the satin stitch.
+            density : float (optional, default=5.0)
+                Affects how closely packed the stitches are. Higher density means more stitches per unit of distance.
+            """
+            self.set_stitch_type(stitches.SatinStitch(self.pos(), stitch_length, amplitude, density))
+
     def start_jump_stitch(self):
         """Set the stitch mode to jump-stitch (not recommended, use ``jump_stitch``-context instead).
 
@@ -301,6 +316,21 @@ class Turtle(TNavigator):
             Affects how closely packed the stitches are. Higher density means more stitches per unit of distance.
         """
         return self.use_stitch_group(stitches.ZigzagStitch(self.pos(), stitch_length, amplitude, density))
+
+    def satin_stitch(self, stitch_length, amplitude, density=5.0):
+            """Set the stitch mode to satin stitch and cleanup afterwards.
+            Satin stitches create a dense, closely packed fill of stitches between two locations, similar to a zigzag stitch,
+            but with more closely spaced and finer stitch density.
+            Parameters
+            ----------
+            stitch_length : float
+                Distance between each satin stitch point.
+            amplitude : float
+                The distance from the central path to each side of the satin stitch.
+            density : float (optional, default=5.0)
+                Affects how closely packed the stitches are. Higher density means more stitches per unit of distance.
+            """
+            return self.use_stitch_group(stitches.SatinStitch(self.pos(), stitch_length, amplitude, density))
 
     def jump_stitch(self, skip_intermediate_jumps=True):
         """Set the stitch mode to jump-stitch and cleanup afterwards.

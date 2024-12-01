@@ -271,6 +271,57 @@ class ZigzagStitch(StitchGroup):
             stitch_commands.extend(self._iter_zigzag_between_positions(pos1, pos2))
         return stitch_commands
     
+class SatinStitch(StitchGroup):
+    """Stitch group for satin stitches.
+    Satin stitches create a dense, closely packed fill of stitches between two locations, similar to a zigzag stitch,
+    but with more closely spaced and finer stitch density.
+    Parameters
+    ----------
+    stitch_length : float
+        Distance between each satin stitch point.
+    amplitude : float
+        The distance from the central path to each side of the satin stitch.
+    density : float (optional, default=5.0)
+        Affects how closely packed the stitches are. Higher density means more stitches per unit of distance.
+    """
+    def __init__(self, start_pos: Vec2D, stitch_length: float, amplitude: float, density: float = 5.0) -> None:
+        super().__init__(start_pos=start_pos)
+        self.stitch_length = stitch_length
+        self.amplitude = amplitude
+        self.density = density  # Default density is higher for satin stitches (more closely packed)
+    def _iter_satin_between_positions(self, position_1: Vec2D, position_2: Vec2D) -> Generator[tuple[float, float, StitchCommand], None, None]:
+        x1, y1 = position_1
+        x2, y2 = position_2
+        distance = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+        angle = math.atan2(y2 - y1, x2 - x1)
+        dx = math.cos(angle)
+        dy = math.sin(angle)
+        # Adjust stitch length based on density
+        effective_stitch_length = self.stitch_length / self.density
+        distance_traveled = 0
+        satin_side = -1  # Start on one side of the line
+        while distance_traveled + effective_stitch_length <= distance:
+            x1 += effective_stitch_length * dx
+            y1 += effective_stitch_length * dy
+            distance_traveled += effective_stitch_length
+            # Calculate offset for satin pattern (smaller amplitude than zigzag)
+            offset_x = satin_side * self.amplitude * -dy  # Perpendicular to the line
+            offset_y = satin_side * self.amplitude * dx
+            yield x1 + offset_x, y1 + offset_y, pyembroidery.STITCH
+            satin_side *= -1  # Switch side
+        # Add the final point exactly at the end of the line
+        yield x2, y2, pyembroidery.STITCH
+
+
+    def _get_stitch_commands(self) -> list[tuple[float, float, StitchCommand]]:
+        if not self._positions:
+            return []
+        stitch_commands = [(self._start_pos[0], self._start_pos[1], pyembroidery.STITCH)]
+        stitch_commands.extend(self._iter_satin_between_positions(self._start_pos, self._positions[0]))
+        for pos1, pos2 in itertools.pairwise(self._positions):
+            stitch_commands.extend(self._iter_satin_between_positions(pos1, pos2))
+        return stitch_commands
+
 class JumpStitch(StitchGroup):
     """Stitch group for jump stitches.
 
