@@ -562,29 +562,109 @@ class ZigzagStitch(UnitStitch):
                 # # Do not yield a stitch at the end position
                 pass
 
+class CrossStitch(UnitStitch):
+    def __init__(
+        self,
+        start_pos: Vec2D,
+        stitch_length: int | float,
+        stitch_width: int | float,
+        center: bool = False,
+        auto_adjust: bool = True,
+        enforce_end_stitch: bool = True,
+        enforce_start_stitch: bool = True) -> None:
+        
+        super().__init__(
+            start_pos=start_pos,
+            stitch_length=stitch_length,
+            auto_adjust=auto_adjust,
+            enforce_end_stitch=enforce_end_stitch,
+            enforce_start_stitch=enforce_start_stitch
+            )
 
-# class ZigzagStitch(StitchGroup):
-#     """Stitch group for zigzag stitches.
+        self.center = center
+        self.stitch_width = stitch_width
 
-#     With a zigzag stitch, we stitch in a zigzag pattern.
+        if self.center:
+            self.stitch_stop_multiplier = 1
+        else:
+            self.stitch_stop_multiplier = 1
 
-#     By default, as the turtle moves forward, a stitch is done on the left then right side of the turtle, to get a
-#     zigzag. However, if center=False, the turtle will only form stitches on the right side of the path. 
+    def _stitch_unit(self, start_pos: Vec2D, angle: float, stitch_length: float) -> list[tuple[float, float, StitchCommand]]:
+        """The cross stitch is implemented by going from the top left corner to the bottom right corner, then moving
+        from the bottom right to the bottom left, before finally going to the top right corner. This corner will
+        be the top left of the next cross stitch."""
+        x = start_pos[0]
+        y = start_pos[1]
+        dx = math.cos(angle)
+        dy = math.sin(angle)
 
-#     The 'density' of a zigzag is the distance between two stitches along the direction of the stitch. For example,
-#     if the turtle is moving horizontally, the density is the horizontal distance between two adjacent stitches on
-#     the zigzag.
-#     The 'width' is the number of steps between the left-most and right-most point of the zigzag stitch.
+        # TOP LEFT TO BOTTOM RIGHT
 
-#     When the turtle moves a distance that is not a multiple of the density, the program will adjust the density
-#     to the closest possible multiple. 
+        # Top-Left to Top-Right
+        x += stitch_length * dx 
+        y += stitch_length * dy
+        # Top-Right to Bottom-Right
+        right_angle = angle - math.pi/2 # Turn right 90 degrees
+        x += self.stitch_width * math.cos(right_angle)
+        y += self.stitch_width * math.sin(right_angle)
+        yield x, y, pyembroidery.STITCH
+
+        # BOTTOM RIGHT TO BOTTOM LEFT 
+        reverse_angle = angle + math.pi # Turn 180 degrees
+        x -= stitch_length * dx 
+        y -= stitch_length * dy
+        yield x, y, pyembroidery.STITCH
+
+        # BOTTOM LEFT TO TOP RIGHT
+        
+        # Bottom-Left to Top-Left
+        left_angle = angle + math.pi/2 # Turn left 90 degrees 
+        x += self.stitch_width * math.cos(left_angle)
+        y += self.stitch_width * math.sin(left_angle)
+        # Top-Left to Top-Right
+        x += stitch_length * dx 
+        y += stitch_length * dy
+        yield x, y, pyembroidery.STITCH
+
+    def _start_stitch_unit(self, start_pos: Vec2D, angle: float, stitch_length: float) -> list[tuple[float, float, StitchCommand]]:
+        """If center, move 1/2 of stitch width to the left."""
+        if self.center:
+            left_angle = angle + math.pi/2
+            self.y += (self.stitch_width/2 * math.sin(left_angle))
+            yield self.x, self.y, pyembroidery.STITCH
+
+    def _end_stitch_unit(self, start_pos: Vec2D, angle: float, stitch_length: float, distance: float) -> list[tuple[float, float, StitchCommand]]:
+        """If center, we move 1/2 of stitch width back to the right."""
+        if self.center:
+            right_angle = angle - math.pi/2
+            self.y += (self.stitch_width/2 * math.sin(right_angle))
+            yield self.x, self.y, pyembroidery.STITCH
+
+# class CrossStitch(StitchGroup):
+#     """Stitch group for cross stitches.
+
+#     A cross stitch is a stitch that stitches in a cross shape. Due to limitations with a sewing machine, it is
+#     not a true cross stich, as there is a visible line at the bottom connecting the 'crosses' in the stitch.
+
+#     This is also known as a Knit Overlock stitch.
+    
+#     The cross stitch is implemented by going from the top left corner to the bottom right corner, then moving
+#     from the bottom right to the bottom left, before finally going to the top right corner. This corner will
+#     be the top left of the next cross stitch.
+
+#     If centered, start by moving by width/2 to the left, such that the center of the cross stitch is aligned
+#     with the original position of the turtle.
+
+#     The 'density' of the cross stitch is the distance between the left and right sides of the crosses. This 
+#     follows a similar formula to zigzag stitch.
+#     The 'width' of the cross stitch is the distance between the top and bottom of the cross stitch.
 
 #     Parameters
 #     ----------
-#     density : int
-#         Number of steps between two stitches along the direction of travel.
-#     width : int
-#         Number of steps between the left and right side of the zig-zag.
+#     density : int | float
+#         Distance between the left and right sides of the cross stitch.
+#     width : int | float
+#         Distance between the top and bottom of the cross stitch.
 #     center : boolean
 #         If True, then the turtle will form stitches on both the left and right side of the path. Else, the turtle 
 #         will only form stitches on the right side of the path.
@@ -592,65 +672,77 @@ class ZigzagStitch(UnitStitch):
 
 #     def __init__(self, start_pos: Vec2D, density: int | float, width: int | float, center: bool = True) -> None:
 #         super().__init__(start_pos=start_pos)
-#         self.density = density 
-#         self.step_length = density
+#         self.density = density
 #         self.width = width
 #         self.center = center
 
 #     @classmethod
-#     def round_density(cls, stitch_length : int | float, density : int | float, center : bool = True):
+#     def calculate_actual_density(cls, stitch_length : int | float, density : int | float):
+#         """Use a similar formula to zigzag stitch to find the actual density"""
 #         if stitch_length < density: 
 #             return stitch_length # Density cannot be greater than stitch length
-#         if center or (not center and round(stitch_length/density) % 2 == 0):
-#             return stitch_length/round(stitch_length/density)
-#         else:
-#             # Odd number and not center
-#             return stitch_length/(round(stitch_length/density) + 1)
-         
+#         return max(1, stitch_length/round(stitch_length/density))
+
 #     def _iter_stitches_between_positions(
 #         self, position_1: Vec2D, position_2: Vec2D
 #     ) -> Generator[tuple[StitchCommand, float, float], None, None]:
 
-#         # Zigzag stitch between two points, stopping exactly at position 2 and not
+#         # Cross stitch between two points, stopping exactly at position 2 and not
 #         # adding any stitch at position 1. 
 #         x, y = position_1
 #         x_end, y_end = position_2
 
-#         distance = math.sqrt((x - x_end) ** 2 + (y - y_end) ** 2)
+#         stitch_length = math.sqrt((x - x_end) ** 2 + (y - y_end) ** 2)
 #         angle = math.atan2(y_end - y, x_end - x)
 #         dx = math.cos(angle)
 #         dy = math.sin(angle)
 
-#         distance_traveled = 0
-#         stitch_length = self.round_density(distance, self.density, self.center)  
-#         if stitch_length < 2: warnings.warn("Stitch length is less than 0.2mm! This may cause your machine to jam.")
-#         should_go_right = True # Choose whether to go right or left next stitch
+#         # Calculate the actual density of the stitch
+#         density = CrossStitch.calculate_actual_density(stitch_length, self.density)
 
 #         if self.center:
-#             x += stitch_length/2 * dx
-#             y += stitch_length/2 * dy
-#             left_angle = angle + math.pi/2 # Left stitch is right angle to the direction of travel
-#             x = x + (self.width/2 * math.cos(left_angle)) # Going from center to left, hence half width
-#             y = y + (self.width/2 * math.sin(left_angle))
+#             left_angle = angle + math.pi/2 # Turn left 90 degrees
+#             x += self.width/2 * math.cos(left_angle)
+#             y += self.width/2 * math.sin(left_angle)   
 #             yield x, y, pyembroidery.STITCH
 
-#         # Repeat until one stitch away
-#         while distance_traveled < distance - stitch_length:
-#             x += stitch_length * dx
-#             y += stitch_length * dy
-
-#             if should_go_right:
-#                 right_angle = angle - math.pi/2 # Right stitch is also a right angle to the direction of travel
-#                 stitch_x = x + (self.width * math.cos(right_angle)) # Going from left to right hence full width
-#                 stitch_y = y + (self.width * math.sin(right_angle))
-#                 yield stitch_x, stitch_y, pyembroidery.STITCH
-#             else:
-#                 yield x, y, pyembroidery.STITCH # We are already at left position
+#         # Move to the end location of the stitch
+#         for _ in range(round(stitch_length/density)): # Round to prevent FP errors
             
-#             should_go_right = not should_go_right
-#             distance_traveled += stitch_length
+#             # TOP LEFT TO BOTTOM RIGHT
 
-#         yield x_end, y_end, pyembroidery.STITCH
+#             # Top-Left to Top-Right
+#             x += self.density * dx 
+#             y += self.density * dy
+#             # Top-Right to Bottom-Right
+#             right_angle = angle - math.pi/2 # Turn right 90 degrees
+#             x += self.width * math.cos(right_angle)
+#             y += self.width * math.sin(right_angle)
+#             yield x, y, pyembroidery.STITCH
+
+#             # BOTTOM RIGHT TO BOTTOM LEFT 
+#             reverse_angle = angle + math.pi # Turn 180 degrees
+#             x -= self.density * dx 
+#             y -= self.density * dy
+#             yield x, y, pyembroidery.STITCH
+
+#             # BOTTOM LEFT TO TOP RIGHT
+            
+#             # Bottom-Left to Top-Left
+#             left_angle = angle + math.pi/2 # Turn left 90 degrees 
+#             x += self.width * math.cos(left_angle)
+#             y += self.width * math.sin(left_angle)
+#             # Top-Left to Top-Right
+#             x += self.density * dx 
+#             y += self.density * dy
+#             yield x, y, pyembroidery.STITCH
+
+#         if self.center:
+#             right_angle = angle - math.pi/2 # Turn right 90 degrees
+#             x += self.width/2 * math.cos(right_angle)
+#             y += self.width/2 * math.sin(right_angle)   
+#             yield x, y, pyembroidery.STITCH
+
 
 #     def _get_stitch_commands(self) -> list[tuple[float, float, StitchCommand]]:
 #         if not self._positions:
@@ -662,140 +754,5 @@ class ZigzagStitch(UnitStitch):
 #             stitch_commands.extend(self._iter_stitches_between_positions(pos1, pos2))
 
 #         return stitch_commands
-
-# class SatinStitch(ZigzagStitch):
-#     """Stitch group for satin stitches.
-
-#     A satin stitch is simply a zigzag stitch with a tight density. This creates a solid fill.
-#     We use 0.3mm for the density.
-
-#     The 'width' is the number of steps between the left-most and right-most point of the satin stitch.
-
-#     Parameters
-#     ----------
-#     width : int
-#         Number of steps between the left and right side of the stitch.
-#     center : boolean
-#         If True, then the turtle will form stitches on both the left and right side of the path. Else, the turtle 
-#         will only form stitches on the right side of the path.
-#     """
-
-#     def __init__(self, start_pos: Vec2D, width: int | float, center: bool = True) -> None:
-#         super().__init__(start_pos=start_pos, width=width, center=center, density=3)
-
-class CrossStitch(StitchGroup):
-    """Stitch group for cross stitches.
-
-    A cross stitch is a stitch that stitches in a cross shape. Due to limitations with a sewing machine, it is
-    not a true cross stich, as there is a visible line at the bottom connecting the 'crosses' in the stitch.
-
-    This is also known as a Knit Overlock stitch.
-    
-    The cross stitch is implemented by going from the top left corner to the bottom right corner, then moving
-    from the bottom right to the bottom left, before finally going to the top right corner. This corner will
-    be the top left of the next cross stitch.
-
-    If centered, start by moving by width/2 to the left, such that the center of the cross stitch is aligned
-    with the original position of the turtle.
-
-    The 'density' of the cross stitch is the distance between the left and right sides of the crosses. This 
-    follows a similar formula to zigzag stitch.
-    The 'width' of the cross stitch is the distance between the top and bottom of the cross stitch.
-
-    Parameters
-    ----------
-    density : int | float
-        Distance between the left and right sides of the cross stitch.
-    width : int | float
-        Distance between the top and bottom of the cross stitch.
-    center : boolean
-        If True, then the turtle will form stitches on both the left and right side of the path. Else, the turtle 
-        will only form stitches on the right side of the path.
-    """
-
-    def __init__(self, start_pos: Vec2D, density: int | float, width: int | float, center: bool = True) -> None:
-        super().__init__(start_pos=start_pos)
-        self.density = density
-        self.width = width
-        self.center = center
-
-    @classmethod
-    def calculate_actual_density(cls, stitch_length : int | float, density : int | float):
-        """Use a similar formula to zigzag stitch to find the actual density"""
-        if stitch_length < density: 
-            return stitch_length # Density cannot be greater than stitch length
-        return max(1, stitch_length/round(stitch_length/density))
-
-    def _iter_stitches_between_positions(
-        self, position_1: Vec2D, position_2: Vec2D
-    ) -> Generator[tuple[StitchCommand, float, float], None, None]:
-
-        # Cross stitch between two points, stopping exactly at position 2 and not
-        # adding any stitch at position 1. 
-        x, y = position_1
-        x_end, y_end = position_2
-
-        stitch_length = math.sqrt((x - x_end) ** 2 + (y - y_end) ** 2)
-        angle = math.atan2(y_end - y, x_end - x)
-        dx = math.cos(angle)
-        dy = math.sin(angle)
-
-        # Calculate the actual density of the stitch
-        density = CrossStitch.calculate_actual_density(stitch_length, self.density)
-
-        if self.center:
-            left_angle = angle + math.pi/2 # Turn left 90 degrees
-            x += self.width/2 * math.cos(left_angle)
-            y += self.width/2 * math.sin(left_angle)   
-            yield x, y, pyembroidery.STITCH
-
-        # Move to the end location of the stitch
-        for _ in range(round(stitch_length/density)): # Round to prevent FP errors
-            
-            # TOP LEFT TO BOTTOM RIGHT
-
-            # Top-Left to Top-Right
-            x += self.density * dx 
-            y += self.density * dy
-            # Top-Right to Bottom-Right
-            right_angle = angle - math.pi/2 # Turn right 90 degrees
-            x += self.width * math.cos(right_angle)
-            y += self.width * math.sin(right_angle)
-            yield x, y, pyembroidery.STITCH
-
-            # BOTTOM RIGHT TO BOTTOM LEFT 
-            reverse_angle = angle + math.pi # Turn 180 degrees
-            x -= self.density * dx 
-            y -= self.density * dy
-            yield x, y, pyembroidery.STITCH
-
-            # BOTTOM LEFT TO TOP RIGHT
-            
-            # Bottom-Left to Top-Left
-            left_angle = angle + math.pi/2 # Turn left 90 degrees 
-            x += self.width * math.cos(left_angle)
-            y += self.width * math.sin(left_angle)
-            # Top-Left to Top-Right
-            x += self.density * dx 
-            y += self.density * dy
-            yield x, y, pyembroidery.STITCH
-
-        if self.center:
-            right_angle = angle - math.pi/2 # Turn right 90 degrees
-            x += self.width/2 * math.cos(right_angle)
-            y += self.width/2 * math.sin(right_angle)   
-            yield x, y, pyembroidery.STITCH
-
-
-    def _get_stitch_commands(self) -> list[tuple[float, float, StitchCommand]]:
-        if not self._positions:
-            return []
-
-        stitch_commands = [(self._start_pos[0], self._start_pos[1], pyembroidery.STITCH)]
-        stitch_commands.extend(self._iter_stitches_between_positions(self._start_pos, self._positions[0]))
-        for pos1, pos2 in itertools.pairwise(self._positions):
-            stitch_commands.extend(self._iter_stitches_between_positions(pos1, pos2))
-
-        return stitch_commands
 
 
