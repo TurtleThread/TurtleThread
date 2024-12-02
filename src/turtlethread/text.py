@@ -230,8 +230,25 @@ class LetterDrawer():
             if isinstance(colours, str): 
                 col = colours 
             else: 
-                col = colours[cidx] 
-            self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[-1]), fontsize, col, turtle) 
+                col = colours[-1] 
+            
+            if isinstance(thicknesses, int): 
+                thickness = thicknesses 
+            else: 
+                thickness = thicknesses[-1] 
+
+            if isinstance(fills, bool): 
+                fill = fills 
+            else: 
+                fill = fills[-1] 
+                
+            if isinstance(outlines, bool): 
+                outline = outlines 
+            else: 
+                outline = outlines[-1] 
+                
+            #print("DRAWING LETTER", string[-1], "FILL", fill)
+            self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[-1]), fontsize, col, thickness, fill, outline, turtle) 
         
 
     punctuation_to_name = {'!': 'exclam', 

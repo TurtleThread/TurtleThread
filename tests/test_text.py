@@ -28,23 +28,23 @@ if __name__ == '__main__':
 
         # multi-font text part 
         #print("HEF:OIDN")
-        ld.draw_one_letter('Arial', 'T', 120, fill=True, outline=False) 
+        ld.draw_one_letter('Arial', 'T', 120, fill=False, outline=True) 
         ld.draw_letter_gap(120) 
         #print("DREW A LETTER")
-        ld.draw_one_letter('Calibri', 'E', 120, fill=True, outline=False) 
+        ld.draw_one_letter('Calibri', 'E', 120, fill=False, outline=True) 
         ld.draw_letter_gap(120) 
-        ld.draw_one_letter('Comic', 'X', 120, fill=True, outline=False) 
+        ld.draw_one_letter('Comic', 'X', 120, fill=False, outline=True) 
         ld.draw_letter_gap(120) 
-        ld.draw_one_letter('Times', 'T', 120, fill=True, outline=False) 
+        ld.draw_one_letter('Times', 'T', 120, fill=False, outline=True) 
         ld.draw_letter_gap(120) 
 
         
-        ld.draw_string('Arial', "SAMPLE", 120, fills=True, outlines=True) 
+        ld.draw_string('Arial', "SAMPLE", 120, fills=False, outlines=True) 
         
         with ld.turtle.jump_stitch(): 
             ld.turtle.goto(-350, 300)
         
-        ld.draw_string('Arial', "\n\n\n© Bernina \n(Singapore) \nPte. Ltd. ", 120, fills=False, outlines=True)
+        ld.draw_string('Arial', "\n\nabcqz", 120, fills=False, outlines=True)
 
         # flip y axis 
         '''from turtlethread.base_turtle import Vec2D 
@@ -64,7 +64,7 @@ if __name__ == '__main__':
         # visualize 
         import turtle 
         #turtle.screensize(5000, 5000)
-        ld.turtle.visualise(done=False, bye=False, clean=True)
+        ld.turtle.visualise(done=False, bye=False, clean=True, width=2000, height=2000)
 
 
         turtle.Screen().getcanvas().postscript(file=eps_path)
