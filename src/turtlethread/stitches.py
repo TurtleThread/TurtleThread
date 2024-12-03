@@ -266,7 +266,7 @@ class UnitStitch(StitchGroup):
         distance_traveled = self.distance_traveled
 
         # Repeat until stich_stop_multiplier*stitch_length away
-        while distance_traveled + stitch_length*self.stitch_stop_multiplier <= distance:
+        while distance_traveled + stitch_length*self.stitch_stop_multiplier < distance:
             for stitch in self._stitch_unit(Vec2D(x, y), angle, stitch_length): yield stitch
             x += stitch_length * dx
             y += stitch_length * dy
@@ -480,7 +480,7 @@ class ZigzagStitch(UnitStitch):
         if self.center:
             self.stitch_stop_multiplier = 1
         else:
-            self.stitch_stop_multiplier = 1
+            self.stitch_stop_multiplier = 0
 
     def _stitch_unit(self, start_pos: Vec2D, angle: float, stitch_length: float) -> list[tuple[float, float, StitchCommand]]:
         """Stitch a single zigzag. We stitch right, then left.
@@ -569,8 +569,7 @@ class SatinStitch(ZigzagStitch):
     
     def __init__(self, start_pos: Vec2D, stitch_width: int | float, center: bool = True) -> None:
         super().__init__(start_pos=start_pos, stitch_width=stitch_width, stitch_length=3, center=center)
-        
-
+    
 class CrossStitch(UnitStitch):
     def __init__(
         self,
@@ -593,11 +592,7 @@ class CrossStitch(UnitStitch):
         self.center = center
         self.stitch_width = stitch_width
 
-        if self.center:
-            self.stitch_stop_multiplier = 1
-        else:
-            self.stitch_stop_multiplier = 1
-
+        self.stitch_stop_multiplier = 0
     def _stitch_unit(self, start_pos: Vec2D, angle: float, stitch_length: float) -> list[tuple[float, float, StitchCommand]]:
         """The cross stitch is implemented by going from the top left corner to the bottom right corner, then moving
         from the bottom right to the bottom left, before finally going to the top right corner. This corner will
@@ -639,6 +634,7 @@ class CrossStitch(UnitStitch):
         """If center, move 1/2 of stitch width to the left."""
         if self.center:
             left_angle = angle + math.pi/2
+            self.x += (self.stitch_width/2 * math.cos(left_angle))
             self.y += (self.stitch_width/2 * math.sin(left_angle))
             yield self.x, self.y, pyembroidery.STITCH
 
@@ -646,6 +642,7 @@ class CrossStitch(UnitStitch):
         """If center, we move 1/2 of stitch width back to the right."""
         if self.center:
             right_angle = angle - math.pi/2
+            self.x += (self.stitch_width/2 * math.cos(right_angle))
             self.y += (self.stitch_width/2 * math.sin(right_angle))
             yield self.x, self.y, pyembroidery.STITCH
 
