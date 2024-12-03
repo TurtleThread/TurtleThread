@@ -16,8 +16,8 @@ import pyembroidery
 
 from .base_turtle import Vec2D
 
-# STITCH=0, JUMP=1, TRIM=2, ZIGZAG=3, SATIN=4, CROSS=5
-StitchCommand: TypeAlias = Literal[0, 1, 2, 3, 4, 5]
+# STITCH=0, JUMP=1, TRIM=2, ZIGZAG=3, SATIN=4, CROSS=5, Z=6
+StitchCommand: TypeAlias = Literal[0, 1, 2, 3, 4, 5, 6]
 
 
 class EmbroideryPattern:
@@ -646,3 +646,71 @@ class CrossStitch(UnitStitch):
             self.y += (self.stitch_width/2 * math.sin(right_angle))
             yield self.x, self.y, pyembroidery.STITCH
 
+
+class ZStitch(UnitStitch):
+    def __init__(
+        self,
+        start_pos: Vec2D,
+        stitch_length: int | float,
+        stitch_width: int | float,
+        center: bool = False,
+        auto_adjust: bool = True,
+        enforce_end_stitch: bool = True,
+        enforce_start_stitch: bool = True) -> None:
+        
+        super().__init__(
+            start_pos=start_pos,
+            stitch_length=stitch_length,
+            auto_adjust=auto_adjust,
+            enforce_end_stitch=enforce_end_stitch,
+            enforce_start_stitch=enforce_start_stitch
+            )
+
+        self.center = center
+        self.stitch_width = stitch_width
+
+        if self.center:
+            self.stitch_stop_multiplier = 1
+        else:
+            self.stitch_stop_multiplier = 0
+
+    def _stitch_unit(self, start_pos: Vec2D, angle: float, stitch_length: float) -> list[tuple[float, float, StitchCommand]]:
+        """In Z-stitch, we stitch forward by stitch_length and right by stitch_width, then back left by stitch_width."""
+        x = start_pos[0]
+        y = start_pos[1]
+        dx = math.cos(angle)
+        dy = math.sin(angle)
+
+        # Diagonal stitch
+        x += stitch_length * dx
+        y += stitch_length * dy
+        right_angle = angle - math.pi/2
+        stitch_x = x + (self.stitch_width * math.cos(right_angle))
+        stitch_y = y + (self.stitch_width * math.sin(right_angle))
+        yield stitch_x, stitch_y, pyembroidery.STITCH
+
+        # Up stitch
+        # We are already in the correct position!
+        yield x, y, pyembroidery.STITCH
+
+    def _start_stitch_unit(self, start_pos: Vec2D, angle: float, stitch_length: float) -> list[tuple[float, float, StitchCommand]]:
+        """If center, we move 1/2 stitch_width to the right and 1/2 stitch_length forward, then one stitch_width left, to simulate half a stitch"""
+        if self.center:
+            
+            self.x += (self.stitch_length/2 * math.cos(angle))
+            self.y += (self.stitch_length/2 * math.sin(angle))
+
+            right_angle = angle - math.pi/2
+            self.x += (self.stitch_width/2 * math.cos(right_angle))
+            self.y += (self.stitch_width/2 * math.sin(right_angle))
+            yield self.x, self.y, pyembroidery.STITCH
+
+            left_angle = angle + math.pi/2
+            self.x += (self.stitch_width * math.cos(left_angle))
+            self.y += (self.stitch_width * math.sin(left_angle))
+            yield self.x, self.y, pyembroidery.STITCH
+    
+    def _end_stitch_unit(self, start_pos: Vec2D, angle: float, stitch_length: float, distance: float) -> list[tuple[float, float, StitchCommand]]:
+        """If center, we need to have half a diagonal stitch to return to the original position along the direction of travel."""
+        # Since the final stitch is automatically drawn, we do not need to do anything
+        pass

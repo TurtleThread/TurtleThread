@@ -258,6 +258,26 @@ class Turtle(TNavigator):
             enforce_start_stitch=enforce_start_stitch
         ))
 
+    def start_z_stitch(
+        self,
+        stitch_length: int | float,
+        stitch_width: int | float,
+        center: bool = False,
+        auto_adjust: bool = True,
+        enforce_end_stitch: bool = True,
+        enforce_start_stitch: bool = True) -> None:
+        """Set the stitch mode to z stitch.""" 
+        
+        self.set_stitch_type(stitches.ZStitch(
+            self.pos(),
+            stitch_length,
+            stitch_width,
+            center=center,
+            auto_adjust=auto_adjust,
+            enforce_end_stitch=enforce_end_stitch,
+            enforce_start_stitch=enforce_start_stitch
+        ))
+
     def cleanup_stitch_type(self):
         """Cleanup after switching stitch type."""
         self._stitch_group_stack.pop()
@@ -368,6 +388,26 @@ class Turtle(TNavigator):
         """Set the stitch mode to cross stitch.""" 
         
         return self.use_stitch_group(stitches.CrossStitch(
+            self.pos(),
+            stitch_length,
+            stitch_width,
+            center=center,
+            auto_adjust=auto_adjust,
+            enforce_end_stitch=enforce_end_stitch,
+            enforce_start_stitch=enforce_start_stitch
+        ))
+
+    def z_stitch(
+        self,
+        stitch_length: int | float,
+        stitch_width: int | float,
+        center: bool = False,
+        auto_adjust: bool = True,
+        enforce_end_stitch: bool = True,
+        enforce_start_stitch: bool = True) -> None:
+        """Set the stitch mode to z stitch.""" 
+        
+        return self.use_stitch_group(stitches.ZStitch(
             self.pos(),
             stitch_length,
             stitch_width,
