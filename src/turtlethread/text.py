@@ -131,6 +131,8 @@ class LetterDrawer():
                 raise ValueError("MUST DECLARE turtle TO USE IN LetterDrawer.draw_one_letter in either draw_one_letter() or LetterDrawer() init") 
             turtle = self.turtle 
         
+        #print("DRAWING LETTER", lettername)
+
         if lettername == 'space': 
             currpos = list(turtle.position())
             # move right a bit 
@@ -161,7 +163,7 @@ class LetterDrawer():
             self.turtle.goto(currpos[0] + LetterDrawer.letter_gap*fontsize, currpos[1])
         #print("DRAEW")
         
-    def draw_string(self, fontname, string, fontsize, colours='#000000', thicknesses = 1, fills=True, outlines=False, turtle=None, flip_y=False):  
+    def draw_string(self, fontname, string, fontsize, colours='#000000', thicknesses = 1, fills=True, outlines=False, turtle=None, flip_y=False):  # TODO make a version that considers kerning 
 
         # this draws a multiline string, automatically drawing letter gaps as desired 
         # if fills is True, will fill the text with satin stitch. else, will draw the text outline 

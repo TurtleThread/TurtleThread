@@ -39,7 +39,7 @@ if __name__ == '__main__':
         ld.draw_letter_gap(120) 
 
         
-        ld.draw_string('Arial', "SAMPLE", 120, fills=False, outlines=True) 
+        ld.draw_string('Arial', "SAMPLE", 120, fills=True, outlines=True) 
         
         with ld.turtle.jump_stitch(): 
             ld.turtle.goto(-350, 300)

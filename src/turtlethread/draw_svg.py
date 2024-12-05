@@ -11,7 +11,7 @@ flip_y = True
 # Time: 2018-08-09 18:27
 
 
-
+debug = [] 
 
 
 #import turtle 
@@ -60,6 +60,8 @@ def move_turtle_to(te:turtlethread.Turtle, x, y):
     #print(prev_end_pos) 
     #print(prev_turtle_pos) 
     #print(x, y)
+
+    #debug.append((x, y)) # for debugging purposes 
 
     new_stitch = te._stitch_group_stack[-1] 
 
@@ -272,7 +274,7 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color, thickness=1, fill
 
     global flip_y 
     flip_y = flip_y_in 
-    print("FLIP_Y:", flip_y)
+    #print("FLIP_Y:", flip_y)
 
     SVGFile = open(filename, 'r')
     SVG = BeautifulSoup(SVGFile.read(), 'lxml')
@@ -306,7 +308,7 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color, thickness=1, fill
     if flip_y: 
         prev_turtle_pos[1] = -prev_turtle_pos[1] 
 
-    print("INITIAL PREV TURTLE POS", prev_turtle_pos)
+    #print("INITIAL PREV TURTLE POS", prev_turtle_pos)
 
     startx += addsx 
     starty += addsy 
@@ -319,7 +321,7 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color, thickness=1, fill
         
         starty = -starty 
 
-    print("START:", [startx, starty])
+    #print("START:", [startx, starty])
 
 
     #te.penup()
@@ -331,24 +333,37 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color, thickness=1, fill
     #screen = turtle.Screen() 
 
 
+    global debug 
     # if it's fill 
     if fill: 
+        debug = [] 
         lines = svg_get_lines(filename, round(Width), round(Height)) 
+        #print("FILL LINES:", lines)
 
         for p1, p2 in lines: 
             with te.jump_stitch(): 
                 #print("WITH JUMP STITCH:", te._stitch_group_stack[-1] )
-                move_turtle_to(te, startx+p1[0], addsy+p1[1]) 
+                move_turtle_to(te, startx+p1[0], starty+p1[1]) 
             with te.running_stitch(99999): 
                 #print("WITH RUNNING STITCH:", te._stitch_group_stack[-1] )
-                move_turtle_to(te, startx+p2[0], addsy+p2[1]) 
+                move_turtle_to(te, startx+p2[0], starty+p2[1]) 
+        
+        '''
+        # debug 
+        xs = [d[0] for d in debug] 
+        ys = [d[1] for d in debug] 
+        print("FILL XYXY:", min(xs), min(ys), max(xs), max(ys)) 
+        print("TARGET XYXY:", startx, starty, startx+round(Width), starty+round(Height))
+        ''' 
 
 
 
 
     # outline 
     # TODO: use satin stitch for thickness 
+    starty += round(Height) # just to fix the calculations below, since the origin is somewhere else 
     if outline: 
+        debug = [] 
         with te.running_stitch(30): # 99999 will make sure we won't have gaps 
             #te.color(w_color) # TODO SWITCH COLOUR OF TEXT 
 
@@ -449,6 +464,15 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color, thickness=1, fill
                     else: 
                         print("ERROR", i)
 
+        '''
+        # debug 
+        starty -= round(Height) # to fix calculations below 
+        xs = [d[0] for d in debug] 
+        ys = [d[1] for d in debug] 
+        print("OUTLINE XYXY:", min(xs), min(ys), max(xs), max(ys)) 
+        print("TARGET XYXY:", startx, starty, startx+round(Width), starty+round(Height))
+        '''
+
 
 
     with te.jump_stitch(): 
@@ -504,23 +528,47 @@ def svg_to_pil(svgname) -> Image.Image :
 
 def svg_get_lines(svgname, width:int, height:int): 
     lines = [] 
+    down = True 
 
     image = svg_to_pil(svgname).resize((width, height)) 
     n = np.array(image) 
-    for r in range(width): 
-        prev = 0 
-        prev1 = -1 
-        for c in range(height): 
-            if n[c,r,3] > 0: # not transparent 
-                if prev == 0: 
-                    prev1 = c 
-                prev = 1 
-            else: 
-                if prev == 1: # from non-transparent to transparent 
-                    lines.append([(r,prev1), (r,c-1)]) 
-                prev = 0
-        if prev==1: # end of edge 
-            lines.append([(r,prev1), (r,c)]) 
+
+    r = 0 
+    while r < width: 
+        if down: 
+            prev = 0 
+            prev1 = -1 
+            for c in range(height): 
+                if n[c,r,3] > 0: # not transparent 
+                    if prev == 0: 
+                        prev1 = c 
+                    prev = 1 
+                else: 
+                    if prev == 1: # from non-transparent to transparent 
+                        lines.append([(r,prev1), (r,c-1)]) 
+                    prev = 0
+            if prev==1: # end of edge 
+                lines.append([(r,prev1), (r,c)]) 
+            down = False 
+        else: 
+            prev = height-1 
+            prev1 = height 
+            for c in range(height-1, 0, -1): 
+                if n[c,r,3] > 0: # not transparent 
+                    if prev == 0: 
+                        prev1 = c 
+                    prev = 1 
+                else: 
+                    if prev == 1: # from non-transparent to transparent 
+                        lines.append([(r,prev1), (r,c-1)]) 
+                    prev = 0
+            if prev==1: # end of edge 
+                lines.append([(r,prev1), (r,c)]) 
+            down = True 
+
+        if (r >= width-1): # this was the last one 
+            break 
+        r = min(r+5, width-1) # distance 5 apart (0.5mm) 
 
     #print("GOT LINES:", lines)
     
