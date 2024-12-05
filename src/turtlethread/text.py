@@ -123,7 +123,7 @@ class LetterDrawer():
         return list(self.loaded_fonts.keys()) 
 
 
-    def draw_one_letter(self, fontname, lettername, fontsize=20, colour='#000000', thickness=1, fill=True, outline=False, turtle=None): # TODO support changing colours 
+    def draw_one_letter(self, fontname, lettername, fontsize=20, colour='#000000', thickness=1, fill=True, outline=False, turtle=None, flip_y=False): # TODO support changing colours 
         # draws one letter with the turtles, with the specified fields. 
         # turtle defaults to self.turtle 
         if turtle is None: 
@@ -141,7 +141,7 @@ class LetterDrawer():
         # DRAW ONE LETTER OF A FONT WITH A LOADED NAME, GIVEN A COLOUR 
         if fontname in self.loaded_fonts.keys(): 
             try: 
-                drawSVG(turtle, self.loaded_fonts[fontname][lettername], fontsize, colour, thickness, fill, outline) 
+                drawSVG(turtle, self.loaded_fonts[fontname][lettername], fontsize, colour, thickness, fill, outline, flip_y) 
                 #print("DREW SVG")
             except Exception as e: 
                 print("OR, it might be some other error({})".format(e))
@@ -161,7 +161,7 @@ class LetterDrawer():
             self.turtle.goto(currpos[0] + LetterDrawer.letter_gap*fontsize, currpos[1])
         #print("DRAEW")
         
-    def draw_string(self, fontname, string, fontsize, colours='#000000', thicknesses = 1, fills=True, outlines=False, turtle=None):  
+    def draw_string(self, fontname, string, fontsize, colours='#000000', thicknesses = 1, fills=True, outlines=False, turtle=None, flip_y=False):  
 
         # this draws a multiline string, automatically drawing letter gaps as desired 
         # if fills is True, will fill the text with satin stitch. else, will draw the text outline 
@@ -217,7 +217,7 @@ class LetterDrawer():
                 outline = outlines[cidx] 
                 
             #print("DRAWING LETTER", string[cidx], "FILL", fill)
-            self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[cidx]), fontsize, col, thickness, fill, outline, turtle) 
+            self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[cidx]), fontsize, col, thickness, fill, outline, turtle, flip_y) 
             self.draw_letter_gap(fontsize) 
         
         # draw last letter 
@@ -248,7 +248,7 @@ class LetterDrawer():
                 outline = outlines[-1] 
                 
             #print("DRAWING LETTER", string[-1], "FILL", fill)
-            self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[-1]), fontsize, col, thickness, fill, outline, turtle) 
+            self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[-1]), fontsize, col, thickness, fill, outline, turtle, flip_y) 
         
 
     punctuation_to_name = {'!': 'exclam', 

@@ -266,9 +266,13 @@ def readPathAttrD(w_attr):
 
 
 
-def drawSVG(te:turtlethread.Turtle, filename, height, w_color, thickness=1, fill=True, outline=False): # TODO consider colour 
+def drawSVG(te:turtlethread.Turtle, filename, height, w_color, thickness=1, fill=True, outline=False, flip_y_in:bool=False): # TODO consider colour 
     # draws an SVG file with the turtle 
     #print("HI DRAWING SVG")
+
+    global flip_y 
+    flip_y = flip_y_in 
+    print("FLIP_Y:", flip_y)
 
     SVGFile = open(filename, 'r')
     SVG = BeautifulSoup(SVGFile.read(), 'lxml')
@@ -310,8 +314,9 @@ def drawSVG(te:turtlethread.Turtle, filename, height, w_color, thickness=1, fill
     if flip_y: 
         addsy = -addsy 
 
+    scale[1] = -scale[1] 
     if flip_y: 
-        scale[1] = -scale[1] 
+        
         starty = -starty 
 
     print("START:", [startx, starty])

@@ -44,7 +44,7 @@ if __name__ == '__main__':
         with ld.turtle.jump_stitch(): 
             ld.turtle.goto(-350, 300)
         
-        ld.draw_string('Arial', "\n\nabcqz", 120, fills=False, outlines=True)
+        ld.draw_string('Arial', "\n\nabcqz", 120, fills=False, outlines=True, flip_y=True)
 
         # flip y axis 
         '''from turtlethread.base_turtle import Vec2D 
