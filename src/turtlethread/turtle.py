@@ -6,6 +6,7 @@ from warnings import warn
 from pyembroidery import write
 
 from . import stitches
+from . import fills
 from .base_turtle import TNavigator, Vec2D
 from .pattern_info import show_info
 from .visualise import visualise_pattern
@@ -486,7 +487,7 @@ class Turtle(TNavigator):
         """Display information about this turtle's embroidery pattern."""
         show_info(self.pattern.to_pyembroidery(), scale=self.pattern.scale)
 
-    def begin_fill(self, mode="satin"):
+    def begin_fill(self, mode):
         """After begin_fill is called, the turtle will track the stitches made until end_fill is called, afterwhich the polygon formed by the stitches will be filled.
         The current implementation of fill is limited to straight lines between points of the polygon. This works well for "straight" stitches like running stitch and
         satin stitch, but will not fill in the spaces formed in stitches such as zigzag stitch.
@@ -509,67 +510,10 @@ class Turtle(TNavigator):
         if abs(self._fill_stitch_position_stack[0] - self._fill_stitch_position_stack[-1]) > 1:
             self._fill_stitch_position_stack.append(self._fill_stitch_position_stack[0])
 
-        if self.fill_mode == "satin":
-            # Basic scanline fill implementation, scanning left to right
-            edges = []
-            min_y = self._fill_stitch_position_stack[0][1]
-            max_y = self._fill_stitch_position_stack[0][1]
-            for i in range(len(self._fill_stitch_position_stack) - 1):
-                edges.append((self._fill_stitch_position_stack[i], self._fill_stitch_position_stack[i + 1]))
-                min_y = min(min_y, self._fill_stitch_position_stack[i + 1][1])
-                max_y = max(max_y, self._fill_stitch_position_stack[i + 1][1])
+        self.fill_mode.fill(self, self._fill_stitch_position_stack)
 
-            scanline_y = min_y
-            scanned_lines = []
-            while scanline_y <= max_y:
-                intersections = []
-                for edge in edges:
-                    if edge[0][1] <= scanline_y <= edge[1][1] or edge[1][1] <= scanline_y <= edge[0][1]: 
-                        if abs(edge[1][0] - edge[0][0]) > 1 and abs(edge[1][1] - edge[0][1]) > 1: # No horizontal and vertical edge
-                            gradient =  (edge[1][0] - edge[0][0]) / (edge[1][1] - edge[0][1])
-                            intersect_x = edge[0][0] + (scanline_y - edge[0][1]) * gradient
-                            intersections.append((intersect_x, scanline_y))
-                        elif abs(edge[1][0] - edge[0][0]) < 1: # x is equal, hence vertical edge
-                            intersections.append((edge[0][0], scanline_y))
-                        elif abs(edge[1][1] - edge[0][1]) < 1: # y is equal, hence horizontal edge
-                            intersections.append((edge[0][0], scanline_y))
-                            intersections.append((edge[1][0], scanline_y))
-                        
-
-                intersections.sort(key=lambda x: x[0])
-                # Remove duplicates
-                for i in range(len(intersections) - 1):
-                    if abs(intersections[i+1][0] - intersections[i][0]) < 1 and abs(intersections[i+1][1] - intersections[i][1]) < 1:
-                        intersections[i] = None
-                intersections = [x for x in intersections if x is not None]
-
-                scanned_lines.append(intersections)
-                scanline_y += 3
-                if scanline_y >= max_y and scanline_y - max_y < 3:
-                    scanline_y = max_y
-            
-
-            no_fill_in_current_iteration_flag = False
-            while not no_fill_in_current_iteration_flag:
-                no_fill_in_current_iteration_flag = True
-                jump = False
-                for i in range(len(scanned_lines) - 1):
-                    with self.direct_stitch():
-                        if len(scanned_lines[i]) >= 2:
-                            no_fill_in_current_iteration_flag = False
-                            if jump: 
-                                with self.jump_stitch():
-                                    self.goto(scanned_lines[i][0])
-                                    jump = False
-                            self.goto(scanned_lines[i][0])
-                            self.goto(scanned_lines[i][1])
-                            scanned_lines[i].pop(0)
-                            scanned_lines[i].pop(0)
-                        else:
-                            jump = True
-                            
-                            
-                
+    def ScanlineFill(self, angle=90):
+        return fills.ScanlineFill(angle=angle)
 
             
 
