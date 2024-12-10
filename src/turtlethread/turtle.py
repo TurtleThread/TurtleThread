@@ -91,6 +91,10 @@ class Turtle(TNavigator):
         # For integration with sphinx-gallery
         self._gallery_patterns = []
 
+        # Initialize fill variable
+        self.filling = False
+        self._fill_stitch_position_stack = []
+
     @property
     def angle_mode(self):
         """The angle mode, either "degrees" or "radians"."""
@@ -417,6 +421,9 @@ class Turtle(TNavigator):
             enforce_start_stitch=enforce_start_stitch
         ))
 
+    def direct_stitch(self):
+        return self.use_stitch_group(stitches.DirectStitch(self.pos()))
+
     @property
     def _position(self):
         return Vec2D(self.x, self.y)
@@ -426,6 +433,7 @@ class Turtle(TNavigator):
         """Goto a given position, see the :py:meth:`goto` documentation for more info."""
         if self._stitch_group_stack:
             self._stitch_group_stack[-1].add_location(other)
+            if self.filling: self._fill_stitch_position_stack.append(other)
         self.x, self.y = other
 
     def save(self, filename):
@@ -477,4 +485,78 @@ class Turtle(TNavigator):
     def show_info(self):
         """Display information about this turtle's embroidery pattern."""
         show_info(self.pattern.to_pyembroidery(), scale=self.pattern.scale)
+
+    def begin_fill(self, mode="satin"):
+        """After begin_fill is called, the turtle will track the stitches made until end_fill is called, afterwhich the polygon formed by the stitches will be filled.
+        The current implementation of fill is limited to straight lines between points of the polygon. This works well for "straight" stitches like running stitch and
+        satin stitch, but will not fill in the spaces formed in stitches such as zigzag stitch.
+        
+        Parameters
+        ----------
+        mode : str
+            The fill mode to use, currently only "satin" is supported.
+        """
+        self.filling = True
+        self.fill_mode = mode
+        fill_start_pos = self.pos()
+        self._fill_stitch_position_stack = [fill_start_pos]
+
+    def end_fill(self):
+        """End the current fill, and draw the filled polygon."""
+        self.filling = False
+
+        # Close the polygon
+        if abs(self._fill_stitch_position_stack[0] - self._fill_stitch_position_stack[-1]) > 1:
+            self._fill_stitch_position_stack.append(self._fill_stitch_position_stack[0])
+
+        if self.fill_mode == "satin":
+            # Basic scanline fill implementation, scanning left to right
+            edges = []
+            min_y = self._fill_stitch_position_stack[0][1]
+            max_y = self._fill_stitch_position_stack[0][1]
+            for i in range(len(self._fill_stitch_position_stack) - 1):
+                edges.append((self._fill_stitch_position_stack[i], self._fill_stitch_position_stack[i + 1]))
+                min_y = min(min_y, self._fill_stitch_position_stack[i + 1][1])
+                max_y = max(max_y, self._fill_stitch_position_stack[i + 1][1])
+
+            scanline_y = min_y
+            scanned_lines = []
+            while scanline_y <= max_y:
+                intersections = []
+                for edge in edges:
+                    if edge[0][1] <= scanline_y <= edge[1][1] or edge[1][1] <= scanline_y <= edge[0][1]: 
+                        if abs(edge[1][0] - edge[0][0]) > 1 and abs(edge[1][1] - edge[0][1]) > 1: # No horizontal and vertical edge
+                            gradient =  (edge[1][0] - edge[0][0]) / (edge[1][1] - edge[0][1])
+                            intersect_x = edge[0][0] + (scanline_y - edge[0][1]) * gradient
+                            print(edge, gradient, intersect_x)
+                            intersections.append((intersect_x, scanline_y))
+                        elif abs(edge[1][0] - edge[0][0]) < 1: # x is equal, hence vertical edge
+                            intersections.append((edge[0][0], scanline_y))
+                        elif abs(edge[1][1] - edge[0][1]) < 1: # y is equal, hence horizontal edge
+                            intersections.append((edge[0][0], scanline_y))
+                            intersections.append((edge[1][0], scanline_y))
+                        
+
+                intersections.sort(key=lambda x: x[0])
+                # Remove duplicates
+                for i in range(len(intersections) - 1):
+                    if abs(intersections[i+1][0] - intersections[i][0]) < 1 and abs(intersections[i+1][1] - intersections[i][1]) < 1:
+                        intersections[i] = None
+                intersections = [x for x in intersections if x is not None]
+
+                scanned_lines.append(intersections)
+                scanline_y += 3
+                if scanline_y >= max_y and scanline_y - max_y < 3:
+                    scanline_y = max_y
+            
+
+            for i in range(len(scanned_lines) - 1):
+                with self.direct_stitch():
+                    if len(scanned_lines[i]) >= 2:
+                        self.goto(scanned_lines[i][0])
+                        self.goto(scanned_lines[i][1])
+                
+
+            
+
 

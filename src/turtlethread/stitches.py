@@ -714,3 +714,26 @@ class ZStitch(UnitStitch):
         """If center, we need to have half a diagonal stitch to return to the original position along the direction of travel."""
         # Since the final stitch is automatically drawn, we do not need to do anything
         pass
+
+
+class DirectStitch(StitchGroup):
+    """A minimal stitch just to run thread from one point to another."""
+
+    def _iter_stitches_between_positions(
+        self, position_1: Vec2D, position_2: Vec2D
+    ) -> Generator[tuple[StitchCommand, float, float], None, None]:
+        x, y = position_1
+        x_end, y_end = position_2
+
+        yield x_end, y_end, pyembroidery.STITCH
+
+    def _get_stitch_commands(self) -> list[tuple[float, float, StitchCommand]]:
+        if not self._positions:
+            return []
+
+        stitch_commands = [(self._start_pos[0], self._start_pos[1], pyembroidery.STITCH)]
+        stitch_commands.extend(self._iter_stitches_between_positions(self._start_pos, self._positions[0]))
+        for pos1, pos2 in itertools.pairwise(self._positions):
+            stitch_commands.extend(self._iter_stitches_between_positions(pos1, pos2))
+
+        return stitch_commands
