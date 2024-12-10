@@ -1,4 +1,15 @@
+import math
 from abc import ABC, abstractmethod
+from .base_turtle import Vec2D
+
+
+def rotate_point(x, y, angle):
+    """Rotate a point around the origin by a given angle (in radians)."""
+    cos_theta = math.cos(angle)
+    sin_theta = math.sin(angle)
+    x_new = x * cos_theta - y * sin_theta
+    y_new = x * sin_theta + y * cos_theta
+    return x_new, y_new
 
 class Fill(ABC):
     """A class to represent a fill. This is a base class for other fill types.
@@ -9,21 +20,37 @@ class Fill(ABC):
         raise NotImplementedError
 
 class ScanlineFill(Fill):
+    """The Scanline fill will create straight lines across the fill area to fill it up. Useful for small areas.
+
+    Parameters
+    -----------
+    angle:
+        Angle of the lines, in degrees."""
     def __init__(self, angle):
-        self.angle = angle
+        self.angle = angle % 180
 
     def fill(self, turtle, points):
-        # Basic scanline fill implementation, scanning left to right
-        edges = []
-        min_y = points[0][1]
-        max_y = points[0][1]
-        for i in range(len(points) - 1):
-            edges.append((points[i], points[i + 1]))
-            min_y = min(min_y, points[i + 1][1])
-            max_y = max(max_y, points[i + 1][1])
+        # Rotate the coordinates
+        rot_points = []
+        for x, y in points:
+            x_rot, y_rot = rotate_point(x, y, self.angle)
+            rot_points.append((x_rot, y_rot))
 
-        scanline_y = min_y
+        # Basic scanline fill implementation
+        edges = []
+        min_x = rot_points[0][0]
+        max_x = rot_points[0][0]
+        min_y = rot_points[0][1]
+        max_y = rot_points[0][1]
+        for i in range(len(rot_points) - 1):
+            edges.append((rot_points[i], rot_points[i + 1]))
+            min_x = min(min_x, rot_points[i + 1][0])
+            max_x = max(max_x, rot_points[i + 1][0])
+            min_y = min(min_y, rot_points[i + 1][1])
+            max_y = max(max_y, rot_points[i + 1][1])
+
         scanned_lines = []
+        scanline_y = min_y
         while scanline_y <= max_y:
             intersections = []
             for edge in edges:
@@ -50,7 +77,17 @@ class ScanlineFill(Fill):
             scanline_y += 3
             if scanline_y >= max_y and scanline_y - max_y < 3:
                 scanline_y = max_y
+
         
+        # Un-rotate the coordinates
+        for line in scanned_lines:
+            for i in range(len(line)):
+                line[i] = rotate_point(line[i][0], line[i][1], -self.angle)
+
+        # Jump to start coordinate if needed
+        if abs(Vec2D(scanned_lines[0][0][0], scanned_lines[0][0][1]) - turtle.pos()) > 1:
+            with turtle.jump_stitch():
+                turtle.goto(scanned_lines[0][0])
 
         no_fill_in_current_iteration_flag = False
         while not no_fill_in_current_iteration_flag:

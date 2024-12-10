@@ -509,10 +509,10 @@ class Turtle(TNavigator):
         # Close the polygon
         if abs(self._fill_stitch_position_stack[0] - self._fill_stitch_position_stack[-1]) > 1:
             self._fill_stitch_position_stack.append(self._fill_stitch_position_stack[0])
-
+        
         self.fill_mode.fill(self, self._fill_stitch_position_stack)
 
-    def ScanlineFill(self, angle=90):
+    def ScanlineFill(self, angle=math.pi/2):
         return fills.ScanlineFill(angle=angle)
 
             
