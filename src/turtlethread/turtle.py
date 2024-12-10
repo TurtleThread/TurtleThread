@@ -528,7 +528,6 @@ class Turtle(TNavigator):
                         if abs(edge[1][0] - edge[0][0]) > 1 and abs(edge[1][1] - edge[0][1]) > 1: # No horizontal and vertical edge
                             gradient =  (edge[1][0] - edge[0][0]) / (edge[1][1] - edge[0][1])
                             intersect_x = edge[0][0] + (scanline_y - edge[0][1]) * gradient
-                            print(edge, gradient, intersect_x)
                             intersections.append((intersect_x, scanline_y))
                         elif abs(edge[1][0] - edge[0][0]) < 1: # x is equal, hence vertical edge
                             intersections.append((edge[0][0], scanline_y))
@@ -550,11 +549,26 @@ class Turtle(TNavigator):
                     scanline_y = max_y
             
 
-            for i in range(len(scanned_lines) - 1):
-                with self.direct_stitch():
-                    if len(scanned_lines[i]) >= 2:
-                        self.goto(scanned_lines[i][0])
-                        self.goto(scanned_lines[i][1])
+            no_fill_in_current_iteration_flag = False
+            while not no_fill_in_current_iteration_flag:
+                no_fill_in_current_iteration_flag = True
+                jump = False
+                for i in range(len(scanned_lines) - 1):
+                    with self.direct_stitch():
+                        if len(scanned_lines[i]) >= 2:
+                            no_fill_in_current_iteration_flag = False
+                            if jump: 
+                                with self.jump_stitch():
+                                    self.goto(scanned_lines[i][0])
+                                    jump = False
+                            self.goto(scanned_lines[i][0])
+                            self.goto(scanned_lines[i][1])
+                            scanned_lines[i].pop(0)
+                            scanned_lines[i].pop(0)
+                        else:
+                            jump = True
+                            
+                            
                 
 
             
