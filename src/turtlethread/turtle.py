@@ -512,7 +512,14 @@ class Turtle(TNavigator):
         
         self.fill_mode.fill(self, self._fill_stitch_position_stack)
 
-    def ScanlineFill(self, angle=math.pi/2):
+    def ScanlineFill(self, angle="auto"):
+        """The Scanline fill will create straight lines across the fill area to fill it up. Useful for small areas.
+
+        Parameters
+        -----------
+        angle (default='auto'):
+            Angle of the lines, in radians. May also be the string 'auto'.
+            If 'auto', the program will automatically try the angles of 0, 45, 90, and 135 degrees, to minimize the number of jump stitches."""
         return fills.ScanlineFill(angle=angle)
 
             

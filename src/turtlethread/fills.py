@@ -25,15 +25,20 @@ class ScanlineFill(Fill):
     Parameters
     -----------
     angle:
-        Angle of the lines, in degrees."""
-    def __init__(self, angle):
-        self.angle = angle % 180
-
-    def fill(self, turtle, points):
+        Angle of the lines, in radians. May also be the string 'auto'.
+        If 'auto', the program will automatically try the angles of 0, 45, 90, and 135 degrees, to minimize the number of jump stitches."""
+    def __init__(self, angle : str | int | float):
+        if type(angle) == str and angle == "auto":
+            self.auto = True
+        else:
+            self.auto = False
+            self.angle = angle
+            
+    def _fill_at_angle(self, turtle, points, angle, simulate=False):
         # Rotate the coordinates
         rot_points = []
         for x, y in points:
-            x_rot, y_rot = rotate_point(x, y, self.angle)
+            x_rot, y_rot = rotate_point(x, y, angle)
             rot_points.append((x_rot, y_rot))
 
         # Basic scanline fill implementation
@@ -82,12 +87,14 @@ class ScanlineFill(Fill):
         # Un-rotate the coordinates
         for line in scanned_lines:
             for i in range(len(line)):
-                line[i] = rotate_point(line[i][0], line[i][1], -self.angle)
+                line[i] = rotate_point(line[i][0], line[i][1], -angle)
 
+        jump_stitches = 0
         # Jump to start coordinate if needed
         if abs(Vec2D(scanned_lines[0][0][0], scanned_lines[0][0][1]) - turtle.pos()) > 1:
             with turtle.jump_stitch():
-                turtle.goto(scanned_lines[0][0])
+                jump_stitches += 1
+                if not simulate: turtle.goto(scanned_lines[0][0])
 
         no_fill_in_current_iteration_flag = False
         while not no_fill_in_current_iteration_flag:
@@ -99,14 +106,35 @@ class ScanlineFill(Fill):
                         no_fill_in_current_iteration_flag = False
                         if jump: 
                             with turtle.jump_stitch():
-                                turtle.goto(scanned_lines[i][0])
+                                if not simulate: turtle.goto(scanned_lines[i][0])
+                                jump_stitches += 1
                                 jump = False
-                        turtle.goto(scanned_lines[i][0])
-                        turtle.goto(scanned_lines[i][1])
+                        if not simulate: turtle.goto(scanned_lines[i][0])
+                        if not simulate: turtle.goto(scanned_lines[i][1])
                         scanned_lines[i].pop(0)
                         scanned_lines[i].pop(0)
                     else:
                         jump = True
+
+        return jump_stitches
+    
+    def fill(self, turtle, points):
+        if not self.auto:
+            self._fill_at_angle(turtle, points, self.angle)
+        else:
+            best_angle = 0
+            min_jumps = self._fill_at_angle(turtle, points, best_angle, simulate=True)
+            for angle in (math.pi/4, math.pi/2, 3*math.pi/4):
+                jumps = self._fill_at_angle(turtle, points, angle, simulate=True)
+                if jumps < min_jumps:
+                    min_jumps = jumps
+                    best_angle = angle
+
+            self._fill_at_angle(turtle, points, best_angle)
+
+        
+
+ 
                         
                         
             
