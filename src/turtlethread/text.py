@@ -154,16 +154,18 @@ class LetterDrawer():
         
         return 
     
-    def draw_letter_gap(self, fontsize): 
+    def draw_letter_gap(self, fontsize, letter_gap=None): 
+        if letter_gap is None: 
+            letter_gap = LetterDrawer.letter_gap 
         #print("DRAWING LETTER GAP")
         # this draws the gap between two letters (not whitespace) 
         with self.turtle.jump_stitch(): 
             currpos = list(self.turtle.position())
             #print(currpos)
-            self.turtle.goto(currpos[0] + LetterDrawer.letter_gap*fontsize, currpos[1])
+            self.turtle.goto(currpos[0] + letter_gap*fontsize, currpos[1])
         #print("DRAEW")
         
-    def draw_string(self, fontname, string, fontsize, colours='#000000', thicknesses = 1, fills=True, outlines=False, turtle=None, flip_y=False):  # TODO make a version that considers kerning 
+    def draw_string(self, fontname, string, fontsize, colours='#000000', thicknesses = 1, fills=True, outlines=False, letter_gaps=None, turtle=None, flip_y=False):  # TODO make a version that considers kerning 
 
         # this draws a multiline string, automatically drawing letter gaps as desired 
         # if fills is True, will fill the text with satin stitch. else, will draw the text outline 
@@ -188,6 +190,10 @@ class LetterDrawer():
 
         if isinstance(outlines, list): 
             assert len(outlines) >= len(string), "'outlines' in LetterDrawer.draw_string is a list; it's length must be at least length of the string! (characters like '\\n' and ' ' will not consider the outline variable, but will still have an item on theoutlines list assigned to them)" 
+
+        if isinstance(letter_gaps, list): 
+            assert len(letter_gaps) >= len(string)-1, "'letter_gaps' in LetterDrawer.draw_string is a list; it's length must be at least (length of the string - 1)! (characters like '\\n' and ' ' will not consider the outline variable, but will still have an item on theoutlines list assigned to them)" 
+
 
         #print("HELLO>..")
 
@@ -220,10 +226,16 @@ class LetterDrawer():
                 
             #print("DRAWING LETTER", string[cidx], "FILL", fill)
             self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[cidx]), fontsize, col, thickness, fill, outline, turtle, flip_y) 
-            self.draw_letter_gap(fontsize) 
+
+            if isinstance(letter_gaps, list): 
+                letter_gap = letter_gaps[cidx] 
+            else: 
+                letter_gap = letter_gaps 
+            self.draw_letter_gap(fontsize, letter_gap) 
         
+        cidx = len(string) - 1 
         # draw last letter 
-        if string[-1] in ['\n', '\r']: 
+        if string[cidx] in ['\n', '\r']: 
             # newline 
             with turtle.jump_stitch(): 
                 starty -= fontsize*LetterDrawer.line_spacing
@@ -232,25 +244,29 @@ class LetterDrawer():
             if isinstance(colours, str): 
                 col = colours 
             else: 
-                col = colours[-1] 
+                col = colours[cidx] 
             
             if isinstance(thicknesses, int): 
                 thickness = thicknesses 
             else: 
-                thickness = thicknesses[-1] 
+                thickness = thicknesses[cidx] 
 
             if isinstance(fills, bool): 
                 fill = fills 
             else: 
-                fill = fills[-1] 
+                fill = fills[cidx] 
                 
             if isinstance(outlines, bool): 
                 outline = outlines 
             else: 
-                outline = outlines[-1] 
+                outline = outlines[cidx] 
                 
             #print("DRAWING LETTER", string[-1], "FILL", fill)
-            self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[-1]), fontsize, col, thickness, fill, outline, turtle, flip_y) 
+            self.draw_one_letter(fontname, LetterDrawer.char_to_name(string[cidx]), fontsize, col, thickness, fill, outline, turtle, flip_y) 
+
+            if isinstance(letter_gaps, list) and len(letter_gaps) > cidx: # if we have another letter gap, include it. 
+                letter_gap = letter_gaps[cidx] 
+                self.draw_letter_gap(fontsize, letter_gap) 
         
 
     punctuation_to_name = {'!': 'exclam', 
