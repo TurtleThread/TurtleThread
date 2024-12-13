@@ -1,9 +1,7 @@
-from dataclasses import dataclass
 from pyembroidery import JUMP, STITCH, TRIM
 import tkinter as tk
 from tkinter.constants import LEFT, RIGHT
-import heapq
-from sortedcontainers import SortedList
+from sklearn.cluster import DBSCAN
 
 USE_SPHINX_GALLERY = False
 
@@ -189,6 +187,13 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, spee
         justify=RIGHT
     ).pack(anchor="s", side="right")
 
+    if density(pattern.stitches):
+        tk.Label(
+            root,
+            text=f"WARNING: POTENTIAL HIGH STITCH DENSITY",
+            fg="#f00"
+        ).pack(side="bottom")
+
     if len(pattern.stitches) == 0:
         _finish_visualise(done=done, bye=bye)
         return
@@ -245,3 +250,25 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, spee
 
     if raise_error:
         ValueError(f"Command not supported: {command}")
+
+
+def density(stitches):
+    # Considering that most stitches are of relatively short length,
+    # we can estimate the each stitch by some equally spaced apart
+    # points, and then find areas with high density.
+    # TODO: make algorithm work for longer stitches as well
+
+    # Get sampling points
+    points = []
+    prevx, prevy = stitches[0][:2]
+    for x, y, t in stitches[1:]:
+        if t == STITCH:
+            points.append(((x+prevx)/4, (y+prevy)/4))
+            points.append(((x+prevx)/2, (y+prevy)/2))
+            points.append((3*(x+prevx)/4, 3*(y+prevy)/4))
+
+    # Find clusters
+    db = DBSCAN(eps=0.5, min_samples=20) # Not hard and fast values
+    db.fit(points)
+    labels = db.labels_
+    return len(set(labels)) > 1
