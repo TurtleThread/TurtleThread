@@ -122,13 +122,53 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, spee
     screen = Screen()
     screen.setup(width, height)
 
+    canvas = screen.getcanvas()
+    root = canvas.master
+
+    # Draw grid
+    # Vertical thin
+    i = 0
+    while i < 1000:
+        canvas.create_line(i, -1000, i, 1000, width=2, fill="#eeeeee")
+        i += 100*scale
+    i = 0
+    while i > -1000:
+        canvas.create_line(i, -1000, i, 1000, width=2, fill="#eeeeee")
+        i -= 100 * scale
+    # Horizontal thin
+    i = 0
+    while i < 1000:
+        canvas.create_line(-1000, i, 1000, i, width=2, fill="#eeeeee")
+        i += 100 * scale
+    i = 0
+    while i > -1000:
+        canvas.create_line(-1000, i, 1000, i, width=2, fill="#eeeeee")
+        i -= 100 * scale
+    # Vertical thick
+    i = 0
+    while i < 1000:
+        canvas.create_line(i, -1000, i, 1000, width=5, fill="#cccccc")
+        i += 500 * scale
+    i = 0
+    while i > -1000:
+        canvas.create_line(i, -1000, i, 1000, width=5, fill="#cccccc")
+        i -= 500 * scale
+    # Horizontal thick
+    i = 0
+    while i < 1000:
+        canvas.create_line(-1000, i, 1000, i, width=5, fill="#cccccc")
+        i += 500 * scale
+    i = 0
+    while i > -1000:
+        canvas.create_line(-1000, i, 1000, i, width=5, fill="#cccccc")
+        i -= 500 * scale
+
     # Write to window directly by getting tkinter object - a bit cursed
     # There probably is a better way to do it
 
     # Calculate estimated pattern size
     xy = [i / 100 for i in get_dimensions(pattern.stitches)]  # 100 units = 1cm
     # Write pattern size
-    root = screen.getcanvas().master
     tk.Label(
         root,
         text=f"Width: {xy[0]:.2f} cm\nHeight: {xy[1]:.2f} cm",
