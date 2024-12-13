@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from pyembroidery import JUMP, STITCH, TRIM
 import tkinter as tk
 from tkinter.constants import LEFT, RIGHT
@@ -182,15 +183,18 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, spee
 
             # 12.5% 75%  12.5%
             # blank line blank
+            # if stitch is long, limit blank part
             xcur, ycur = turtle.position()
             d = ((xcur - x) ** 2 + (ycur - y) ** 2) ** 0.5  # maybe find a way to avoid fp errors here? prob unnecessary
+            blank = min(d/8, 5)
+            solid = d - 2*blank
 
             turtle.penup()
-            turtle.forward(d / 8)
+            turtle.forward(blank)
             turtle.pendown()
-            turtle.forward(d / 4 * 3)
+            turtle.forward(solid)
             turtle.penup()
-            turtle.forward(d / 8)
+            turtle.forward(blank)
             turtle.pendown()
 
         else:
