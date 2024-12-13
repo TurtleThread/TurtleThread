@@ -1,6 +1,16 @@
 from pyembroidery import JUMP, STITCH, TRIM
+import tkinter as tk
+from tkinter.constants import LEFT, RIGHT
+import heapq
+from sortedcontainers import SortedList
 
 USE_SPHINX_GALLERY = False
+
+
+def get_dimensions(stitches):
+    x = [s[0] for s in stitches]
+    y = [s[1] for s in stitches]
+    return max(*x) - min(*x), max(*y) - min(*y)
 
 
 def centered_dot(turtle, diameter):
@@ -64,7 +74,8 @@ def _finish_visualise(done, bye):
             pass
 
 
-def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, speed=6, trace_jump=False, done=True, bye=True):
+def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, speed=6, trace_jump=False, done=True,
+                      bye=True):
     """Use the builtin ``turtle`` library to visualise an embroidery pattern.
 
     Parameters
@@ -110,6 +121,33 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, spee
     screen = Screen()
     screen.setup(width, height)
 
+    # Write to window directly by getting tkinter object - a bit cursed
+    # There probably is a better way to do it
+
+    # Calculate estimated pattern size
+    xy = [i / 100 for i in get_dimensions(pattern.stitches)]  # 100 units = 1cm
+    # Write pattern size
+    root = screen.getcanvas().master
+    tk.Label(
+        root,
+        text=f"Width: {xy[0]:.2f} cm\nHeight: {xy[1]:.2f} cm",
+        justify=LEFT
+    ).pack(anchor="s", side="left")
+
+    # Count number of stitches
+    stitch_count = sum([1 if command == STITCH else 0 for *_, command in pattern.stitches])
+    # Estimate time assuming 600spm
+    time = stitch_count / 10
+    s = time % 60
+    m = time // 60 % 60
+    h = time // 3600
+    # Write stitch count
+    tk.Label(
+        root,
+        text=f"{stitch_count} stitches in total\n{f'{h}h' if h else ''}{f'{m}m' if m else ''}{s:.1f}s (assuming 600spm)",
+        justify=RIGHT
+    ).pack(anchor="s", side="right")
+
     if len(pattern.stitches) == 0:
         _finish_visualise(done=done, bye=bye)
         return
@@ -145,14 +183,14 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, spee
             # 12.5% 75%  12.5%
             # blank line blank
             xcur, ycur = turtle.position()
-            d = ((xcur-x)**2 + (ycur-y)**2)**0.5 # TODO: find a way to avoid fp errors here
+            d = ((xcur - x) ** 2 + (ycur - y) ** 2) ** 0.5  # maybe find a way to avoid fp errors here? prob unnecessary
 
             turtle.penup()
-            turtle.forward(d/8)
+            turtle.forward(d / 8)
             turtle.pendown()
-            turtle.forward(d/4*3)
+            turtle.forward(d / 4 * 3)
             turtle.penup()
-            turtle.forward(d/8)
+            turtle.forward(d / 8)
             turtle.pendown()
 
         else:
