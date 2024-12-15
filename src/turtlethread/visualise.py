@@ -226,16 +226,16 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, spee
             turtle.setheading(turtle.towards(x, y))
             turtle.color("blue")
 
-            # 12.5% 75%  12.5%
+            #  20%  60%   20%
             # blank line blank
             # if stitch is long, limit blank part
             xcur, ycur = turtle.position()
             d = ((xcur - x) ** 2 + (ycur - y) ** 2) ** 0.5  # maybe find a way to avoid fp errors here? prob unnecessary
-            blank = min(d/8, 3)
+            blank = min(d/5, 5)
             solid = d - 2*blank
 
             w = turtle.width()
-            turtle.width(3)
+            turtle.width(2)
             turtle.penup()
             turtle.forward(blank)
             turtle.pendown()
