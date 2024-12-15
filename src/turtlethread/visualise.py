@@ -231,9 +231,11 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, spee
             # if stitch is long, limit blank part
             xcur, ycur = turtle.position()
             d = ((xcur - x) ** 2 + (ycur - y) ** 2) ** 0.5  # maybe find a way to avoid fp errors here? prob unnecessary
-            blank = min(d/8, 5)
+            blank = min(d/8, 3)
             solid = d - 2*blank
 
+            w = turtle.width()
+            turtle.width(3)
             turtle.penup()
             turtle.forward(blank)
             turtle.pendown()
@@ -241,6 +243,7 @@ def visualise_pattern(pattern, turtle=None, width=800, height=800, scale=1, spee
             turtle.penup()
             turtle.forward(blank)
             turtle.pendown()
+            turtle.width(w)
 
         else:
             raise_error = True
