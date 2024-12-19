@@ -6,6 +6,7 @@ from warnings import warn
 from pyembroidery import write
 
 from . import stitches
+from . import fills
 from .base_turtle import TNavigator, Vec2D
 from .pattern_info import show_info
 from .visualise import visualise_pattern
@@ -90,6 +91,10 @@ class Turtle(TNavigator):
 
         # For integration with sphinx-gallery
         self._gallery_patterns = []
+
+        # Initialize fill variable
+        self.filling = False
+        self._fill_stitch_position_stack = []
 
     @property
     def angle_mode(self):
@@ -214,6 +219,70 @@ class Turtle(TNavigator):
         """
         self.set_stitch_type(stitches.JumpStitch(self.pos()))
 
+    def start_zigzag_stitch(
+        self,
+        stitch_length: int | float,
+        stitch_width: int | float,
+        center: bool = False,
+        auto_adjust: bool = True,
+        enforce_end_stitch: bool = True,
+        enforce_start_stitch: bool = True) -> None:
+        """Set the stitch mode to zigzag stitch.""" 
+        
+        self.set_stitch_type(stitches.ZigzagStitch(
+            self.pos(),
+            stitch_length,
+            stitch_width,
+            center=center,
+            auto_adjust=auto_adjust,
+            enforce_end_stitch=enforce_end_stitch,
+            enforce_start_stitch=enforce_start_stitch
+        ))
+
+    def start_satin_stitch(self, width, center = True):
+        """Set the stitch mode to satin stitch.""" 
+        self.set_stitch_type(stitches.SatinStitch(self.pos(), width, center=center))
+
+    def start_cross_stitch(
+        self,
+        stitch_length: int | float,
+        stitch_width: int | float,
+        center: bool = False,
+        auto_adjust: bool = True,
+        enforce_end_stitch: bool = True,
+        enforce_start_stitch: bool = True) -> None:
+        """Set the stitch mode to cross stitch.""" 
+        
+        self.set_stitch_type(stitches.CrossStitch(
+            self.pos(),
+            stitch_length,
+            stitch_width,
+            center=center,
+            auto_adjust=auto_adjust,
+            enforce_end_stitch=enforce_end_stitch,
+            enforce_start_stitch=enforce_start_stitch
+        ))
+
+    def start_z_stitch(
+        self,
+        stitch_length: int | float,
+        stitch_width: int | float,
+        center: bool = False,
+        auto_adjust: bool = True,
+        enforce_end_stitch: bool = True,
+        enforce_start_stitch: bool = True) -> None:
+        """Set the stitch mode to z stitch.""" 
+        
+        self.set_stitch_type(stitches.ZStitch(
+            self.pos(),
+            stitch_length,
+            stitch_width,
+            center=center,
+            auto_adjust=auto_adjust,
+            enforce_end_stitch=enforce_end_stitch,
+            enforce_start_stitch=enforce_start_stitch
+        ))
+
     def cleanup_stitch_type(self):
         """Cleanup after switching stitch type."""
         self._stitch_group_stack.pop()
@@ -288,6 +357,74 @@ class Turtle(TNavigator):
         """
         return self.use_stitch_group(stitches.JumpStitch(self.pos(), skip_intermediate_jumps=skip_intermediate_jumps))
 
+    def zigzag_stitch(
+        self,
+        stitch_length: int | float,
+        stitch_width: int | float,
+        center: bool = False,
+        auto_adjust: bool = True,
+        enforce_end_stitch: bool = True,
+        enforce_start_stitch: bool = True) -> None:
+        """Set the stitch mode to zigzag stitch.""" 
+        
+        return self.use_stitch_group(stitches.ZigzagStitch(
+            self.pos(),
+            stitch_length,
+            stitch_width,
+            center=center,
+            auto_adjust=auto_adjust,
+            enforce_end_stitch=enforce_end_stitch,
+            enforce_start_stitch=enforce_start_stitch
+        ))
+
+    def satin_stitch(self, width, center = True):
+        """Set the stitch mode to satin stitch.""" 
+        return self.use_stitch_group(stitches.SatinStitch(self.pos(), width, center=center))
+
+    
+    def cross_stitch(
+        self,
+        stitch_length: int | float,
+        stitch_width: int | float,
+        center: bool = False,
+        auto_adjust: bool = True,
+        enforce_end_stitch: bool = True,
+        enforce_start_stitch: bool = True) -> None:
+        """Set the stitch mode to cross stitch.""" 
+        
+        return self.use_stitch_group(stitches.CrossStitch(
+            self.pos(),
+            stitch_length,
+            stitch_width,
+            center=center,
+            auto_adjust=auto_adjust,
+            enforce_end_stitch=enforce_end_stitch,
+            enforce_start_stitch=enforce_start_stitch
+        ))
+
+    def z_stitch(
+        self,
+        stitch_length: int | float,
+        stitch_width: int | float,
+        center: bool = False,
+        auto_adjust: bool = True,
+        enforce_end_stitch: bool = True,
+        enforce_start_stitch: bool = True) -> None:
+        """Set the stitch mode to z stitch.""" 
+        
+        return self.use_stitch_group(stitches.ZStitch(
+            self.pos(),
+            stitch_length,
+            stitch_width,
+            center=center,
+            auto_adjust=auto_adjust,
+            enforce_end_stitch=enforce_end_stitch,
+            enforce_start_stitch=enforce_start_stitch
+        ))
+
+    def direct_stitch(self):
+        return self.use_stitch_group(stitches.DirectStitch(self.pos()))
+
     @property
     def _position(self):
         return Vec2D(self.x, self.y)
@@ -297,6 +434,7 @@ class Turtle(TNavigator):
         """Goto a given position, see the :py:meth:`goto` documentation for more info."""
         if self._stitch_group_stack:
             self._stitch_group_stack[-1].add_location(other)
+            if self.filling: self._fill_stitch_position_stack.append(other)
         self.x, self.y = other
 
     def save(self, filename):
@@ -320,7 +458,7 @@ class Turtle(TNavigator):
         self.goto(0, 0)
         self.angle = 0
 
-    def visualise(self, turtle=None, width=800, height=800, scale=1, done=True, bye=True, clean=False):
+    def visualise(self, turtle=None, width=800, height=800, scale=1, speed=6, trace_jump=False, done=True, bye=True):
         """Use the builtin ``turtle`` library to visualise this turtle's embroidery pattern.
 
         Parameters
@@ -336,15 +474,59 @@ class Turtle(TNavigator):
             Canvas height
         scale : int
             Factor the embroidery length's are scaled by.
+        speed : int
+            Speed that the turtle object moves at.
+        trace_jump : bool
+            If True, then draw a grey line connecting the origin and destination of jumps.
         done : bool
             If True, then ``turtle.done()`` will be called after drawing.
         bye : bool
             If True, then ``turtle.bye()`` will be called after drawing.
         """
         visualise_pattern(
-            self.pattern.to_pyembroidery(), turtle=turtle, width=width, height=height, scale=scale, done=done, bye=bye, clean=clean, 
+            self.pattern.to_pyembroidery(),
+            turtle=turtle, width=width, height=height, scale=scale, speed=speed, trace_jump=trace_jump, done=done, bye=bye
         )
 
     def show_info(self):
         """Display information about this turtle's embroidery pattern."""
         show_info(self.pattern.to_pyembroidery(), scale=self.pattern.scale)
+
+    def begin_fill(self, mode):
+        """After begin_fill is called, the turtle will track the stitches made until end_fill is called, afterwhich the polygon formed by the stitches will be filled.
+        The current implementation of fill is limited to straight lines between points of the polygon. This works well for "straight" stitches like running stitch and
+        satin stitch, but will not fill in the spaces formed in stitches such as zigzag stitch.
+        
+        Parameters
+        ----------
+        mode : str
+            The fill mode to use, currently only "satin" is supported.
+        """
+        self.filling = True
+        self.fill_mode = mode
+        fill_start_pos = self.pos()
+        self._fill_stitch_position_stack = [fill_start_pos]
+
+    def end_fill(self):
+        """End the current fill, and draw the filled polygon."""
+        self.filling = False
+
+        # Close the polygon
+        if abs(self._fill_stitch_position_stack[0] - self._fill_stitch_position_stack[-1]) > 1:
+            self._fill_stitch_position_stack.append(self._fill_stitch_position_stack[0])
+        
+        self.fill_mode.fill(self, self._fill_stitch_position_stack)
+
+    def ScanlineFill(self, angle="auto"):
+        """The Scanline fill will create straight lines across the fill area to fill it up. Useful for small areas.
+
+        Parameters
+        -----------
+        angle (default='auto'):
+            Angle of the lines, in radians. May also be the string 'auto'.
+            If 'auto', the program will automatically try the angles of 0, 45, 90, and 135 degrees, to minimize the number of jump stitches."""
+        return fills.ScanlineFill(angle=angle)
+
+            
+
+

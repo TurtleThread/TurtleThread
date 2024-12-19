@@ -1,11 +1,13 @@
 import math
 from math import copysign, cos, degrees, pi, radians, sin, sqrt
+import numpy as np
 
 import pytest
 from pyembroidery import JUMP, STITCH, TRIM
 from pytest import approx
 
 import turtlethread.stitches
+from turtlethread.stitches import ZigzagStitch
 from turtlethread import Turtle
 from turtlethread.base_turtle import Vec2D
 
@@ -143,6 +145,8 @@ class TestTurtle:
             turtlethread.stitches.JumpStitch(Vec2D(0, 0)),
             turtlethread.stitches.RunningStitch(Vec2D(0, 0), 20),
             turtlethread.stitches.TripleStitch(Vec2D(0, 0), 20),
+            turtlethread.stitches.ZigzagStitch(Vec2D(0, 0), 20, 20),
+            turtlethread.stitches.SatinStitch(Vec2D(0, 0), 20),
         ],
     )
     def test_set_stitch_type_sets_stitch_type(self, turtle, stitch_group):
@@ -517,3 +521,4 @@ class TestTurtleTripleStitch:
     def test_start_triple_stitch_sets_stitch_type(self, turtle):
         turtle.start_triple_stitch(10)
         assert isinstance(turtle._stitch_group_stack[-1], turtlethread.stitches.TripleStitch)
+
