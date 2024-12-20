@@ -64,7 +64,7 @@ if __name__ == '__main__':
         # visualize 
         import turtle 
         #turtle.screensize(5000, 5000)
-        ld.turtle.visualise(done=False, bye=False, clean=True, width=2000, height=2000)
+        ld.turtle.visualise(done=False, bye=False, width=2000, height=2000)
 
 
         turtle.Screen().getcanvas().postscript(file=eps_path)
