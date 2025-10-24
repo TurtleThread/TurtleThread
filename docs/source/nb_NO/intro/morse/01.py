@@ -1,54 +1,54 @@
 from turtlethread import Turtle
 
 
-def draw_dash(needle, length, height):
-    """Use the Turtle object ``needle`` to draw a dash.
+def tegn_strek(penn, lengde, høyde):
+    """Bruk skilpaddeobjektet ``penn`` for å tegne en strek.
     """
-    needle.left(90)
-    needle.forward(height)
-    needle.right(90)
-    needle.forward(3*length)
-    needle.right(90)
-    needle.forward(height)
-    needle.left(90)
+    penn.left(90)
+    penn.forward(høyde)
+    penn.right(90)
+    penn.forward(3*lengde)
+    penn.right(90)
+    penn.forward(høyde)
+    penn.left(90)
 
-def draw_dot(needle, length, height):
-    """Use the Turtle object ``needle`` to draw a dot.
+def tegn_prikk(penn, lengde, høyde):
+    """Bruk skilpaddeobjektet ``penn`` for å tegne prikk.
     """
-    needle.left(90)
-    needle.forward(height)
-    needle.right(90)
-    needle.forward(length)
-    needle.right(90)
-    needle.forward(height)
-    needle.left(90)
+    penn.left(90)
+    penn.forward(høyde)
+    penn.right(90)
+    penn.forward(lengde)
+    penn.right(90)
+    penn.forward(høyde)
+    penn.left(90)
 
-def draw_morse_symbol(symbol, needle, length, height):
-    """Use the Turtle object ``needle`` to draw a morse symbol (dot, dash or pause).
+def tegn_morse_tegn(tegn, penn, lengde, høyde):
+    """Bruk skilpaddeobjektet ``penn`` for å tegne et morsetegn (prikk, strek eller pause).
     """
-    if symbol == ".":
-        draw_dot(needle, length, height)
-    elif symbol == "-":
-        draw_dash(needle, length, height)
-    elif symbol == " ":
-        needle.forward(length)
+    if tegn == ".":
+        tegn_prikk(penn, lengde, høyde)
+    elif tegn == "-":
+        tegn_strek(penn, lengde, høyde)
+    elif tegn == " ":
+        penn.forward(lengde)
 
-def draw_morse_code(morse_code, needle, length, height):
-    """Use the Turtle object ``needle`` to draw morse code
+def tegn_morsekode(morsekode, penn, lengde, høyde):
+    """Bruk en skilpadde for å tegne morsekode
     """
-    # We want a small space at the beginning. This is not necessary, but makes the embroidery prettier.
-    needle.forward(length/2)
+    # Vi vil ha litt mellomrom på starten av strengen, dette er ikke nødvendig, men får det til å se pent ut
+    penn.forward(lengde/2)
 
-    # We can iterate over each letter in a string
-    for morsebokstav in morse_code:
-        draw_morse_tegn(morsebokstav, needle, length=length, height=height)
-        needle.forward(length)  # We add a unit-length space between each symbol
+    # Vi kan iterere over hvert tegn i en tekststreng
+    for morsebokstav in morsekode:
+        tegn_morse_tegn(morsebokstav, penn, lengde=lengde, høyde=høyde)
+        penn.forward(lengde)  # Det er en lengdeenhet mellomrom mellom hvert tegn
 
-    # We want a small space at the end also. This is not necessary, but makes the embroidery prettier.
-    needle.forward(length/2)
+    # Vi vil ha litt mellomrom på slutten av strengen, dette er ikke nødvendig, men får det til å se pent ut
+    penn.forward(lengde/2)
 
 needle = Turtle()
 with needle.running_stitch(30):
-    draw_morse_code("... --- ...", needle, 60, 200)
+    tegn_morsekode("... --- ...", needle, 60, 200)
 
 needle.save("sos.svg")
